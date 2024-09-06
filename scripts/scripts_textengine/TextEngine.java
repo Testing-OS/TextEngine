@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.*;
 
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.ios.IOSDriver;
@@ -42,6 +43,7 @@ import org.openqa.selenium.WebDriver;
 import java.io.*;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
 import java.net.URLClassLoader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -61,11 +63,9 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
 
 import java.net.URL;
-import java.io.File;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -74,8 +74,6 @@ import java.util.stream.Stream;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import scripts_techniques.Config;
 import scripts_techniques.Selenium.*;
-import scripts_techniques.Selenium.Teststep;
-import scripts_techniques.Selenium.Scripts_techniques;
 
 //import static org.junit.Assert.fail;
 
@@ -287,6 +285,14 @@ public class TextEngine {
         return null;
     }
 
+    public static String CutFinalNumber(String string){
+        Pattern pattern = Pattern.compile("_(\\d+)$");
+        Matcher matcher = pattern.matcher(string);
+        if (matcher.find()) {
+            string = string.replaceFirst("_(\\d+)$", "");
+        }
+        return string;
+    }
 
     public static void initMobileApp(String PathApp) throws IOException, InterruptedException {
         initMobileApp(PathApp, "");
@@ -759,14 +765,14 @@ public class TextEngine {
         }
 
         if(!Config.dir_export.contains("planTests"))
-        	Config.dir_export = Config.dir_export + dir;
+            Config.dir_export = Config.dir_export + dir;
 
-            String str = Config.dir_export;
-            String lastDigits = str.substring(str.length() - 10);
-            if (lastDigits.matches("\\d+")) {
-                str = str.substring(0, str.length() - 10) + System.currentTimeMillis();
-            }
-            Config.dir_export = str;
+        String str = Config.dir_export;
+        String lastDigits = str.substring(str.length() - 10);
+        if (lastDigits.matches("\\d+")) {
+            str = str.substring(0, str.length() - 10) + System.currentTimeMillis();
+        }
+        Config.dir_export = str;
 
 
 
@@ -775,38 +781,33 @@ public class TextEngine {
         for (Method m : PlandeTest) {
             System.out.println(m.getName());
         }
-       
-        
-        int index = 0;
-			for(Method parcours : PlandeTest){
-			index++;
-        	System.out.println("parcours " + index + "sur "+ PlandeTest.length);
-            String methodName = parcours.getName();
-            Pattern pattern = Pattern.compile("_(\\d+)$");
-            Matcher matcher = pattern.matcher(methodName);
 
-            if (matcher.find()) {
-                methodName = methodName.replaceFirst("_(\\d+)$", "");
+
+        int index = 0;
+        for(Method parcours : PlandeTest){
+            index++;
+            System.out.println("parcours " + index + "sur "+ PlandeTest.length);
+            String methodName = parcours.getName();
+            methodName = CutFinalNumber(methodName);
+            try {
+                initFlex(URL, methodName);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
-			try {
-				initFlex(URL, methodName);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
-			
-            
+
+
             boolean result = LaunchTest(parcours);
 
-    
-			selfdriver.quit();
+
+            selfdriver.quit();
 
         }
 
-
-
-
-
+        if (Config.Percy == 1) {
+            //CreateXpathListFile("Resultat_Percy");
+            getPercyResult(Config.PercyToken, CutFinalNumber(PlandeTest[PlandeTest.length-1].getName()));
+        }
 
         return index;
     }
@@ -5184,6 +5185,149 @@ try {
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
         }
+    }
+
+    public static void getPercyResult(String token, String parcoursName){
+        
+                Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", parcoursName, token);
+                Config.compteur_instance = 2;
+        
+                WebPage_getResult(selfdriver,t);
+                Config.compteur_instance = 1;
+        
+            }
+
+        public static boolean WebPage_getResult(WebDriver selenium, Teststep t) {
+        Date time1 = new Date();
+        executeCommand("npx percy exec:stop");
+        System.out.println("data:");
+
+        Map<String, Object> result = GetData(t.param);
+        if(result==null)
+            return Fonctions.logStepKO(t, selfdriver, time1,"Un probleme est survenue lors de la remontée des résultats");
+        if(((ArrayList<String>)result.get("changes")).isEmpty())
+            return Fonctions.logStepOK(t, selenium, time1);
+        StringBuilder sb = new StringBuilder();
+        for(String nom:((ArrayList<String>)result.get("changes"))){
+            sb.append(nom + "; ");
+        }
+        return Fonctions.logStepWarning(t, selfdriver, time1,"Un changement à été détécté sur les captures suivantes : "+sb.toString());
+    }
+    private static void executeCommand(String command) {
+        try {
+            // Utiliser ProcessBuilder pour exécuter la commande
+            ProcessBuilder builder = new ProcessBuilder();
+            builder.command("cmd.exe", "/c", "cd Batfiles && "+ command);
+            builder.redirectErrorStream(true);
+            Process process = builder.start();
+
+            // Lire la sortie de la commande
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            int i = 0;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            // Attendre la fin de l'exécution de la commande
+            int exitCode = process.waitFor();
+            System.out.println("\nCommande exécutée avec le code de sortie : " + exitCode);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static Map<String, Object> GetData(String token){
+
+        Map<String, Object> Data = new HashMap<>();
+        Map<String, String> param = new HashMap<>();
+        param.put("project_slug", "your_project_slug");
+        System.out.println(token);
+        String response = CallAPI("https://percy.io/api/v1/projects",token, param);
+        Gson gson = new Gson();
+        com.google.gson.JsonObject jsonResponse = gson.fromJson(response, com.google.gson.JsonObject.class);
+        String projectID = jsonResponse.getAsJsonObject("data").get("id").getAsString();
+        Data.put("project_id", projectID);
+        System.out.println("project_id: "+ projectID);
+
+        param = new HashMap<>();
+        param.put("project_id", projectID);
+        response = CallAPI("https://percy.io/api/v1/builds", token, param);
+        jsonResponse = gson.fromJson(response, com.google.gson.JsonObject.class);
+        String buildID = jsonResponse.get("data").getAsJsonArray().get(0).getAsJsonObject().get("id").getAsString();
+        String noBuild = jsonResponse.get("data").getAsJsonArray().get(0).getAsJsonObject().get("attributes").getAsJsonObject().get("build-number").getAsString();
+        Data.put("build_id", buildID);
+        Data.put("noBuild", noBuild);
+
+        System.out.println("buildID: "+ buildID);
+
+        String state;
+        try {
+            do {
+                response = CallAPI("https://percy.io/api/v1/builds/"+buildID, token, null);
+                jsonResponse = gson.fromJson(response, com.google.gson.JsonObject.class);
+                state = jsonResponse.get("data").getAsJsonObject().get("attributes").getAsJsonObject().get("state").getAsString();
+
+            } while (!(state.equals("failed")||state.equals("finished")));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        System.out.println("state: "+ state);
+        Data.put("state", state);
+        param= new HashMap<>();
+        param.put("build_id", buildID);
+        response = CallAPI("https://percy.io/api/v1/snapshots", token, param);
+        jsonResponse = gson.fromJson(response, com.google.gson.JsonObject.class);
+        JsonArray JA = jsonResponse.get("data").getAsJsonArray();
+        ArrayList<String> changes = new ArrayList<>();
+        for(JsonElement s:JA){
+            String name= s.getAsJsonObject().get("attributes").getAsJsonObject().get("name").getAsString();
+            String RS= s.getAsJsonObject().get("attributes").getAsJsonObject().get("review-state").getAsString();
+            System.out.println(name +" -> "+RS);
+            if(!RS.equals("approved"))
+                changes.add(name +" -> "+RS);
+        }
+        Data.put("changes", changes);
+
+        return Data;
+    }
+    public static String CallAPI(String URL, String token, Map<String, String> parameter){
+
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.connectTimeout(40, TimeUnit.SECONDS);
+        builder.readTimeout(40, TimeUnit.SECONDS);
+        builder.writeTimeout(40, TimeUnit.SECONDS);
+        OkHttpClient client = builder.build();
+
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(URL).newBuilder();
+        if(parameter!=null) {
+            for (Map.Entry<String, String> param : parameter.entrySet()) {
+                urlBuilder.addQueryParameter(param.getKey(), param.getValue());
+            }
+        }
+        Request request = new Request.Builder()
+                .url(urlBuilder.build())
+                .addHeader("Authorization", "Token token=" + token)
+                .get()
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            String responseBody = null;
+            if (response.isSuccessful()) {
+                responseBody = response.body().string();
+
+            } else {
+                System.out.println("Response KO: " + response.body().string());
+            }
+            return responseBody;
+        }catch (SocketTimeoutException Se){
+            System.out.println("Erreur lors de la connexion au serveur");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 //    public static String[] DeskGetpropertybyName(String name, String prop) {
