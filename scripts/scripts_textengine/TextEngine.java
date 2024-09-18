@@ -5186,16 +5186,22 @@ try {
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
         }
     }
+ public static void getPercyResult(){
+        Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", nom, Config.PercyToken);
+        Config.compteur_instance = 2;
 
-    public static void getPercyResult(String token, String parcoursName){
+        WebPage_getResult(selfdriver,t);
+        Config.compteur_instance = 1;
+    }
+public static void getPercyResult(String token, String parcoursName){
         
-                Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", parcoursName, token);
-                Config.compteur_instance = 2;
-        
-                WebPage_getResult(selfdriver,t);
-                Config.compteur_instance = 1;
-        
-            }
+           Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", parcoursName, token);
+           Config.compteur_instance = 2;
+      
+           WebPage_getResult(selfdriver,t);
+           Config.compteur_instance = 1;
+      
+   }
 
         public static boolean WebPage_getResult(WebDriver selenium, Teststep t) {
         Date time1 = new Date();
