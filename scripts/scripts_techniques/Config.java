@@ -4,7 +4,7 @@ package scripts_techniques;
 	//log export 
 	
  //Replace C:/kalios with your project folder 
-	public static String tunnel_path			=  "C:\\TextEngine\\textengine";
+	public static String tunnel_path			=  "C:\\your\\path";
 	
 	
 	public static String dir_export				= 	tunnel_path+"/results";
@@ -26,7 +26,7 @@ package scripts_techniques;
 
 	//ktObj file 
 	
-	public static String file_objects			= 	dir_objects + "/kt.ktObjects";
+	public static String file_objects			= 	dir_objects + "/Objects.ktObjects";
 
 	//additional files
 	public static String additional_files			= 	tunnel_path+"/scripts/additional_files";
@@ -49,6 +49,9 @@ package scripts_techniques;
 	 public static String JIRA_API_TOKEN = "your api token";
 	 public static String JIRA_PROJECT_NAME = "your project";
 
+
+	 public static int Percy = 0;
+	 public static String PercyToken = "";
 
 	 public static TYPE_Instance Type = TYPE_Instance.PROD;
 	

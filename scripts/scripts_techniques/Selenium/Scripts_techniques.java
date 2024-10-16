@@ -8,7 +8,12 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
 
+import groovyjarjarasm.asm.tree.TryCatchBlockNode;
+import io.percy.selenium.Percy;
+
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
+import java.net.URL;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
@@ -8752,6 +8757,167 @@ public class Scripts_techniques {
 		return Fonctions.logStepOK(teststep, selenium, time1);
 	}
 
+	public static boolean  WebPage_getsms(WebDriver selenium, Teststep teststep) throws IOException {
+		Date time1 = new Date();
+		WebDriver driverInstance = (WebDriver) selenium;
+		try {
+			Thread.sleep(Config.pause_actions);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+		}
+		WebDriverWait wait = new WebDriverWait(driverInstance, Duration.ofMillis(Config.timeout_elements));
+		WebElement myObj;
+		   Hashtable<String, String> array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		if (array_prop_object.isEmpty()){
+			return Fonctions.logStepKO(teststep, selenium, time1, "No such file :"+  teststep.object_attach_name);
+		}
+		try {
+			// myObj = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')='"+array_prop_object.get("texte").toLowerCase().replaceAll("\\s","") +"']")));
+	
+			String[] params = teststep.param.split("\\|");
+			AndroidDriver driver;
+			try {
+				// Set Desired Capabilities
+				DesiredCapabilities caps = new DesiredCapabilities();
+				caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+				caps.setCapability(MobileCapabilityType.DEVICE_NAME, "emulator-5554");
+				// Replace with your device name or ID emulator-5554 RZCT50FRL2F
+				// Initialize Appium Driver
+				driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), caps);
+				driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+				// Grant SMS Permission using ADB
+				grantSmsPermission();
+				
+				ArrayList<String> smsMessages = getSmsMessages();
+				
+				long currentTime = System.currentTimeMillis();
+				
+				// Calculate the time 5 minutes ago
+				long fiveMinutesAgo = currentTime - (5 * 60 * 1000);
+			
+				List<String> filteredList = new ArrayList<>();
+				boolean valueAdded = false;
+				String result = "";
+				String code = "";
+				for (String data : smsMessages) {
+					if(!valueAdded) {
+						boolean isValid = false;
+						String[] parts = data.split(" ");
+						for (String part : parts) {
+							if (part.startsWith("date=")) {
+								long dateInMillis = Long.parseLong(part.substring(5, part.length()));
+								if (dateInMillis >= fiveMinutesAgo && dateInMillis <= currentTime) {
+									isValid = true;
+								}
+								break; // Once we've processed the date, no need to continue searching
+							}
+						}
+						if (isValid) {
+							String[] textesDebut = params[0].split("<code");
+							String[] textesFin = textesDebut[1].split(">");
+							result = data.replaceAll("\r", "");
+							System.out.println(result);
+							textesDebut[0] = textesDebut[0].replaceAll("\r", "");
+							if (result.contains(textesDebut[0])) {
+								if (textesDebut[0].length() == 0) {
+									// Il n'y a pas de texte avant le code dans le fichier txt
+									// Il y a du texte après le code dans le fichier txt
+									if (result.contains(textesFin[1])) {
+										// Le texte après le code correspond
+										String[] resultCoupe2 = result.split(textesFin[1]);
+										String[] resultCoupeSpace = resultCoupe2[0].split("\\s");
+										code = resultCoupeSpace[resultCoupeSpace.length - 1].replaceAll("\\s", " ");
+										break;
+									} else {
+										// Le texte après le code ne correspond pas au contenu du mail
+									}
+								} else {
+									// Le mail contient le texte avant le code du fichier txt
+									String[] resultCoupe1 = result.split(textesDebut[0]);
+									if (textesFin.length == 0) {
+										// Il n'y a pas de texte après le code dans le fichier txt
+										String[] resultCoupeSpace = resultCoupe1[1].split("\\s");
+										code = resultCoupeSpace[0].replaceAll("\\s", "");
+										if (code.endsWith(",")) {
+											code = code.substring(0, code.length()-1);
+										}
+										// break;
+									} else {
+										// Il y a du texte après le code dans le fichier txt
+										if (resultCoupe1[1].contains(textesFin[1])) {
+											// Le texte après le code correspond
+											String[] resultCoupe2 = resultCoupe1[1].split(textesFin[1]);
+											code = resultCoupe2[0].replaceAll("\\s", " ");
+											break;
+										} else {
+											// Le texte après le code ne correspond pas au contenu du mail
+										}
+									}
+								}
+							} else {
+								System.out.println("Pas de correspondance entre le texte du mail et le texte du fichier txt");
+							}
+						}
+						if (isValid && result.contains(code)) {
+							int startIndex = data.indexOf(code); // Add 6 to skip "code:"
+							int endIndex = data.indexOf(code) + code.length(); // Find the comma after the code number
+							String codeNumber = data.substring(startIndex, endIndex); // Extract the code number
+							filteredList.add(codeNumber);
+							valueAdded = true;
+						}
+					} else {
+						break; // Break the loop if a value has been added
+					}	
+				}
+				code = null;
+				// Print the filtered list
+				if (!filteredList.isEmpty()) {
+					for (String filteredData : filteredList) {
+						System.out.println(filteredData);
+						code= filteredData;
+					}
+				}
+				
+				else {
+					System.out.println("SMS not found!");
+				}
+				try {
+					Wini ini = new Wini(new File(Config.propertyFile));
+					if(code != null) ini.put("parameter", params[1], code);
+					ini.store();
+					System.out.println(code + " put in the variable " + params[1]);
+				} catch (Exception e) {
+					System.out.println("PUT IN VARIABLE FAILED");
+				}
+				driver.quit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return Fonctions.logStepOK(teststep, selenium, time1);						
+		} catch (Exception e) {
+			System.out.println (e.getMessage());
+			return Fonctions.logStepKO(teststep, selenium, time1, "Cannot perform action in obj : " +e.getMessage());	
+		}		
+	}
+	
+	private static void grantSmsPermission() throws Exception {
+        String command = "adb shell pm grant io.appium.settings android.permission.READ_SMS";
+        Process process = Runtime.getRuntime().exec(command);
+        process.waitFor();
+    }
+    private static ArrayList<String> getSmsMessages() throws Exception {
+    	ArrayList<String> messages = new ArrayList();
+        String command = "adb shell content query --uri content://sms/inbox --projection body,date";
+        Process process = Runtime.getRuntime().exec(command);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            messages.add(line);
+        }
+        process.waitFor();
+        return messages;
+    }
+
 	public static boolean WebPage_clickbycoordinates(WebDriver selenium, Teststep teststep) throws IOException {
 		teststep.action_label = "Je clique par coordonnees";
 		Date time1 = new Date();
@@ -9303,6 +9469,7 @@ public class Scripts_techniques {
 	
 	public static boolean  WebObject_clickbytext(final WebDriver driver, Teststep teststep) throws IOException
 	{
+		System.out.println("11111111111111111111");
 		teststep.action_label = "Je clique";
 		Date time1 = new Date();
 		String property ="";
@@ -9316,6 +9483,7 @@ public class Scripts_techniques {
 			return Fonctions.logStepKO(teststep, driver, time1, "Le fichier n'existe pas :"+  teststep.object_attach_name);
 		}
 		try {
+			System.out.println("222222222222222222222");
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
 			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
 			WebElement element = null;
@@ -9323,6 +9491,8 @@ public class Scripts_techniques {
 			String xpath = "";
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
 			String tryProperty = "";
+			System.out.println("33333333333333333333333");
+			System.out.println(datapool);
 			if (datapool && isJVExecution(teststep.testcase_label)) {
 				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
 			} else {
@@ -9414,8 +9584,8 @@ public class Scripts_techniques {
 				return Fonctions.logStepKO(teststep, driver, time1, "L'objet " + property + " n'a pas ete trouve");
 			}
 		} catch (Exception e) {
-			// System.out.println (e.getMessage());
-			// e.printStackTrace();
+			 System.out.println (e.getMessage());
+			 e.printStackTrace();
 			return Fonctions.logStepKO(teststep, driver, time1, "L'objet " + property + " n'a pas ete trouve");	
 		}	
 	}
@@ -9446,6 +9616,8 @@ public class Scripts_techniques {
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
 			Boolean datapoolparam = teststep.param.charAt(0) == '[' && teststep.param.charAt(teststep.param.length()-1) == ']';
 			String tryProperty = "";
+			boolean warning = false;
+			String colonne = teststep.param;
 			if (datapool && isJVExecution(teststep.testcase_label)) {
 				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
 			} else {
@@ -9459,6 +9631,10 @@ public class Scripts_techniques {
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
 				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
+				if (parameter.startsWith("WARNING")) {
+					warning = true;
+					parameter = parameter.substring(7);
+				}
 				teststep.param = parameter;
 			} else {
 				parameter = teststep.param;
@@ -9613,11 +9789,13 @@ public class Scripts_techniques {
 						System.out.println(date);
 						element.sendKeys(date);
 						System.out.println("##### sendKeys made on :\n"+ element+"\n");
+						if (warning) return Fonctions.logStepWarning(teststep, driver, time1, "Warning : Retour à la première valeur de la colonne " + colonne +" du datapool" );
 						return Fonctions.logStepOK(teststep, driver, time1, xpath);
 					}
 				} else {
 					element.sendKeys(parameter);
 					System.out.println("##### sendKeys made on :\n"+ element+"\n");
+					if (warning) return Fonctions.logStepWarning(teststep, driver, time1, "Warning : Retour à la première valeur de la colonne " + colonne +" du datapool" );
 					return Fonctions.logStepOK(teststep, driver, time1, xpath);
 				}
 				return Fonctions.logStepKO(teststep, driver, time1, "Le parametre n'est pas bon.");
@@ -12268,12 +12446,32 @@ public class Scripts_techniques {
 	}
 
 	public static String testOnDataPool(String colonne, Teststep teststep) {
+		
 		String prop = "";
 		String existingProp ="";
+		String existingParam="";
 		String propsaved = "";
 		boolean isLastCellOfColumn = false;
 		boolean isJV = false;
 		boolean isJVKO = false;
+		boolean isParam = false;
+		boolean warning = false;
+		try {
+			if (teststep.param.substring(1, teststep.param.length() -1).contains(colonne)) {
+				System.out.println("On utilise le datapool pour un paramètre" );
+				isParam = true;
+				File datapoolVarFile = new File(Config.additional_files + "/datapoolparam.ini");
+				datapoolVarFile.createNewFile();
+				datapoolVarFile.canWrite();
+			try {
+				Wini ini = new Wini(datapoolVarFile);
+				existingParam = ini.get("datapool", colonne);
+				if (existingParam.equals("")) {
+					existingParam = null;
+				}
+			} catch (Exception e) {}
+			}
+		} catch (Exception e) {}
 		try {
 			isJV = isJVExecution(teststep.testcase_label);
 			File datapoolVarFile = new File(Config.additional_files + "/datapoolvar.ini");
@@ -12356,31 +12554,45 @@ public class Scripts_techniques {
 									isLastCellOfColumn = true;
 								}
 							} catch (Exception e) {isLastCellOfColumn = true;}
-							
-							// System.out.println(existingProp + " vaut\n##########################");
-							if (existingProp == null || existingProp.equals("")) {
-								prop = total[i][l];
-								break;
-							}else if(existingProp.equals(propsaved)) {
-								prop = "";
-								isJVKO = true;
-								Wini ini = new Wini(new File(Config.additional_files + "/datapoolvar.ini"));
-								ini.remove("datapool", "savedforjv");
-								ini.store();
-								break;
-							}
-							else if (!existingProp.equals("") && existingProp.equals(total[i][l]) && !isLastCellOfColumn && !isJV) {
-								prop = total[i][l+1];
-								break;
-							}else if (!existingProp.equals("") && existingProp.equals(total[i][l]) && isJV) {
-								if (isLastCellOfColumn) {
-									prop = total[i][1];
+							if (isParam) {
+								if (existingParam == null || existingParam.equals("")) {
+									prop = total[i][l];
 									break;
-								} else {
+								}else if (existingParam.equals(total[i][l]) && !isLastCellOfColumn) {
 									prop = total[i][l+1];
 									break;
+								}else if (existingParam.equals(total[i][l]) && isLastCellOfColumn) {
+									prop = total[i][1];
+									warning = true;
+									break;
+								}
+							} else {
+								if (existingProp == null || existingProp.equals("")) {
+									prop = total[i][l];
+									break;
+								}else if(existingProp.equals(propsaved)) {
+									prop = "";
+									isJVKO = true;
+									Wini ini = new Wini(new File(Config.additional_files + "/datapoolvar.ini"));
+									ini.remove("datapool", "savedforjv");
+									ini.store();
+									break;
+								}
+								else if (!existingProp.equals("") && existingProp.equals(total[i][l]) && !isLastCellOfColumn && !isJV) {
+									prop = total[i][l+1];
+									break;
+								}else if (!existingProp.equals("") && existingProp.equals(total[i][l]) && isJV) {
+									if (isLastCellOfColumn) {
+										prop = total[i][1];
+										break;
+									} else {
+										prop = total[i][l+1];
+										break;
+									}
 								}
 							}
+							 System.out.println(prop + " vaut\n##########################");
+							
 						}
 					}
 				}
@@ -12388,9 +12600,15 @@ public class Scripts_techniques {
 
 			try {
 				if (!prop.equals("")) {
-					Wini ini = new Wini(datapoolVarFile);
-					ini.put("datapool", colonne, prop);
-					ini.store();
+					if (isParam) {
+						Wini ini = new Wini(new File(Config.additional_files + "/datapoolparam.ini"));
+						ini.put("datapool", colonne, prop);
+						ini.store();
+					} else {
+						Wini ini = new Wini(datapoolVarFile);
+						ini.put("datapool", colonne, prop);
+						ini.store();
+					}
 				}
 			} catch (Exception e) {
 				System.out.println("issue at put");
@@ -12398,7 +12616,7 @@ public class Scripts_techniques {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if ((isLastCellOfColumn && !isJV) || isJVKO) {
+		if ((isLastCellOfColumn && !isJV && !isParam) || isJVKO) {
 			String mail;
 			String toAddress[] = new String[]{};//Création du tableau qui stockera toutes les adresses mails
 			//Recuperation des adresses emails des destinataires
@@ -12460,7 +12678,11 @@ public class Scripts_techniques {
 			}
 		}
 		
-		//System.out.println(prop + "\nexit");
+		System.out.println(prop + "\nexit");
+		if (warning) {
+			System.out.println("LE PARAMETRE EST WARNING");
+			return "WARNING"+prop;
+		}
 		return prop;
 		
 	}
@@ -12585,20 +12807,23 @@ public class Scripts_techniques {
 	}
 
 	public static boolean isJVExecution(String testcase_label) throws IOException {
-		File csv1File = new File(Config.dir_params + "/" + testcase_label + ".csv");
-		CSVParser csvParser = new CSVParserBuilder().withSeparator(';').withIgnoreQuotations(false).build();
-		CSVReader csvReader = new CSVReaderBuilder(new FileReader(csv1File)).withCSVParser(csvParser).build();
-		// Récupérer les dimensions du csv
-		String[] nextline;
-		int j = 0;
-		int k = 0;
-		while ((nextline = csvReader.readNext()) != null) {
-			j = j + 1;
-			k = nextline.length;
-		}
-		csvReader.close();
-		// System.out.println("Les dimensions du tableau sont " + j + " x " + k);
-		boolean isJV = j > 2;
+		boolean isJV = false;
+		try {
+			File csv1File = new File(Config.dir_params + "/" + testcase_label + ".csv");
+			CSVParser csvParser = new CSVParserBuilder().withSeparator(';').withIgnoreQuotations(false).build();
+			CSVReader csvReader = new CSVReaderBuilder(new FileReader(csv1File)).withCSVParser(csvParser).build();
+			// Récupérer les dimensions du csv
+			String[] nextline;
+			int j = 0;
+			int k = 0;
+			while ((nextline = csvReader.readNext()) != null) {
+				j = j + 1;
+				k = nextline.length;
+			}
+			csvReader.close();
+			// System.out.println("Les dimensions du tableau sont " + j + " x " + k);
+			isJV = j > 2;
+		} catch (Exception e) {}
 		return isJV;
 	}
 
@@ -12618,92 +12843,178 @@ public class Scripts_techniques {
         } catch (Exception e) {
             return Fonctions.logStepKO(teststep, selenium, time1, "Cannot find page");
         }
-        String parameters;
-        if (teststep.param.charAt(0) == '$') {
-            parameters = getVariableParameter(teststep.param);
-				if (parameters.equals(teststep.param)) {
-					return Fonctions.logStepKO(teststep, driver, time1, "Le parametre n'a pas ete trouve dans le fichier des variables.");
-				}
-        } else {
-            parameters = teststep.param;
-        }
-        String[] param = parameters.split("\\|");
-        String applicationName = param[0];
-        String testName = param[1];
-        String apiKey, matchlevel;
-        EyesRunner runner;
-        BatchInfo batch;
-        Configuration config;
-        ChromeOptions options;
-        WebDriver driverApplitools;
-        Eyes eyes;
+        String platform = "";
+        String apiKey = "";
         try {
-            runner = new VisualGridRunner(new RunnerOptions().testConcurrency(1));
-            batch = new BatchInfo(testName);
-
-            config = new Configuration();
-
-            // Link API KEYS
-            apiKey = "";
-
-            try {
-                Wini ini = new Wini(new File(Config.propertyFile));
-                apiKey = ini.get("applitools", "cle");
-            } catch (Exception e) {
-                System.out.println("The parameter was not found in the variable file.");
-                return Fonctions.logStepKO(teststep, selenium, time1, "Cle api introuvable");
-            }
-            config.setApiKey(apiKey);
-            config.setBatch(batch);
-
-            eyes = new Eyes(runner);
-            eyes.setConfiguration(config);
-
-            // Set match level
-            matchlevel = param[2].toLowerCase();
-            switch (matchlevel) {
-                case "strict":
-                    eyes.setMatchLevel(MatchLevel.STRICT);
-                    break;
-                case "layout":
-                    eyes.setMatchLevel(MatchLevel.LAYOUT);
-                    break;
-                case "color":
-                    eyes.setMatchLevel(MatchLevel.CONTENT);
-                    break;
-                case "exact":
-                    eyes.setMatchLevel(MatchLevel.EXACT);
-                    break;
-                case "none":
-                    eyes.setMatchLevel(MatchLevel.NONE);
-                    break;
-                default:
-                    eyes.setMatchLevel(MatchLevel.STRICT);
-                    break;
-            }
-
-            eyes.open(
-                    driver,
-                    applicationName,
-                    testName);
-
-            eyes.check(Target.window().fully());// .withName("Home Page"));
-            eyes.closeAsync();
-            TestResultsSummary allTestResults = runner.getAllTestResults(false);
-            TestResultContainer[] val = allTestResults.getAllResults();
-            TestResults res = val[0].getTestResults();
-            Boolean diff = res.isDifferent();
-            if (diff == false) {
-                return Fonctions.logStepOK(teststep, selenium, time1);
-            } else {
-                return Fonctions.logStepWarning(teststep, selenium, time1,
-                        "Difference trouve, rendez vous sur votre espace applitools pour en savoir plus");
-            }
+            Wini ini = new Wini(new File(Config.propertyFile));
+            apiKey = ini.get("applitools", "cle");
+            if(!apiKey.isEmpty())
+                platform = "applitools";
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            // System.out.println("Une erreur s'est produite. Verifier votre cle API");
-            return Fonctions.logStepKO(teststep, selenium, time1, "Verifier votre cle api");
+            System.out.println("Applitools key is missing");
+			try {
+				Wini ini = new Wini(new File(Config.propertyFile));
+				apiKey = ini.get("percy", "cle");
+				if(!apiKey.isEmpty())
+					platform = "percy";
+				Config.PercyToken = apiKey;
+			} catch (Exception e1) {
+				System.out.println("percy key is missing");
+			}
         }
+
+        if(platform.equals("applitools")){
+            String parameters;
+
+            if (teststep.param.charAt(0) == '$') {
+                parameters = getVariableParameter(teststep.param);
+                if (parameters.equals(teststep.param)) {
+                    return Fonctions.logStepKO(teststep, driver, time1, "Le parametre n'a pas ete trouve dans le fichier des variables.");
+                }
+            } else {
+                parameters = teststep.param;
+            }
+            String[] param = parameters.split("\\|");
+            String applicationName = param[0];
+            String testName = param[1];
+            String matchlevel;
+            EyesRunner runner;
+            BatchInfo batch;
+            Configuration config;
+            ChromeOptions options;
+            WebDriver driverApplitools;
+            Eyes eyes;
+            try {
+                runner = new VisualGridRunner(new RunnerOptions().testConcurrency(1));
+                batch = new BatchInfo(testName);
+
+                config = new Configuration();
+
+                config.setApiKey(apiKey);
+                config.setBatch(batch);
+
+                eyes = new Eyes(runner);
+                eyes.setConfiguration(config);
+
+                // Set match level
+                matchlevel = param[2].toLowerCase();
+                switch (matchlevel) {
+                    case "strict":
+                        eyes.setMatchLevel(MatchLevel.STRICT);
+                        break;
+                    case "layout":
+                        eyes.setMatchLevel(MatchLevel.LAYOUT);
+                        break;
+                    case "color":
+                        eyes.setMatchLevel(MatchLevel.CONTENT);
+                        break;
+                    case "exact":
+                        eyes.setMatchLevel(MatchLevel.EXACT);
+                        break;
+                    case "none":
+                        eyes.setMatchLevel(MatchLevel.NONE);
+                        break;
+                    default:
+                        eyes.setMatchLevel(MatchLevel.STRICT);
+                        break;
+                }
+
+                eyes.open(
+                        driver,
+                        applicationName,
+                        testName);
+
+                eyes.check(Target.window().fully());// .withName("Home Page"));
+                eyes.closeAsync();
+                TestResultsSummary allTestResults = runner.getAllTestResults(false);
+                TestResultContainer[] val = allTestResults.getAllResults();
+                TestResults res = val[0].getTestResults();
+                Boolean diff = res.isDifferent();
+                if (diff == false) {
+                    return Fonctions.logStepOK(teststep, selenium, time1);
+                } else {
+                    return Fonctions.logStepWarning(teststep, selenium, time1,
+                            "Difference trouve, rendez vous sur votre espace applitools pour en savoir plus");
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                // System.out.println("Une erreur s'est produite. Verifier votre cle API");
+                return Fonctions.logStepKO(teststep, selenium, time1, "Verifier votre cle api");
+            }
+        }
+        else if (platform.equals("percy")) {
+            Percy percy = new Percy(selenium);
+            String parameters = teststep.param;
+            String[] params = parameters.split("\\|");
+            if(params.length>6)
+                return Fonctions.logStepKO(teststep, selenium, time1, "Il y a trop de paramètre");
+            String name = teststep.scenario_label+"_"+ params[0];
+            List<Integer> width = new ArrayList<>();
+            int minHeight = 0;
+            boolean enableJavaScript = false;
+            String percyCSS = "";
+            String scope = "";
+            for (int i = 1;i<params.length;i++) {
+                System.out.println(params[i]);
+                try {
+                    Wini ini = new Wini(new File(Config.propertyFile));
+                    if(params[i].charAt(0)=='$') {
+                        params[i] = ini.get("percy", params[i].substring(1));
+                        if(params[i]==null){
+                            return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" n'a pas été trouvé dans le fichier des variables'");
+                        }
+                    }
+
+                } catch(Exception e) {
+                    return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" n'a pas été trouvé dans le fichier des variables'");
+                }
+                if(params[i].contains("width")) {
+                    String stringwidth = params[i].substring(0, params[i].length() - 1).replace("width=\"", "");
+                    String[] arraywidth = stringwidth.split(",");
+                    for (String s:arraywidth) {
+                        try {
+                            width.add(Integer.parseInt(s));
+                        } catch (NumberFormatException e) {
+                            return Fonctions.logStepKO(teststep, selenium, time1, "Le paramètre "+ params[i] + " doit contenir des entiers séparé par une virgule");
+                        }
+                    }
+                }
+                else if (params[i].contains("minHeight")) {
+                    String Height = params[i].substring(0, params[i].length() - 1).replace("minHeight=\"", "");
+                    try {
+                        minHeight = Integer.parseInt(Height);
+                    } catch (NumberFormatException e) {
+                        return Fonctions.logStepKO(teststep, selenium, time1, "Le paramètre "+ params[i] + " doit etre un entier");
+                    }
+                }
+                else if (params[i].contains("enableJavaScript")) {
+                    String JS = params[i].substring(0, params[i].length() - 1).replace("enableJavaScript=\"", "");
+                    if(JS.equalsIgnoreCase("true")||JS.equalsIgnoreCase("vrai"))
+                        enableJavaScript = true;
+                    else if(JS.equalsIgnoreCase("false")||JS.equalsIgnoreCase("faux"))
+                        enableJavaScript = false;
+                    else
+                        return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" doit etre vrai ou faux (true or false)");
+                }else if (params[i].contains("percyCSS"))
+                    percyCSS = params[i].substring(0, params[i].length() - 1).replace("percyCSS=\"", "");
+                else if (params[i].contains("scope"))
+                    scope = params[i].substring(0,params[i].length() -1).replace("scope=\"","");
+                else
+                    return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" ne correspond pas aux attendus");
+            }
+            try {
+                if (minHeight == 0) {
+                    percy.snapshot(name, width, null, enableJavaScript, percyCSS, scope);
+                } else {
+                    percy.snapshot(name, width, minHeight, enableJavaScript, percyCSS, scope);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            //System.out.println(apiKey+" "+name+ " "+ width + " " + minHeight + " " + enableJavaScript + " " +percyCSS + " " +scope);
+        }
+        //return Fonctions.logStepKO(teststep, selenium, time1, "Aucune clé n'est renseigné");
+        return true;
     }
 
     /*public static boolean WebPage_comparescreenshot(WebDriver selenium, Teststep teststep) throws IOException {
