@@ -4,7 +4,7 @@ import scripts_techniques.Config;
 import scripts_techniques.Selenium.Teststep;
 
 
-import static scripts_textengine.MainPercy2.WebPage_getResult;
+import static scripts_textengine.TextEngine.WebPage_getResult;
 import static scripts_textengine.TextEngine.selfdriver;
 
 public class PercyResult {
