@@ -6,7 +6,8 @@ import browserstack.shaded.com.google.gson.JsonObject;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.google.gson.Gson;
+import com.opencsv.*;
+import com.google.gson.*;
 
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.ios.IOSDriver;
@@ -16,6 +17,8 @@ import okhttp3.*;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import runners.BrowserStack.BrowserStackLauncher;
@@ -39,6 +42,7 @@ import org.openqa.selenium.WebDriver;
 import java.io.*;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
 import java.net.URLClassLoader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -52,16 +56,15 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import io.appium.java_client.HasSettings;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
 
 import java.net.URL;
-import java.io.File;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -70,8 +73,6 @@ import java.util.stream.Stream;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import scripts_techniques.Config;
 import scripts_techniques.Selenium.*;
-import scripts_techniques.Selenium.Teststep;
-import scripts_techniques.Selenium.Scripts_techniques;
 
 //import static org.junit.Assert.fail;
 
@@ -81,7 +82,6 @@ import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
 import static scripts_textengine.AzureToolsResult.*;
-import static scripts_textengine.MainPercy2.WebPage_getResult;
 
 public class TextEngine {
 
@@ -104,6 +104,7 @@ public class TextEngine {
     private static String instance="";
     private static String token="";
     private static String idTestPlan="";
+    private static String path="";
 
     private static final OkHttpClient client = new OkHttpClient();
     private static final Gson gson = new Gson();
@@ -480,20 +481,20 @@ public class TextEngine {
     }
 
     public static void CreateXpathListFile(String nom) {
-        csvfile = Config.dir_params + File.separator + nom + "_xpath_list.csv";
-        csvfilebuff = Config.dir_params + File.separator + nom + "_xpath_list_buffer.csv";
-        try {
-            //Creation des fichiers .OUT/xpathlist/xpathlistbuffer
-            Config.compteur_instance = 2;
-            Fonctions.createLogFile(nom);
-            Config.compteur_instance = 1;
-            Fonctions.createEmptyFile(csvfile);
-            Fonctions.createEmptyFile(csvfilebuff);
-            //Couper-Coller du fichier xpathlist_buffer dans le fichier xpathlist
-            Fonctions.CutandPaste(csvfilebuff, csvfile);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    	 csvfile = Config.dir_params + File.separator + nom + "_xpath_list.csv";
+         csvfilebuff = Config.dir_params + File.separator + nom + "_xpath_list_buffer.csv";
+         try {
+             //Creation des fichiers .OUT/xpathlist/xpathlistbuffer
+             //Config.compteur_instance =2;
+             Fonctions.createLogFile(nom);
+             //Config.compteur_instance = 1;
+             Fonctions.createEmptyFile(csvfile);
+             Fonctions.createEmptyFile(csvfilebuff);
+             //Couper-Coller du fichier xpathlist_buffer dans le fichier xpathlist
+             Fonctions.CutandPaste(csvfilebuff, csvfile);
+         }catch (Exception e){
+             e.printStackTrace();
+         }
     }
 
     public static void ChangeParcours(String newname) {
@@ -502,6 +503,7 @@ public class TextEngine {
 
     public static void initWeb(String URL, String nomparcours){
         //initialisation de tous les paramètres du chromedriver et de selenium
+    	path = nomparcours;
         File file = new File(Config.dir_config + "/chromedriver.exe");
         System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
         Map<String, Object> chromePrefs = new HashMap<String, Object>();
@@ -621,6 +623,7 @@ public class TextEngine {
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", chromePrefs);
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-search-engine-choice-screen");
         options.addArguments("--window-size=" + largeur + "," + hauteur);
 
         options.setAcceptInsecureCerts(true);
@@ -1251,7 +1254,7 @@ public class TextEngine {
         try {
             System.out.println ("Demarrage du parcours");
             int num_instances = Fonctions.get_lines_parameters(methodName);
-            Config.compteur_instance = 2;
+            //Config.compteur_instance = 2;
             while (Config.compteur_instance<num_instances) {
                 Config.compteur_params=1;
                 Fonctions.createLogFile(methodName);
@@ -1354,8 +1357,50 @@ public class TextEngine {
                         System.out.println("Result link: "+link);
                     }
                 }
-                Config.compteur_instance = Config.compteur_instance+1;
-            }
+                if (Config.Jira == 1) {
+                	if(Step.containsKey(Integer.parseInt(num))) {
+                        String link ="";
+                        String status = "Test ok";
+                        if (TestPlan) {
+                            link= getLinkResult(instance, token, Config.dir_export+"/"+methodName+"/");
+                        }
+                        scripts_techniques.Teststep teststep = null;
+                        for (scripts_techniques.Teststep t : Step.get(Integer.parseInt(num))) {
+                        	teststep = t;
+                            if(Objects.equals(t.status, "KO")) {
+                            	status = "Test ko";
+                            	String ticket = getJiraIssue(t.testcase_label);
+                            	if (ticket == null) {
+									createJiraTicket(link, status, t.errorMessage, t.testcase_label);
+								} else {
+									updateJiraIssue(link, status, t.errorMessage, t.testcase_label, ticket);
+								}
+                                break;
+                            }
+                            else if(Objects.equals(t.status, "Warning")) {
+                               status = "Test warning";
+                               String ticket = getJiraIssue(t.testcase_label);
+                               if (ticket == null) {
+									createJiraTicket(link, status, t.errorMessage, t.testcase_label);
+								} else {
+									updateJiraIssue(link, status, t.errorMessage, t.testcase_label, ticket);
+								}
+                                break;
+                            }
+                        }
+                        if(status.equals("Test ok")) {
+                        	String ticket = getJiraIssue(teststep.testcase_label);
+                        	if (ticket == null) {
+								createJiraTicket(link, status, teststep.errorMessage, teststep.testcase_label);
+							} else {
+								updateJiraIssue(link, status, teststep.errorMessage, teststep.testcase_label, ticket);
+							}
+                        }
+                        System.out.println("Result link: "+link);
+                    }
+				}
+                //Config.compteur_instance = Config.compteur_instance+1;
+           }
 
             return result;
 
@@ -1428,10 +1473,162 @@ public class TextEngine {
     public static SoftAssertions getSoftAssertions() {
         return sa;
     }
+    public static void createJiraTicket(String parcours) throws IOException {
+    	String status = "Test ok";
+    	String error = "";
+    	for(String[] s : Result) {
+    		if (s[1].equals("KO")) {
+				status = "Test ko";
+				error = s[2];
+				break;
+			} else if (s[1].equals("Warning")) {
+				status = "Test warning";
+				error = s[2];
+			}
+    	}
+    	String ticket = getJiraIssue(parcours);
+    	if (ticket == null) {
+    		createJiraTicket("", status, error, parcours);
+		} else {
+			updateJiraIssue("", status, error, parcours, ticket);
+		}
+    }
+    
+    public static void createJiraTicket(String link, String status, String errorMessage, String testcaseLabel) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+        String jsonString = createTicketJSON(link, status, errorMessage, testcaseLabel);
 
+        // Encodage des informations d'identification en Base64
+        String auth = Config.JIRA_USERNAME + ":" + Config.JIRA_API_TOKEN;
+        String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes());
+        String authHeader = "Basic " + encodedAuth;
 
+        // Créer la requête HTTP
+        Request request = new Request.Builder()
+                .url(Config.JIRA_URL+"issue")
+                .header("Authorization", authHeader)
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/json")
+                .post(RequestBody.create(MediaType.parse("application/json"), jsonString))
+                .build();
+        //System.out.println(request.toString());
+        // Exécuter la requête
+        try (Response response = client.newCall(request).execute()) {
+            if (response.isSuccessful()) {
+                System.out.println("Ticket créé avec succès: " + response.body().string());
+            } else {
+                System.out.println("Erreur lors de la création du ticket. Code: " + response.code());
+                System.out.println(response.body().string());
+            }
+        }
+    }
+    
+    public static String createTicketJSON(String link, String status, String errorMessage, String testcaseLabel) {// Création de l'objet JSON pour le projet    	
+    	com.google.gson.JsonObject project = new com.google.gson.JsonObject();
+        project.addProperty("key", Config.JIRA_PROJECT_NAME);
+
+        // Création de l'objet JSON pour le type d'issue
+        com.google.gson.JsonObject issueType = new com.google.gson.JsonObject();
+        issueType.addProperty("name", status);
+
+        // Création de l'objet JSON pour les champs
+        com.google.gson.JsonObject fields = new com.google.gson.JsonObject();
+        fields.add("project", project);
+        fields.addProperty("summary", testcaseLabel);
+        if (link.equals("")) {
+			fields.addProperty("description", errorMessage);
+		} else {
+			fields.addProperty("description", errorMessage + "\nLien vers les résultats: " + link );
+		}
+        fields.add("issuetype", issueType);
+
+        // Création de l'objet JSON principal
+        com.google.gson.JsonObject jiraIssue = new com.google.gson.JsonObject();
+        jiraIssue.add("fields", fields);
+
+        // Convertir l'objet JSON en chaîne
+        Gson gson = new Gson();
+        String json = gson.toJson(jiraIssue);
+
+        return json;
+    }
+    
+    public static String getJiraIssue(String summary) throws IOException {
+    	OkHttpClient client = new OkHttpClient();
+    	String ticket = null;
+
+        // Encodage des informations d'identification en Base64
+        String auth = Config.JIRA_USERNAME + ":" + Config.JIRA_API_TOKEN;
+        String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes());
+        String authHeader = "Basic " + encodedAuth;
+         // Créer la requête HTTP
+         Request request = new Request.Builder()
+         .url(Config.JIRA_URL + "search?jql=summary ~ \"" + summary + "\"")
+         .header("Authorization", authHeader)
+         .header("Accept", "application/json")
+         .header("Content-Type", "application/json")
+         .build();
+ 
+ // Exécuter la requête
+ try (Response response = client.newCall(request).execute()) {
+     if (response.isSuccessful()) {
+         String jsonResponse = response.body().string();
+         ticket = parseAndPrintIssues(jsonResponse);
+         System.out.println("Ticket récupéré avec succès: " + jsonResponse);
+     } else {
+         System.out.println("Erreur lors de la récupération du ticket. Code: " + response.code());
+         System.out.println(response.body().string());
+     }
+ }
+ return ticket;
+}
+
+public static void updateJiraIssue(String link, String status, String errorMessage, String testcaseLabel, String ticket) throws IOException {
+ OkHttpClient client = new OkHttpClient();
+ String jsonString = createTicketJSON(link, status, errorMessage, testcaseLabel);
+
+ // Encodage des informations d'identification en Base64
+ String auth = Config.JIRA_USERNAME + ":" + Config.JIRA_API_TOKEN;
+ String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes());
+ String authHeader = "Basic " + encodedAuth;
+
+ // Créer la requête HTTP
+ Request request = new Request.Builder()
+         .url(Config.JIRA_URL + "issue/" + ticket)
+         .header("Authorization", authHeader)
+         .header("Accept", "application/json")
+         .header("Content-Type", "application/json")
+         .put(RequestBody.create(MediaType.parse("application/json"), jsonString))
+         .build();
+ //System.out.println(request.toString());
+ // Exécuter la requête
+ try (Response response = client.newCall(request).execute()) {
+     if (response.isSuccessful()) {
+         String jsonResponse = response.body().string();
+         System.out.println("Ticket modifié avec succès: " + jsonResponse);
+     } else {
+         System.out.println("Erreur lors de la modification du ticket. Code: " + response.code());
+         System.out.println(response.body().string());
+     }
+ }
+}
+
+private static String parseAndPrintIssues(String jsonResponse) {
+Gson gson = new Gson();
+com.google.gson.JsonObject jsonObject = gson.fromJson(jsonResponse, com.google.gson.JsonObject.class);
+JsonArray issues = jsonObject.getAsJsonArray("issues");
+
+ for (int i = 0; i < issues.size(); i++) {
+        com.google.gson.JsonObject issue = issues.get(i).getAsJsonObject();
+        String id = issue.get("id").getAsString();
+        String key = issue.get("key").getAsString();
+        String issueSummary = issue.getAsJsonObject("fields").get("summary").getAsString();
+        System.out.println("ID: " + id + ", Key: " + key + ", Summary: " + issueSummary);
+        return key;
+    }
+    return null;
+}
     public static String[] Status(Teststep t) {
-
         String[] result = new String[3];
         result[0] = t.action_label;
         result[1] = t.status;
@@ -1491,9 +1688,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_checkbyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1525,14 +1722,14 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         if (Support == "Web")
             status = Scripts_techniques.Webobject_checkbyname(selfdriver, t);
         else if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.mobileobject_checkbyname(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1565,7 +1762,7 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         if (Support == "Web")
             status = Scripts_techniques.Webobject_checkbyxpath(selfdriver, t);
         else if (Support == "Mobile")
@@ -1573,7 +1770,7 @@ public class TextEngine {
         else
             System.out.println("Erreur Init Action");
 
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1605,9 +1802,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_clickbyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1639,7 +1836,7 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         if (Support == "Web")
             status = Scripts_techniques.Webobject_clickbyname(selfdriver, t);
         else if (Support == "Mobile")
@@ -1649,7 +1846,7 @@ public class TextEngine {
         else
             System.out.println("Erreur Init Action");
 
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1681,9 +1878,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_clickbytitle(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1715,7 +1912,7 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         if (Support == "Web")
             status = Scripts_techniques.Webobject_clickbyxpath(selfdriver, t);
         else if (Support == "Mobile")
@@ -1724,7 +1921,7 @@ public class TextEngine {
             status = scripts_techniques.Desktop.Scripts_techniques.clickbyxpath(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1756,9 +1953,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_Highlightbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1790,9 +1987,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_Highlightbyclass(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1824,9 +2021,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_Highlightbyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1858,9 +2055,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_Highlightbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1892,9 +2089,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_selectindexbyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1926,9 +2123,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_selectindexbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1960,9 +2157,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_selectindexbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1994,9 +2191,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_selectvaluebyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2028,9 +2225,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_selectvaluebyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2062,9 +2259,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_selectvaluebyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2096,9 +2293,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_selectvisibletextbyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2130,9 +2327,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_selectvisibletextbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2164,9 +2361,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_selectvisibletextbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2198,14 +2395,14 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         if (Support == "Web")
             status = Scripts_techniques.Webobject_sendkeysbyname(selfdriver, t);
         else if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.mobileobject_keysbyid(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2237,7 +2434,7 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         if (Support == "Web")
             status = Scripts_techniques.Webobject_sendkeysbyname(selfdriver, t);
         else if (Support == "Mobile")
@@ -2246,7 +2443,7 @@ public class TextEngine {
             status = scripts_techniques.Desktop.Scripts_techniques.sendkeysbyName(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2278,7 +2475,7 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         if (Support == "Web")
             status = Scripts_techniques.Webobject_sendkeysbyxpath(selfdriver, t);
         else if (Support == "Mobile")
@@ -2287,7 +2484,7 @@ public class TextEngine {
             status = scripts_techniques.Desktop.Scripts_techniques.sendkeysbyxpath(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2319,9 +2516,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_selectkeysbyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2353,9 +2550,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_selectkeysbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2387,9 +2584,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webobject_selectkeysbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2421,9 +2618,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebObject_dragbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2455,9 +2652,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebObject_checknbelementbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2492,9 +2689,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webpage_waitloadingcomplete(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2526,9 +2723,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webpage_close(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2560,14 +2757,14 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         if (Support == "Web")
             status = Scripts_techniques.WebPage_checkinnertext(selfdriver, t);
         else if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.MobileContainer_checkinnertext(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2599,9 +2796,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_executer_bat(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2633,9 +2830,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_checkpdf(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2667,9 +2864,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_checkcsv(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2701,14 +2898,14 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         if (Support == "Web")
             status = Scripts_techniques.WebPage_wait(selfdriver, t);
         else if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.mobileContainer_wait(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2739,7 +2936,7 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
 
         if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.MobileContainer_scroll(selfdriver, t);
@@ -2753,7 +2950,7 @@ public class TextEngine {
         }
 
 
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2785,9 +2982,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_activateframe(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2819,9 +3016,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_desactivateframe(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2853,9 +3050,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_activatetab(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2889,9 +3086,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_requeteAPI(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2923,9 +3120,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_checkjson(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2957,9 +3154,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_checkxls(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2992,9 +3189,9 @@ public class TextEngine {
         }
 
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_getemail(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3027,12 +3224,12 @@ public class TextEngine {
         }
 
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         if (Support == "Web")
             status = Scripts_techniques.WebPage_clickbycoordinates(selfdriver, t);
         else if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.MobileContainer_clickbycoordinates(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3064,9 +3261,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_checkdoc(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3098,9 +3295,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_checkinnertextnotpresent(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3132,9 +3329,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.Webpage_open(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3166,9 +3363,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_confirmAlert(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3200,9 +3397,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_FonctionsAnnexes(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3239,7 +3436,7 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         //Appel du clickbytext original
         if (Support == "Web")
             status = scripts_techniques.Selenium.Scripts_techniques.WebObject_clickbytext(selfdriver, t);
@@ -3249,7 +3446,7 @@ public class TextEngine {
             status = scripts_techniques.Desktop.Scripts_techniques.WebObject_clickbytext(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3263,6 +3460,20 @@ public class TextEngine {
         final String NatureAction = "texte";
         final String NomAction = "sendkeysbytext";
         String parcours_name = nom;
+        int colonne = 1;
+
+        if (param.equals("JEUVALEUR")) {
+
+			colonne = getColumn(prop);
+
+			param = Fonctions.getParameter(Config.dir_params+"/"+path+".csv",Config.compteur_instance, colonne);
+
+			Config.compteur_params = colonne;
+
+			
+
+		}
+
 
         String techlabel = SearchObject(NatureAction, prop);
         if (Objects.equals(techlabel, "")) {
@@ -3281,7 +3492,7 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         if (Support == "Web")
             status = Scripts_techniques.WebObject_sendkeysbytext(selfdriver, t);
         else if (Support == "Mobile")
@@ -3290,10 +3501,23 @@ public class TextEngine {
             status = scripts_techniques.Desktop.Scripts_techniques.WebObject_sendkeysbytext(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
+            if (!doesParamFileExists(path)) {
+
+                System.out.println("Le fichier de jeux de valeurs n'a pas été trouvé");
+    
+                t.errorMessage = "Le fichier de jeux de valeurs n'a pas été trouvé";
+    
+            } else if (colonne == 0) {
+    
+                System.out.println("La colonne " + prop + " n'a pas été trouvée dans le fichier de jeux de valeurs");
+    
+                t.errorMessage = "La colonne " + prop + " n'a pas été trouvée dans le fichier de jeux de valeurs";
+    
+            }
 
         Config.compteur_params++;
         return Status(t);
@@ -3322,14 +3546,14 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         if (Support == "Web")
             status = Scripts_techniques.WebObject_checkbytext(selfdriver, t);
         else if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.MobileObject_checkbytext(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3361,9 +3585,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebObject_hoverbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3395,9 +3619,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebObject_clickrightbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3429,9 +3653,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebObject_clickbelowbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3463,9 +3687,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebObject_clickleftbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3497,9 +3721,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebObject_clickabovebytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3531,14 +3755,14 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         if (Support == "Web")
             status = Scripts_techniques.WebObject_selectbytext(selfdriver, t);
         else if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.MobileObject_selectbytext(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3570,7 +3794,7 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         if (Support == "Web")
             status = Scripts_techniques.WebObject_clickbyindex(selfdriver, t);
         else if (Support == "Mobile")
@@ -3579,7 +3803,7 @@ public class TextEngine {
             status = scripts_techniques.Desktop.Scripts_techniques.WebObject_clickbyindex(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3611,9 +3835,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebObject_dragbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3645,9 +3869,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebObject_typetext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3679,9 +3903,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebObject_checkcheckboxstatus(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3717,9 +3941,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebObject_clicktable(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3751,9 +3975,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebObject_checktable(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3785,9 +4009,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebObject_sendkeystable(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3819,9 +4043,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = Scripts_techniques.WebPage_visualtesting(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3857,9 +4081,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_checkbyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3891,9 +4115,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clickbyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3925,9 +4149,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_keysbyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3959,9 +4183,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobilecontainer_RestartApp(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3993,9 +4217,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clearvaluebyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4027,9 +4251,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clearvaluebyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4061,9 +4285,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clearvaluebyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4095,9 +4319,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clearvaluebyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4129,9 +4353,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_doubleClickbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4163,9 +4387,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_DoubleClickbyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4197,9 +4421,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_doubleclickbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4231,9 +4455,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_longpressbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4265,9 +4489,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_longpressbyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4299,9 +4523,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_longpressbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4333,9 +4557,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeLeftbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4367,9 +4591,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeLeftbyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4401,9 +4625,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeLeftbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4435,9 +4659,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeRightbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4469,9 +4693,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeRightbyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4503,9 +4727,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeRightbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4537,9 +4761,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_clearvaluebytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4571,9 +4795,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_doubleclickbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4605,9 +4829,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_longpressbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4639,9 +4863,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_scrollbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4673,9 +4897,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_swipeleftbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4707,9 +4931,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_swiperightbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4765,11 +4989,11 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         //Appel du clickbytext original
         status = scripts_techniques.Desktop.Scripts_techniques.clickbyAutomationID(selfdriver, t);
 
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4802,11 +5026,11 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         //Appel du clickbytext original
         status = scripts_techniques.Desktop.Scripts_techniques.sendkeysbyAutomationId(selfdriver, t);
 
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4838,9 +5062,9 @@ public class TextEngine {
             label = techlabel.split("\\.")[0];
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
         //status = scripts_techniques.Appium.Scripts_techniques.mobileobject_movejaugebyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -5107,10 +5331,10 @@ public class TextEngine {
 
     public static void getPercyResult(){
         Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", nom, Config.PercyToken);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
 
         WebPage_getResult(selfdriver,t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
     }
     public static void getPercyResult(String token, String parcoursName){
 //        try {
@@ -5120,13 +5344,173 @@ public class TextEngine {
 //        }
 
         Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", parcoursName, token);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance =2;
 
         WebPage_getResult(selfdriver,t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance =1;
 
     }
+     public static boolean WebPage_getResult(WebDriver selenium, Teststep t) {
+        Date time1 = new Date();
+        executeCommand("npx percy exec:stop");
+        System.out.println("data:");
 
+        Map<String, Object> result = GetData(t.param);
+        if(result==null)
+            return Fonctions.logStepKO(t, selfdriver, time1,"Un probleme est survenue lors de la remontée des résultats");
+        if(((ArrayList<String>)result.get("changes")).isEmpty())
+            return Fonctions.logStepOK(t, selenium, time1);
+        StringBuilder sb = new StringBuilder();
+        for(String nom:((ArrayList<String>)result.get("changes"))){
+            sb.append(nom + "; ");
+        }
+        return Fonctions.logStepWarning(t, selfdriver, time1,"Un changement à été détécté sur les captures suivantes : "+sb.toString());
+    }
+    private static void executeCommand(String command) {
+        try {
+            // Utiliser ProcessBuilder pour exécuter la commande
+            ProcessBuilder builder = new ProcessBuilder();
+            builder.command("cmd.exe", "/c", "cd Batfiles && "+ command);
+            builder.redirectErrorStream(true);
+            Process process = builder.start();
+
+            // Lire la sortie de la commande
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            int i = 0;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            // Attendre la fin de l'exécution de la commande
+            int exitCode = process.waitFor();
+            System.out.println("\nCommande exécutée avec le code de sortie : " + exitCode);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static Map<String, Object> GetData(String token){
+
+        Map<String, Object> Data = new HashMap<>();
+        Map<String, String> param = new HashMap<>();
+        param.put("project_slug", "your_project_slug");
+        System.out.println(token);
+        String response = CallAPI("https://percy.io/api/v1/projects",token, param);
+        Gson gson = new Gson();
+        com.google.gson.JsonObject jsonResponse = gson.fromJson(response, com.google.gson.JsonObject.class);
+        String projectID = jsonResponse.getAsJsonObject("data").get("id").getAsString();
+        Data.put("project_id", projectID);
+        System.out.println("project_id: "+ projectID);
+
+        param = new HashMap<>();
+        param.put("project_id", projectID);
+        response = CallAPI("https://percy.io/api/v1/builds", token, param);
+        jsonResponse = gson.fromJson(response, com.google.gson.JsonObject.class);
+        String buildID = jsonResponse.get("data").getAsJsonArray().get(0).getAsJsonObject().get("id").getAsString();
+        String noBuild = jsonResponse.get("data").getAsJsonArray().get(0).getAsJsonObject().get("attributes").getAsJsonObject().get("build-number").getAsString();
+        Data.put("build_id", buildID);
+        Data.put("noBuild", noBuild);
+
+        System.out.println("buildID: "+ buildID);
+
+        String state;
+        try {
+            do {
+                response = CallAPI("https://percy.io/api/v1/builds/"+buildID, token, null);
+                jsonResponse = gson.fromJson(response, com.google.gson.JsonObject.class);
+                state = jsonResponse.get("data").getAsJsonObject().get("attributes").getAsJsonObject().get("state").getAsString();
+
+            } while (!(state.equals("failed")||state.equals("finished")));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        System.out.println("state: "+ state);
+        Data.put("state", state);
+        param= new HashMap<>();
+        param.put("build_id", buildID);
+        response = CallAPI("https://percy.io/api/v1/snapshots", token, param);
+        jsonResponse = gson.fromJson(response, com.google.gson.JsonObject.class);
+        JsonArray JA = jsonResponse.get("data").getAsJsonArray();
+        ArrayList<String> changes = new ArrayList<>();
+        for(JsonElement s:JA){
+            String name= s.getAsJsonObject().get("attributes").getAsJsonObject().get("name").getAsString();
+            String RS= s.getAsJsonObject().get("attributes").getAsJsonObject().get("review-state").getAsString();
+            System.out.println(name +" -> "+RS);
+            if(!RS.equals("approved"))
+                changes.add(name +" -> "+RS);
+        }
+        Data.put("changes", changes);
+
+        return Data;
+    }
+    public static String CallAPI(String URL, String token, Map<String, String> parameter){
+
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.connectTimeout(40, TimeUnit.SECONDS);
+        builder.readTimeout(40, TimeUnit.SECONDS);
+        builder.writeTimeout(40, TimeUnit.SECONDS);
+        OkHttpClient client = builder.build();
+
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(URL).newBuilder();
+        if(parameter!=null) {
+            for (Map.Entry<String, String> param : parameter.entrySet()) {
+                urlBuilder.addQueryParameter(param.getKey(), param.getValue());
+            }
+        }
+        Request request = new Request.Builder()
+                .url(urlBuilder.build())
+                .addHeader("Authorization", "Token token=" + token)
+                .get()
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            String responseBody = null;
+            if (response.isSuccessful()) {
+                responseBody = response.body().string();
+
+            } else {
+                System.out.println("Response KO: " + response.body().string());
+            }
+            return responseBody;
+        }catch (SocketTimeoutException Se){
+            System.out.println("Erreur lors de la connexion au serveur");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static int getColumn(String property) {
+
+    	try {
+    		System.out.println(path);
+			File file = new File(Config.dir_params + "/" + path + ".csv");
+	    	CSVParser csvParser = new CSVParserBuilder().withSeparator(';').withIgnoreQuotations(false).build();
+			CSVReader csvReader = new CSVReaderBuilder(new FileReader(file)).withCSVParser(csvParser).build();
+			String[] firstline = csvReader.readNext();
+			for (int i = 0; i < firstline.length; i++) {
+				System.out.println(firstline[i]);
+				if (firstline[i].equals(property)) {
+					return i+1;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    	return 0;
+    }
+    
+    public static boolean doesParamFileExists(String path) {
+    	try {
+			File file = new File(Config.dir_params + "/" + path + ".csv");
+			return file.exists();
+		} catch (Exception e) {
+			return false;
+		}
+    }
 //    public static String[] DeskGetpropertybyName(String name, String prop) {
 //        try {
 //            wait.until(ExpectedConditions.presenceOfElementLocated(By.name(name)));
@@ -5160,6 +5544,5 @@ public class TextEngine {
 }
 //
 //
-
 
 
