@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.opencsv.*;
 import com.google.gson.*;
 
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -103,6 +104,7 @@ public class TextEngine {
     private static String instance="";
     private static String token="";
     private static String idTestPlan="";
+    private static String path="";
 
     private static final OkHttpClient client = new OkHttpClient();
     private static final Gson gson = new Gson();
@@ -433,9 +435,9 @@ public class TextEngine {
          csvfilebuff = Config.dir_params + File.separator + nom + "_xpath_list_buffer.csv";
          try {
              //Creation des fichiers .OUT/xpathlist/xpathlistbuffer
-             Config.compteur_instance = 2;
+             //Config.compteur_instance = 2;
              Fonctions.createLogFile(nom);
-             Config.compteur_instance = 1;
+             //Config.compteur_instance = 1;
              Fonctions.createEmptyFile(csvfile);
              Fonctions.createEmptyFile(csvfilebuff);
              //Couper-Coller du fichier xpathlist_buffer dans le fichier xpathlist
@@ -451,6 +453,7 @@ public class TextEngine {
 
     public static void initWeb(String URL, String nomparcours){
         //initialisation de tous les paramètres du chromedriver et de selenium
+    	path = nomparcours;
         File file = new File(Config.dir_config + "/chromedriver.exe");
         System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
         Map<String, Object> chromePrefs = new HashMap<String, Object>();
@@ -1195,7 +1198,7 @@ public class TextEngine {
         try {
             System.out.println ("Demarrage du parcours");
             int num_instances = Fonctions.get_lines_parameters(methodName);
-            Config.compteur_instance = 2;
+            //Config.compteur_instance = 2;
             while (Config.compteur_instance<num_instances) {
                 Config.compteur_params=1;
                 Fonctions.createLogFile(methodName);
@@ -1341,7 +1344,7 @@ public class TextEngine {
                         System.out.println("Result link: "+link);
                     }
 				}
-                Config.compteur_instance = Config.compteur_instance+1;
+                //Config.compteur_instance = Config.compteur_instance+1;
             }
             return result;
 
@@ -1410,7 +1413,7 @@ public class TextEngine {
         }
 
 
-    static SoftAssertions sa = new SoftAssertions();
+    public static SoftAssertions sa = new SoftAssertions();
     public static SoftAssertions getSoftAssertions() {
     	return sa;
     }
@@ -1631,9 +1634,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_checkbyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1665,14 +1668,14 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         if (Support == "Web")
             status = Scripts_techniques.Webobject_checkbyname(selfdriver, t);
         else if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.mobileobject_checkbyname(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1705,7 +1708,7 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         if (Support == "Web")
             status = Scripts_techniques.Webobject_checkbyxpath(selfdriver, t);
         else if (Support == "Mobile")
@@ -1713,7 +1716,7 @@ try {
         else
             System.out.println("Erreur Init Action");
 
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1745,9 +1748,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_clickbyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1779,7 +1782,7 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         if (Support == "Web")
             status = Scripts_techniques.Webobject_clickbyname(selfdriver, t);
         else if (Support == "Mobile")
@@ -1789,7 +1792,7 @@ try {
         else
             System.out.println("Erreur Init Action");
 
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1821,9 +1824,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_clickbytitle(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1855,7 +1858,7 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         if (Support == "Web")
             status = Scripts_techniques.Webobject_clickbyxpath(selfdriver, t);
         else if (Support == "Mobile")
@@ -1864,7 +1867,7 @@ try {
             status = scripts_techniques.Desktop.Scripts_techniques.clickbyxpath(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1896,9 +1899,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_Highlightbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1930,9 +1933,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_Highlightbyclass(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1964,9 +1967,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_Highlightbyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -1998,9 +2001,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_Highlightbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2032,9 +2035,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectindexbyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2066,9 +2069,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectindexbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2100,9 +2103,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectindexbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2134,9 +2137,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectvaluebyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2168,9 +2171,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectvaluebyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2202,9 +2205,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectvaluebyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2236,9 +2239,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectvisibletextbyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2270,9 +2273,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectvisibletextbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2304,9 +2307,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectvisibletextbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2338,14 +2341,14 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         if (Support == "Web")
-            status = Scripts_techniques.Webobject_sendkeysbyname(selfdriver, t);
+            status = Scripts_techniques.Webobject_sendkeysbyid(selfdriver, t);
         else if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.mobileobject_keysbyid(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2377,7 +2380,7 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         if (Support == "Web")
             status = Scripts_techniques.Webobject_sendkeysbyname(selfdriver, t);
         else if (Support == "Mobile")
@@ -2386,7 +2389,7 @@ try {
             status = scripts_techniques.Desktop.Scripts_techniques.sendkeysbyName(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2418,7 +2421,7 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         if (Support == "Web")
             status = Scripts_techniques.Webobject_sendkeysbyxpath(selfdriver, t);
         else if (Support == "Mobile")
@@ -2427,7 +2430,7 @@ try {
             status = scripts_techniques.Desktop.Scripts_techniques.sendkeysbyxpath(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2459,9 +2462,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectkeysbyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2493,9 +2496,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectkeysbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2527,9 +2530,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectkeysbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2561,9 +2564,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_dragbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2595,9 +2598,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_checknbelementbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2632,9 +2635,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webpage_waitloadingcomplete(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2666,9 +2669,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webpage_close(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2700,14 +2703,14 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         if (Support == "Web")
             status = Scripts_techniques.WebPage_checkinnertext(selfdriver, t);
         else if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.MobileContainer_checkinnertext(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2739,9 +2742,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_executer_bat(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2773,9 +2776,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_checkpdf(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2807,9 +2810,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_checkcsv(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2841,14 +2844,14 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         if (Support == "Web")
             status = Scripts_techniques.WebPage_wait(selfdriver, t);
         else if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.mobileContainer_wait(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2879,7 +2882,7 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         
         if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.MobileContainer_scroll(selfdriver, t);
@@ -2893,7 +2896,7 @@ try {
         }
         	
         
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2925,9 +2928,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_activateframe(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2959,9 +2962,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_desactivateframe(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -2993,9 +2996,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_activatetab(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3029,9 +3032,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_requeteAPI(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3063,9 +3066,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_checkjson(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3097,9 +3100,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_checkxls(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3132,9 +3135,9 @@ try {
 		}
         
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_getemail(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3167,12 +3170,12 @@ try {
 		}
 
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         if (Support == "Web")
         	status = Scripts_techniques.WebPage_clickbycoordinates(selfdriver, t);
         else if (Support == "Mobile")
         	status = scripts_techniques.Appium.Scripts_techniques.MobileContainer_clickbycoordinates(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3204,9 +3207,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_checkdoc(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3238,9 +3241,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_checkinnertextnotpresent(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3272,9 +3275,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.Webpage_open(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3306,9 +3309,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_confirmAlert(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3340,9 +3343,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_FonctionsAnnexes(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3379,7 +3382,7 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         //Appel du clickbytext original
         if (Support == "Web")
             status = scripts_techniques.Selenium.Scripts_techniques.WebObject_clickbytext(selfdriver, t);
@@ -3389,7 +3392,7 @@ try {
             status = scripts_techniques.Desktop.Scripts_techniques.WebObject_clickbytext(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3403,6 +3406,7 @@ try {
         final String NatureAction = "texte";
         final String NomAction = "sendkeysbytext";
         String parcours_name = nom;
+        int colonne = 1;
 
         String techlabel = SearchObject(NatureAction, prop);
         if (Objects.equals(techlabel, "")) {
@@ -3420,8 +3424,14 @@ try {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			label = techlabel.split("\\.")[0];
 		}
+		if (param.equals("JEUVALEUR")) {
+			colonne = getColumn(prop);
+			param = Fonctions.getParameter(Config.dir_params+"/"+path+".csv",Config.compteur_instance, colonne);
+			Config.compteur_params = colonne;
+			
+		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        ////Config.compteur_instance = 2;
         if (Support == "Web")
             status = Scripts_techniques.WebObject_sendkeysbytext(selfdriver, t);
         else if (Support == "Mobile")
@@ -3430,11 +3440,17 @@ try {
             status = scripts_techniques.Desktop.Scripts_techniques.WebObject_sendkeysbytext(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        ////Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
-
+        if (!doesParamFileExists(path)) {
+        	System.out.println("Le fichier de jeux de valeurs n'a pas été trouvé");
+			t.errorMessage = "Le fichier de jeux de valeurs n'a pas été trouvé";
+		} else if (colonne == 0) {
+			System.out.println("La colonne " + prop + " n'a pas été trouvée dans le fichier de jeux de valeurs");
+			t.errorMessage = "La colonne " + prop + " n'a pas été trouvée dans le fichier de jeux de valeurs";
+		}
         Config.compteur_params++;
         return Status(t);
     }
@@ -3462,14 +3478,14 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         if (Support == "Web")
             status = Scripts_techniques.WebObject_checkbytext(selfdriver, t);
         else if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.MobileObject_checkbytext(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3501,9 +3517,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_hoverbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3535,9 +3551,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_clickrightbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3569,9 +3585,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_clickbelowbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3603,9 +3619,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_clickleftbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3637,9 +3653,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_clickabovebytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3671,14 +3687,14 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         if (Support == "Web")
             status = Scripts_techniques.WebObject_selectbytext(selfdriver, t);
         else if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.MobileObject_selectbytext(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3710,7 +3726,7 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         if (Support == "Web")
             status = Scripts_techniques.WebObject_clickbyindex(selfdriver, t);
         else if (Support == "Mobile")
@@ -3719,7 +3735,7 @@ try {
             status = scripts_techniques.Desktop.Scripts_techniques.WebObject_clickbyindex(selfdriver, t);
         else
             System.out.println("Erreur Init Action");
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3751,9 +3767,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_dragbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3785,9 +3801,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_typetext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3819,9 +3835,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_checkcheckboxstatus(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3857,9 +3873,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_clicktable(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3891,9 +3907,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_checktable(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3925,9 +3941,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_sendkeystable(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3959,9 +3975,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_visualtesting(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -3997,9 +4013,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_checkbyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4031,9 +4047,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clickbyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4065,9 +4081,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_keysbyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4099,9 +4115,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobilecontainer_RestartApp(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4133,9 +4149,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clearvaluebyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4167,9 +4183,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clearvaluebyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4201,9 +4217,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clearvaluebyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4235,9 +4251,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clearvaluebyid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4269,9 +4285,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_doubleClickbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4303,9 +4319,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_DoubleClickbyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4337,9 +4353,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_doubleclickbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4371,9 +4387,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_longpressbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4405,9 +4421,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_longpressbyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4439,9 +4455,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_longpressbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4473,9 +4489,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeLeftbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4507,9 +4523,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeLeftbyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4541,9 +4557,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeLeftbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4575,9 +4591,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeRightbyname(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4609,9 +4625,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeRightbyresourceid(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4643,9 +4659,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeRightbyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4677,9 +4693,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_clearvaluebytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4711,9 +4727,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_doubleclickbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4745,9 +4761,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_longpressbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4779,9 +4795,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_scrollbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4813,9 +4829,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_swipeleftbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4847,9 +4863,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_swiperightbytext(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4905,11 +4921,11 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         //Appel du clickbytext original
         status = scripts_techniques.Desktop.Scripts_techniques.clickbyAutomationID(selfdriver, t);
 
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4942,11 +4958,11 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         //Appel du clickbytext original
         status = scripts_techniques.Desktop.Scripts_techniques.sendkeysbyAutomationId(selfdriver, t);
 
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -4978,9 +4994,9 @@ try {
 			label = techlabel.split("\\.")[0];
 		}
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
         //status = scripts_techniques.Appium.Scripts_techniques.mobileobject_movejaugebyxpath(selfdriver, t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
@@ -5213,18 +5229,18 @@ try {
     }
  public static void getPercyResult(){
         Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", nom, Config.PercyToken);
-        Config.compteur_instance = 2;
+        //Config.compteur_instance = 2;
 
         WebPage_getResult(selfdriver,t);
-        Config.compteur_instance = 1;
+        //Config.compteur_instance = 1;
     }
 public static void getPercyResult(String token, String parcoursName){
         
            Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", parcoursName, token);
-           Config.compteur_instance = 2;
+           //Config.compteur_instance = 2;
       
            WebPage_getResult(selfdriver,t);
-           Config.compteur_instance = 1;
+           //Config.compteur_instance = 1;
       
    }
 
@@ -5359,6 +5375,35 @@ public static void getPercyResult(String token, String parcoursName){
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public static int getColumn(String property) {
+    	try {
+    		System.out.println(path);
+			File file = new File(Config.dir_params + "/" + path + ".csv");
+	    	CSVParser csvParser = new CSVParserBuilder().withSeparator(';').withIgnoreQuotations(false).build();
+			CSVReader csvReader = new CSVReaderBuilder(new FileReader(file)).withCSVParser(csvParser).build();
+			String[] firstline = csvReader.readNext();
+			for (int i = 0; i < firstline.length; i++) {
+				System.out.println(firstline[i]);
+				if (firstline[i].equals(property)) {
+					return i+1;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    	return 0;
+    }
+    
+    public static boolean doesParamFileExists(String path) {
+    	try {
+			File file = new File(Config.dir_params + "/" + path + ".csv");
+			return file.exists();
+		} catch (Exception e) {
+			return false;
+		}
     }
 
 //    public static String[] DeskGetpropertybyName(String name, String prop) {

@@ -4,7 +4,7 @@ package scripts_techniques;
 	//log export 
 	
  //Replace C:/kalios with your project folder 
-	public static String tunnel_path			=  "C:\\your\\path";
+	public static String tunnel_path			=  "C:\\Chemin_vers_le_textengine\\TextEngine";
 	
 	
 	public static String dir_export				= 	tunnel_path+"/results";
@@ -44,10 +44,10 @@ package scripts_techniques;
 	 public static String PAT = "";
 	 
 	 public static int Jira = 0;
-	 public static String JIRA_URL = "https://your-jira-url/rest/api/2/";
-	 public static String JIRA_USERNAME = "your user";
-	 public static String JIRA_API_TOKEN = "your api token";
-	 public static String JIRA_PROJECT_NAME = "your project";
+	 public static String JIRA_URL = "https://your_jira_url/rest/api/2/";
+	 public static String JIRA_USERNAME = "";
+	 public static String JIRA_API_TOKEN = "";
+	 public static String JIRA_PROJECT_NAME = "";
 
 
 	 public static int Percy = 0;
@@ -78,7 +78,7 @@ package scripts_techniques;
 	 
 	
 	public static int compteur_params				=1;
-	public static int compteur_instance				=1; 
+	public static int compteur_instance				=2; 
  
     public static int  waitBeforeExec           = 1000;
 	
