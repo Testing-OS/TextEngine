@@ -6,6 +6,10 @@ import browserstack.shaded.com.google.gson.JsonObject;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.opencsv.*;
+import com.google.gson.*;
 import com.opencsv.*;
 import com.google.gson.*;
 
@@ -42,6 +46,7 @@ import org.openqa.selenium.WebDriver;
 import java.io.*;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
 import java.net.SocketTimeoutException;
 import java.net.URLClassLoader;
 import java.nio.file.Files;
@@ -488,6 +493,7 @@ public class TextEngine {
              //Config.compteur_instance =2;
              Fonctions.createLogFile(nom);
              //Config.compteur_instance = 1;
+             //Config.compteur_instance = 1;
              Fonctions.createEmptyFile(csvfile);
              Fonctions.createEmptyFile(csvfilebuff);
              //Couper-Coller du fichier xpathlist_buffer dans le fichier xpathlist
@@ -503,6 +509,7 @@ public class TextEngine {
 
     public static void initWeb(String URL, String nomparcours){
         //initialisation de tous les paramètres du chromedriver et de selenium
+    	path = nomparcours;
     	path = nomparcours;
         File file = new File(Config.dir_config + "/chromedriver.exe");
         System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
@@ -826,6 +833,7 @@ public class TextEngine {
             str = str.substring(0, str.length() - 10) + System.currentTimeMillis();
         }
         Config.dir_export = str;
+        
 
 
 
@@ -834,6 +842,8 @@ public class TextEngine {
         for (Method m : PlandeTest) {
             System.out.println(m.getName());
         }
+
+
 
 
         int index = 0;
@@ -1255,6 +1265,7 @@ public class TextEngine {
             System.out.println ("Demarrage du parcours");
             int num_instances = Fonctions.get_lines_parameters(methodName);
             //Config.compteur_instance = 2;
+            //Config.compteur_instance = 2;
             while (Config.compteur_instance<num_instances) {
                 Config.compteur_params=1;
                 Fonctions.createLogFile(methodName);
@@ -1372,7 +1383,9 @@ public class TextEngine {
                             	String ticket = getJiraIssue(t.testcase_label);
                             	if (ticket == null) {
 									createJiraTicket(link, status, t.errorMessage, t.testcase_label);
+									createJiraTicket(link, status, t.errorMessage, t.testcase_label);
 								} else {
+									updateJiraIssue(link, status, t.errorMessage, t.testcase_label, ticket);
 									updateJiraIssue(link, status, t.errorMessage, t.testcase_label, ticket);
 								}
                                 break;
@@ -1382,7 +1395,9 @@ public class TextEngine {
                                String ticket = getJiraIssue(t.testcase_label);
                                if (ticket == null) {
 									createJiraTicket(link, status, t.errorMessage, t.testcase_label);
+									createJiraTicket(link, status, t.errorMessage, t.testcase_label);
 								} else {
+									updateJiraIssue(link, status, t.errorMessage, t.testcase_label, ticket);
 									updateJiraIssue(link, status, t.errorMessage, t.testcase_label, ticket);
 								}
                                 break;
@@ -1392,14 +1407,16 @@ public class TextEngine {
                         	String ticket = getJiraIssue(teststep.testcase_label);
                         	if (ticket == null) {
 								createJiraTicket(link, status, teststep.errorMessage, teststep.testcase_label);
+								createJiraTicket(link, status, teststep.errorMessage, teststep.testcase_label);
 							} else {
+								updateJiraIssue(link, status, teststep.errorMessage, teststep.testcase_label, ticket);
 								updateJiraIssue(link, status, teststep.errorMessage, teststep.testcase_label, ticket);
 							}
                         }
                         System.out.println("Result link: "+link);
                     }
 				}
-                //Config.compteur_instance = Config.compteur_instance+1;
+                ////Config.compteur_instance = Config.compteur_instance+1;
            }
 
             return result;
@@ -1469,10 +1486,11 @@ public class TextEngine {
     }
 
 
-    static SoftAssertions sa = new SoftAssertions();
+    public static SoftAssertions sa = new SoftAssertions();
     public static SoftAssertions getSoftAssertions() {
         return sa;
     }
+    
     public static void createJiraTicket(String parcours) throws IOException {
     	String status = "Test ok";
     	String error = "";
@@ -1493,6 +1511,8 @@ public class TextEngine {
 			updateJiraIssue("", status, error, parcours, ticket);
 		}
     }
+    
+
     
     public static void createJiraTicket(String link, String status, String errorMessage, String testcaseLabel) throws IOException {
         OkHttpClient client = new OkHttpClient();
@@ -1534,6 +1554,12 @@ public class TextEngine {
         // Création de l'objet JSON pour les champs
         com.google.gson.JsonObject fields = new com.google.gson.JsonObject();
         fields.add("project", project);
+        fields.addProperty("summary", testcaseLabel);
+        if (link.equals("")) {
+			fields.addProperty("description", errorMessage);
+		} else {
+			fields.addProperty("description", errorMessage + "\nLien vers les résultats: " + link );
+		}
         fields.addProperty("summary", testcaseLabel);
         if (link.equals("")) {
 			fields.addProperty("description", errorMessage);
@@ -2397,7 +2423,7 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         //Config.compteur_instance =2;
         if (Support == "Web")
-            status = Scripts_techniques.Webobject_sendkeysbyname(selfdriver, t);
+            status = Scripts_techniques.Webobject_sendkeysbyid(selfdriver, t);
         else if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.mobileobject_keysbyid(selfdriver, t);
         else
@@ -3486,6 +3512,17 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
         }
         //Initialiser Teststep
         String label;
+try {
+			label = techlabel.split("_")[1].split("\\.")[0];
+		} catch (ArrayIndexOutOfBoundsException e) {
+			label = techlabel.split("\\.")[0];
+		}
+		if (param.equals("JEUVALEUR")) {
+			colonne = getColumn(prop);
+			param = Fonctions.getParameter(Config.dir_params+"/"+path+".csv",Config.compteur_instance, colonne);
+			Config.compteur_params = colonne;
+			
+		}
         try {
             label = techlabel.split("_")[1].split("\\.")[0];
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -3505,6 +3542,13 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
         //Si le clique a reussi
         if (status)
             Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
+        if (!doesParamFileExists(path)) {
+        	System.out.println("Le fichier de jeux de valeurs n'a pas été trouvé");
+			t.errorMessage = "Le fichier de jeux de valeurs n'a pas été trouvé";
+		} else if (colonne == 0) {
+			System.out.println("La colonne " + prop + " n'a pas été trouvée dans le fichier de jeux de valeurs");
+			t.errorMessage = "La colonne " + prop + " n'a pas été trouvée dans le fichier de jeux de valeurs";
+		}
             if (!doesParamFileExists(path)) {
 
                 System.out.println("Le fichier de jeux de valeurs n'a pas été trouvé");
@@ -5328,29 +5372,24 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
         }
     }
-
-    public static void getPercyResult(){
+ public static void getPercyResult(){
         Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", nom, Config.PercyToken);
-        //Config.compteur_instance =2;
+        //Config.compteur_instance = 2;
 
         WebPage_getResult(selfdriver,t);
-        //Config.compteur_instance =1;
+        //Config.compteur_instance = 1;
     }
-    public static void getPercyResult(String token, String parcoursName){
-//        try {
-//            Fonctions.createLogFile("Resultat_Percy");
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+public static void getPercyResult(String token, String parcoursName){
+        
+           Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", parcoursName, token);
+           //Config.compteur_instance = 2;
+      
+           WebPage_getResult(selfdriver,t);
+           //Config.compteur_instance = 1;
+      
+   }
 
-        Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", parcoursName, token);
-        //Config.compteur_instance =2;
-
-        WebPage_getResult(selfdriver,t);
-        //Config.compteur_instance =1;
-
-    }
-     public static boolean WebPage_getResult(WebDriver selenium, Teststep t) {
+        public static boolean WebPage_getResult(WebDriver selenium, Teststep t) {
         Date time1 = new Date();
         executeCommand("npx percy exec:stop");
         System.out.println("data:");
@@ -5482,8 +5521,8 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
         }
         return null;
     }
+    
     public static int getColumn(String property) {
-
     	try {
     		System.out.println(path);
 			File file = new File(Config.dir_params + "/" + path + ".csv");

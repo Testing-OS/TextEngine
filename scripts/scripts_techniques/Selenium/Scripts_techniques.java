@@ -6,6 +6,8 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
+import java.net.URL;
 import java.io.*;
 import java.io.File;
 import java.io.FileWriter;
@@ -8735,6 +8737,167 @@ public class Scripts_techniques {
 		return Fonctions.logStepOK(teststep, selenium, time1);
 	}
 
+	public static boolean  WebPage_getsms(WebDriver selenium, Teststep teststep) throws IOException {
+		Date time1 = new Date();
+		WebDriver driverInstance = (WebDriver) selenium;
+		try {
+			Thread.sleep(Config.pause_actions);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+		}
+		WebDriverWait wait = new WebDriverWait(driverInstance, Duration.ofMillis(Config.timeout_elements));
+		WebElement myObj;
+		   Hashtable<String, String> array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		if (array_prop_object.isEmpty()){
+			return Fonctions.logStepKO(teststep, selenium, time1, "No such file :"+  teststep.object_attach_name);
+		}
+		try {
+			// myObj = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')='"+array_prop_object.get("texte").toLowerCase().replaceAll("\\s","") +"']")));
+	
+			String[] params = teststep.param.split("\\|");
+			AndroidDriver driver;
+			try {
+				// Set Desired Capabilities
+				DesiredCapabilities caps = new DesiredCapabilities();
+				caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+				caps.setCapability(MobileCapabilityType.DEVICE_NAME, "emulator-5554");
+				// Replace with your device name or ID emulator-5554 RZCT50FRL2F
+				// Initialize Appium Driver
+				driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), caps);
+				driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+				// Grant SMS Permission using ADB
+				grantSmsPermission();
+				
+				ArrayList<String> smsMessages = getSmsMessages();
+				
+				long currentTime = System.currentTimeMillis();
+				
+				// Calculate the time 5 minutes ago
+				long fiveMinutesAgo = currentTime - (5 * 60 * 1000);
+			
+				List<String> filteredList = new ArrayList<>();
+				boolean valueAdded = false;
+				String result = "";
+				String code = "";
+				for (String data : smsMessages) {
+					if(!valueAdded) {
+						boolean isValid = false;
+						String[] parts = data.split(" ");
+						for (String part : parts) {
+							if (part.startsWith("date=")) {
+								long dateInMillis = Long.parseLong(part.substring(5, part.length()));
+								if (dateInMillis >= fiveMinutesAgo && dateInMillis <= currentTime) {
+									isValid = true;
+								}
+								break; // Once we've processed the date, no need to continue searching
+							}
+						}
+						if (isValid) {
+							String[] textesDebut = params[0].split("<code");
+							String[] textesFin = textesDebut[1].split(">");
+							result = data.replaceAll("\r", "");
+							System.out.println(result);
+							textesDebut[0] = textesDebut[0].replaceAll("\r", "");
+							if (result.contains(textesDebut[0])) {
+								if (textesDebut[0].length() == 0) {
+									// Il n'y a pas de texte avant le code dans le fichier txt
+									// Il y a du texte après le code dans le fichier txt
+									if (result.contains(textesFin[1])) {
+										// Le texte après le code correspond
+										String[] resultCoupe2 = result.split(textesFin[1]);
+										String[] resultCoupeSpace = resultCoupe2[0].split("\\s");
+										code = resultCoupeSpace[resultCoupeSpace.length - 1].replaceAll("\\s", " ");
+										break;
+									} else {
+										// Le texte après le code ne correspond pas au contenu du mail
+									}
+								} else {
+									// Le mail contient le texte avant le code du fichier txt
+									String[] resultCoupe1 = result.split(textesDebut[0]);
+									if (textesFin.length == 0) {
+										// Il n'y a pas de texte après le code dans le fichier txt
+										String[] resultCoupeSpace = resultCoupe1[1].split("\\s");
+										code = resultCoupeSpace[0].replaceAll("\\s", "");
+										if (code.endsWith(",")) {
+											code = code.substring(0, code.length()-1);
+										}
+										// break;
+									} else {
+										// Il y a du texte après le code dans le fichier txt
+										if (resultCoupe1[1].contains(textesFin[1])) {
+											// Le texte après le code correspond
+											String[] resultCoupe2 = resultCoupe1[1].split(textesFin[1]);
+											code = resultCoupe2[0].replaceAll("\\s", " ");
+											break;
+										} else {
+											// Le texte après le code ne correspond pas au contenu du mail
+										}
+									}
+								}
+							} else {
+								System.out.println("Pas de correspondance entre le texte du mail et le texte du fichier txt");
+							}
+						}
+						if (isValid && result.contains(code)) {
+							int startIndex = data.indexOf(code); // Add 6 to skip "code:"
+							int endIndex = data.indexOf(code) + code.length(); // Find the comma after the code number
+							String codeNumber = data.substring(startIndex, endIndex); // Extract the code number
+							filteredList.add(codeNumber);
+							valueAdded = true;
+						}
+					} else {
+						break; // Break the loop if a value has been added
+					}	
+				}
+				code = null;
+				// Print the filtered list
+				if (!filteredList.isEmpty()) {
+					for (String filteredData : filteredList) {
+						System.out.println(filteredData);
+						code= filteredData;
+					}
+				}
+				
+				else {
+					System.out.println("SMS not found!");
+				}
+				try {
+					Wini ini = new Wini(new File(Config.propertyFile));
+					if(code != null) ini.put("parameter", params[1], code);
+					ini.store();
+					System.out.println(code + " put in the variable " + params[1]);
+				} catch (Exception e) {
+					System.out.println("PUT IN VARIABLE FAILED");
+				}
+				driver.quit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return Fonctions.logStepOK(teststep, selenium, time1);						
+		} catch (Exception e) {
+			System.out.println (e.getMessage());
+			return Fonctions.logStepKO(teststep, selenium, time1, "Cannot perform action in obj : " +e.getMessage());	
+		}		
+	}
+	
+	private static void grantSmsPermission() throws Exception {
+        String command = "adb shell pm grant io.appium.settings android.permission.READ_SMS";
+        Process process = Runtime.getRuntime().exec(command);
+        process.waitFor();
+    }
+    private static ArrayList<String> getSmsMessages() throws Exception {
+    	ArrayList<String> messages = new ArrayList();
+        String command = "adb shell content query --uri content://sms/inbox --projection body,date";
+        Process process = Runtime.getRuntime().exec(command);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            messages.add(line);
+        }
+        process.waitFor();
+        return messages;
+    }
+
 	public static boolean WebPage_clickbycoordinates(WebDriver selenium, Teststep teststep) throws IOException {
 		teststep.action_label = "Je clique par coordonnees";
 		Date time1 = new Date();
@@ -9286,6 +9449,7 @@ public class Scripts_techniques {
 	
 	public static boolean  WebObject_clickbytext(final WebDriver driver, Teststep teststep) throws IOException
 	{
+		System.out.println("11111111111111111111");
 		teststep.action_label = "Je clique";
 		Date time1 = new Date();
 		String property ="";
@@ -9299,6 +9463,7 @@ public class Scripts_techniques {
 			return Fonctions.logStepKO(teststep, driver, time1, "Le fichier n'existe pas :"+  teststep.object_attach_name);
 		}
 		try {
+			System.out.println("222222222222222222222");
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
 			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement element = null;
@@ -9561,11 +9726,13 @@ public class Scripts_techniques {
 						System.out.println(date);
 						element.sendKeys(date);
 						System.out.println("##### sendKeys made on :\n"+ element+"\n");
+						if (warning) return Fonctions.logStepWarning(teststep, driver, time1, "Warning : Retour à la première valeur de la colonne " + colonne +" du datapool" );
 						return Fonctions.logStepOK(teststep, driver, time1, xpath);
 					}
 				} else {
 					element.sendKeys(parameter);
 					System.out.println("##### sendKeys made on :\n"+ element+"\n");
+					if (warning) return Fonctions.logStepWarning(teststep, driver, time1, "Warning : Retour à la première valeur de la colonne " + colonne +" du datapool" );
 					return Fonctions.logStepOK(teststep, driver, time1, xpath);
 				}
 				return Fonctions.logStepKO(teststep, driver, time1, "Le parametre n'est pas bon.");
@@ -12002,6 +12169,7 @@ public class Scripts_techniques {
 		return testOnDataPool(colonne, null);
 	}
 	public static String testOnDataPool(String colonne, Teststep teststep) {
+		
 		String prop = "";
 		String existingProp ="";
 		boolean isLastCellOfColumn = false;
@@ -12150,7 +12318,11 @@ public class Scripts_techniques {
 			}
 		}
 		
-		//System.out.println(prop + "\nexit");
+		System.out.println(prop + "\nexit");
+		if (warning) {
+			System.out.println("LE PARAMETRE EST WARNING");
+			return "WARNING"+prop;
+		}
 		return prop;
 		
 	}

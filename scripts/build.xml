@@ -106,7 +106,6 @@
 <target name="run">
 	<echo message="execution du test..." />
 	<java fork="true" classname="${NOM_CLASS_MAIN}" failonerror="true">
-		<jvmarg value="${JAVA_AGENT}"/>
 		<classpath>
 			<path refid="classpath"/>
 			<path location="${OUTPUT}/${NOM_JAR}" />

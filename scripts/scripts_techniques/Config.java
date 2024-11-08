@@ -51,6 +51,7 @@ package scripts_techniques;
 	 public static String JIRA_PROJECT_NAME = "";
 
 
+
 	 public static int Percy = 0;
 	 public static String PercyToken = "";
 
