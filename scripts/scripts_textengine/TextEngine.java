@@ -1440,8 +1440,10 @@ public class TextEngine {
         addStepIndependant(result);
         if (t.status == "OK")
             return result;
-        else if (t.status == "Warning")
+        else if (t.status == "Warning"){
+            sa.fail(t.errorMessage);
             return result;
+        }
         else {
             System.out.println(t.errorMessage);
             sa.fail(t.errorMessage);
