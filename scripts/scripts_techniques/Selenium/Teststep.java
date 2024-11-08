@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import java.nio.charset.StandardCharsets;
 import scripts_techniques.*;
 import org.openqa.selenium.WebDriver;
+import scripts_textengine.TextEngine;
 
 public class Teststep  {
 
@@ -86,13 +87,14 @@ public class Teststep  {
 
 
 	}
-//Version Teststep pour TexteEngine
+//Version Teststep pour TextEngine
 	public Teststep(String act_lab,String label ,String pobject_attach_name,String ptestcase_label, String pparam){
 		testcase_label = ptestcase_label;
 		object_attach_name=pobject_attach_name;
 		param = pparam;
 		action_label = act_lab;
 		object_Label = label;
+		scenario_label = ptestcase_label;
 		texteEngine = true;
 
 	}
@@ -110,7 +112,6 @@ public class Teststep  {
 
 	//log step execution
 	public void logStepExec(WebDriver  selenium, String xpath) throws IOException{
-
 		//date
 		String format = "yyyy-MM-dd H:mm:ss"; 
 

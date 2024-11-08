@@ -1,18 +1,16 @@
 package scripts_techniques.Selenium;
 import com.beust.jcommander.Parameter;
-import scripts_techniques.Config;
-import scripts_techniques.Selenium.Teststep;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
-import com.opencsv.CSVWriter;
-import io.percy.selenium.Percy;
 
 import io.appium.java_client.android.AndroidDriver;
 import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Array;
-import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -26,20 +24,27 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.*;
+
+import io.percy.selenium.Percy;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.ini4j.*;
 import org.openqa.selenium.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.*;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.JavascriptExecutor;
 
 //import org.openqa.selenium.WebDriver;
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
@@ -48,9 +53,13 @@ import static io.restassured.RestAssured.given;
 
 import io.restassured.matcher.RestAssuredMatchers.*;
 import io.restassured.response.*;
+import io.restassured.response.ResponseBody;
 import io.restassured.RestAssured.*;
 import io.restassured.specification.RequestSpecification;
 import org.hamcrest.Matchers.*;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
@@ -64,7 +73,10 @@ import org.apache.poi.xssf.usermodel.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.mail.search.*;
-
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.Session;
 import java.util.Properties;
 import org.apache.poi.xwpf.usermodel.*;
 import org.apache.poi.xwpf.extractor.*;
@@ -98,16 +110,14 @@ import com.applitools.eyes.visualgrid.model.ScreenOrientation;
 import com.applitools.eyes.visualgrid.services.RunnerOptions;
 import com.applitools.eyes.visualgrid.services.VisualGridRunner;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.output.FileWriterWithEncoding;
-
 import java.awt.image.BufferedImage;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import javax.imageio.ImageIO;
 import java.text.DecimalFormat;
-import net.objecthunter.exp4j.ExpressionBuilder;
-import net.objecthunter.exp4j.Expression;
+import scripts_techniques.Config;
+import scripts_techniques.Selenium.Teststep;
 
 public class Scripts_techniques {
 	static char str='"';
@@ -5652,9 +5662,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -5709,9 +5718,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -5766,9 +5774,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -5966,9 +5973,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1),teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6008,9 +6014,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1),teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6050,9 +6055,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1),teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6200,9 +6204,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6243,9 +6246,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6286,9 +6288,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6329,9 +6330,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6372,9 +6372,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6415,9 +6414,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6458,9 +6456,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6501,9 +6498,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6544,9 +6540,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6587,9 +6582,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6629,9 +6623,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6671,9 +6664,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6713,9 +6705,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6755,9 +6746,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6797,9 +6787,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6901,9 +6890,8 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				if(!isJVExecution(teststep.testcase_label))deleteDatapoolVarFile();
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
+				deleteDatapoolVarFile();
 			} else {
 				parameter = teststep.param;
 			}
@@ -6962,26 +6950,22 @@ public class Scripts_techniques {
 		}
 		try {
 			element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(property)));
-			Fonctions.highLighterMethod(driver, element);
-			if (element.getAttribute("value")==null) {
+			if (element.getAttribute("value").equals(null)) {
 				value = element.getText();
 			} else {
 				value = element.getAttribute("value");
 			}
-			teststep.param = value;
 			try {
 				Wini ini = new Wini(new File(Config.propertyFile));
 				ini.put("parameter", parameter, value);
 				ini.store();
 			} catch (Exception e) {
-				e.printStackTrace();
 				return Fonctions.logStepKO(teststep, driver, time1, e.getMessage());
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			return Fonctions.logStepKO(teststep, driver, time1, e.getMessage());
 		}
-		return Fonctions.logStepOK(teststep, driver, time1);
+		return true;
 	}
 
 	public static boolean WebObject_checkformulabyxpath(WebDriver driver, Teststep teststep) throws IOException {
@@ -7000,11 +6984,14 @@ public class Scripts_techniques {
 
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement element = null;
 			String property;
 			HashMap<String, WebElement> list = new HashMap<>();
 			String parameter = teststep.param;
-			String value;			
+			String value;
+			int result = 0;
+			
 			if (array_prop_object.get("xpath").charAt(0) == '$'){
 				property = getVariableProperty(array_prop_object.get("xpath"));
 				if (property.equals(array_prop_object.get("xpath"))) {
@@ -7014,30 +7001,34 @@ public class Scripts_techniques {
 				property = array_prop_object.get("xpath");
 			}
 
-			String teString = " " + teststep.param;
-			char[] chars = teString.toCharArray();
-			int indexvar = 0;
-			int indexvar2 = 0;
-			for (int i = 0; i < chars.length; i++) {
-				// System.out.println(i + "\n" + indexvar + "\n" + indexvar2 + "\n" + teString);
-				if (chars[i] == '{') {
-					indexvar = i;
-				} else if (chars[i] == '}') {
-					indexvar2 = i;
-				}
-				if (indexvar != 0 && indexvar2 != 0) {
-					teString = teString.replaceFirst("\\{[^{]*\\}", getVariableParameter(teString.substring(indexvar, indexvar2)).replaceAll(",", "\\.").replaceAll("[^0-9.]", ""));
-					chars = teString.toCharArray();
-					indexvar = 0;
-					indexvar2 = 0;
-					i = 0;
-				}
-			}
-			Expression exp = new ExpressionBuilder(teString).build();
-			double result = exp.evaluate();
-			System.out.println(result);
+			String[] params = parameter.split("\\+");
+			Double[] results = new Double[params.length];
 			try {
-				teststep.param = String.valueOf(result);
+				for (int i = 0; i < params.length; i++) {
+					if (params[i].charAt(0) == '$') {
+						params[i] = getVariableParameter(params[i]);
+						params[i] = params[i].replaceAll("[^0-9.]","");
+						results[i] = Double.valueOf(params[i]);
+					} else {
+						params[i] = params[i].replaceAll("[^0-9.]","");
+						results[i] = Double.valueOf(params[i]);
+					}
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+				return Fonctions.logStepKO(teststep, driver, time1, "Error while getting values");
+			}
+			try {
+				for (int i = 0; i < params.length; i++) {
+					result+=results[i];
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+				return Fonctions.logStepKO(teststep, driver, time1, e.getMessage());
+			}
+			try {
 				element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(array_prop_object.get("xpath"))));
 				if (element != null) {
 					Fonctions.highLighterMethod(driver, element);
@@ -7047,7 +7038,7 @@ public class Scripts_techniques {
 							return Fonctions.logStepOK(teststep, driver, time1);
 						} else {
 							System.out.println ("Value not found.   found : "+  element.getAttribute("value"));
-							return Fonctions.logStepWarning(teststep, driver, time1, "WARNING : La valeur trouvee est : "+  element.getAttribute("value"));
+							return Fonctions.logStepWarning(teststep, driver, time1, "WARNING : La valeur n'a pas ete trouve : "+  element.getAttribute("value"));
 						}
 					} else {
 						if (element.getText().contains(String.valueOf(result))) {
@@ -7055,7 +7046,7 @@ public class Scripts_techniques {
 							return Fonctions.logStepOK(teststep, driver, time1);
 						} else {
 							System.out.println ("Text not found.   found : "+  element.getText());
-							return Fonctions.logStepWarning(teststep, driver, time1, "WARNING : La valeur trouvee est : "+  element.getText());		
+							return Fonctions.logStepWarning(teststep, driver, time1, "WARNING : La valeur n'a pas ete trouve : "+  element.getText());		
 						}		
 					}
 				}
@@ -9309,17 +9300,11 @@ public class Scripts_techniques {
 		}
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement element = null;
 			HashMap<String, WebElement> list = new HashMap<>();
 			String xpath = "";
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
-			String tryProperty = "";
-			if (datapool && isJVExecution(teststep.testcase_label)) {
-				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
-			} else {
-				tryProperty = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
-			}
 			if (array_prop_object.get("texte").charAt(0) == '$'){
 				property = getVariableProperty(array_prop_object.get("texte"));
 				if (property.equals(array_prop_object.get("texte"))) {
@@ -9332,9 +9317,6 @@ public class Scripts_techniques {
 				property = array_prop_object.get("texte");
 			}
 			String[] parts= splitString(property);
-			if (datapool && !resetXpathDatapool(tryProperty, array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1))) {
-				tryProperty = "";
-			}
 			do {
 				switch (parts.length) {
 					case 1:
@@ -9370,21 +9352,12 @@ public class Scripts_techniques {
 					parts= splitString(property);
 				}
 			} while (datapool && element == null);
-			int stop = 0;
-			while (datapool && !xpath.equals("") && !xpath.contains(property.toLowerCase().replaceAll("\\s", "")) && stop < 10) {
-				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
-				parts= splitString(property);
-				stop++;
-			}
 			if(datapool) teststep.object_Label = property;
 			if(element != null)
 			{
 				if(datapool) {
-					if(isJVExecution(teststep.testcase_label)) {
-						addXpathDatapool(property, xpath, teststep.testcase_label);
-					} else {
-						deleteDatapoolVarFile();
-					}
+					removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+					deleteDatapoolVarFile();
 				}
 				Fonctions.highLighterMethod(driver, element);
 				try {
@@ -9406,8 +9379,7 @@ public class Scripts_techniques {
 				return Fonctions.logStepKO(teststep, driver, time1, "L'objet " + property + " n'a pas ete trouve");
 			}
 		} catch (Exception e) {
-			// System.out.println (e.getMessage());
-			// e.printStackTrace();
+			System.out.println (e.getMessage());
 			return Fonctions.logStepKO(teststep, driver, time1, "L'objet " + property + " n'a pas ete trouve");	
 		}	
 	}
@@ -9427,7 +9399,7 @@ public class Scripts_techniques {
 		}
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement element = null;
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 			String property;
@@ -9437,12 +9409,6 @@ public class Scripts_techniques {
 			String parameter;
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
 			Boolean datapoolparam = teststep.param.charAt(0) == '[' && teststep.param.charAt(teststep.param.length()-1) == ']';
-			String tryProperty = "";
-			if (datapool && isJVExecution(teststep.testcase_label)) {
-				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
-			} else {
-				tryProperty = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
-			}
 			if (teststep.param.charAt(0) == '$'){
 				parameter = getVariableParameter(teststep.param);
 				if (parameter.equals(teststep.param)) {
@@ -9450,8 +9416,7 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
 			} else {
 				parameter = teststep.param;
 			}
@@ -9463,14 +9428,12 @@ public class Scripts_techniques {
 				}
 			} else if (datapool) {
 				System.out.println("Cas datapool");
-				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 			} else {
 				property = array_prop_object.get("texte");
 			}
 			String[] parts= splitString(property);
-			if (datapool && !resetXpathDatapool(tryProperty, array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1))) {
-				tryProperty = "";
-			}
+
 			if (tryProperty != null && !tryProperty.isEmpty()) {
 				switch(parts.length) {
 					case 1:
@@ -9566,24 +9529,17 @@ public class Scripts_techniques {
 						}
 					}
 					if (element == null && datapool) {
-						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 						parts= splitString(property);
 					}
 				} while (element == null && datapool);
-				while (datapool && !xpath.equals("") && !xpath.contains(parts[0].toLowerCase().replaceAll("\\s", ""))) {
-					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
-					parts = splitString(property);
-				}
 			}
 			if(datapool) teststep.object_Label = property;
 			
 			if(element != null) {
 				if(datapool) {
-					if(isJVExecution(teststep.testcase_label)) {
-						addXpathDatapool(property, xpath, teststep.testcase_label);
-					} else {
-						deleteDatapoolVarFile();
-					}
+					removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+					deleteDatapoolVarFile();
 				}
 				Fonctions.highLighterMethod(driver, element);
 				try {
@@ -9637,7 +9593,7 @@ public class Scripts_techniques {
 		}
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement element = null;
 			String property;
 			HashMap<String, WebElement> list = new HashMap<>();
@@ -9646,12 +9602,6 @@ public class Scripts_techniques {
 			String parameter;
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
 			Boolean datapoolparam = teststep.param.charAt(0) == '[' && teststep.param.charAt(teststep.param.length()-1) == ']';
-			String tryProperty = "";
-			if (datapool && isJVExecution(teststep.testcase_label)) {
-				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
-			} else {
-				tryProperty = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
-			}
 			if (teststep.param.charAt(0) == '$'){
 				parameter = getVariableParameter(teststep.param);
 				if (parameter.equals(teststep.param)) {
@@ -9659,8 +9609,7 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
 			} else {
 				parameter = teststep.param;
 			}
@@ -9671,14 +9620,11 @@ public class Scripts_techniques {
 				}
 			} else if (datapool) {
 				System.out.println("Cas datapool");
-				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 			} else {
 				property = array_prop_object.get("texte");
 			}
 			String[] parts= splitString(property);
-			if (datapool && !resetXpathDatapool(tryProperty, array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1))) {
-				tryProperty = "";
-			}
 			if (tryProperty != null && !tryProperty.isEmpty()) {
 				switch (parts.length) {
 					case 1:
@@ -9726,23 +9672,16 @@ public class Scripts_techniques {
 						}
 					}
 					if (element == null && datapool) {
-						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 						parts= splitString(property);
 					}
 				} while (element == null && datapool);
-				while (datapool && !xpath.equals("") && !xpath.contains(parts[0].toLowerCase().replaceAll("\\s", ""))) {
-					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
-					parts = splitString(property);
-				}
 				if(datapool) teststep.object_Label = property;
 			}
 			if(element != null) {
 				if(datapool) {
-					if(isJVExecution(teststep.testcase_label)) {
-						addXpathDatapool(property, xpath, teststep.testcase_label);
-					} else {
-						deleteDatapoolVarFile();
-					}
+					removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+					deleteDatapoolVarFile();
 				}
 				Fonctions.highLighterMethod(driver, element);
 				try {
@@ -9841,19 +9780,13 @@ public class Scripts_techniques {
 		}
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement element = null;
 			String property;
 			HashMap<String, WebElement> list = new HashMap<>();
 			String xpath = "";
 			boolean elementfound = false;
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
-			String tryProperty = "";
-			if (datapool && isJVExecution(teststep.testcase_label)) {
-				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
-			} else {
-				tryProperty = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
-			}
 			if (array_prop_object.get("texte").charAt(0) == '$'){
 				property = getVariableProperty(array_prop_object.get("texte"));
 				if (property.equals(array_prop_object.get("texte"))) {
@@ -9861,14 +9794,11 @@ public class Scripts_techniques {
 				}
 			} else if (datapool) {
 				System.out.println("Cas datapool");
-				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 			} else {
 				property = array_prop_object.get("texte");
 			}
 			String[] parts= splitString(property);
-			if (datapool && !resetXpathDatapool(tryProperty, array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1))) {
-				tryProperty = "";
-			}
 			if (tryProperty != null && !tryProperty.isEmpty()) {
 				if (parts.length == 1) {
 					if (tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) || datapool) {
@@ -9899,23 +9829,16 @@ public class Scripts_techniques {
 						}
 					}
 					if (element == null && datapool) {
-						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 						parts= splitString(property);
 					}
 				} while (element == null && datapool);
-				while (datapool && !xpath.equals("") && !xpath.contains(parts[0].toLowerCase().replaceAll("\\s", ""))) {
-					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
-					parts = splitString(property);
-				}
 				if(datapool) teststep.object_Label = property;
 			}
 			if(element != null) {
 				if(datapool) {
-					if(isJVExecution(teststep.testcase_label)) {
-						addXpathDatapool(property, xpath, teststep.testcase_label);
-					} else {
-						deleteDatapoolVarFile();
-					}
+					removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+					deleteDatapoolVarFile();
 				}
 				Fonctions.highLighterMethod(driver, element);
 				JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -9950,34 +9873,25 @@ public class Scripts_techniques {
 		}
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement label_element = null;
 			String property;
 			HashMap<String, WebElement> list = new HashMap<>();
 			String xpath = "";
 			boolean elementfound = false;
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
-			String tryProperty = "";
-			if (datapool && isJVExecution(teststep.testcase_label)) {
-				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
-			} else {
-				tryProperty = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
-			}
 			if (array_prop_object.get("texte").charAt(0) == '$'){
 				property = getVariableProperty(array_prop_object.get("texte"));
 				if (property.equals(array_prop_object.get("texte"))) {
 					return Fonctions.logStepKO(teststep, driver, time1, "La propriete " + array_prop_object.get("texte") + " n'a pas ete trouvee dans le fichier des variables");
 				}
-			} else if (datapool) {
+				} else if (datapool) {
 					System.out.println("Cas datapool");
-					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
-			} else {
+					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+				} else {
 					property = array_prop_object.get("texte");
-			}
-			String[] parts= splitString(property);
-			if (datapool && !resetXpathDatapool(tryProperty, array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1))) {
-				tryProperty = "";
-			}
+				}
+				String[] parts= splitString(property);
 			if (tryProperty != null && !tryProperty.isEmpty()) {
 				switch (parts.length) {
 					case 1:
@@ -10017,23 +9931,16 @@ public class Scripts_techniques {
 						}
 					}
 					if (label_element == null && datapool) {
-						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 						parts= splitString(property);
 					}
 				} while (label_element == null && datapool);
-				while (datapool && !xpath.equals("") && !xpath.contains(parts[0].toLowerCase().replaceAll("\\s", ""))) {
-					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
-					parts = splitString(property);
-				}
 				if(datapool) teststep.object_Label = property;
 			}
 			if (label_element != null) {
 				if(datapool) {
-					if(isJVExecution(teststep.testcase_label)) {
-						addXpathDatapool(property, xpath, teststep.testcase_label);
-					} else {
-						deleteDatapoolVarFile();
-					}
+					removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+					deleteDatapoolVarFile();
 				}
 				Fonctions.highLighterMethod(driver, label_element);
 				try {
@@ -10074,19 +9981,13 @@ public class Scripts_techniques {
 		}
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement label_element = null;
 			String property;
 			HashMap<String, WebElement> list = new HashMap<>();
 			String xpath = "";
 			boolean elementfound = false;
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
-			String tryProperty = "";
-			if (datapool && isJVExecution(teststep.testcase_label)) {
-				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
-			} else {
-				tryProperty = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
-			}
 			if (array_prop_object.get("texte").charAt(0) == '$'){
 				property = getVariableProperty(array_prop_object.get("texte"));
 				if (property.equals(array_prop_object.get("texte"))) {
@@ -10094,14 +9995,11 @@ public class Scripts_techniques {
 				}
 			} else if (datapool) {
 				System.out.println("Cas datapool");
-				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 			} else {
 				property = array_prop_object.get("texte");
 			}
 			String[] parts= splitString(property);
-			if (datapool && !resetXpathDatapool(tryProperty, array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1))) {
-				tryProperty = "";
-			}
 			if (tryProperty != null && !tryProperty.isEmpty()) {
 				switch (parts.length) {
 					case 1:
@@ -10141,23 +10039,16 @@ public class Scripts_techniques {
 					}
 				}
 				if (label_element == null && datapool) {
-					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 					parts= splitString(property);
 				}
 				} while (label_element == null && datapool);
-				while (datapool && !xpath.equals("") && !xpath.contains(parts[0].toLowerCase().replaceAll("\\s", ""))) {
-					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
-					parts = splitString(property);
-				}
 				if(datapool) teststep.object_Label = property;
 			}
 			if (label_element != null) {
 				if(datapool) {
-					if(isJVExecution(teststep.testcase_label)) {
-						addXpathDatapool(property, xpath, teststep.testcase_label);
-					} else {
-						deleteDatapoolVarFile();
-					}
+					removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+					deleteDatapoolVarFile();
 				}
 				Fonctions.highLighterMethod(driver, label_element);
 				try {
@@ -10198,19 +10089,13 @@ public class Scripts_techniques {
 		}
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement label_element = null;
 			String property;
 			HashMap<String, WebElement> list = new HashMap<>();
 			String xpath = "";
 			boolean elementfound = false;
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
-			String tryProperty = "";
-			if (datapool && isJVExecution(teststep.testcase_label)) {
-				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
-			} else {
-				tryProperty = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
-			}
 			if (array_prop_object.get("texte").charAt(0) == '$'){
 				property = getVariableProperty(array_prop_object.get("texte"));
 				if (property.equals(array_prop_object.get("texte"))) {
@@ -10218,14 +10103,11 @@ public class Scripts_techniques {
 				}
 			} else if (datapool) {
 				System.out.println("Cas datapool");
-				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 			} else {
 				property = array_prop_object.get("texte");
 			}
 			String[] parts= splitString(property);
-			if (datapool && !resetXpathDatapool(tryProperty, array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1))) {
-				tryProperty = "";
-			}
 			if (tryProperty != null && !tryProperty.isEmpty()) {
 				switch (parts.length) {
 					case 1:
@@ -10263,23 +10145,16 @@ public class Scripts_techniques {
 						}
 					}
 					if (label_element == null && datapool) {
-						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 						parts= splitString(property);
 					}
 				} while (label_element == null && datapool);
-				while (datapool && !xpath.equals("") && !xpath.contains(parts[0].toLowerCase().replaceAll("\\s", ""))) {
-					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
-					parts = splitString(property);
-				}
 				if(datapool) teststep.object_Label = property;
 			}
 			if (label_element != null) {
 				if(datapool) {
-					if(isJVExecution(teststep.testcase_label)) {
-						addXpathDatapool(property, xpath, teststep.testcase_label);
-					} else {
-						deleteDatapoolVarFile();
-					}
+					removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+					deleteDatapoolVarFile();
 				}
 				Fonctions.highLighterMethod(driver, label_element);
 				try {
@@ -10320,19 +10195,13 @@ public class Scripts_techniques {
 		}
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement label_element = null;
 			String property;
 			HashMap<String, WebElement> list = new HashMap<>();
 			String xpath = "";
 			boolean elementfound = false;
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
-			String tryProperty = "";
-			if (datapool && isJVExecution(teststep.testcase_label)) {
-				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
-			} else {
-				tryProperty = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
-			}
 			if (array_prop_object.get("texte").charAt(0) == '$'){
 				property = getVariableProperty(array_prop_object.get("texte"));
 				if (property.equals(array_prop_object.get("texte"))) {
@@ -10340,14 +10209,11 @@ public class Scripts_techniques {
 				}
 			} else if (datapool) {
 				System.out.println("Cas datapool");
-				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 			} else {
 				property = array_prop_object.get("texte");
 			}
 			String[] parts= splitString(property);
-			if (datapool && !resetXpathDatapool(tryProperty, array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1))) {
-				tryProperty = "";
-			}
 			if (tryProperty != null && !tryProperty.isEmpty()) {
 				switch (parts.length) {
 					case 1:
@@ -10386,23 +10252,16 @@ public class Scripts_techniques {
 						}
 					}
 					if (label_element == null && datapool) {
-						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 						parts= splitString(property);
 					}
 				} while (label_element == null && datapool);
-				while (datapool && !xpath.equals("") && !xpath.contains(parts[0].toLowerCase().replaceAll("\\s", ""))) {
-					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
-					parts = splitString(property);
-				}
 				if(datapool) teststep.object_Label = property;
 			}
 			if (label_element != null) {
 				if(datapool) {
-					if(isJVExecution(teststep.testcase_label)) {
-						addXpathDatapool(property, xpath, teststep.testcase_label);
-					} else {
-						deleteDatapoolVarFile();
-					}
+					removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+					deleteDatapoolVarFile();
 				}
 				Fonctions.highLighterMethod(driver, label_element);
 				try {
@@ -10443,21 +10302,14 @@ public class Scripts_techniques {
         }
         try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			String property = "";
 			HashMap<String, Boolean> list = new HashMap<>();
 			String xpath = "";
 			boolean elementfound = false;
             String[] parts = {};
-			Boolean datapool = false;
-			if(array_prop_object.containsKey("texte")) datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
+			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
 			Boolean datapoolparam = teststep.param.charAt(0) == '[' && teststep.param.charAt(teststep.param.length()-1) == ']';
-			String tryProperty = "";
-			if (datapool && isJVExecution(teststep.testcase_label)) {
-				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
-			} else {
-				tryProperty = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
-			}
             if (array_prop_object.containsKey("texte")) {
 				if (array_prop_object.get("texte").charAt(0) == '$'){
 					property = getVariableProperty(array_prop_object.get("texte"));
@@ -10466,7 +10318,7 @@ public class Scripts_techniques {
 					}
 				} else if (datapool) {
 					System.out.println("Cas datapool");
-					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 				} else {
 					property = array_prop_object.get("texte");
 				}
@@ -10480,15 +10332,11 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
 			} else {
 				parameter = teststep.param;
 			}
             boolean statusElement = true;
-			if (datapool && !resetXpathDatapool(tryProperty, array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1))) {
-				tryProperty = "";
-			}
             switch(parts.length) {
                 case 0:
                     try {
@@ -10542,7 +10390,7 @@ public class Scripts_techniques {
 										xpath = entry.getKey();
 									}
 									if (!statusElement && datapool) {
-										property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+										property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 										parts= splitString(property);
 									}
 								} while (!statusElement && datapool);
@@ -10550,11 +10398,8 @@ public class Scripts_techniques {
 							}
 							if (statusElement == true) {
 								if(datapool) {
-									if(isJVExecution(teststep.testcase_label)) {
-										addXpathDatapool(property, xpath, teststep.testcase_label);
-									} else {
-										deleteDatapoolVarFile();
-									}
+									removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+									deleteDatapoolVarFile();
 								}
 								return Fonctions.logStepOK(teststep, driver, time1, xpath);
 							}
@@ -10581,7 +10426,7 @@ public class Scripts_techniques {
 									xpath = entry.getKey();
 								}
 								if (!statusElement && datapool) {
-									property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+									property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 									parts= splitString(property);
 								}
 							} while (!statusElement && datapool);
@@ -10589,11 +10434,8 @@ public class Scripts_techniques {
 						}
                         if (statusElement == true) {
 							if(datapool) {
-								if(isJVExecution(teststep.testcase_label)) {
-									addXpathDatapool(property, xpath, teststep.testcase_label);
-								} else {
-									deleteDatapoolVarFile();
-								}
+								removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+								deleteDatapoolVarFile();
 							}
                         	return Fonctions.logStepOK(teststep, driver, time1, xpath);
                         }
@@ -10626,7 +10468,7 @@ public class Scripts_techniques {
 											xpath = entry.getKey();
 										}
 										if (!statusElement && datapool) {
-											property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+											property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 											parts= splitString(property);
 										}
 									} while (!statusElement && datapool);
@@ -10634,11 +10476,8 @@ public class Scripts_techniques {
 								}
 								if (statusElement == true) {
 									if(datapool) {
-										if(isJVExecution(teststep.testcase_label)) {
-											addXpathDatapool(property, xpath, teststep.testcase_label);
-										} else {
-											deleteDatapoolVarFile();
-										}
+										removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+										deleteDatapoolVarFile();
 									}
 									return Fonctions.logStepOK(teststep, driver, time1, xpath);
 								}
@@ -10665,7 +10504,7 @@ public class Scripts_techniques {
 										xpath = entry.getKey();
 									}
 									if (!statusElement && datapool) {
-										property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+										property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 										parts= splitString(property);
 									}
 								} while (!statusElement && datapool);
@@ -10673,11 +10512,8 @@ public class Scripts_techniques {
 							}
 							if (statusElement == true) {
 								if(datapool) {
-									if(isJVExecution(teststep.testcase_label)) {
-										addXpathDatapool(property, xpath, teststep.testcase_label);
-									} else {
-										deleteDatapoolVarFile();
-									}
+									removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+									deleteDatapoolVarFile();
 								}
 								return Fonctions.logStepOK(teststep, driver, time1, xpath);
 							}
@@ -10707,7 +10543,7 @@ public class Scripts_techniques {
 											xpath = entry.getKey();
 										}
 										if (!statusElement && datapool) {
-											property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+											property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 											parts= splitString(property);
 										}
 									} while (!statusElement && datapool);
@@ -10715,11 +10551,8 @@ public class Scripts_techniques {
 								}
 								if (statusElement == true) {
 									if(datapool) {
-										if(isJVExecution(teststep.testcase_label)) {
-											addXpathDatapool(property, xpath, teststep.testcase_label);
-										} else {
-											deleteDatapoolVarFile();
-										}
+										removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+										deleteDatapoolVarFile();
 									}
 									return Fonctions.logStepOK(teststep, driver, time1, xpath);
 								}
@@ -10746,7 +10579,7 @@ public class Scripts_techniques {
 										xpath = entry.getKey();
 									}
 									if (!statusElement && datapool) {
-										property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+										property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 										parts= splitString(property);
 									}
 								} while (!statusElement && datapool);
@@ -10754,11 +10587,8 @@ public class Scripts_techniques {
 							}
 							if (statusElement == true) {
 								if(datapool) {
-									if(isJVExecution(teststep.testcase_label)) {
-										addXpathDatapool(property, xpath, teststep.testcase_label);
-									} else {
-										deleteDatapoolVarFile();
-									}
+									removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+									deleteDatapoolVarFile();
 								}
 								return Fonctions.logStepOK(teststep, driver, time1, xpath);
 							}
@@ -10791,7 +10621,7 @@ public class Scripts_techniques {
 											xpath = entry.getKey();
 										}
 										if (!statusElement && datapool) {
-											property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+											property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 											parts= splitString(property);
 										}
 									} while (!statusElement && datapool);
@@ -10799,11 +10629,8 @@ public class Scripts_techniques {
 								}
 								if (statusElement == true) {
 									if(datapool) {
-										if(isJVExecution(teststep.testcase_label)) {
-											addXpathDatapool(property, xpath, teststep.testcase_label);
-										} else {
-											deleteDatapoolVarFile();
-										}
+										removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+										deleteDatapoolVarFile();
 									}
 									return Fonctions.logStepOK(teststep, driver, time1, xpath);
 								}
@@ -10830,7 +10657,7 @@ public class Scripts_techniques {
 										xpath = entry.getKey();
 									}
 									if (!statusElement && datapool) {
-										property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+										property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 										parts= splitString(property);
 									}
 								} while (!statusElement && datapool);
@@ -10838,11 +10665,8 @@ public class Scripts_techniques {
 							}
 							if (statusElement == true) {
 								if(datapool) {
-									if(isJVExecution(teststep.testcase_label)) {
-										addXpathDatapool(property, xpath, teststep.testcase_label);
-									} else {
-										deleteDatapoolVarFile();
-									}
+									removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+									deleteDatapoolVarFile();
 								}
 								return Fonctions.logStepOK(teststep, driver, time1, xpath);
 							}
@@ -10855,8 +10679,7 @@ public class Scripts_techniques {
                     return Fonctions.logStepKO(teststep, driver, time1, "Le nombre de proprietes doit etre compris entre 0 et 3.");
             }
         }catch(Exception e){
-            System.out.println("ERROR : ");
-			e.printStackTrace();
+            System.out.println(e);
             return Fonctions.logStepKO(teststep, driver, time1, e.getMessage());
         }
 		return Fonctions.logStepKO(teststep, driver, time1, "L'objet n'a pas ete trouve");
@@ -10877,7 +10700,7 @@ public class Scripts_techniques {
 		}
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement element = null;
 			String property;
 			HashMap<String, WebElement> list = new HashMap<>();
@@ -10885,12 +10708,6 @@ public class Scripts_techniques {
 			boolean elementfound = false;
 			String parameter;
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
-			String tryProperty = "";
-			if (datapool && isJVExecution(teststep.testcase_label)) {
-				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
-			} else {
-				tryProperty = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
-			}
 			if (teststep.param.charAt(0) == '$'){
 				parameter = getVariableParameter(teststep.param);
 				if (parameter.equals(teststep.param)) {
@@ -10906,14 +10723,11 @@ public class Scripts_techniques {
 				}
 			} else if (datapool) {
 				System.out.println("Cas datapool");
-				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 			} else {
 				property = array_prop_object.get("texte");
 			}
 			String[] parts= splitString(property);
-			if (datapool && !resetXpathDatapool(tryProperty, array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1))) {
-				tryProperty = "";
-			}
 			if (tryProperty != null && !tryProperty.isEmpty()) {
 				switch (parts.length) {
 					case 1:
@@ -10975,23 +10789,16 @@ public class Scripts_techniques {
 						}
 					}
 					if (element == null && datapool) {
-						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 						parts= splitString(property);
 					}
 				} while (element == null && datapool);
-				while (datapool && !xpath.equals("") && !xpath.contains(parts[0].toLowerCase().replaceAll("\\s", ""))) {
-					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
-					parts = splitString(property);
-				}
 				if(datapool) teststep.object_Label = property;
 			}
 			if(element != null) {
 				if(datapool) {
-					if(isJVExecution(teststep.testcase_label)) {
-						addXpathDatapool(property, xpath, teststep.testcase_label);
-					} else {
-						deleteDatapoolVarFile();
-					}
+					removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+					deleteDatapoolVarFile();
 				}
 				Fonctions.highLighterMethod(driver, element);
 				try {
@@ -11033,7 +10840,7 @@ public class Scripts_techniques {
 		}
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement destination = null;
 			WebElement element = null;
 			String property;
@@ -11042,12 +10849,6 @@ public class Scripts_techniques {
 			String xpath = "";
 			boolean elementfound = false;
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
-			String tryProperty = "";
-			if (datapool && isJVExecution(teststep.testcase_label)) {
-				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
-			} else {
-				tryProperty = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
-			}
 			if (array_prop_object.get("texte").charAt(0) == '$'){
 				property = getVariableProperty(array_prop_object.get("texte"));
 				if (property.equals(array_prop_object.get("texte"))) {
@@ -11055,14 +10856,11 @@ public class Scripts_techniques {
 				}
 			} else if (datapool) {
 				System.out.println("Cas datapool");
-				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 			} else {
 				property = array_prop_object.get("texte");
 			}
 			String[] parts = splitString(property);
-			if (datapool && !resetXpathDatapool(tryProperty, array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1))) {
-				tryProperty = "";
-			}
 			if (tryProperty != null && !tryProperty.isEmpty()) {
 				String[] trydrag = tryProperty.split("\\|");
 				switch (parts.length) {
@@ -11145,24 +10943,17 @@ public class Scripts_techniques {
 						}
 					}
 					if (element == null && datapool) {
-						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 						parts= splitString(property);
 					}
 				} while (element == null && datapool);
-				while (datapool && !xpath.equals("") && !xpath.contains(parts[0].toLowerCase().replaceAll("\\s", ""))) {
-					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
-					parts = splitString(property);
-				}
 				if(datapool) teststep.object_Label = property;
 			}
 			if(element != null && destination != null)
 			{
 				if(datapool) {
-					if(isJVExecution(teststep.testcase_label)) {
-						addXpathDatapool(property, xpath, teststep.testcase_label);
-					} else {
-						deleteDatapoolVarFile();
-					}
+					removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+					deleteDatapoolVarFile();
 				}
 				Fonctions.highLighterMethod(driver, element);
 				Fonctions.highLighterMethod(driver, destination);
@@ -11199,7 +10990,7 @@ public class Scripts_techniques {
 		}
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement element;
 			String parameter;
 			Boolean datapoolparam = teststep.param.charAt(0) == '[' && teststep.param.charAt(teststep.param.length()-1) == ']';
@@ -11210,8 +11001,7 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
 			} else {
 				parameter = teststep.param;
 			}
@@ -11260,7 +11050,7 @@ public class Scripts_techniques {
 		}
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement element = null;
 			String property;
 			HashMap<String, WebElement> list = new HashMap<>();
@@ -11269,12 +11059,6 @@ public class Scripts_techniques {
 			String parameter;
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
 			Boolean datapoolparam = teststep.param.charAt(0) == '[' && teststep.param.charAt(teststep.param.length()-1) == ']';
-			String tryProperty = "";
-			if (datapool && isJVExecution(teststep.testcase_label)) {
-				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
-			} else {
-				tryProperty = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
-			}
 			if (teststep.param.charAt(0) == '$'){
 				parameter = getVariableParameter(teststep.param);
 				if (parameter.equals(teststep.param)) {
@@ -11282,8 +11066,7 @@ public class Scripts_techniques {
 				}
 			} else if (datapoolparam) {
 				System.out.println("Cas datapool param");
-				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1), teststep);
-				teststep.param = parameter;
+				parameter = testOnDataPool(teststep.param.substring(1, teststep.param.length()-1));
 			} else {
 				parameter = teststep.param;
 			}
@@ -11294,14 +11077,11 @@ public class Scripts_techniques {
 				}
 			} else if (datapool) {
 				System.out.println("Cas datapool");
-				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 			} else {
 				property = array_prop_object.get("texte");
 			}
 			String[] parts= splitString(property);
-			if (datapool && !resetXpathDatapool(tryProperty, array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1))) {
-				tryProperty = "";
-			}
 			if (tryProperty != null && !tryProperty.isEmpty()) {
 				if (parts.length == 1) {
 					if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) && StringUtils.countMatches(tryProperty, "title") == 1 || datapool){
@@ -11338,23 +11118,16 @@ public class Scripts_techniques {
 						}
 					}
 					if (element == null && datapool) {
-						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+						property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 						parts= splitString(property);
 					}	
 				} while (element == null && datapool);
-				while (datapool && !xpath.equals("") && !xpath.contains(parts[0].toLowerCase().replaceAll("\\s", ""))) {
-					property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
-					parts = splitString(property);
-				}
 				if(datapool) teststep.object_Label = property;
 			}
 			if(element != null) {
 				if(datapool) {
-					if(isJVExecution(teststep.testcase_label)) {
-						addXpathDatapool(property, xpath, teststep.testcase_label);
-					} else {
-						deleteDatapoolVarFile();
-					}
+					removeVarDatapool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
+					deleteDatapoolVarFile();
 				}
 				try {
 					System.out.println("##### check made on : \n" + element+"\n");
@@ -11419,20 +11192,15 @@ public class Scripts_techniques {
 
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement element = null;
 			String property;
 			HashMap<String, WebElement> list = new HashMap<>();
 			String xpath = "";
 			String parameter = teststep.param;
-			String value = "";
+			String value;
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
-			String tryProperty = "";
-			if (datapool && isJVExecution(teststep.testcase_label)) {
-				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
-			} else {
-				tryProperty = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
-			}
+			
 			if (array_prop_object.get("texte").charAt(0) == '$'){
 				property = getVariableProperty(array_prop_object.get("texte"));
 				if (property.equals(array_prop_object.get("texte"))) {
@@ -11440,80 +11208,56 @@ public class Scripts_techniques {
 				}
 			} else if (datapool) {
 				System.out.println("Cas datapool");
-				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 			} else {
 				property = array_prop_object.get("texte");
 			}
 
 			try {
 				property = property.toLowerCase().replaceAll("\\s", "");
-				String[] parts = splitString(property);
-				System.out.println(property + "" + parts.length);
-				List<WebElement> elements = new ArrayList<WebElement>();
-				switch (parts.length) {
-					case 1:
-						xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + property + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + property + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + property + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + property + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + property + str + "]//following::*";
-						elements = driver.findElements(By.xpath(xpath));
-						if (elements.size() == 0) {
-							xpath = "//*[contains(translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + property + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + property + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + property + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + property + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + property + str + ")]//following::*";
-							elements = driver.findElements(By.xpath(xpath));
-						}
-						break;
-					case 2:
-						String context = parts[1];
-						String label = parts[0];
-						xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//following::*";
-						elements = driver.findElements(By.xpath(xpath));
-						if (elements.size() == 0) {
-							xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//following::*";
-							elements = driver.findElements(By.xpath(xpath));
-						}
-						break;
-					default:
-						break;
-				}
-				
-				
-				
-				System.out.println(elements.size());
-				for (WebElement elem : elements) {
-					if (elem.getAttribute("value") != null) {
-						value = elem.getAttribute("value");
-						Fonctions.highLighterMethod(driver, elem);
-						break;
-					} else if (!elem.getText().equals("")) {
-						value = elem.getText();
-						Fonctions.highLighterMethod(driver, elem);
-						break;
-					} else {
-						System.out.println("No value and no text for the element");
-						value = "";
+				xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + property + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + property + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + property + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + property + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + property + str + "]//following::*[not(@value='')or not(text()='')]";
+				element = findElements(driver, xpath);
+				if (element!=null || (element.getText()!=null && element.getAttribute("value").equals(null))) {
+					list.put(xpath, element);
+				} else {
+					xpath += "[2]";
+					element = findElements(driver, xpath);
+					if (element!=null) {
+						Fonctions.highLighterMethod(driver, element);
+						list.put(xpath, element);
 					}
 				}
-				System.out.println("Objet trouvé : \n" + xpath);
-				System.out.println("Valeur " + value + " copiée dans la variable " + parameter);
 			} catch (Exception e) {
-				//e.printStackTrace();
-				System.out.println("Error while searching element");
-				return Fonctions.logStepKO(teststep, driver, time1, "L'element n'a pas ete trouve.");
+				System.out.println("Error whil searching element");
 			}
-			
+			//System.out.println(element.getAttribute("value"));
+			//System.out.println(xpath);
+			if (!element.getText().equals("")) {
+				//System.out.println(element.getText() + "\n**************");
+				value = element.getText();
+			} else if (!element.getAttribute("value").equals("")) {
+				//System.out.println(element.getAttribute("value") + "\n**********");
+				value = element.getAttribute("value");
+			} else {
+				System.out.println("problem occurs");
+				value = "";
+			}
+			System.out.println(value);
 			if (!value.equals("")) {
-				teststep.param = value;
 				try {
+					
+					// System.out.println("value is not null");
+					// System.out.println(parameter + "\n********\n" + value);
 					Wini ini = new Wini(new File(Config.propertyFile));
 					ini.put("parameter", parameter, value);
 					ini.store();
 				} catch (Exception e) {
 					System.out.println("issue occured while putting the value");
 				}
-			} else {
-				return Fonctions.logStepKO(teststep, driver, time1, "L'element n'a pas ete trouve.");
 			}
 
 		} catch (Exception e) {
-			// System.out.println(e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Une erreur est survenue");
+			System.out.println(e.getMessage());
 		}
 		return Fonctions.logStepOK(teststep, driver, time1);
 	}
@@ -11533,20 +11277,16 @@ public class Scripts_techniques {
 
 		try {
 			String file_params = Config.dir_params +  File.separator + teststep.testcase_label + "_xpath_list.csv";
-			String file_jv = Config.dir_params + File.separator + teststep.testcase_label + "_datapool.csv";
+			String tryProperty  = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
 			WebElement element = null;
 			String property;
 			HashMap<String, WebElement> list = new HashMap<>();
 			String xpath = "";
 			String parameter = teststep.param;
 			String value;
+			int result = 0;
 			Boolean datapool = array_prop_object.get("texte").charAt(0) == '[' && array_prop_object.get("texte").charAt(array_prop_object.get("texte").length()-1) == ']';
-			String tryProperty = "";
-			if (datapool && isJVExecution(teststep.testcase_label)) {
-				tryProperty = Fonctions.getParameter(file_jv, Config.compteur_instance, Config.compteur_params);
-			} else {
-				tryProperty = Fonctions.getParameter(file_params,Config.compteur_instance, Config.compteur_params);
-			}
+			
 			if (array_prop_object.get("texte").charAt(0) == '$'){
 				property = getVariableProperty(array_prop_object.get("texte"));
 				if (property.equals(array_prop_object.get("texte"))) {
@@ -11554,41 +11294,40 @@ public class Scripts_techniques {
 				}
 			} else if (datapool) {
 				System.out.println("Cas datapool");
-				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1), teststep);
+				property = testOnDataPool(array_prop_object.get("texte").substring(1, array_prop_object.get("texte").length()-1));
 			} else {
 				property = array_prop_object.get("texte");
 			}
-			String teString = " " + teststep.param;
-			char[] chars = teString.toCharArray();
-			int indexvar = 0;
-			int indexvar2 = 0;
-			for (int i = 0; i < chars.length; i++) {
-				// System.out.println(i + "\n" + indexvar + "\n" + indexvar2 + "\n" + teString);
-				if (chars[i] == '{') {
-					indexvar = i;
-				} else if (chars[i] == '}') {
-					indexvar2 = i;
-				}
-				if (indexvar != 0 && indexvar2 != 0) {
-					teString = teString.replaceFirst("\\{[^{]*\\}", getVariableParameter(teString.substring(indexvar, indexvar2)).replaceAll(",", "\\.").replaceAll("[^0-9.]", ""));
-					chars = teString.toCharArray();
-					indexvar = 0;
-					indexvar2 = 0;
-					i = 0;
-				}
-			}
-			Expression exp = new ExpressionBuilder(teString).build();
-			double result = exp.evaluate();
-			System.out.println(result);
+
+			String[] params = parameter.split("\\+");
+			Double[] results = new Double[params.length];
 			try {
-				teststep.param = String.valueOf(result);
-				String[] parts = splitString(property);
-				if (parts.length == 1) {
-					list = identifyElementCheck(driver, parts[0]);
-				} else {
-					list = identifyElementCheck(driver, parts[0], parts[1]);
+				for (int i = 0; i < params.length; i++) {
+					if (params[i].charAt(0) == '$') {
+						params[i] = getVariableParameter(params[i]);
+						params[i] = params[i].replaceAll("[^0-9.]","");
+						results[i] = Double.valueOf(params[i]);
+					} else {
+						params[i] = params[i].replaceAll("[^0-9.]","");
+						results[i] = Double.valueOf(params[i]);
+					}
 				}
-				
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+				return Fonctions.logStepKO(teststep, driver, time1, "Error while getting values");
+			}
+			try {
+				for (int i = 0; i < params.length; i++) {
+					result+=results[i];
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+				return Fonctions.logStepKO(teststep, driver, time1, e.getMessage());
+			}
+			try {
+				list = identifyElementCheck(driver, property);
 				if (list != null) {
 					for(Map.Entry<String, WebElement> entry : list.entrySet()) {
 						element = entry.getValue();
@@ -11604,16 +11343,16 @@ public class Scripts_techniques {
 					} else {
 						try{
 							String text_element=element.getAttribute("value");
-							if (text_element.contains(String.valueOf(result))) {
+							if (text_element.equals(String.valueOf(result))) {
 								System.out.println("<<<<<<<< Text: " + result + " is present. >>>>>>>>");
 								return Fonctions.logStepOK(teststep, driver, time1, xpath);
 							} else {
 								System.out.println("<<<<<<<< Text: " + result + " is not present. >>>>>>>>");
-								return Fonctions.logStepWarning(teststep, driver, time1, "WARNING : La valeur " + result + " n'a pas ete trouvee.");	
+								return Fonctions.logStepWarning(teststep, driver, time1, "WARNING : Le texte " + result + " n'est pas present dans l'objet " + property);	
 							}
 						} catch(Exception e) {
 							System.out.println("<<<<<<<< Text: " + result + " is not present. >>>>>>>>");
-							return Fonctions.logStepWarning(teststep, driver, time1, "WARNING : La valeur " + result + " n'a pas ete trouvee.");	
+							return Fonctions.logStepWarning(teststep, driver, time1, "WARNING : Le texte " + result + " n'est pas present dans l'objet " + property);	
 						}
 					}
 				}
@@ -12259,15 +11998,16 @@ public class Scripts_techniques {
 		return param;
 	}
 
+	public static String testOnDataPool(String colonne) {
+		return testOnDataPool(colonne, null);
+	}
 	public static String testOnDataPool(String colonne, Teststep teststep) {
 		String prop = "";
 		String existingProp ="";
-		String propsaved = "";
 		boolean isLastCellOfColumn = false;
-		boolean isJV = false;
-		boolean isJVKO = false;
 		try {
-			isJV = isJVExecution(teststep.testcase_label);
+			boolean isJV = isJVExecution(teststep.testcase_label);
+			// System.out.println(isJV);
 			File datapoolVarFile = new File(Config.additional_files + "/datapoolvar.ini");
 			datapoolVarFile.createNewFile();
 			datapoolVarFile.canWrite();
@@ -12275,23 +12015,15 @@ public class Scripts_techniques {
 				Wini ini = new Wini(datapoolVarFile);
 				existingProp = ini.get("datapool", colonne);
 				if (existingProp.equals("")) {
+					//System.out.println("on retire la valeur de la prop");
 					existingProp = null;
 				}
-			} catch (Exception e) {}
+			} catch (Exception e) {
+				System.out.println("Issue at get");
+			}
 			if (isJV) {
-				try {
-					Wini ini = new Wini(datapoolVarFile);
-					try {
-						propsaved = ini.get("datapool", "savedforjv");
-						if (propsaved == null) {
-							ini.put("datapool", "savedforjv", existingProp);
-							ini.store();
-						} else if (propsaved.length() == 0){
-							ini.put("datapool", "savedforjv", existingProp);
-							ini.store();
-						}
-					} catch (Exception e) {}
-				} catch (Exception e) {}
+				File datapooljvFile = new File(Config.dir_params + "/" + teststep.testcase_label + "_datapool.csv");
+				datapooljvFile.createNewFile();
 			}
 
 			File csv1File = new File(Config.datapoolFile);
@@ -12321,65 +12053,31 @@ public class Scripts_techniques {
 				j = j + 1;
 			}
 			csvReader.close();
-			boolean needreset = true;
 			for (int i = 0; i < k; i++) {
 				if (total[i][0].equals(colonne)) {
 					for (int l = 1; l < j; l++) {
-						if (total[i][l].equals(propsaved)) {
-							needreset = false;
-							break;
-						}
-					}
-				}
-			}
-			if (needreset) {
-				try {
-					Wini ini = new Wini(datapoolVarFile);
-					ini.put("datapool", "savedforjv", existingProp);
-					ini.store();
-				} catch (Exception e) {}
-			}
-			for (int i = 0; i < k; i++) {
-				if (total[i][0].equals(colonne)) {
-					for (int l = 1; l < j; l++) {
+						// System.out.println(total[i][l]);
 						if (!total[i][l].equals("")) {
-							try {
-								if (total[i][l+1].equals("") || total[i][l+1] == null) {
-									isLastCellOfColumn = true;
-								}
-							} catch (Exception e) {isLastCellOfColumn = true;}
-							
+							if (total[i][l+1].equals("")) {
+								isLastCellOfColumn = true;
+							}
 							// System.out.println(existingProp + " vaut\n##########################");
 							if (existingProp == null || existingProp.equals("")) {
 								prop = total[i][l];
 								break;
-							}else if(existingProp.equals(propsaved)) {
-								prop = "";
-								isJVKO = true;
-								Wini ini = new Wini(new File(Config.additional_files + "/datapoolvar.ini"));
-								ini.remove("datapool", "savedforjv");
-								ini.store();
-								break;
-							}
-							else if (!existingProp.equals("") && existingProp.equals(total[i][l]) && !isLastCellOfColumn && !isJV) {
+							}else if (!existingProp.equals("") && existingProp.equals(total[i][l]) && !total[i][l+1].equals("")) {
 								prop = total[i][l+1];
 								break;
-							}else if (!existingProp.equals("") && existingProp.equals(total[i][l]) && isJV) {
-								if (isLastCellOfColumn) {
-									prop = total[i][1];
-									break;
-								} else {
-									prop = total[i][l+1];
-									break;
-								}
 							}
 						}
 					}
 				}
+				//System.out.println("changement de colonne");
 			}
 
 			try {
 				if (!prop.equals("")) {
+					// System.out.println("#############\n" + prop + "\n##############");
 					Wini ini = new Wini(datapoolVarFile);
 					ini.put("datapool", colonne, prop);
 					ini.store();
@@ -12390,7 +12088,7 @@ public class Scripts_techniques {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if ((isLastCellOfColumn && !isJV) || isJVKO) {
+		if (isLastCellOfColumn) {
 			String mail;
 			String toAddress[] = new String[]{};//Création du tableau qui stockera toutes les adresses mails
 			//Recuperation des adresses emails des destinataires
@@ -12448,13 +12146,24 @@ public class Scripts_techniques {
 					System.out.println("E-mail envoyé avec succès à l'adresse : " + adresse);
 				}
 			} catch (Exception e) {
-				// e.printStackTrace();
+				// TODO: handle exception
 			}
 		}
 		
 		//System.out.println(prop + "\nexit");
 		return prop;
 		
+	}
+
+	public static void removeVarDatapool(String colonne) {
+		try {	
+			File datapoolVarFile = new File(Config.additional_files + "/datapoolvar.ini");
+			Wini ini = new Wini(datapoolVarFile);
+			ini.remove("datapool", colonne);
+			ini.store();
+		} catch (Exception e) {
+			System.out.println("Error when remove value from datavar file");
+		}
 	}
 
 	public static void deleteDatapoolVarFile() {
@@ -12466,117 +12175,34 @@ public class Scripts_techniques {
 		}
 	}
 
-	public static void createDatapoolJVxpathFile(String testcase_label) {
-		try {
-			File file_base = new File(Config.dir_params + "/" + testcase_label + ".csv");
-			File file_xpath = new File(Config.dir_params + "/" + testcase_label + "_datapool.csv");
-			if (!file_xpath.exists()) {
-				file_xpath.createNewFile();
+	public static File getLastModified(String directoryFilePath) {
+		File directory = new File(directoryFilePath);
+		File[] files = directory.listFiles(File::isFile);
+		long lastModifiedTime = Long.MIN_VALUE;
+		File chosenFile = null;
+
+		if (files != null)
+		{
+			for (File file : files)
+			{
+				if (file.lastModified() > lastModifiedTime)
+				{
+					chosenFile = file;
+					lastModifiedTime = file.lastModified();
+				}
 			}
-			try {
-				CSVReader reader = new CSVReader(new FileReader(file_base), ';');
-				CSVReader reader2 = new CSVReader(new FileReader(file_xpath), ';');
-				String [] nextLine;
-				List<String[]> list = new ArrayList<>();
-				String [] firstLine = {};
-				int numline = 1;
-				String param = "";
-				Boolean isEqual = false;
-				while ((nextLine = reader.readNext()) != null) {
-					if (numline == 1) firstLine = nextLine;
-					list.add(nextLine);
-					++numline;
-				}
-				numline = 1;
-				while ((nextLine = reader2.readNext()) != null) {
-					for (int i = 0; i < firstLine.length; i++) {
-						if(numline==1){
-							if(firstLine[i].equals(nextLine[i])) {
-								isEqual = true;
-							} else {
-								isEqual = false;
-							}
-						} 
-					}
-					++numline;
-				}
-				// System.out.println(isEqual);
-				if (!isEqual) {
-					CSVWriter writer = new CSVWriter(new FileWriter(file_xpath), ';');
-					writer.writeAll(list);
-					writer.close();
-				}
-			} catch (Exception e) {
-				// On essaie d'agir dedans
-			}
-		} catch (Exception e) {
-			// Problème dans la création du fichier
 		}
-	}
 
-	public static void addXpathDatapool(String property, String xpath, String testcase_label) {
-		// System.out.println("############################################\n#######################");
-		try {
-			File file_params = new File(Config.dir_params + "/" + testcase_label + "_datapool.csv");
-			CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(file_params), StandardCharsets.UTF_8),';');
-			String [] nextLine;
-			List<String[]> list = new ArrayList<>();
-			String [] writeLine;
-			int numline = 1;
-			String param = "";
-			while ((nextLine = reader.readNext()) != null) {
-				writeLine = nextLine;
-				if (numline==Config.compteur_instance) {
-					writeLine[Config.compteur_params-1] = xpath;
-					System.out.println("### valeur trouvée :" + writeLine[Config.compteur_params-1]);
-				}
-				list.add(writeLine);
-				++numline;
-			}
-			CSVWriter writer = new CSVWriter(new FileWriterWithEncoding(file_params, StandardCharsets.UTF_8), ';');
-			writer.writeAll(list);
-			writer.close();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-		
-	}
-
-	public static boolean resetXpathDatapool(String tryProperty, String colonne) {
-		try {
-			File datapoolFile = new File(Config.datapoolFile);
-			CSVReader reader2 = new CSVReader(new FileReader(datapoolFile), ';');
-
-			String [] nextLine;
-			int indexColonne = 0;
-			int indexLine = 0;
-			boolean isOK = false;
-
-			while ((nextLine = reader2.readNext()) != null) {
-				if (indexLine == 0) {
-					for (int i = 0; i < nextLine.length; i++) {
-						if (nextLine[i].equals(colonne)) {
-							indexColonne = i;
-						}
-					}
-				} else {
-					if (tryProperty.toLowerCase().replaceAll("\\s", "").contains(nextLine[indexColonne].toLowerCase().replaceAll("\\s", ""))) {
-						isOK = true;
-						break;
-					}
-				}
-				indexLine ++;
-			}
-			return isOK;
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			return false;
-		}
+		return chosenFile;
 	}
 
 	public static boolean isJVExecution(String testcase_label) throws IOException {
+		// File csv1File = getLastModified(Config.dir_params);
+		// System.out.println(csv1File.getAbsolutePath());
+		// if (csv1File.getAbsolutePath().endsWith("_xpath_list.csv")) {
+		// 	csv1File = new File(csv1File.getPath().replace("_xpath_list", ""));
+		// 	System.out.println(csv1File.getAbsolutePath());
+		// }
 		File csv1File = new File(Config.dir_params + "/" + testcase_label + ".csv");
 		CSVParser csvParser = new CSVParserBuilder().withSeparator(';').withIgnoreQuotations(false).build();
 		CSVReader csvReader = new CSVReaderBuilder(new FileReader(csv1File)).withCSVParser(csvParser).build();
@@ -12589,36 +12215,35 @@ public class Scripts_techniques {
 			k = nextline.length;
 		}
 		csvReader.close();
-		// System.out.println("Les dimensions du tableau sont " + j + " x " + k);
+		System.out.println("Les dimensions du tableau sont " + j + " x " + k);
 		boolean isJV = j > 2;
 		return isJV;
 	}
-
 	public static boolean WebPage_visualtesting(WebDriver selenium, Teststep teststep) throws IOException {
-        Date time1 = new Date();
-        WebDriver driver = (WebDriver) selenium;
-        try {
-            Thread.sleep(Config.pause_actions);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(Config.timeout_elements));
-        WebElement myHTML;
-        myHTML = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body")));
-        try {
-            System.out.println("Page displayed ? " + myHTML.isDisplayed());
-        } catch (Exception e) {
-            return Fonctions.logStepKO(teststep, selenium, time1, "Cannot find page");
-        }
-        String platform = "";
-        String apiKey = "";
-        try {
-            Wini ini = new Wini(new File(Config.propertyFile));
-            apiKey = ini.get("applitools", "cle");
-            if(!apiKey.isEmpty())
-                platform = "applitools";
-        } catch (Exception e) {
-            System.out.println("Applitools key is missing");
+		Date time1 = new Date();
+		WebDriver driver = (WebDriver) selenium;
+		try {
+			Thread.sleep(Config.pause_actions);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(Config.timeout_elements));
+		WebElement myHTML;
+		myHTML = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body")));
+		try {
+			System.out.println("Page displayed ? " + myHTML.isDisplayed());
+		} catch (Exception e) {
+			return Fonctions.logStepKO(teststep, selenium, time1, "Cannot find page");
+		}
+		String platform = "";
+		String apiKey = "";
+		try {
+			Wini ini = new Wini(new File(Config.propertyFile));
+			apiKey = ini.get("applitools", "cle");
+			if(!apiKey.isEmpty())
+				platform = "applitools";
+		} catch (Exception e) {
+			System.out.println("Applitools key is missing");
 			try {
 				Wini ini = new Wini(new File(Config.propertyFile));
 				apiKey = ini.get("percy", "cle");
@@ -12628,161 +12253,161 @@ public class Scripts_techniques {
 			} catch (Exception e1) {
 				System.out.println("percy key is missing");
 			}
-        }
+		}
 
-        if(platform.equals("applitools")){
-            String parameters;
+		if(platform.equals("applitools")){
+			String parameters;
 
-            if (teststep.param.charAt(0) == '$') {
-                parameters = getVariableParameter(teststep.param);
-                if (parameters.equals(teststep.param)) {
-                    return Fonctions.logStepKO(teststep, driver, time1, "Le parametre n'a pas ete trouve dans le fichier des variables.");
-                }
-            } else {
-                parameters = teststep.param;
-            }
-            String[] param = parameters.split("\\|");
-            String applicationName = param[0];
-            String testName = param[1];
-            String matchlevel;
-            EyesRunner runner;
-            BatchInfo batch;
-            Configuration config;
-            ChromeOptions options;
-            WebDriver driverApplitools;
-            Eyes eyes;
-            try {
-                runner = new VisualGridRunner(new RunnerOptions().testConcurrency(1));
-                batch = new BatchInfo(testName);
+			if (teststep.param.charAt(0) == '$') {
+				parameters = getVariableParameter(teststep.param);
+				if (parameters.equals(teststep.param)) {
+					return Fonctions.logStepKO(teststep, driver, time1, "Le parametre n'a pas ete trouve dans le fichier des variables.");
+				}
+			} else {
+				parameters = teststep.param;
+			}
+			String[] param = parameters.split("\\|");
+			String applicationName = param[0];
+			String testName = param[1];
+			String matchlevel;
+			EyesRunner runner;
+			BatchInfo batch;
+			Configuration config;
+			ChromeOptions options;
+			WebDriver driverApplitools;
+			Eyes eyes;
+			try {
+				runner = new VisualGridRunner(new RunnerOptions().testConcurrency(1));
+				batch = new BatchInfo(testName);
 
-                config = new Configuration();
+				config = new Configuration();
 
-                config.setApiKey(apiKey);
-                config.setBatch(batch);
+				config.setApiKey(apiKey);
+				config.setBatch(batch);
 
-                eyes = new Eyes(runner);
-                eyes.setConfiguration(config);
+				eyes = new Eyes(runner);
+				eyes.setConfiguration(config);
 
-                // Set match level
-                matchlevel = param[2].toLowerCase();
-                switch (matchlevel) {
-                    case "strict":
-                        eyes.setMatchLevel(MatchLevel.STRICT);
-                        break;
-                    case "layout":
-                        eyes.setMatchLevel(MatchLevel.LAYOUT);
-                        break;
-                    case "color":
-                        eyes.setMatchLevel(MatchLevel.CONTENT);
-                        break;
-                    case "exact":
-                        eyes.setMatchLevel(MatchLevel.EXACT);
-                        break;
-                    case "none":
-                        eyes.setMatchLevel(MatchLevel.NONE);
-                        break;
-                    default:
-                        eyes.setMatchLevel(MatchLevel.STRICT);
-                        break;
-                }
+				// Set match level
+				matchlevel = param[2].toLowerCase();
+				switch (matchlevel) {
+					case "strict":
+						eyes.setMatchLevel(MatchLevel.STRICT);
+						break;
+					case "layout":
+						eyes.setMatchLevel(MatchLevel.LAYOUT);
+						break;
+					case "color":
+						eyes.setMatchLevel(MatchLevel.CONTENT);
+						break;
+					case "exact":
+						eyes.setMatchLevel(MatchLevel.EXACT);
+						break;
+					case "none":
+						eyes.setMatchLevel(MatchLevel.NONE);
+						break;
+					default:
+						eyes.setMatchLevel(MatchLevel.STRICT);
+						break;
+				}
 
-                eyes.open(
-                        driver,
-                        applicationName,
-                        testName);
+				eyes.open(
+						driver,
+						applicationName,
+						testName);
 
-                eyes.check(Target.window().fully());// .withName("Home Page"));
-                eyes.closeAsync();
-                TestResultsSummary allTestResults = runner.getAllTestResults(false);
-                TestResultContainer[] val = allTestResults.getAllResults();
-                TestResults res = val[0].getTestResults();
-                Boolean diff = res.isDifferent();
-                if (diff == false) {
-                    return Fonctions.logStepOK(teststep, selenium, time1);
-                } else {
-                    return Fonctions.logStepWarning(teststep, selenium, time1,
-                            "Difference trouve, rendez vous sur votre espace applitools pour en savoir plus");
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                // System.out.println("Une erreur s'est produite. Verifier votre cle API");
-                return Fonctions.logStepKO(teststep, selenium, time1, "Verifier votre cle api");
-            }
-        }
-        else if (platform.equals("percy")) {
-            Percy percy = new Percy(selenium);
-            String parameters = teststep.param;
-            String[] params = parameters.split("\\|");
-            if(params.length>6)
-                return Fonctions.logStepKO(teststep, selenium, time1, "Il y a trop de paramètre");
-            String name = teststep.scenario_label+"_"+ params[0];
-            List<Integer> width = new ArrayList<>();
-            int minHeight = 0;
-            boolean enableJavaScript = false;
-            String percyCSS = "";
-            String scope = "";
-            for (int i = 1;i<params.length;i++) {
-                System.out.println(params[i]);
-                try {
-                    Wini ini = new Wini(new File(Config.propertyFile));
-                    if(params[i].charAt(0)=='$') {
-                        params[i] = ini.get("percy", params[i].substring(1));
-                        if(params[i]==null){
-                            return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" n'a pas été trouvé dans le fichier des variables'");
-                        }
-                    }
+				eyes.check(Target.window().fully());// .withName("Home Page"));
+				eyes.closeAsync();
+				TestResultsSummary allTestResults = runner.getAllTestResults(false);
+				TestResultContainer[] val = allTestResults.getAllResults();
+				TestResults res = val[0].getTestResults();
+				Boolean diff = res.isDifferent();
+				if (diff == false) {
+					return Fonctions.logStepOK(teststep, selenium, time1);
+				} else {
+					return Fonctions.logStepWarning(teststep, selenium, time1,
+							"Difference trouve, rendez vous sur votre espace applitools pour en savoir plus");
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				// System.out.println("Une erreur s'est produite. Verifier votre cle API");
+				return Fonctions.logStepKO(teststep, selenium, time1, "Verifier votre cle api");
+			}
+		}
+		else if (platform.equals("percy")) {
+			io.percy.selenium.Percy percy = new Percy(selenium);
+			String parameters = teststep.param;
+			String[] params = parameters.split("\\|");
+			if(params.length>6)
+				return Fonctions.logStepKO(teststep, selenium, time1, "Il y a trop de paramètre");
+			String name = teststep.scenario_label+"_"+ params[0];
+			List<Integer> width = new ArrayList<>();
+			int minHeight = 0;
+			boolean enableJavaScript = false;
+			String percyCSS = "";
+			String scope = "";
+			for (int i = 1;i<params.length;i++) {
+				System.out.println(params[i]);
+				try {
+					Wini ini = new Wini(new File(Config.propertyFile));
+					if(params[i].charAt(0)=='$') {
+						params[i] = ini.get("percy", params[i].substring(1));
+						if(params[i]==null){
+							return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" n'a pas été trouvé dans le fichier des variables'");
+						}
+					}
 
-                } catch(Exception e) {
-                    return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" n'a pas été trouvé dans le fichier des variables'");
-                }
-                if(params[i].contains("width")) {
-                    String stringwidth = params[i].substring(0, params[i].length() - 1).replace("width=\"", "");
-                    String[] arraywidth = stringwidth.split(",");
-                    for (String s:arraywidth) {
-                        try {
-                            width.add(Integer.parseInt(s));
-                        } catch (NumberFormatException e) {
-                            return Fonctions.logStepKO(teststep, selenium, time1, "Le paramètre "+ params[i] + " doit contenir des entiers séparé par une virgule");
-                        }
-                    }
-                }
-                else if (params[i].contains("minHeight")) {
-                    String Height = params[i].substring(0, params[i].length() - 1).replace("minHeight=\"", "");
-                    try {
-                        minHeight = Integer.parseInt(Height);
-                    } catch (NumberFormatException e) {
-                        return Fonctions.logStepKO(teststep, selenium, time1, "Le paramètre "+ params[i] + " doit etre un entier");
-                    }
-                }
-                else if (params[i].contains("enableJavaScript")) {
-                    String JS = params[i].substring(0, params[i].length() - 1).replace("enableJavaScript=\"", "");
-                    if(JS.equalsIgnoreCase("true")||JS.equalsIgnoreCase("vrai"))
-                        enableJavaScript = true;
-                    else if(JS.equalsIgnoreCase("false")||JS.equalsIgnoreCase("faux"))
-                        enableJavaScript = false;
-                    else
-                        return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" doit etre vrai ou faux (true or false)");
-                }else if (params[i].contains("percyCSS"))
-                    percyCSS = params[i].substring(0, params[i].length() - 1).replace("percyCSS=\"", "");
-                else if (params[i].contains("scope"))
-                    scope = params[i].substring(0,params[i].length() -1).replace("scope=\"","");
-                else
-                    return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" ne correspond pas aux attendus");
-            }
-            try {
-                if (minHeight == 0) {
-                    percy.snapshot(name, width, null, enableJavaScript, percyCSS, scope);
-                } else {
-                    percy.snapshot(name, width, minHeight, enableJavaScript, percyCSS, scope);
-                }
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            //System.out.println(apiKey+" "+name+ " "+ width + " " + minHeight + " " + enableJavaScript + " " +percyCSS + " " +scope);
-        }
-        //return Fonctions.logStepKO(teststep, selenium, time1, "Aucune clé n'est renseigné");
-        return true;
-    }
+				} catch(Exception e) {
+					return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" n'a pas été trouvé dans le fichier des variables'");
+				}
+				if(params[i].contains("width")) {
+					String stringwidth = params[i].substring(0, params[i].length() - 1).replace("width=\"", "");
+					String[] arraywidth = stringwidth.split(",");
+					for (String s:arraywidth) {
+						try {
+							width.add(Integer.parseInt(s));
+						} catch (NumberFormatException e) {
+							return Fonctions.logStepKO(teststep, selenium, time1, "Le paramètre "+ params[i] + " doit contenir des entiers séparé par une virgule");
+						}
+					}
+				}
+				else if (params[i].contains("minHeight")) {
+					String Height = params[i].substring(0, params[i].length() - 1).replace("minHeight=\"", "");
+					try {
+						minHeight = Integer.parseInt(Height);
+					} catch (NumberFormatException e) {
+						return Fonctions.logStepKO(teststep, selenium, time1, "Le paramètre "+ params[i] + " doit etre un entier");
+					}
+				}
+				else if (params[i].contains("enableJavaScript")) {
+					String JS = params[i].substring(0, params[i].length() - 1).replace("enableJavaScript=\"", "");
+					if(JS.equalsIgnoreCase("true")||JS.equalsIgnoreCase("vrai"))
+						enableJavaScript = true;
+					else if(JS.equalsIgnoreCase("false")||JS.equalsIgnoreCase("faux"))
+						enableJavaScript = false;
+					else
+						return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" doit etre vrai ou faux (true or false)");
+				}else if (params[i].contains("percyCSS"))
+					percyCSS = params[i].substring(0, params[i].length() - 1).replace("percyCSS=\"", "");
+				else if (params[i].contains("scope"))
+					scope = params[i].substring(0,params[i].length() -1).replace("scope=\"","");
+				else
+					return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" ne correspond pas aux attendus");
+			}
+			try {
+				if (minHeight == 0) {
+					percy.snapshot(name, width, null, enableJavaScript, percyCSS, scope);
+				} else {
+					percy.snapshot(name, width, minHeight, enableJavaScript, percyCSS, scope);
+				}
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+			//System.out.println(apiKey+" "+name+ " "+ width + " " + minHeight + " " + enableJavaScript + " " +percyCSS + " " +scope);
+		}
+		//return Fonctions.logStepKO(teststep, selenium, time1, "Aucune clé n'est renseigné");
+		return true;
+	}
 
     /*public static boolean WebPage_comparescreenshot(WebDriver selenium, Teststep teststep) throws IOException {
         Date time1 = new Date();

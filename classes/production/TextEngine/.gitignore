@@ -1,4 +1,10 @@
+/.idea/
+/Batfiles/
 /additional_files/
+/build.xml
+/drivers/
+/objects/
+/run_configuration/
 /runners/
 /scripts.iml
 /scripts_donnees/

@@ -7,8 +7,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.*;
 
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.ios.IOSDriver;
@@ -18,8 +16,6 @@ import okhttp3.*;
 import org.openqa.selenium.HasCapabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import runners.BrowserStack.BrowserStackLauncher;
@@ -43,7 +39,6 @@ import org.openqa.selenium.WebDriver;
 import java.io.*;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
-import java.net.SocketTimeoutException;
 import java.net.URLClassLoader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -57,15 +52,16 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import io.appium.java_client.HasSettings;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
 
 import java.net.URL;
+import java.io.File;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -74,6 +70,8 @@ import java.util.stream.Stream;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import scripts_techniques.Config;
 import scripts_techniques.Selenium.*;
+import scripts_techniques.Selenium.Teststep;
+import scripts_techniques.Selenium.Scripts_techniques;
 
 //import static org.junit.Assert.fail;
 
@@ -81,6 +79,9 @@ import javax.tools.JavaCompiler;
 import javax.tools.JavaFileObject;
 import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
+
+import static scripts_textengine.AzureToolsResult.*;
+import static scripts_textengine.MainPercy2.WebPage_getResult;
 
 public class TextEngine {
 
@@ -106,18 +107,23 @@ public class TextEngine {
 
     private static final OkHttpClient client = new OkHttpClient();
     private static final Gson gson = new Gson();
-    
+
     private static final HashMap<Integer, List<scripts_techniques.Teststep>> Step = new HashMap<>();
 
     public static ArrayList<String[]> getResult() {
         return Result;
     }
-    public static ArrayList<TestCaseResult> ResultAzure = new ArrayList<>();
+    public static ArrayList<TestCaseResult> ResultAzure1 = new ArrayList<>();
+    private static final HashMap<String, List<String[]>> StepIndepedent = new HashMap<>();
+
+    public static HashMap<String, List<String[]>> getStepIndepedent() {
+        return StepIndepedent;
+    }
 
     private static ArrayList<String[]> Result;
 
     public static void initFlex(String URL, String parcours) throws IOException, InterruptedException {
-//        File file = new File(Config.dir_config + "/geckodriver.exe");
+        //File file = new File(Config.dir_config + "/operadriver.exe");
 //        System.setProperty("webdriver.gecko.driver", file.getAbsolutePath()); // Remplacez par le chemin réel
 //
 //        // Configurer les options de Firefox
@@ -134,11 +140,25 @@ public class TextEngine {
 //        Result = new ArrayList<>();
 //        nom = nomparcours(parcours);
 //        CreateBatFile(getClassMain());
+        //initWeb(URL, parcours);
+        //System.setProperty("webdriver.opera.driver", file.getAbsolutePath());
+
+        // Initialiser les options d'Opera
+        //OperaOptions options = new OperaOptions();
+        // options.addArguments("start-maximized"); // Par exemple, pour démarrer le navigateur en mode maximisé
+        //options.setBinary("C:\\Users\\Kalios\\AppData\\Local\\Programs\\Opera\\opera.exe");
+
+        // Initialiser le WebDriver
+        //WebDriver driver = new OperaDriver(options);
+
+        // Ouvrir une page Web
+        //driver.get("https://www.example.com");
+
+        // Fermer le navigateur
         initWeb(URL, parcours);
-		
-		
+
     }
-    
+
     public static void addStep(int testcaseId, scripts_techniques.Teststep t){
         if(Step.containsKey(testcaseId))
             Step.get(testcaseId).add(t);
@@ -146,7 +166,16 @@ public class TextEngine {
             ArrayList<scripts_techniques.Teststep> l = new ArrayList<>();
             l.add(t);
             Step.put(testcaseId,l);
-        }    
+        }
+    }
+    public static void addStepIndependant(String[] status){
+        if(StepIndepedent.containsKey(nom))
+            StepIndepedent.get(nom).add(status);
+        else {
+            ArrayList<String[]> l = new ArrayList<>();
+            l.add(status);
+            StepIndepedent.put(nom,l);
+        }
     }
     public static void printSteps(){
         for (Map.Entry<Integer, List<scripts_techniques.Teststep>> entry : Step.entrySet()) {
@@ -160,9 +189,21 @@ public class TextEngine {
             }
         }
     }
+    public static void printStepsIndepedant(){
+        for (Map.Entry<String, List<String[]>> entry : StepIndepedent.entrySet()) {
+            String key = entry.getKey();
+            List<String[]> value = entry.getValue();
+
+            System.out.println("Parcours: " + key);
+            System.out.println("Step:");
+            for (String[] step : value) {
+                System.out.println("\t" + step[1] + " " +step[0]);
+            }
+        }
+    }
 
     public static void CreateResult(){
-         Result = new ArrayList<>();
+        Result = new ArrayList<>();
     }
     public static void CreateBatFile(String fic){
         //fic est le nom du fichier main a executer
@@ -170,10 +211,10 @@ public class TextEngine {
         System.out.println(Nfic);
         File bat = new File(Config.tunnel_path+File.separator+"scripts"+File.separator+"Batfiles"+File.separator+Nfic+".bat");
         String cmd = "@echo off\n" +
-                    "cd "+ Config.tunnel_path+"/scripts\n" +
-                    "echo compilation en cours\n" +
-                    "call ant -DUSER_DIR=. build\n" +
-                    "call ant -DNOM_CLASS_MAIN="+fic+" run";
+                "cd "+ Config.tunnel_path+"/scripts\n" +
+                "echo compilation en cours\n" +
+                "call ant -DUSER_DIR=. build\n" +
+                "call ant -DNOM_CLASS_MAIN="+fic+" run";
         try {
             java.io.FileWriter cmdFile = new java.io.FileWriter (bat);
             BufferedWriter out = new BufferedWriter(cmdFile);
@@ -184,84 +225,84 @@ public class TextEngine {
         }
 
     }
-    
-    private static void CreateBatFileTestPlanBrowserStack(){
+
+    private static void CreateBatFileTestPlanBrowserStack() {
         //fic est le nom du fichier main a executer
         String Nfic = BrowserStackLauncher.TestPlanName.replace('.', '_')+ "_BrowserStack";
         System.out.println(Nfic);
         File bat = new File(Config.tunnel_path+File.separator+"scripts"+File.separator+"Batfiles"+File.separator+Nfic+".bat");
-        String cmd = "@echo off\r\n" + 
-        		"setlocal enabledelayedexpansion\r\n" + 
-        		"\r\n"+
-        		"rem ---------------------------------------Champs a completer----------------------------------------------------------------------------------------------------\r\n" + 
-        		"set \"chemin="+Config.tunnel_path + "\\scripts\"\r\n" + 
-        		"set \"NomInstance="+BrowserStackLauncher.NomInstance+"\"\r\n" + 
-        		"set \"Token="+BrowserStackLauncher.Token+"\"\r\n" + 
-        		"set \"TestPlanName="+BrowserStackLauncher.TestPlanName+"\"\r\n" + 
-        		"set \"URL="+BrowserStackLauncher.URL+"\"\r\n" + 
-        		"set \"BrowserStackSDK="+BrowserStackLauncher.BrowserStackSDK+"\"\r\n"+
-        		"rem -------------------------------------------------------------------------------------------------------------------------------------------------------------\r\n"+ 
-        		"set \"search_NomInstance=public static String NomInstance=\"\r\n" + 
-        		"set \"search_Token=public static String Token=\"\r\n" + 
-        		"set \"search_TestPlanName=public static String TestPlanName=\"\r\n" + 
-        		"set \"search_URL=public static String URL=\"\r\n" + 
-        		"set \"search_BrowserStackSDK=public static String BrowserStackSDK=\"\r\n" + 
-        		"\r\n" + 
-        		"set \"newLine_NomInstance=    public static String NomInstance=\"%NomInstance%\";\"\r\n" + 
-        		"set \"newLine_Token=    public static String Token=\"%Token%\";\"\r\n" + 
-        		"set \"newLine_TestPlanName=    public static String TestPlanName=\"%TestPlanName%\";\"\r\n" + 
-        		"set \"newLine_URL=    public static String URL=\"%URL%\";\"\r\n" + 
-        		"set \"newLine_BrowserStackSDK=    public static String BrowserStackSDK=\"%BrowserStackSDK%\";\"\r\n" + 
-        		"\r\n" + 
-        		"set \"file=%chemin%\\runners\\BrowserStack\\BrowserStackLauncher.java\"\r\n" +
-        		"set \"tempfile=%chemin%\\runners\\BrowserStack\\tempfile.java\"\r\n" + 
-        		"\r\n" + 
-        		"(for /f \"delims=\" %%i in ('type \"%file%\"') do (\r\n" + 
-        		"    set \"line=%%i\"\r\n" + 
-        		"    if \"!NomInstance!\" neq \"\" (\r\n" + 
-        		"        if \"!line:%search_NomInstance%=!\" neq \"!line!\" (\r\n" + 
-        		"            echo !newLine_NomInstance!\r\n" + 
-        		"        ) else if \"!Token!\" neq \"\" (\r\n" + 
-        		"            if \"!line:%search_Token%=!\" neq \"!line!\" (\r\n" + 
-        		"                echo !newLine_Token!\r\n" + 
-        		"            ) else if \"!TestPlanName!\" neq \"\" (\r\n" + 
-        		"                if \"!line:%search_TestPlanName%=!\" neq \"!line!\" (\r\n" + 
-        		"                    echo !newLine_TestPlanName!\r\n" + 
-        		"                ) else if \"!URL!\" neq \"\" (\r\n" + 
-        		"                    if \"!line:%search_URL%=!\" neq \"!line!\" (\r\n" + 
-        		"                        echo !newLine_URL!\r\n" + 
-        		"                    ) else if \"!BrowserStackSDK!\" neq \"\" (\r\n" + 
-        		"                        if \"!line:%search_BrowserStackSDK%=!\" neq \"!line!\" (\r\n" + 
-        		"                            echo !newLine_BrowserStackSDK!\r\n" + 
-        		"                        ) else (\r\n" + 
-        		"                            echo !line!\r\n" + 
-        		"                        )\r\n" + 
-        		"                    ) else (\r\n" + 
-        		"                        echo !line!\r\n" + 
-        		"                    )\r\n" + 
-        		"                ) else (\r\n" + 
-        		"                    echo !line!\r\n" + 
-        		"                )\r\n" + 
-        		"            ) else (\r\n" + 
-        		"                echo !line!\r\n" + 
-        		"            )\r\n" + 
-        		"        ) else (\r\n" + 
-        		"            echo !line!\r\n" + 
-        		"        )\r\n" + 
-        		"    ) else (\r\n" + 
-        		"        echo !line!\r\n" + 
-        		"    )\r\n" + 
-        		")) > \"%tempfile%\"\r\n" + 
-        		"\r\n" + 
-        		"del \"%file%\"\r\n" + 
-        		"ren \"%tempfile%\" \"BrowserStackLauncher.java\"\r\n" + 
-        		"\r\n" + 
-        		"cd \"%chemin%\"\r\n" + 
-        		"echo compilation en cours\r\n" + 
-        		"call ant -DUSER_DIR=. build\r\n" + 
-        		"call ant -DNOM_CLASS_MAIN=runners.BrowserStack.BrowserStackLauncher run\r\n" + 
-        		"call ant -DUSER_DIR=. build\r\n" +
-        		"call ant -DNOM_CLASS_MAIN=runners.BrowserStack.PlanTestBrowserStack -DJAVA_AGENT=-javaagent:%BrowserStackSDK% run\r\n";
+        String cmd = "@echo off\r\n" +
+                "setlocal enabledelayedexpansion\r\n" +
+                "\r\n"+
+                "rem ---------------------------------------Champs a completer----------------------------------------------------------------------------------------------------\r\n" +
+                "set \"chemin="+Config.tunnel_path + "\\scripts\"\r\n" +
+                "set \"NomInstance="+BrowserStackLauncher.NomInstance+"\"\r\n" +
+                "set \"Token="+BrowserStackLauncher.Token+"\"\r\n" +
+                "set \"TestPlanName="+BrowserStackLauncher.TestPlanName+"\"\r\n" +
+                "set \"URL="+BrowserStackLauncher.URL+"\"\r\n" +
+                "set \"BrowserStackSDK="+BrowserStackLauncher.BrowserStackSDK+"\"\r\n"+
+                "rem -------------------------------------------------------------------------------------------------------------------------------------------------------------\r\n"+
+                "set \"search_NomInstance=public static String NomInstance=\"\r\n" +
+                "set \"search_Token=public static String Token=\"\r\n" +
+                "set \"search_TestPlanName=public static String TestPlanName=\"\r\n" +
+                "set \"search_URL=public static String URL=\"\r\n" +
+                "set \"search_BrowserStackSDK=public static String BrowserStackSDK=\"\r\n" +
+                "\r\n" +
+                "set \"newLine_NomInstance=    public static String NomInstance=\"%NomInstance%\";\"\r\n" +
+                "set \"newLine_Token=    public static String Token=\"%Token%\";\"\r\n" +
+                "set \"newLine_TestPlanName=    public static String TestPlanName=\"%TestPlanName%\";\"\r\n" +
+                "set \"newLine_URL=    public static String URL=\"%URL%\";\"\r\n" +
+                "set \"newLine_BrowserStackSDK=    public static String BrowserStackSDK=\"%BrowserStackSDK%\";\"\r\n" +
+                "\r\n" +
+                "set \"file=%chemin%\\runners\\BrowserStack\\BrowserStackLauncher.java\"\r\n" +
+                "set \"tempfile=%chemin%\\runners\\BrowserStack\\tempfile.java\"\r\n" +
+                "\r\n" +
+                "(for /f \"delims=\" %%i in ('type \"%file%\"') do (\r\n" +
+                "    set \"line=%%i\"\r\n" +
+                "    if \"!NomInstance!\" neq \"\" (\r\n" +
+                "        if \"!line:%search_NomInstance%=!\" neq \"!line!\" (\r\n" +
+                "            echo !newLine_NomInstance!\r\n" +
+                "        ) else if \"!Token!\" neq \"\" (\r\n" +
+                "            if \"!line:%search_Token%=!\" neq \"!line!\" (\r\n" +
+                "                echo !newLine_Token!\r\n" +
+                "            ) else if \"!TestPlanName!\" neq \"\" (\r\n" +
+                "                if \"!line:%search_TestPlanName%=!\" neq \"!line!\" (\r\n" +
+                "                    echo !newLine_TestPlanName!\r\n" +
+                "                ) else if \"!URL!\" neq \"\" (\r\n" +
+                "                    if \"!line:%search_URL%=!\" neq \"!line!\" (\r\n" +
+                "                        echo !newLine_URL!\r\n" +
+                "                    ) else if \"!BrowserStackSDK!\" neq \"\" (\r\n" +
+                "                        if \"!line:%search_BrowserStackSDK%=!\" neq \"!line!\" (\r\n" +
+                "                            echo !newLine_BrowserStackSDK!\r\n" +
+                "                        ) else (\r\n" +
+                "                            echo !line!\r\n" +
+                "                        )\r\n" +
+                "                    ) else (\r\n" +
+                "                        echo !line!\r\n" +
+                "                    )\r\n" +
+                "                ) else (\r\n" +
+                "                    echo !line!\r\n" +
+                "                )\r\n" +
+                "            ) else (\r\n" +
+                "                echo !line!\r\n" +
+                "            )\r\n" +
+                "        ) else (\r\n" +
+                "            echo !line!\r\n" +
+                "        )\r\n" +
+                "    ) else (\r\n" +
+                "        echo !line!\r\n" +
+                "    )\r\n" +
+                ")) > \"%tempfile%\"\r\n" +
+                "\r\n" +
+                "del \"%file%\"\r\n" +
+                "ren \"%tempfile%\" \"BrowserStackLauncher.java\"\r\n" +
+                "\r\n" +
+                "cd \"%chemin%\"\r\n" +
+                "echo compilation en cours\r\n" +
+                "call ant -DUSER_DIR=. build\r\n" +
+                "call ant -DNOM_CLASS_MAIN=runners.BrowserStack.BrowserStackLauncher run\r\n" +
+                "call ant -DUSER_DIR=. build\r\n" +
+                "call ant -DNOM_CLASS_MAIN=runners.BrowserStack.PlanTestBrowserStack -DJAVA_AGENT=-javaagent:%BrowserStackSDK% run\r\n";
 
         try {
             java.io.FileWriter cmdFile = new java.io.FileWriter (bat);
@@ -273,7 +314,7 @@ public class TextEngine {
         }
 
     }
-    
+
     public static String getClassMain() {
         StackTraceElement[] stElements = Thread.currentThread().getStackTrace();
         for (int i=1; i<stElements.length; i++) {
@@ -284,15 +325,25 @@ public class TextEngine {
         }
         return null;
     }
-
     public static String CutFinalNumber(String string){
         Pattern pattern = Pattern.compile("_(\\d+)$");
         Matcher matcher = pattern.matcher(string);
+
         if (matcher.find()) {
             string = string.replaceFirst("_(\\d+)$", "");
         }
         return string;
     }
+    public static String getFinalNumber(String string) {
+        Pattern pattern = Pattern.compile("_(\\d+)$");
+        Matcher matcher = pattern.matcher(string);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return null;
+    }
+
 
     public static void initMobileApp(String PathApp) throws IOException, InterruptedException {
         initMobileApp(PathApp, "");
@@ -308,13 +359,13 @@ public class TextEngine {
     public static void initWebMobile(String URL) throws IOException, InterruptedException {
         initWeb(URL, "");
     }
-    
+
     public static void initBrowserStack(String URL) throws IOException, InterruptedException {
-    	initBrowserStack(URL, "");
+        initBrowserStack(URL, "");
     }
-    
+
     public static void initWebResolution(String URL, int largeur, int hauteur) throws IOException, InterruptedException {
-    	initWebResolution(URL, "", largeur, hauteur);
+        initWebResolution(URL, "", largeur, hauteur);
     }
 
 
@@ -365,7 +416,7 @@ public class TextEngine {
         TextEngine.CreateResult();
     }
     public static void initMobileAppAndroidBrowserStack(String nomparcours){
-    	BstackRunner bs = new BstackRunner();
+        BstackRunner bs = new BstackRunner();
         UiAutomator2Options options = new UiAutomator2Options();
         BstackRunner.userName = System.getenv("BROWSERSTACK_USERNAME") != null ? System.getenv("BROWSERSTACK_USERNAME") : (String) BstackRunner.browserStackYamlMap.get("userName");
         BstackRunner.accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY") != null ? System.getenv("BROWSERSTACK_ACCESS_KEY") : (String) BstackRunner.browserStackYamlMap.get("accessKey");
@@ -424,25 +475,25 @@ public class TextEngine {
             System.out.println(nom);
         }
         if(!TestPlan)
-        	CreateXpathListFile(nom);
+            CreateXpathListFile(nom);
         return nom;
     }
-    
+
     public static void CreateXpathListFile(String nom) {
-    	 csvfile = Config.dir_params + File.separator + nom + "_xpath_list.csv";
-         csvfilebuff = Config.dir_params + File.separator + nom + "_xpath_list_buffer.csv";
-         try {
-             //Creation des fichiers .OUT/xpathlist/xpathlistbuffer
-             Config.compteur_instance = 2;
-             Fonctions.createLogFile(nom);
-             Config.compteur_instance = 1;
-             Fonctions.createEmptyFile(csvfile);
-             Fonctions.createEmptyFile(csvfilebuff);
-             //Couper-Coller du fichier xpathlist_buffer dans le fichier xpathlist
-             Fonctions.CutandPaste(csvfilebuff, csvfile);
-         }catch (Exception e){
-             e.printStackTrace();
-         }
+        csvfile = Config.dir_params + File.separator + nom + "_xpath_list.csv";
+        csvfilebuff = Config.dir_params + File.separator + nom + "_xpath_list_buffer.csv";
+        try {
+            //Creation des fichiers .OUT/xpathlist/xpathlistbuffer
+            Config.compteur_instance = 2;
+            Fonctions.createLogFile(nom);
+            Config.compteur_instance = 1;
+            Fonctions.createEmptyFile(csvfile);
+            Fonctions.createEmptyFile(csvfilebuff);
+            //Couper-Coller du fichier xpathlist_buffer dans le fichier xpathlist
+            Fonctions.CutandPaste(csvfilebuff, csvfile);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static void ChangeParcours(String newname) {
@@ -472,7 +523,7 @@ public class TextEngine {
         CreateBatFile(getClassMain());
     }
     public static void initBrowserStack(String URL, String parcours){
-    	BstackRunner BS = new BstackRunner();
+        BstackRunner BS = new BstackRunner();
 
         MutableCapabilities capabilities = new MutableCapabilities();
         BstackRunner.userName = System.getenv("BROWSERSTACK_USERNAME") != null ? System.getenv("BROWSERSTACK_USERNAME") : (String)BstackRunner.browserStackYamlMap.get("userName");
@@ -495,70 +546,70 @@ public class TextEngine {
         nom = nomparcours(parcours);
         Support = "Web";
     }
-    
+
     public static void initSauceLabs(String nom_appli, String parcours, String platformName, String devicename, String platformVersion, String Build){
-   	
- 
-    	MutableCapabilities caps = new MutableCapabilities();
-    		
-		caps.setCapability("appium:app", "storage:filename="+nom_appli);  // The filename of the mobile app
-		caps.setCapability("appium:deviceName", devicename);
-		//caps.setCapability("appium:noReset", "true");
-		
-		if (platformVersion!=null && platformVersion!="")
-			caps.setCapability("appium:platformVersion", platformVersion);
-		
-		caps.setCapability("appium:appiumVersion", "1.22.0");
-		
-		MutableCapabilities sauceOptions = new MutableCapabilities();
-		sauceOptions.setCapability("username", SaucelabsUser);
-		sauceOptions.setCapability("accessKey",SauceLabsPassword);
-		sauceOptions.setCapability("name", parcours);
-		sauceOptions.setCapability("deviceOrientation", "PORTRAIT");
-		sauceOptions.setCapability("cacheId", "jnc0x1256");
-		if(Build!=null)
-			sauceOptions.setCapability("build", Build);
-		caps.setCapability("sauce:options", sauceOptions);
-        
+
+
+        MutableCapabilities caps = new MutableCapabilities();
+
+        caps.setCapability("appium:app", "storage:filename="+nom_appli);  // The filename of the mobile app
+        caps.setCapability("appium:deviceName", devicename);
+        //caps.setCapability("appium:noReset", "true");
+
+        if (platformVersion!=null && platformVersion!="")
+            caps.setCapability("appium:platformVersion", platformVersion);
+
+        caps.setCapability("appium:appiumVersion", "1.22.0");
+
+        MutableCapabilities sauceOptions = new MutableCapabilities();
+        sauceOptions.setCapability("username", SaucelabsUser);
+        sauceOptions.setCapability("accessKey",SauceLabsPassword);
+        sauceOptions.setCapability("name", parcours);
+        sauceOptions.setCapability("deviceOrientation", "PORTRAIT");
+        sauceOptions.setCapability("cacheId", "jnc0x1256");
+        if(Build!=null)
+            sauceOptions.setCapability("build", Build);
+        caps.setCapability("sauce:options", sauceOptions);
+
         TextEngine.cloud = "SauceLabs";
         TextEngine.Support="Mobile";
         TextEngine.nom = TextEngine.nomparcours(parcours);
         TextEngine.CreateBatFile(TextEngine.getClassMain());
         TextEngine.CreateResult();
-		
-		if(platformName.equalsIgnoreCase("ios")) {
-    		caps.setCapability("platformName", platformName);
-    		caps.setCapability("appium:automationName", "xcuitest");
-    		try {
-    			URL url = new URL("https://ondemand.eu-central-1.saucelabs.com:443/wd/hub");
-    			TextEngine.selfdriver = new IOSDriver(url, caps);
 
-    		} catch (MalformedURLException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
-    	}
-		else if(platformName.equalsIgnoreCase("Android")) {
-    		caps.setCapability("platformName", platformName);
-    		caps.setCapability("appium:automationName", "UiAutomator2");
-    		try {
-    			URL url = new URL("https://ondemand.eu-central-1.saucelabs.com:443/wd/hub");
-    			TextEngine.selfdriver = new AndroidDriver(url, caps);
+        if(platformName.equalsIgnoreCase("ios")) {
+            caps.setCapability("platformName", platformName);
+            caps.setCapability("appium:automationName", "xcuitest");
+            try {
+                URL url = new URL("https://ondemand.eu-central-1.saucelabs.com:443/wd/hub");
+                TextEngine.selfdriver = new IOSDriver(url, caps);
 
-    		} catch (MalformedURLException e) {
-    			// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
-    	}
-		else
-			throw new IllegalArgumentException("La platforme doit etre soit \"ios\" soit \"android\"");
-		
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        else if(platformName.equalsIgnoreCase("Android")) {
+            caps.setCapability("platformName", platformName);
+            caps.setCapability("appium:automationName", "UiAutomator2");
+            try {
+                URL url = new URL("https://ondemand.eu-central-1.saucelabs.com:443/wd/hub");
+                TextEngine.selfdriver = new AndroidDriver(url, caps);
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        else
+            throw new IllegalArgumentException("La platforme doit etre soit \"ios\" soit \"android\"");
+
     }
-    
+
     public static void initSauceLabs(String nom_appli, String parcours, String platformName, String devicename, String platformVersion){
-    	initSauceLabs(nom_appli,parcours, platformName, devicename, platformVersion, null);
+        initSauceLabs(nom_appli,parcours, platformName, devicename, platformVersion, null);
     }
-    
+
     public static void initWebResolution(String URL, String nomparcours, int largeur, int hauteur){
         //initialisation de tous les paramètres du chromedriver et de selenium
         File file = new File(Config.dir_config + "/chromedriver.exe");
@@ -570,7 +621,6 @@ public class TextEngine {
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", chromePrefs);
         options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-search-engine-choice-screen");
         options.addArguments("--window-size=" + largeur + "," + hauteur);
 
         options.setAcceptInsecureCerts(true);
@@ -664,31 +714,31 @@ public class TextEngine {
     }
     public static void RunKaliosTestPlanBrowserStack(){
         //Récupération Fichiers pour TestPlan
-    	BstackRunner vs = new BstackRunner();
-    	CreateBatFileTestPlanBrowserStack();
-    	TestPlan = true;
+        BstackRunner vs = new BstackRunner();
+        CreateBatFileTestPlanBrowserStack();
+        TestPlan = true;
         instance = BrowserStackLauncher.NomInstance;
         token = BrowserStackLauncher.Token;
         TestRunnerCommandLineRunner TestRunner = new TestRunnerCommandLineRunner(new TestExecutorService());
 
         //Exécution Plan de Test
-        
-        
+
+
         ExecuteKaliosTestPLanBS(BrowserStackLauncher.URL, BrowserStackLauncher.TestPlanName);
-        
+
         int NbParcours = ((ArrayList<String[]>) BstackRunner.browserStackYamlMap.get("platforms")).size();
 
 
         //Envoi des résultats dans Kalios
-        
+
         TestRunner.Upload(BrowserStackLauncher.NomInstance, BrowserStackLauncher.Token, NbParcours);
 
     }
     public static void RunKaliosTestPlanMobileAndroidBrowserStack(){
         //Récupération Fichiers pour TestPlan
-    	BstackRunner vs = new BstackRunner();
-    	CreateBatFileTestPlanBrowserStack();
-    	TestPlan = true;
+        BstackRunner vs = new BstackRunner();
+        CreateBatFileTestPlanBrowserStack();
+        TestPlan = true;
         instance = BrowserStackLauncher.NomInstance;
         token = BrowserStackLauncher.Token;
         TestRunnerCommandLineRunner TestRunner = new TestRunnerCommandLineRunner(new TestExecutorService());
@@ -700,9 +750,9 @@ public class TextEngine {
     }
     public static void RunKaliosTestPlanMobileIOSBrowserStack(){
         //Récupération Fichiers pour TestPlan
-    	BstackRunner vs = new BstackRunner();
-    	CreateBatFileTestPlanBrowserStack();
-    	TestPlan = true;
+        BstackRunner vs = new BstackRunner();
+        CreateBatFileTestPlanBrowserStack();
+        TestPlan = true;
         instance = BrowserStackLauncher.NomInstance;
         token = BrowserStackLauncher.Token;
         TestRunnerCommandLineRunner TestRunner = new TestRunnerCommandLineRunner(new TestExecutorService());
@@ -712,10 +762,10 @@ public class TextEngine {
         //Envoi des résultats dans Kalios
         TestRunner.Upload(BrowserStackLauncher.NomInstance, BrowserStackLauncher.Token, NbParcours);
     }
-    
+
     public static void RunKaliosTestPlan(String Instance, String Token, String testPlanName, String URL){
         //Récupération Fichiers pour TestPlan
-    	TestPlan = true;
+        TestPlan = true;
         instance = Instance;
         token = Token;
         TestRunnerCommandLineRunner TestRunner = new TestRunnerCommandLineRunner(new TestExecutorService());
@@ -723,33 +773,33 @@ public class TextEngine {
         TestRunner.run(Instance, Token, testPlanName);
         String[] res = {};
         try {
-			res = getResolutions();
-			
-		} catch (Exception e) {
-			System.out.println("Resolutions not get correctly");
-			System.out.println(e.getMessage());
-		}
+            res = getResolutions();
+
+        } catch (Exception e) {
+            System.out.println("Resolutions not get correctly");
+            System.out.println(e.getMessage());
+        }
         if (res.length != 0) {
-			for (int i = 0; i < res.length; i++) {
-	        	String[] resol = res[i].split("x");
-	        	largeur = Integer.valueOf(resol[0]);
-	        	hauteur = Integer.valueOf(resol[1]);
-				System.out.println("Largeur " + largeur + "\nHauteur " + hauteur);
-				//index=0;
-				ExecuteKaliosTestPLan(URL, testPlanName);
-				TestRunner.Upload(Instance, Token);
-	        }
-		} else {
-			ExecuteKaliosTestPLan(URL, testPlanName);
-			TestRunner.Upload(Instance, Token);
-		}
+            for (int i = 0; i < res.length; i++) {
+                String[] resol = res[i].split("x");
+                largeur = Integer.valueOf(resol[0]);
+                hauteur = Integer.valueOf(resol[1]);
+                System.out.println("Largeur " + largeur + "\nHauteur " + hauteur);
+                //index=0;
+                ExecuteKaliosTestPLan(URL, testPlanName);
+                TestRunner.Upload(Instance, Token);
+            }
+        } else {
+            ExecuteKaliosTestPLan(URL, testPlanName);
+            TestRunner.Upload(Instance, Token);
+        }
+
+        //Old AzureDevopsUpload
+        //UploadAzureDevOps(testPlanName);
 
 
-        UploadAzureDevOps(testPlanName);
-        
-		
-              
-        
+
+
 
     }
 
@@ -784,26 +834,31 @@ public class TextEngine {
 
 
         int index = 0;
+        List<Integer> ListofTestCase = new ArrayList<>();
         for(Method parcours : PlandeTest){
             index++;
             System.out.println("parcours " + index + "sur "+ PlandeTest.length);
             String methodName = parcours.getName();
+            String IdTestCase = getFinalNumber(methodName);
             methodName = CutFinalNumber(methodName);
             try {
                 initFlex(URL, methodName);
+                if(Config.AzureDevOps==1){
+                    AzureTools.NewTestCase(methodName, IdTestCase,"");
+                    ListofTestCase.add(Integer.parseInt(IdTestCase));
+                }
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
-
             boolean result = LaunchTest(parcours);
-
 
             selfdriver.quit();
 
         }
-
+        if(Config.AzureDevOps==1){
+            int idTestplan = AzureTools.NewTestPlan(NomPlanTest, ListofTestCase);
+            createResult(idTestplan,NomPlanTest,ResultAzure1);
+        }
         if (Config.Percy == 1) {
             //CreateXpathListFile("Resultat_Percy");
             getPercyResult(Config.PercyToken, CutFinalNumber(PlandeTest[PlandeTest.length-1].getName()));
@@ -811,23 +866,24 @@ public class TextEngine {
 
         return index;
     }
-    
+
+
     public static void RunKaliosTestPlanSauceLabs(String Instance, String Token, String testPlanName, String URL,String platformName, String deviceName, String platformVersion){
         //Récupération Fichiers pour TestPlan
-    	TestPlan = true;
+        TestPlan = true;
         instance = Instance;
         token = Token;
         TestRunnerCommandLineRunner TestRunner = new TestRunnerCommandLineRunner(new TestExecutorService());
         //Telechargement des fichiers sources
         TestRunner.run(Instance, Token, testPlanName);
-        
-      
-  
-       
-		ExecuteKaliosTestPLanSauceLabs(URL, testPlanName, platformName, deviceName, platformVersion);
-		
-		TestRunner.Upload(Instance, Token);
-		
+
+
+
+
+        ExecuteKaliosTestPLanSauceLabs(URL, testPlanName, platformName, deviceName, platformVersion);
+
+        TestRunner.Upload(Instance, Token);
+
     }
     private static int ExecuteKaliosTestPLanSauceLabs(String URL, String NomPlanTest, String platformName, String deviceName, String platformVersion)  {
         String dir = GetTestPlanName(NomPlanTest.replace(" ", "_").replace(".", "_"));
@@ -839,10 +895,10 @@ public class TextEngine {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         long timestamp = System.currentTimeMillis();
         if(!Config.dir_export.contains("planTests"))
-        	Config.dir_export = Config.dir_export + dir;
+            Config.dir_export = Config.dir_export + dir;
 
         String str = Config.dir_export;
         String lastDigits = str.substring(str.length() - 10);
@@ -858,58 +914,58 @@ public class TextEngine {
         for (Method m : PlandeTest) {
             System.out.println(m.getName());
         }
-       
-        
+
+
         int index = 0;
-			for(Method parcours : PlandeTest){
-			index++;
-        	System.out.println("parcours " + index + "sur "+ PlandeTest.length);
+        for(Method parcours : PlandeTest){
+            index++;
+            System.out.println("parcours " + index + "sur "+ PlandeTest.length);
             String methodName = parcours.getName();
             Pattern pattern = Pattern.compile("_(\\d+)$");
             Matcher matcher = pattern.matcher(methodName);
-            
+
             Timestamp tms = new Timestamp(timestamp);
-      		// Passing the value in the Date class constructor
-      		Date date = new Date(tms.getTime());
-      		
-      		SimpleDateFormat formatteur = new SimpleDateFormat("HH:mm:ss - dd/MM");
+            // Passing the value in the Date class constructor
+            Date date = new Date(tms.getTime());
+
+            SimpleDateFormat formatteur = new SimpleDateFormat("HH:mm:ss - dd/MM");
 
             CurrentBuild = NomPlanTest +" " + formatteur.format(date);
 
             if (matcher.find()) {
                 methodName = methodName.replaceFirst("_(\\d+)$", "");
             }
-			try {
-				initSauceLabs(URL, methodName, platformName, deviceName, platformVersion, CurrentBuild);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
-			
+            try {
+                initSauceLabs(URL, methodName, platformName, deviceName, platformVersion, CurrentBuild);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
             JavascriptExecutor jse = (JavascriptExecutor) selfdriver;
-  
-            
+
+
             boolean result = LaunchTest(parcours);
             if(TextEngine.cloud.equals("SauceLabs")){
-	            if (result){
-	
-					try {		
-						jse.executeScript("sauce:job-result=passed");
-						
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-	            }
-	            else {
-					try {
-						jse.executeScript("sauce:job-result=failed");
-		           
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
+                if (result){
+
+                    try {
+                        jse.executeScript("sauce:job-result=passed");
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    try {
+                        jse.executeScript("sauce:job-result=failed");
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-    
+
             selfdriver.quit();
         }
 
@@ -927,14 +983,14 @@ public class TextEngine {
         }
 
         if(!Config.dir_export.contains("planTests"))
-        	Config.dir_export = Config.dir_export + dir;
+            Config.dir_export = Config.dir_export + dir;
 
-            String str = Config.dir_export;
-            String lastDigits = str.substring(str.length() - 10);
-            if (lastDigits.matches("\\d+")) {
-                str = str.substring(0, str.length() - 10) + System.currentTimeMillis();
-            }
-            Config.dir_export = str;
+        String str = Config.dir_export;
+        String lastDigits = str.substring(str.length() - 10);
+        if (lastDigits.matches("\\d+")) {
+            str = str.substring(0, str.length() - 10) + System.currentTimeMillis();
+        }
+        Config.dir_export = str;
 
 
 
@@ -946,9 +1002,9 @@ public class TextEngine {
         }
         int index=0;
         for(Method parcours : PlandeTest){
-			index++;
-        	System.out.println("parcours " + index + "sur "+ PlandeTest.length);
-        	
+            index++;
+            System.out.println("parcours " + index + "sur "+ PlandeTest.length);
+
             String methodName = parcours.getName();
             Pattern pattern = Pattern.compile("_(\\d+)$");
             Matcher matcher = pattern.matcher(methodName);
@@ -957,49 +1013,49 @@ public class TextEngine {
                 methodName = methodName.replaceFirst("_(\\d+)$", "");
             }
             try {
-				initBrowserStack(URL, methodName);
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+                initBrowserStack(URL, methodName);
+            } catch (Exception e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
             //initBrowserStack(URL, methodName);
             JavascriptExecutor jse = (JavascriptExecutor) selfdriver;
             boolean result = LaunchTest(parcours);
             if(TextEngine.cloud.equals("BrowserStack")){
-	            if (result){
-	
-					try {
-		                Object response = jse.executeScript("browserstack_executor: {\"action\": \"getSessionDetails\"}");
-		                JSONObject json;
-						json = (JSONObject) new JSONParser().parse((String) response);
-						String Reason = (String) json.get("reason");
-						System.out.println("Raison : "+ Reason);
-						if(Reason==null) {
-			                jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
-						}
-			            else if(Reason.equals("OK")){
-			                jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
-			            }
-						
-					} catch (ParseException e) {
-							e.printStackTrace();
-							}
-	              }
-	            else {
-					try {
-						Object response = jse.executeScript("browserstack_executor: {\"action\": \"getSessionDetails\"}");
-			            JSONObject json;
-						json = (JSONObject) new JSONParser().parse((String) response);
-						String Reason = (String) json.get("reason");
-		                jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"failed\", \"reason\": \""+Reason+"\"}}");
-		           
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-				}
+                if (result){
+
+                    try {
+                        Object response = jse.executeScript("browserstack_executor: {\"action\": \"getSessionDetails\"}");
+                        JSONObject json;
+                        json = (JSONObject) new JSONParser().parse((String) response);
+                        String Reason = (String) json.get("reason");
+                        System.out.println("Raison : "+ Reason);
+                        if(Reason==null) {
+                            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
+                        }
+                        else if(Reason.equals("OK")){
+                            jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
+                        }
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    try {
+                        Object response = jse.executeScript("browserstack_executor: {\"action\": \"getSessionDetails\"}");
+                        JSONObject json;
+                        json = (JSONObject) new JSONParser().parse((String) response);
+                        String Reason = (String) json.get("reason");
+                        jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"failed\", \"reason\": \""+Reason+"\"}}");
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
-            UploadAzureDevOps(NomPlanTest);
+        UploadAzureDevOps(NomPlanTest);
 
         return index;
     }
@@ -1015,14 +1071,14 @@ public class TextEngine {
         }
 
         //if(!Config.dir_export.contains("planTests"))
-        	Config.dir_export = Config.dir_export + dir;
+        Config.dir_export = Config.dir_export + dir;
 
-           // String str = Config.dir_export;
-            //String lastDigits = str.substring(str.length() - 10);
-            //if (lastDigits.matches("\\d+")) {
-              //  str = str.substring(0, str.length() - 10) + System.currentTimeMillis();
-            //}
-           // Config.dir_export = str;
+        // String str = Config.dir_export;
+        //String lastDigits = str.substring(str.length() - 10);
+        //if (lastDigits.matches("\\d+")) {
+        //  str = str.substring(0, str.length() - 10) + System.currentTimeMillis();
+        //}
+        // Config.dir_export = str;
 
 
 
@@ -1034,8 +1090,8 @@ public class TextEngine {
         }
         int index=0;
         for(Method parcours : PlandeTest){
-			index++;
-        	System.out.println("parcours " + index + "sur "+ PlandeTest.length);
+            index++;
+            System.out.println("parcours " + index + "sur "+ PlandeTest.length);
             String methodName = parcours.getName();
             Pattern pattern = Pattern.compile("_(\\d+)$");
             Matcher matcher = pattern.matcher(methodName);
@@ -1047,39 +1103,39 @@ public class TextEngine {
             initMobileAppAndroidBrowserStack(methodName);
             JavascriptExecutor jse = (JavascriptExecutor) selfdriver;
             boolean result = LaunchTest(parcours);
-            
-	            if (result){
 
-					try {
-		                Object response = jse.executeScript("browserstack_executor: {\"action\": \"getSessionDetails\"}");
-		                JSONObject json;
-						json = (JSONObject) new JSONParser().parse((String) response);
-						String Reason = (String) json.get("reason");
-						System.out.println("Raison : "+ Reason);
-						if(Reason==null) {
-			                jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
-						}
-			            else if(Reason.equals("OK")){
-			                jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
-			            }
+            if (result){
 
-					} catch (ParseException e) {
-							e.printStackTrace();
-							}
-	              }
-	            else {
-					try {
-						Object response = jse.executeScript("browserstack_executor: {\"action\": \"getSessionDetails\"}");
-			            JSONObject json;
-						json = (JSONObject) new JSONParser().parse((String) response);
-						String Reason = (String) json.get("reason");
-		                jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"failed\", \"reason\": \""+Reason+"\"}}");
+                try {
+                    Object response = jse.executeScript("browserstack_executor: {\"action\": \"getSessionDetails\"}");
+                    JSONObject json;
+                    json = (JSONObject) new JSONParser().parse((String) response);
+                    String Reason = (String) json.get("reason");
+                    System.out.println("Raison : "+ Reason);
+                    if(Reason==null) {
+                        jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
+                    }
+                    else if(Reason.equals("OK")){
+                        jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
+                    }
 
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-				}
-            
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            else {
+                try {
+                    Object response = jse.executeScript("browserstack_executor: {\"action\": \"getSessionDetails\"}");
+                    JSONObject json;
+                    json = (JSONObject) new JSONParser().parse((String) response);
+                    String Reason = (String) json.get("reason");
+                    jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"failed\", \"reason\": \""+Reason+"\"}}");
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
         return index;
     }
@@ -1095,14 +1151,14 @@ public class TextEngine {
         }
 
         //if(!Config.dir_export.contains("planTests"))
-        	Config.dir_export = Config.dir_export + dir;
+        Config.dir_export = Config.dir_export + dir;
 
-           // String str = Config.dir_export;
-            //String lastDigits = str.substring(str.length() - 10);
-            //if (lastDigits.matches("\\d+")) {
-              //  str = str.substring(0, str.length() - 10) + System.currentTimeMillis();
-            //}
-           // Config.dir_export = str;
+        // String str = Config.dir_export;
+        //String lastDigits = str.substring(str.length() - 10);
+        //if (lastDigits.matches("\\d+")) {
+        //  str = str.substring(0, str.length() - 10) + System.currentTimeMillis();
+        //}
+        // Config.dir_export = str;
 
 
 
@@ -1114,8 +1170,8 @@ public class TextEngine {
         }
         int index=0;
         for(Method parcours : PlandeTest){
-			index++;
-        	System.out.println("parcours " + index + "sur "+ PlandeTest.length);
+            index++;
+            System.out.println("parcours " + index + "sur "+ PlandeTest.length);
             String methodName = parcours.getName();
             Pattern pattern = Pattern.compile("_(\\d+)$");
             Matcher matcher = pattern.matcher(methodName);
@@ -1127,39 +1183,39 @@ public class TextEngine {
             initMobileAppIOSBrowserStack(methodName);
             JavascriptExecutor jse = (JavascriptExecutor) selfdriver;
             boolean result = LaunchTest(parcours);
-            
-	            if (result){
 
-					try {
-		                Object response = jse.executeScript("browserstack_executor: {\"action\": \"getSessionDetails\"}");
-		                JSONObject json;
-						json = (JSONObject) new JSONParser().parse((String) response);
-						String Reason = (String) json.get("reason");
-						System.out.println("Raison : "+ Reason);
-						if(Reason==null) {
-			                jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
-						}
-			            else if(Reason.equals("OK")){
-			                jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
-			            }
+            if (result){
 
-					} catch (ParseException e) {
-							e.printStackTrace();
-							}
-	              }
-	            else {
-					try {
-						Object response = jse.executeScript("browserstack_executor: {\"action\": \"getSessionDetails\"}");
-			            JSONObject json;
-						json = (JSONObject) new JSONParser().parse((String) response);
-						String Reason = (String) json.get("reason");
-		                jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"failed\", \"reason\": \""+Reason+"\"}}");
+                try {
+                    Object response = jse.executeScript("browserstack_executor: {\"action\": \"getSessionDetails\"}");
+                    JSONObject json;
+                    json = (JSONObject) new JSONParser().parse((String) response);
+                    String Reason = (String) json.get("reason");
+                    System.out.println("Raison : "+ Reason);
+                    if(Reason==null) {
+                        jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
+                    }
+                    else if(Reason.equals("OK")){
+                        jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"passed\"}}");
+                    }
 
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-				}
-            
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            else {
+                try {
+                    Object response = jse.executeScript("browserstack_executor: {\"action\": \"getSessionDetails\"}");
+                    JSONObject json;
+                    json = (JSONObject) new JSONParser().parse((String) response);
+                    String Reason = (String) json.get("reason");
+                    jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"failed\", \"reason\": \""+Reason+"\"}}");
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
         return index;
     }
@@ -1199,77 +1255,75 @@ public class TextEngine {
             while (Config.compteur_instance<num_instances) {
                 Config.compteur_params=1;
                 Fonctions.createLogFile(methodName);
-				JSONObject json;
+                JSONObject json;
                 Date time1 = new Date();
                 if(TextEngine.cloud.equals("BrowserStack")) {
-	                try {
-	                    JavascriptExecutor jse = (JavascriptExecutor) selfdriver;
-	    				Object response = jse.executeScript("browserstack_executor: {\"action\": \"getSessionDetails\"}");
-	    				json = (JSONObject) new JSONParser().parse((String) response);
-	    				System.out.println(json);
-	    				String BuildName = (String) json.get("build_name");
-	                    Teststep t = new Teststep("NomBuild","NomBuild" ,"NomBuild.htm",methodName, BuildName);
-	                    Fonctions.logStepOK(t, selfdriver, time1);
-	                    HasCapabilities Hc = (HasCapabilities) selfdriver;
-	                    if(Support.equals("Mobile"))
-	                    	Infodevice = Hc.getCapabilities().getPlatformName()+" "+((String) json.get("os_version"))+" - "+((String) json.get("device"));
-	                    else if(Support.equals("Web")) {
-	                    	Infodevice = Hc.getCapabilities().getPlatformName()+" "+((String) json.get("os_version"))+"-"+((String) json.get("device"))+" - "+ ((String) json.get("browser"))+"/"+ ((String) json.get("browser_version"));
-	                    }
-	                    else
-	                    	Infodevice = Hc.getCapabilities().getPlatformName().toString();
-	                    Teststep t2 = new Teststep("nomDevice","nomDevice" ,"nomDevice.htm",methodName, Infodevice.replace("null", ""));
-	                    Fonctions.logStepOK(t2, selfdriver, time1);
-	                    
-	    			} catch (ParseException Pe) {
-	    				System.out.println("erreur lors de la recuperation des noms des devices");
-	    				Pe.printStackTrace();
-	    			}
+                    try {
+                        JavascriptExecutor jse = (JavascriptExecutor) selfdriver;
+                        Object response = jse.executeScript("browserstack_executor: {\"action\": \"getSessionDetails\"}");
+                        json = (JSONObject) new JSONParser().parse((String) response);
+                        System.out.println(json);
+                        String BuildName = (String) json.get("build_name");
+                        Teststep t = new Teststep("NomBuild","NomBuild" ,"NomBuild.htm",methodName, BuildName);
+                        Fonctions.logStepOK(t, selfdriver, time1);
+                        HasCapabilities Hc = (HasCapabilities) selfdriver;
+                        if(Support.equals("Mobile"))
+                            Infodevice = Hc.getCapabilities().getPlatformName()+" "+((String) json.get("os_version"))+" - "+((String) json.get("device"));
+                        else if(Support.equals("Web")) {
+                            Infodevice = Hc.getCapabilities().getPlatformName()+" "+((String) json.get("os_version"))+"-"+((String) json.get("device"))+" - "+ ((String) json.get("browser"))+"/"+ ((String) json.get("browser_version"));
+                        }
+                        else
+                            Infodevice = Hc.getCapabilities().getPlatformName().toString();
+                        Teststep t2 = new Teststep("nomDevice","nomDevice" ,"nomDevice.htm",methodName, Infodevice.replace("null", ""));
+                        Fonctions.logStepOK(t2, selfdriver, time1);
+
+                    } catch (ParseException Pe) {
+                        System.out.println("erreur lors de la recuperation des noms des devices");
+                        Pe.printStackTrace();
+                    }
                 }
                 else if(TextEngine.cloud.equals("SauceLabs")) {
-                	try {
+                    try {
 
-    				String BuildName = "Build" + CurrentBuild;
-                    Teststep t = new Teststep("NomBuild","NomBuild" ,"NomBuild.htm",methodName, BuildName);
-                    Fonctions.logStepOK(t, selfdriver, time1);
-                    HasCapabilities Hc = (HasCapabilities) selfdriver;
-                    if(Support.equals("Mobile"))
-                    	Infodevice = Hc.getCapabilities().getPlatformName()+" "+(Hc.getCapabilities().getCapability("appium:testobject_device_name"))+" - "+(Hc.getCapabilities().getCapability("platformVersion"));
-                    else
-                    	Infodevice = Hc.getCapabilities().getPlatformName().toString();
-                    Teststep t2 = new Teststep("nomDevice","nomDevice" ,"nomDevice.htm",methodName, Infodevice.replace("null", ""));
-                    Fonctions.logStepOK(t2, selfdriver, time1);
-                    
-    			} catch (Exception Pe) {
-    				System.out.println("erreur lors de la recuperation des noms des devices");
-    				Pe.printStackTrace();
-    			}
+                        String BuildName = "Build" + CurrentBuild;
+                        Teststep t = new Teststep("NomBuild","NomBuild" ,"NomBuild.htm",methodName, BuildName);
+                        Fonctions.logStepOK(t, selfdriver, time1);
+                        HasCapabilities Hc = (HasCapabilities) selfdriver;
+                        if(Support.equals("Mobile"))
+                            Infodevice = Hc.getCapabilities().getPlatformName()+" "+(Hc.getCapabilities().getCapability("appium:testobject_device_name"))+" - "+(Hc.getCapabilities().getCapability("platformVersion"));
+                        else
+                            Infodevice = Hc.getCapabilities().getPlatformName().toString();
+                        Teststep t2 = new Teststep("nomDevice","nomDevice" ,"nomDevice.htm",methodName, Infodevice.replace("null", ""));
+                        Fonctions.logStepOK(t2, selfdriver, time1);
+
+                    } catch (Exception Pe) {
+                        System.out.println("erreur lors de la recuperation des noms des devices");
+                        Pe.printStackTrace();
+                    }
                 }
                 else {
-                RemoteWebDriver r = (RemoteWebDriver) selfdriver;
-                if(Support.equals("Web"))
-                	Infodevice = r.getCapabilities().getPlatformName()+"-"+r.getCapabilities().getCapability("deviceName")+"-"+r.getCapabilities().getBrowserName()+"/"+ r.getCapabilities().getBrowserVersion();
-                if(Support.contentEquals("Mobile"))
-                	Infodevice = r.getCapabilities().getPlatformName()+"-"+r.getCapabilities().getCapability("deviceName");
-                else
-                	Infodevice = r.getCapabilities().getPlatformName().toString();
-                
-                Teststep t = new Teststep("nomDevice","nomDevice" ,"nomDevice.htm",methodName, Infodevice);
-                Fonctions.logStepOK(t, selfdriver, time1);
+                    RemoteWebDriver r = (RemoteWebDriver) selfdriver;
+                    if(Support.equals("Web"))
+                        Infodevice = r.getCapabilities().getPlatformName()+"-"+r.getCapabilities().getCapability("deviceName")+"-"+r.getCapabilities().getBrowserName()+"/"+ r.getCapabilities().getBrowserVersion();
+                    if(Support.contentEquals("Mobile"))
+                        Infodevice = r.getCapabilities().getPlatformName()+"-"+r.getCapabilities().getCapability("deviceName");
+                    else
+                        Infodevice = r.getCapabilities().getPlatformName().toString();
+
+                    Teststep t = new Teststep("nomDevice","nomDevice" ,"nomDevice.htm",methodName, Infodevice);
+                    Fonctions.logStepOK(t, selfdriver, time1);
                 }
-                
+
                 if(largeur != -1 && hauteur != -1) {
-                	Teststep t2 = new Teststep("Resolution","Resolution" ,"Resolution.htm",methodName, largeur + "x" + hauteur);
-                	Fonctions.logStepOK(t2, selfdriver, time1);
+                    Teststep t2 = new Teststep("Resolution","Resolution" ,"Resolution.htm",methodName, largeur + "x" + hauteur);
+                    Fonctions.logStepOK(t2, selfdriver, time1);
                 }
                 for (Object param : parametres) {
-                	System.out.println("paramètre : " + param.toString());
+                    System.out.println("paramètre : " + param.toString());
                 }
                 Object resultat = parcours.invoke(null, parametres);
                 result = (Boolean) resultat;
                 if (Config.AzureDevOps == 1) {
-
-
 
                     String status = "OK";
                     String message = "";
@@ -1284,65 +1338,25 @@ public class TextEngine {
                             if(Objects.equals(t.status, "KO")) {
                                 status = "KO";
                                 message = t.errorMessage;
-                                ResultAzure.add(new TestCaseResult(methodName, num, "Failed", Infodevice, message,"[Lien vers résultat]("+link+")"));
+                                ResultAzure1.add(new TestCaseResult(methodName, num, "Failed", Infodevice, message,"[Lien vers résultat]("+link+")"));
                                 break;
                             }
                             else if(Objects.equals(t.status, "Warning")) {
                                 status = "Warning";
                                 message = t.errorMessage;
-                                ResultAzure.add(new TestCaseResult(methodName, num, "Warning", Infodevice, message,"[Lien vers résultat]("+link+")"));
+                                ResultAzure1.add(new TestCaseResult(methodName, num, "Warning", Infodevice, message,"[Lien vers résultat]("+link+")"));
                                 break;
                             }
                         }
-                        if(status.equals("OK"))
-                            ResultAzure.add(new TestCaseResult(methodName, num, "Passed", Infodevice, "","[Lien vers résultat]("+link+")"));
+                        if(status.equals("OK")) {
+                            ResultAzure1.add(new TestCaseResult(methodName, num, "Passed", Infodevice, "", "[Lien vers résultat](" + link + ")"));
+                        }
                         System.out.println("Result link: "+link);
                     }
                 }
-                if (Config.Jira == 1) {
-                	if(Step.containsKey(Integer.parseInt(num))) {
-                        String link ="";
-                        String status = "Test ok";
-                        if (TestPlan) {
-                            link= getLinkResult(instance, token, Config.dir_export+"/"+methodName+"/");
-                        }
-                        scripts_techniques.Teststep teststep = null;
-                        for (scripts_techniques.Teststep t : Step.get(Integer.parseInt(num))) {
-                        	teststep = t;
-                            if(Objects.equals(t.status, "KO")) {
-                            	status = "Test ko";
-                            	String ticket = getJiraIssue(t.testcase_label);
-                            	if (ticket == null) {
-									createJiraTicket(link, status, t);
-								} else {
-									updateJiraIssue(link, status, t, ticket);
-								}
-                                break;
-                            }
-                            else if(Objects.equals(t.status, "Warning")) {
-                               status = "Test warning";
-                               String ticket = getJiraIssue(t.testcase_label);
-                               if (ticket == null) {
-									createJiraTicket(link, status, t);
-								} else {
-									updateJiraIssue(link, status, t, ticket);
-								}
-                                break;
-                            }
-                        }
-                        if(status.equals("Test ok")) {
-                        	String ticket = getJiraIssue(teststep.testcase_label);
-                        	if (ticket == null) {
-								createJiraTicket(link, status, teststep);
-							} else {
-								updateJiraIssue(link, status, teststep, ticket);
-							}
-                        }
-                        System.out.println("Result link: "+link);
-                    }
-				}
                 Config.compteur_instance = Config.compteur_instance+1;
             }
+
             return result;
 
         } catch (Exception e) {
@@ -1351,7 +1365,7 @@ public class TextEngine {
         }
     }
 
-        private static String SearchObject(String NatureAction, String prop) throws FileNotFoundException {
+    private static String SearchObject(String NatureAction, String prop) throws FileNotFoundException {
         String techlabel = "";
         //Recuperation de tous les techlabels existants
         File jsonFile = new File(Config.file_objects);
@@ -1397,156 +1411,24 @@ public class TextEngine {
     }
 
 
-        public static String[] getResolutions() throws InvalidFileFormatException, IOException {
-        	String[] resolutions = {};
-        	Wini ini = new Wini(new File(Config.propertyFile));
-			String res = ini.get("resolution", "res");
-			
-			resolutions = res.split(",");
-			for (int i = 0; i < resolutions.length; i++) {
-				System.out.println(resolutions[i]);
-			}
-        	return resolutions;
+    public static String[] getResolutions() throws InvalidFileFormatException, IOException {
+        String[] resolutions = {};
+        Wini ini = new Wini(new File(Config.propertyFile));
+        String res = ini.get("resolution", "res");
+
+        resolutions = res.split(",");
+        for (int i = 0; i < resolutions.length; i++) {
+            System.out.println(resolutions[i]);
         }
+        return resolutions;
+    }
 
 
     static SoftAssertions sa = new SoftAssertions();
     public static SoftAssertions getSoftAssertions() {
-    	return sa;
+        return sa;
     }
-    
-    public static void createJiraTicket(String link, String status, scripts_techniques.Teststep t) throws IOException {
-        OkHttpClient client = new OkHttpClient();
-        String jsonString = createTicketJSON(link, status, t);
 
-        // Encodage des informations d'identification en Base64
-        String auth = Config.JIRA_USERNAME + ":" + Config.JIRA_API_TOKEN;
-        String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes());
-        String authHeader = "Basic " + encodedAuth;
-
-        // Créer la requête HTTP
-        Request request = new Request.Builder()
-                .url(Config.JIRA_URL+"issue")
-                .header("Authorization", authHeader)
-                .header("Accept", "application/json")
-                .header("Content-Type", "application/json")
-                .post(RequestBody.create(MediaType.parse("application/json"), jsonString))
-                .build();
-        //System.out.println(request.toString());
-        // Exécuter la requête
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-                System.out.println("Ticket créé avec succès: " + response.body().string());
-            } else {
-                System.out.println("Erreur lors de la création du ticket. Code: " + response.code());
-                System.out.println(response.body().string());
-            }
-        }
-    }
-    
-    public static String createTicketJSON(String link, String status, scripts_techniques.Teststep t) {// Création de l'objet JSON pour le projet    	
-    	com.google.gson.JsonObject project = new com.google.gson.JsonObject();
-        project.addProperty("key", Config.JIRA_PROJECT_NAME);
-
-        // Création de l'objet JSON pour le type d'issue
-        com.google.gson.JsonObject issueType = new com.google.gson.JsonObject();
-        issueType.addProperty("name", status);
-
-        // Création de l'objet JSON pour les champs
-        com.google.gson.JsonObject fields = new com.google.gson.JsonObject();
-        fields.add("project", project);
-        fields.addProperty("summary", t.testcase_label);
-        fields.addProperty("description", t.errorMessage + "\nLien vers les résultats: " + link );
-        fields.add("issuetype", issueType);
-
-        // Création de l'objet JSON principal
-        com.google.gson.JsonObject jiraIssue = new com.google.gson.JsonObject();
-        jiraIssue.add("fields", fields);
-
-        // Convertir l'objet JSON en chaîne
-        Gson gson = new Gson();
-        String json = gson.toJson(jiraIssue);
-
-        return json;
-    }
-    
-    public static String getJiraIssue(String summary) throws IOException {
-    	OkHttpClient client = new OkHttpClient();
-    	String ticket = null;
-
-        // Encodage des informations d'identification en Base64
-        String auth = Config.JIRA_USERNAME + ":" + Config.JIRA_API_TOKEN;
-        String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes());
-        String authHeader = "Basic " + encodedAuth;
-
-        // Créer la requête HTTP
-        Request request = new Request.Builder()
-                .url(Config.JIRA_URL + "search?jql=summary ~ \"" + summary + "\"")
-                .header("Authorization", authHeader)
-                .header("Accept", "application/json")
-                .header("Content-Type", "application/json")
-                .build();
-        
-        // Exécuter la requête
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-            	String jsonResponse = response.body().string();
-            	ticket = parseAndPrintIssues(jsonResponse);
-                System.out.println("Ticket récupéré avec succès: " + jsonResponse);
-            } else {
-                System.out.println("Erreur lors de la récupération du ticket. Code: " + response.code());
-                System.out.println(response.body().string());
-            }
-        }
-        return ticket;
-    }
-    
-    public static void updateJiraIssue(String link, String status, scripts_techniques.Teststep t, String ticket) throws IOException {
-    	OkHttpClient client = new OkHttpClient();
-
-        String jsonString = createTicketJSON(link, status, t);
-
-        // Encodage des informations d'identification en Base64
-        String auth = Config.JIRA_USERNAME + ":" + Config.JIRA_API_TOKEN;
-        String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes());
-        String authHeader = "Basic " + encodedAuth;
-
-        // Créer la requête HTTP
-        Request request = new Request.Builder()
-                .url(Config.JIRA_URL + "issue/" + ticket)
-                .header("Authorization", authHeader)
-                .header("Accept", "application/json")
-                .header("Content-Type", "application/json")
-                .put(RequestBody.create(MediaType.parse("application/json"), jsonString))
-                .build();
-        //System.out.println(request.toString());
-        // Exécuter la requête
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-            	String jsonResponse = response.body().string();
-                System.out.println("Ticket modifié avec succès: " + jsonResponse);
-            } else {
-                System.out.println("Erreur lors de la modification du ticket. Code: " + response.code());
-                System.out.println(response.body().string());
-            }
-        }
-    }
-    
-    private static String parseAndPrintIssues(String jsonResponse) {
-        Gson gson = new Gson();
-        com.google.gson.JsonObject jsonObject = gson.fromJson(jsonResponse, com.google.gson.JsonObject.class);
-        JsonArray issues = jsonObject.getAsJsonArray("issues");
-
-        for (int i = 0; i < issues.size(); i++) {
-        	com.google.gson.JsonObject issue = issues.get(i).getAsJsonObject();
-            String id = issue.get("id").getAsString();
-            String key = issue.get("key").getAsString();
-            String issueSummary = issue.getAsJsonObject("fields").get("summary").getAsString();
-            System.out.println("ID: " + id + ", Key: " + key + ", Summary: " + issueSummary);
-            return key;
-        }
-		return null;
-    }
 
     public static String[] Status(Teststep t) {
 
@@ -1555,6 +1437,7 @@ public class TextEngine {
         result[1] = t.status;
         result[2] = t.errorMessage;
         Result.add(result);
+        addStepIndependant(result);
         if (t.status == "OK")
             return result;
         else if (t.status == "Warning")
@@ -1569,7 +1452,7 @@ public class TextEngine {
     public static void ShowResult(){
         StringBuilder sb = new StringBuilder("Results : \n");
         for (String[] s:
-             Result) {
+                Result) {
             sb.append(s[0]).append("-> ").append(s[1]).append(": ").append(s[2]).append("\n");
 
         }
@@ -1600,11 +1483,11 @@ public class TextEngine {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_checkbyid(selfdriver, t);
@@ -1634,11 +1517,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         if (Support == "Web")
@@ -1674,11 +1557,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         if (Support == "Web")
@@ -1714,11 +1597,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_clickbyid(selfdriver, t);
@@ -1748,11 +1631,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         if (Support == "Web")
@@ -1790,11 +1673,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_clickbytitle(selfdriver, t);
@@ -1824,11 +1707,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         if (Support == "Web")
@@ -1865,11 +1748,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_Highlightbyname(selfdriver, t);
@@ -1899,11 +1782,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_Highlightbyclass(selfdriver, t);
@@ -1933,11 +1816,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_Highlightbyid(selfdriver, t);
@@ -1967,11 +1850,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_Highlightbyxpath(selfdriver, t);
@@ -2001,11 +1884,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectindexbyid(selfdriver, t);
@@ -2035,11 +1918,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectindexbyname(selfdriver, t);
@@ -2069,11 +1952,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectindexbyxpath(selfdriver, t);
@@ -2103,11 +1986,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectvaluebyid(selfdriver, t);
@@ -2137,11 +2020,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectvaluebyname(selfdriver, t);
@@ -2171,11 +2054,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectvaluebyxpath(selfdriver, t);
@@ -2205,11 +2088,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectvisibletextbyid(selfdriver, t);
@@ -2239,11 +2122,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectvisibletextbyname(selfdriver, t);
@@ -2273,11 +2156,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectvisibletextbyxpath(selfdriver, t);
@@ -2307,11 +2190,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         if (Support == "Web")
@@ -2346,11 +2229,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         if (Support == "Web")
@@ -2387,11 +2270,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         if (Support == "Web")
@@ -2428,11 +2311,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectkeysbyid(selfdriver, t);
@@ -2462,11 +2345,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectkeysbyname(selfdriver, t);
@@ -2496,11 +2379,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webobject_selectkeysbyxpath(selfdriver, t);
@@ -2530,11 +2413,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_dragbyxpath(selfdriver, t);
@@ -2564,11 +2447,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_checknbelementbyxpath(selfdriver, t);
@@ -2601,11 +2484,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webpage_waitloadingcomplete(selfdriver, t);
@@ -2636,10 +2519,10 @@ try {
         //Initialiser Teststep
         String label;
         try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webpage_close(selfdriver, t);
@@ -2669,11 +2552,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         if (Support == "Web")
@@ -2708,11 +2591,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_executer_bat(selfdriver, t);
@@ -2742,11 +2625,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_checkpdf(selfdriver, t);
@@ -2776,11 +2659,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_checkcsv(selfdriver, t);
@@ -2810,11 +2693,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         if (Support == "Web")
@@ -2848,26 +2731,26 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
-        
+
         if (Support == "Mobile")
             status = scripts_techniques.Appium.Scripts_techniques.MobileContainer_scroll(selfdriver, t);
         else {
-        	String[] result = new String[3];
+            String[] result = new String[3];
             result[0] = NomAction;
             result[1] = "KO";
             result[2] = "Action not available on this device";
             sa.fail("Action not available on this device");
             return result;
         }
-        	
-        
+
+
         Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
@@ -2894,11 +2777,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_activateframe(selfdriver, t);
@@ -2928,11 +2811,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_desactivateframe(selfdriver, t);
@@ -2962,11 +2845,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_activatetab(selfdriver, t);
@@ -2978,8 +2861,8 @@ try {
         Config.compteur_params++;
         return Status(t);
     }
-    
-    
+
+
 
     public static String[] requeteAPI(String prop, String param) throws IOException {
         boolean status = true;
@@ -2998,11 +2881,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_requeteAPI(selfdriver, t);
@@ -3032,11 +2915,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_checkjson(selfdriver, t);
@@ -3066,11 +2949,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_checkxls(selfdriver, t);
@@ -3100,12 +2983,12 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
-        
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
+
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_getemail(selfdriver, t);
@@ -3135,18 +3018,18 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
 
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         if (Support == "Web")
-        	status = Scripts_techniques.WebPage_clickbycoordinates(selfdriver, t);
+            status = Scripts_techniques.WebPage_clickbycoordinates(selfdriver, t);
         else if (Support == "Mobile")
-        	status = scripts_techniques.Appium.Scripts_techniques.MobileContainer_clickbycoordinates(selfdriver, t);
+            status = scripts_techniques.Appium.Scripts_techniques.MobileContainer_clickbycoordinates(selfdriver, t);
         Config.compteur_instance = 1;
         //Si le clique a reussi
         if (status)
@@ -3173,11 +3056,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_checkdoc(selfdriver, t);
@@ -3207,11 +3090,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_checkinnertextnotpresent(selfdriver, t);
@@ -3241,11 +3124,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.Webpage_open(selfdriver, t);
@@ -3275,11 +3158,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_confirmAlert(selfdriver, t);
@@ -3309,11 +3192,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_FonctionsAnnexes(selfdriver, t);
@@ -3348,11 +3231,11 @@ try {
 
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         //Appel du clickbytext original
@@ -3390,11 +3273,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         if (Support == "Web")
@@ -3431,11 +3314,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         if (Support == "Web")
@@ -3470,11 +3353,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_hoverbytext(selfdriver, t);
@@ -3504,11 +3387,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_clickrightbytext(selfdriver, t);
@@ -3538,11 +3421,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_clickbelowbytext(selfdriver, t);
@@ -3572,11 +3455,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_clickleftbytext(selfdriver, t);
@@ -3606,11 +3489,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_clickabovebytext(selfdriver, t);
@@ -3640,11 +3523,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         if (Support == "Web")
@@ -3679,11 +3562,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         if (Support == "Web")
@@ -3720,11 +3603,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_dragbytext(selfdriver, t);
@@ -3754,11 +3637,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_typetext(selfdriver, t);
@@ -3788,11 +3671,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_checkcheckboxstatus(selfdriver, t);
@@ -3826,11 +3709,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_clicktable(selfdriver, t);
@@ -3860,11 +3743,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_checktable(selfdriver, t);
@@ -3894,11 +3777,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebObject_sendkeystable(selfdriver, t);
@@ -3928,11 +3811,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = Scripts_techniques.WebPage_visualtesting(selfdriver, t);
@@ -3966,11 +3849,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_checkbyresourceid(selfdriver, t);
@@ -4000,11 +3883,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clickbyresourceid(selfdriver, t);
@@ -4034,11 +3917,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_keysbyresourceid(selfdriver, t);
@@ -4068,11 +3951,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobilecontainer_RestartApp(selfdriver, t);
@@ -4102,11 +3985,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clearvaluebyname(selfdriver, t);
@@ -4136,11 +4019,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clearvaluebyresourceid(selfdriver, t);
@@ -4170,11 +4053,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clearvaluebyxpath(selfdriver, t);
@@ -4204,11 +4087,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_clearvaluebyid(selfdriver, t);
@@ -4238,11 +4121,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_doubleClickbyname(selfdriver, t);
@@ -4272,11 +4155,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_DoubleClickbyresourceid(selfdriver, t);
@@ -4306,11 +4189,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_doubleclickbyxpath(selfdriver, t);
@@ -4340,11 +4223,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_longpressbyname(selfdriver, t);
@@ -4374,11 +4257,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_longpressbyresourceid(selfdriver, t);
@@ -4408,11 +4291,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_longpressbyxpath(selfdriver, t);
@@ -4442,11 +4325,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeLeftbyname(selfdriver, t);
@@ -4476,11 +4359,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeLeftbyresourceid(selfdriver, t);
@@ -4510,11 +4393,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeLeftbyxpath(selfdriver, t);
@@ -4544,11 +4427,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeRightbyname(selfdriver, t);
@@ -4578,11 +4461,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeRightbyresourceid(selfdriver, t);
@@ -4612,11 +4495,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.mobileobject_swipeRightbyxpath(selfdriver, t);
@@ -4646,11 +4529,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_clearvaluebytext(selfdriver, t);
@@ -4680,11 +4563,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_doubleclickbytext(selfdriver, t);
@@ -4714,11 +4597,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_longpressbytext(selfdriver, t);
@@ -4748,11 +4631,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_scrollbytext(selfdriver, t);
@@ -4782,11 +4665,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_swipeleftbytext(selfdriver, t);
@@ -4816,11 +4699,11 @@ try {
         }
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         status = scripts_techniques.Appium.Scripts_techniques.MobileObject_swiperightbytext(selfdriver, t);
@@ -4874,11 +4757,11 @@ try {
 
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
         Config.compteur_instance = 2;
         //Appel du clickbytext original
@@ -4911,11 +4794,11 @@ try {
 
         //Initialiser Teststep
         String label;
-try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         //Appel du clickbytext original
@@ -4929,7 +4812,7 @@ try {
         Config.compteur_params++;
         return Status(t);
     }
-    
+
     public static String[] movejaugebyxpath(String prop, String param) throws IOException {
         boolean status = true;
         final String NatureAction = "xpath";
@@ -4948,10 +4831,10 @@ try {
         //Initialiser Teststep
         String label;
         try {
-			label = techlabel.split("_")[1].split("\\.")[0];
-		} catch (ArrayIndexOutOfBoundsException e) {
-			label = techlabel.split("\\.")[0];
-		}
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         Config.compteur_instance = 2;
         //status = scripts_techniques.Appium.Scripts_techniques.mobileobject_movejaugebyxpath(selfdriver, t);
@@ -4968,14 +4851,41 @@ try {
         if (Config.AzureDevOps==1) {
             try {
                 createTestRun(testplanName);
-                uploadTestResults(ResultAzure);
-                updateTestRunState("Completed");
+                uploadTestResults(ResultAzure1);
             }
             catch (Exception e){
                 System.out.println("Erreur lors de la remonté des resultats dans Azure DevOps");
             }
         }
     }
+    public static void UploadInAzureDevOps(String testplan){
+        List<Integer> ListofTestCase = new ArrayList<>();
+        for (String TestcaseName:StepIndepedent.keySet()) {
+            if (Config.AzureDevOps == 1) {
+                int idAzure = AzureTools.NewTestCase(TestcaseName, "-1", "");
+                ListofTestCase.add(idAzure);
+                String outcome = "Passed";
+                String errorMessage= "";
+                for (String[] step:StepIndepedent.get(TestcaseName)) {
+                    if (step[1].equals("Warning")){
+                        outcome = "Warning";
+                        errorMessage = step[2];
+                    }
+                    if (step[1].equals("KO")){
+                        outcome = "Failed";
+                        errorMessage = step[2];
+                        break;
+                    }
+                }
+                ResultAzure1.add(new TestCaseResult(TestcaseName,String.valueOf(idAzure),outcome,"",errorMessage,""));
+            }
+        }
+            int idTestplan = AzureTools.NewTestPlanIndepedent(testplan, ListofTestCase);
+        createResultIndepedant(idTestplan,testplan,ResultAzure1);
+    }
+
+
+
     public static String getLinkResult(String instance, String token, String dirTestPlan){
         OkHttpClient client = new OkHttpClient();
         String type;
@@ -5006,7 +4916,7 @@ try {
                 "&testplan="+IdtestPlan +
                 "&dir_testplan="+dirTestPlan +
                 "&dataset=0";
-        System.out.println(url);
+
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -5118,9 +5028,15 @@ try {
 
             }
         }
+        updateTestRunState("Completed");
     }
     public static Optional<Path> findLatestJpgFile(String directoryPath) throws IOException {
-        Path dir = Paths.get(directoryPath);
+        Path dir = null;
+        try {
+            dir = Paths.get(directoryPath);
+        } catch (Exception e) {
+            System.out.println("Le chemin n'existe pas");
+        }
         if (!Files.isDirectory(dir)) {
             throw new IllegalArgumentException("Le chemin spécifié n'est pas un répertoire : " + directoryPath);
         }
@@ -5128,7 +5044,7 @@ try {
         try (Stream<Path> files = Files.walk(dir)) {
             return files
                     .filter(file -> file.toString().toLowerCase().endsWith(".jpg"))
-                    .filter(Files::isRegularFile)  // Filtrer uniquement les fichiers réguliers
+                    .filter(Files::isRegularFile)
                     .max(Comparator.comparingLong(file -> {
                         try {
                             return Files.getLastModifiedTime(file).toMillis();
@@ -5187,147 +5103,26 @@ try {
         }
     }
 
+    public static void getPercyResult(){
+        Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", nom, Config.PercyToken);
+        Config.compteur_instance = 2;
+
+        WebPage_getResult(selfdriver,t);
+        Config.compteur_instance = 1;
+    }
     public static void getPercyResult(String token, String parcoursName){
-        
-                Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", parcoursName, token);
-                Config.compteur_instance = 2;
-        
-                WebPage_getResult(selfdriver,t);
-                Config.compteur_instance = 1;
-        
-            }
+//        try {
+//            Fonctions.createLogFile("Resultat_Percy");
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 
-        public static boolean WebPage_getResult(WebDriver selenium, Teststep t) {
-        Date time1 = new Date();
-        executeCommand("npx percy exec:stop");
-        System.out.println("data:");
+        Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", parcoursName, token);
+        Config.compteur_instance = 2;
 
-        Map<String, Object> result = GetData(t.param);
-        if(result==null)
-            return Fonctions.logStepKO(t, selfdriver, time1,"Un probleme est survenue lors de la remontée des résultats");
-        if(((ArrayList<String>)result.get("changes")).isEmpty())
-            return Fonctions.logStepOK(t, selenium, time1);
-        StringBuilder sb = new StringBuilder();
-        for(String nom:((ArrayList<String>)result.get("changes"))){
-            sb.append(nom + "; ");
-        }
-        return Fonctions.logStepWarning(t, selfdriver, time1,"Un changement à été détécté sur les captures suivantes : "+sb.toString());
-    }
-    private static void executeCommand(String command) {
-        try {
-            // Utiliser ProcessBuilder pour exécuter la commande
-            ProcessBuilder builder = new ProcessBuilder();
-            builder.command("cmd.exe", "/c", "cd Batfiles && "+ command);
-            builder.redirectErrorStream(true);
-            Process process = builder.start();
+        WebPage_getResult(selfdriver,t);
+        Config.compteur_instance = 1;
 
-            // Lire la sortie de la commande
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-            int i = 0;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-            // Attendre la fin de l'exécution de la commande
-            int exitCode = process.waitFor();
-            System.out.println("\nCommande exécutée avec le code de sortie : " + exitCode);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public static Map<String, Object> GetData(String token){
-
-        Map<String, Object> Data = new HashMap<>();
-        Map<String, String> param = new HashMap<>();
-        param.put("project_slug", "your_project_slug");
-        System.out.println(token);
-        String response = CallAPI("https://percy.io/api/v1/projects",token, param);
-        Gson gson = new Gson();
-        com.google.gson.JsonObject jsonResponse = gson.fromJson(response, com.google.gson.JsonObject.class);
-        String projectID = jsonResponse.getAsJsonObject("data").get("id").getAsString();
-        Data.put("project_id", projectID);
-        System.out.println("project_id: "+ projectID);
-
-        param = new HashMap<>();
-        param.put("project_id", projectID);
-        response = CallAPI("https://percy.io/api/v1/builds", token, param);
-        jsonResponse = gson.fromJson(response, com.google.gson.JsonObject.class);
-        String buildID = jsonResponse.get("data").getAsJsonArray().get(0).getAsJsonObject().get("id").getAsString();
-        String noBuild = jsonResponse.get("data").getAsJsonArray().get(0).getAsJsonObject().get("attributes").getAsJsonObject().get("build-number").getAsString();
-        Data.put("build_id", buildID);
-        Data.put("noBuild", noBuild);
-
-        System.out.println("buildID: "+ buildID);
-
-        String state;
-        try {
-            do {
-                response = CallAPI("https://percy.io/api/v1/builds/"+buildID, token, null);
-                jsonResponse = gson.fromJson(response, com.google.gson.JsonObject.class);
-                state = jsonResponse.get("data").getAsJsonObject().get("attributes").getAsJsonObject().get("state").getAsString();
-
-            } while (!(state.equals("failed")||state.equals("finished")));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-        System.out.println("state: "+ state);
-        Data.put("state", state);
-        param= new HashMap<>();
-        param.put("build_id", buildID);
-        response = CallAPI("https://percy.io/api/v1/snapshots", token, param);
-        jsonResponse = gson.fromJson(response, com.google.gson.JsonObject.class);
-        JsonArray JA = jsonResponse.get("data").getAsJsonArray();
-        ArrayList<String> changes = new ArrayList<>();
-        for(JsonElement s:JA){
-            String name= s.getAsJsonObject().get("attributes").getAsJsonObject().get("name").getAsString();
-            String RS= s.getAsJsonObject().get("attributes").getAsJsonObject().get("review-state").getAsString();
-            System.out.println(name +" -> "+RS);
-            if(!RS.equals("approved"))
-                changes.add(name +" -> "+RS);
-        }
-        Data.put("changes", changes);
-
-        return Data;
-    }
-    public static String CallAPI(String URL, String token, Map<String, String> parameter){
-
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.connectTimeout(40, TimeUnit.SECONDS);
-        builder.readTimeout(40, TimeUnit.SECONDS);
-        builder.writeTimeout(40, TimeUnit.SECONDS);
-        OkHttpClient client = builder.build();
-
-        HttpUrl.Builder urlBuilder = HttpUrl.parse(URL).newBuilder();
-        if(parameter!=null) {
-            for (Map.Entry<String, String> param : parameter.entrySet()) {
-                urlBuilder.addQueryParameter(param.getKey(), param.getValue());
-            }
-        }
-        Request request = new Request.Builder()
-                .url(urlBuilder.build())
-                .addHeader("Authorization", "Token token=" + token)
-                .get()
-                .build();
-
-        try (Response response = client.newCall(request).execute()) {
-            String responseBody = null;
-            if (response.isSuccessful()) {
-                responseBody = response.body().string();
-
-            } else {
-                System.out.println("Response KO: " + response.body().string());
-            }
-            return responseBody;
-        }catch (SocketTimeoutException Se){
-            System.out.println("Erreur lors de la connexion au serveur");
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
 //    public static String[] DeskGetpropertybyName(String name, String prop) {
