@@ -9,19 +9,19 @@ import org.junit.jupiter.api.Test;
 public class MainExemplesJUnit {
 	
 	// Il est possible de réutiliser des enchaînements d'actions dans plusieurs parcours
-	public static void womenTopsJacket() throws IOException, InterruptedException {
+	public void womenTopsJacket() throws IOException, InterruptedException {
 		hoverbytext("Women");
 		hoverbytext("Tops");
 		clickbytext("Jackets");
 	}
 	
-	public static void xsBlue() throws IOException, InterruptedException {
+	public void xsBlue() throws IOException, InterruptedException {
 		clickbytext("XS");
 		clickbytext("blue");
 	}
 	
 	@Test
-	public static void parcours1() throws IOException, InterruptedException {
+	public void parcours1() throws IOException, InterruptedException {
 		initWeb("https://magento.softwaretestingboard.com/", "parcours1");
 		
 		womenTopsJacket(); //On appelle un groupe d'actions utilisées dans plusieurs parcours
@@ -38,7 +38,7 @@ public class MainExemplesJUnit {
 	}
 	
 	@Test
-	public static void parcours2() throws IOException, InterruptedException {
+	public void parcours2() throws IOException, InterruptedException {
 		initWeb("https://magento.softwaretestingboard.com/", "parcours2");
 		
 		womenTopsJacket();
@@ -56,7 +56,7 @@ public class MainExemplesJUnit {
 	}
 	
 	@Test
-	public static void parcours3() throws IOException, InterruptedException {
+	public void parcours3() throws IOException, InterruptedException {
 		initWeb("https://magento.softwaretestingboard.com/", "parcours3");
 		
 		womenTopsJacket();

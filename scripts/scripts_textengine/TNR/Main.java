@@ -1,69 +1,871 @@
 package scripts_textengine.TNR;
 
 import java.io.IOException;
+
+import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import scripts_techniques.Config;
+
 import static scripts_textengine.TextEngine.*;
 
 public class Main {
-public static void main(String[] args) throws IOException, InterruptedException {
-	ClickByText clickByText = new ClickByText();
-	clickByText.clickByText();
+	static String url = "http://www.test.kalios-saas.com/automationpractice/index.html";
 	
-	SendKeysByText sendKeysByText = new SendKeysByText();
-	sendKeysByText.sendKeysByText();
+	@BeforeEach
+	public void setUp() {
+		sa = new SoftAssertions();
+	}
+	@AfterEach
+	public void assertAlll(){
+		sa.assertAll();
+	}
+
+	@Test
+	public void clickbytext_element_button_avec_texte() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_element_button_avec_texte");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 1");
+		close("");
+	}
 	
-	CheckByText checkByText = new CheckByText();
-	checkByText.checkByText();
+	@Test
+	public void clickbytext_element_button_avec_value() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_element_button_avec_value");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 2");
+		close("");
+	}
 	
-	PropertiesActions propertiesActions = new PropertiesActions();
-	propertiesActions.propertiesActions();
+	@Test
+	public void clickbytext_element_button_avec_title() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_element_button_avec_title");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 3");
+		close("");
+	}
 	
-	PageActions pageActions = new PageActions();
-	pageActions.pageActions();
+	@Test
+	public void clickbytext_element_button_avec_aria_label() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_element_button_avec_texte");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 4");
+		close("");
+	}
 	
-	TableActions tableActions = new TableActions();
-	tableActions.tableActions();
-}
+	@Test
+	public void clickbytext_element_button_avec_alt() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_element_button_avec_alt");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 5");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_element_button_avec_partie_du_texte() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_element_button_avec_partie_du_texte");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 6");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_element_a_suivi_dun_href() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_element_a_suivi_dun_href");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 7");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_element_input_type_button() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_element_input_type_button");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 8");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_element_input_type_submit() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_element_input_type_button");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 9");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_parent_button_avec_text() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_parent_button_avec_text");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 11");
+		close("");
+	}
 
-@Test
-public void clickbytext() throws IOException, InterruptedException {
-	ClickByText clickByText = new ClickByText();
-	clickByText.clickByText();
-	sa.assertAll();
-}
+	@Test
+	public void clickbytext_parent_button_avec_title() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_parent_button_avec_title");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Button 12");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_parent_button_avec_value() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_parent_button_avec_value");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 13");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_element_clickable_avec_text() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_element_clickable_avec_text");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 14");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_element_clickable_avec_title() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_element_clickable_avec_title");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 15");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_element_clickable_avec_value() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_element_clickable_avec_value");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 16");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_test_avec_context_a_gauche_1() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_test_avec_context_a_gauche_1");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Réservation|Billets un jour");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_test_avec_context_a_gauche_2() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_test_avec_context_a_gauche_2");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Réservation|Billets une semaine");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_test_avec_context_a_gauche_3() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_test_avec_context_a_gauche_3");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Réservation|Billets un mois");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_test_avec_context_au_dessus_1() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_test_avec_context_au_dessus_1");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Click|Context1");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_test_avec_context_au_dessus_2() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_test_avec_context_au_dessus_2");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Click|Context2");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_test_avec_context_au_dessus_3() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_test_avec_context_au_dessus_3");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Click|Context3");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_test_avec_context_et_propriete_au_meme_niveau() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_test_avec_context_et_propriete_au_meme_niveau");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Appuie|Contextbis");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_test_avec_context_et_propriete_au_meme_niveau_2() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_test_avec_context_et_propriete_au_meme_niveau_2");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Appuie|Contextter");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_texte_minuscule() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_texte_minuscule");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 20");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_texte_majuscule() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_texte_majuscule");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 21");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_texte_qui_alterne_maj_min() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_texte_qui_alterne_maj_min");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 22");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_moitie_des_lettres_maj() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_moitie_des_lettres_maj");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 23");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_texte_maj_avec_une_lettre_min() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_texte_maj_avec_une_lettre_min");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 24");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_deux_espaces() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_deux_espaces");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 25");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_plusieurs_espaces() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_plusieurs_espaces");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 26");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_espace_au_milieu_du_mot() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_espace_au_milieu_du_mot");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 27");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_plusieurs_espaces_dans_le_mot() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_plusieurs_espaces_dans_le_mot");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 28");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_espaces_a_plusieurs_endroits_du_mot() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_espaces_a_plusieurs_endroits_du_mot");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 29");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_espaces_avant_et_apres() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_espaces_avant_et_apres");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 30");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_texte_sans_espace() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_texte_sans_espace");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 31");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_texte_minuscule_avec_espaces() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_texte_minuscule_avec_espaces");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 32");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_texte_majuscule_avec_espaces() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_texte_majuscule_avec_espaces");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 33");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_texte_minuscule_avec_espaces_aux_extremites() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_texte_minuscule_avec_espaces_aux_extremites");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 34");
+		close("");
+	}
+	
+	@Test
+	public void clickbytext_texte_majuscule_avec_espaces_aux_extremites() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_texte_majuscule_avec_espaces_aux_extremites");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 35");
+		close("");
+	}
 
-@Test
-public void sendkeysbytest() throws IOException, InterruptedException {
-	SendKeysByText sendKeysByText = new SendKeysByText();
-	sendKeysByText.sendKeysByText();
-	sa.assertAll();
-}
+	@Test
+	public void clickbytext_majuscules_minuscules_espaces() throws IOException, InterruptedException {
+		initWeb(url, "clickbytext_majuscules_minuscules_espaces");
+		selectbytext("Select Component", "ClickByText");
+		clickbytext("Bouton 36");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_texte_minuscule() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_texte_minuscule");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("check 20", "Check 20");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_texte_majuscule() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_texte_majuscule");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("CHECK 21", "CHECK 21");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_texte_qui_alterne_maj_min() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_texte_qui_alterne_maj_min");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("ChEcK 22", "ChEcK 22");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_moitie_des_lettres_maj() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_moitie_des_lettres_maj");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("CHeCK 23", "CHeck 23");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_texte_maj_avec_une_lettre_min() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_texte_maj_avec_une_lettre_min");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("cHECK 24", "CHeCK 24");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_deux_espaces() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_deux_espaces");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("Check 25", "Check  25");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_plusieurs_espaces() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_plusieurs_espaces");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("Check    26", "Check     26");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_espace_au_milieu_du_mot() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_espace_au_milieu_du_mot");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("Che ck 27", "Ch eck 27");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_plusieurs_espaces_dans_le_mot() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_plusieurs_espaces_dans_le_mot");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("Ch  eck 28", "Ch    eck 28");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_espaces_a_plusieurs_endroits_du_mot() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_espaces_a_plusieurs_endroits_du_mot");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("Check 29", "C h  ec   k 29");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_espaces_avant_et_apres() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_espaces_avant_et_apres");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("   Check 30   ", "    Check 30    ");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_texte_sans_espace() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_texte_sans_espace");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("Check31", "Check31");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_texte_minuscule_avec_espaces() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_texte_minuscule_avec_espaces");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("c he ck   32", "ch ec  k  32");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_texte_majuscule_avec_espaces() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_texte_majuscule_avec_espaces");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("CH  E CK   33", "CH  EC  K 33");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_texte_minuscule_avec_espaces_aux_extremites() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_texte_minuscule_avec_espaces_aux_extremites");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("   check 34   ", "    check 34    ");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_texte_majuscule_avec_espaces_aux_extremites() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_texte_majuscule_avec_espaces_aux_extremites");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("Check 35", "   CHECK 35    ");
+		close("");
+	}
+	
+	@Test
+	public void checkbytext_majuscules_minuscules_espaces() throws IOException, InterruptedException {
+		initWeb(url, "checkbytext_majuscules_minuscules_espaces");
+		selectbytext("Select Component", "CheckByText");
+		checkbytext("Check 36", " chEcK  36 ");
+		close("");
+	}
+	
+	@Test
+	public void checkCSV() throws IOException, InterruptedException {
+		initWeb(url, "checkcsv");
+		checkcsv("", "JournaldesVentes.csv|" + Config.additional_files + "/JournalDesVentes1.csv");
+		close("");
+	}
+	
+	@Test
+	public void checkPDF() throws IOException, InterruptedException {
+		initWeb(url, "checkpdf");
+		checkpdf("", Config.additional_files + "/facturepdf.pdf|facturetxt.txt");
+		close("");
+	}
 
-@Test
-public void checkbytext() throws IOException, InterruptedException {
-	CheckByText checkByText = new CheckByText();
-	checkByText.checkByText();
-	sa.assertAll();
-}
+	@Test
+	public void executerBAT() throws IOException, InterruptedException {
+		initWeb(url, "executerbat");
+		executer_bat("", "fichiercommand.bat");
+		close("");
+	}
 
-@Test
-public void propertiesactions() throws IOException, InterruptedException {
-	PropertiesActions propertiesActions = new PropertiesActions();
-	propertiesActions.propertiesActions();
-	sa.assertAll();
-}
+	@Test
+	public void waitLoadingComplete() throws IOException, InterruptedException {
+		initWeb(url, "waitloadincomplete");
+		waitloadingcomplete("Automation practice", "");
+		close("");
+	}
+	
+	@Test
+	public void checkInnerText() throws IOException, InterruptedException {
+		initWeb(url, "checkinnertext");
+		checkinnertext("Automation practice", "WELCOME TO AUTOMATION PRACTICE");
+		close("");
+	}
+	
+	@Test
+	public void activateFrame() throws IOException, InterruptedException {
+		initWeb(url, "activateframe");
+		selectbytext("Select Component", "ActivateFrame");
+		activateframe("", "0");
+		clickbytext("bouton");
+		desactivateframe("", "");
+		clickbytext("Click me");
+		close("");
+	}
+	
+	@Test
+	public void activateTab() throws IOException, InterruptedException {
+		initWeb(url, "activatetab");
+		selectbytext("Select Component", "ActivateTab");
+		activatetab("", "Activate Tab");
+		clickbytext("bouton");
+		sendkeysbytext("input", "test");
+		close("");
+	}
+	
+	@Test
+	public void checkById() throws IOException, InterruptedException {
+		initWeb(url, "checkbyid");
+		selectbytext("Select Component", "CheckByIdNameXpath");
+		checkbyid("checkid", "Prénom");
+		close("");
+	}
+	
+	@Test
+	public void checkByName() throws IOException, InterruptedException {
+		initWeb(url, "checkbyname");
+		selectbytext("Select Component", "CheckByIdNameXpath");
+		checkbyname("checkname", "Nom");
+		close("");
+	}
+	
+	@Test
+	public void checkByXpath() throws IOException, InterruptedException {
+		initWeb(url, "checkbyxpath");
+		selectbytext("Select Component", "CheckByIdNameXpath");
+		checkbyxpath("//*[@id='colonnexpath']//li/input", "E-mail");
+		close("");
+	}
+	
+	@Test
+	public void clickbyid_bouton() throws IOException, InterruptedException {
+		initWeb(url, "clickbyid_bouton");
+		selectbytext("Select Component", "ClickByIdNameXpath");
+		clickbyid("boutonid");
+		close("");
+	}
+	
+	@Test
+	public void clickbyname_bouton() throws IOException, InterruptedException {
+		initWeb(url, "clickbyname_bouton");
+		selectbytext("Select Component", "ClickByIdNameXpath");
+		clickbyname("boutonname");
+		close("");
+	}
+	
+	@Test
+	public void clickbyxpath_bouton() throws IOException, InterruptedException {
+		initWeb(url, "clickbyxpath_bouton");
+		selectbytext("Select Component", "ClickByIdNameXpath");
+		clickbyxpath("//*[@id=\"colonnexpath\"]/div/li[1]/span/button");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysById() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbyid");
+		selectbytext("Select Component", "SendKeysByIdNameXpath");
+		sendkeysbyid("inputtextid", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysByName() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbyname");
+		selectbytext("Select Component", "SendKeysByIdNameXpath");
+		sendkeysbyname("inputtextname", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysByXpath() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbyxpath");
+		selectbytext("Select Component", "SendKeysByIdNameXpath");
+		sendkeysbyxpath("//*[@id=\"colonnexpath\"]/div/li/label/input", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysbytext_texte_minuscule() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_texte_minuscule");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 30", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysbytext_texte_majuscule() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_texte_majuscule");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 31", "test");
+		close("");
+	}
 
-@Test
-public void pageActions() throws IOException, InterruptedException {
-	PageActions pageActions = new PageActions();
-	pageActions.pageActions();
-	sa.assertAll();
-}
+	@Test
+	public void sendkeysbytext_texte_qui_alterne_maj_min() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_texte_qui_alterne_maj_min");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 32", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysbytext_moitie_des_lettres_maj() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_moitie_des_lettres_maj");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 33", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysbytext_texte_maj_avec_une_lettre_min() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_texte_maj_avec_une_lettre_min");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 34", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysbytext_deux_espaces() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_deux_espaces");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 35", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysbytext_plusieurs_espaces() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_plusieurs_espaces");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 36", "test");
+		close("");
+	}
 
-@Test
-public void tableActions() throws IOException, InterruptedException {
-	TableActions tableActions = new TableActions();
-	tableActions.tableActions();
-	sa.assertAll();
-}
+	@Test
+	public void sendkeysbytext_espace_au_milieu_du_mot() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_espace_au_milieu_du_mot");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 37", "test");
+		close("");
+	}
+
+	@Test
+	public void sendkeysbytext_plusieurs_espaces_dans_le_mot() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_texte_minuscule");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 38", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysbytext_espaces_a_plusieurs_endroits_du_mot() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_espaces_a_plusieurs_endroits_du_mot");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 39", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysbytext_espaces_avant_et_apres() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_espaces_avant_et_apres");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 40", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysbytext_texte_sans_espace() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_texte_sans_espace");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 41", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysbytext_texte_minuscule_avec_espaces() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_texte_minuscule_avec_espaces");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 42", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysbytext_texte_majuscule_avec_espaces() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_texte_majuscule_avec_espaces");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 43", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysbytext_texte_minuscule_avec_espaces_aux_extremites() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_texte_minuscule_avec_espaces_aux_extremites");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 44", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysbytext_texte_majuscule_avec_espaces_aux_extremites() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_texte_majuscule_avec_espaces_aux_extremites");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 45", "test");
+		close("");
+	}
+	
+	@Test
+	public void sendkeysbytext_majuscules_minuscules_espaces() throws IOException, InterruptedException {
+		initWeb(url, "sendkeysbytext_majuscules_minuscules_espaces");
+		selectbytext("Select Component", "SendKeysByText");
+		sendkeysbytext("Sendkey 46", "test");
+		close("");
+	}
+	
+	@Test
+	public void clickTable() throws IOException, InterruptedException {
+		initWeb(url, "clicktable");
+		selectbytext("Select Component", "Table");
+		clicktable("Table", "Action|SEO tags");
+		close("");
+	}
+	
+	@Test
+	public void sendKeysTable() throws IOException, InterruptedException {
+		initWeb(url, "sendkeystable");
+		selectbytext("Select Component", "Table");
+		sendkeystable("Table", "Quantity|Holden Charles|5");
+		close("");
+	}
+	
+	@Test
+	public void checkTable() throws IOException, InterruptedException {
+		initWeb(url, "checktable");
+		selectbytext("Select Component", "Table");
+		checktable("Table", "Quantity|Holden Charles|0");
+		close("");
+	}
+	
+	public static void main(String[] args) throws IOException, InterruptedException {
+		Main main = new Main();
+		main.clickbytext_element_button_avec_texte();
+		main.clickbytext_element_button_avec_value();
+		main.clickbytext_element_button_avec_title();
+		main.clickbytext_element_button_avec_aria_label();
+		main.clickbytext_element_button_avec_alt();
+		main.clickbytext_element_button_avec_partie_du_texte();
+		main.clickbytext_element_a_suivi_dun_href();
+		main.clickbytext_element_input_type_button();
+		main.clickbytext_element_input_type_submit();
+		main.clickbytext_parent_button_avec_text();
+		main.clickbytext_parent_button_avec_title();
+		main.clickbytext_parent_button_avec_value();
+		main.clickbytext_element_clickable_avec_text();
+		main.clickbytext_element_clickable_avec_title();
+		main.clickbytext_element_clickable_avec_value();
+		main.clickbytext_test_avec_context_a_gauche_1();
+		main.clickbytext_test_avec_context_a_gauche_2();
+		main.clickbytext_test_avec_context_a_gauche_3();
+		main.clickbytext_test_avec_context_au_dessus_1();
+		main.clickbytext_test_avec_context_au_dessus_2();
+		main.clickbytext_test_avec_context_au_dessus_3();
+		main.clickbytext_test_avec_context_et_propriete_au_meme_niveau();
+		main.clickbytext_test_avec_context_et_propriete_au_meme_niveau_2();
+		main.clickbytext_texte_minuscule();
+		main.clickbytext_texte_majuscule();
+		main.clickbytext_texte_qui_alterne_maj_min();
+		main.clickbytext_moitie_des_lettres_maj();
+		main.clickbytext_texte_maj_avec_une_lettre_min();
+		main.clickbytext_deux_espaces();
+		main.clickbytext_plusieurs_espaces();
+		main.clickbytext_espace_au_milieu_du_mot();
+		main.clickbytext_plusieurs_espaces_dans_le_mot();
+		main.clickbytext_espaces_a_plusieurs_endroits_du_mot();
+		main.clickbytext_espaces_avant_et_apres();
+		main.clickbytext_texte_sans_espace();
+		main.clickbytext_texte_minuscule_avec_espaces();
+		main.clickbytext_texte_majuscule_avec_espaces();
+		main.clickbytext_texte_minuscule_avec_espaces_aux_extremites();
+		main.clickbytext_texte_majuscule_avec_espaces_aux_extremites();
+		main.clickbytext_majuscules_minuscules_espaces();
+		
+		main.checkbytext_texte_minuscule();
+		main.checkbytext_texte_majuscule();
+		main.checkbytext_texte_qui_alterne_maj_min();
+		main.checkbytext_moitie_des_lettres_maj();
+		main.checkbytext_texte_maj_avec_une_lettre_min();
+		main.checkbytext_deux_espaces();
+		main.checkbytext_plusieurs_espaces();
+		main.checkbytext_espace_au_milieu_du_mot();
+		main.checkbytext_plusieurs_espaces_dans_le_mot();
+		main.checkbytext_espaces_a_plusieurs_endroits_du_mot();
+		main.checkbytext_espaces_avant_et_apres();
+		main.checkbytext_texte_sans_espace();
+		main.checkbytext_texte_minuscule_avec_espaces();
+		main.checkbytext_texte_majuscule_avec_espaces();
+		main.checkbytext_texte_minuscule_avec_espaces_aux_extremites();
+		main.checkbytext_texte_majuscule_avec_espaces_aux_extremites();
+		main.checkbytext_majuscules_minuscules_espaces();
+		
+		main.sendkeysbytext_texte_minuscule();
+		main.sendkeysbytext_texte_majuscule();
+		main.sendkeysbytext_texte_qui_alterne_maj_min();
+		main.sendkeysbytext_moitie_des_lettres_maj();
+		main.sendkeysbytext_texte_maj_avec_une_lettre_min();
+		main.sendkeysbytext_deux_espaces();
+		main.sendkeysbytext_plusieurs_espaces();
+		main.sendkeysbytext_espace_au_milieu_du_mot();
+		main.sendkeysbytext_plusieurs_espaces_dans_le_mot();
+		main.sendkeysbytext_espaces_a_plusieurs_endroits_du_mot();
+		main.sendkeysbytext_espaces_avant_et_apres();
+		main.sendkeysbytext_texte_sans_espace();
+		main.sendkeysbytext_texte_minuscule_avec_espaces();
+		main.sendkeysbytext_texte_majuscule_avec_espaces();
+		main.sendkeysbytext_texte_minuscule_avec_espaces_aux_extremites();
+		main.sendkeysbytext_texte_majuscule_avec_espaces_aux_extremites();
+		main.sendkeysbytext_majuscules_minuscules_espaces();
+		
+		main.checkCSV();
+		main.checkPDF();
+		main.executerBAT();
+		main.waitLoadingComplete();
+		main.checkInnerText();
+		main.activateFrame();
+		main.activateTab();
+		
+		main.checkById();
+		main.checkByName();
+		main.checkByXpath();
+		main.clickbyid_bouton();
+		main.clickbyname_bouton();
+		main.clickbyxpath_bouton();
+		main.sendkeysById();
+		main.sendkeysByName();
+		main.sendkeysByXpath();
+		
+		main.clickTable();
+		main.sendKeysTable();
+		main.checkTable();
+	}
 }

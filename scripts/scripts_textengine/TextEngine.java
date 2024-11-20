@@ -5580,6 +5580,39 @@ public static void getPercyResult(String token, String parcoursName){
 //    }
 //
 //
+    public static String[] myExempleCodedAction(String prop) throws IOException {
+        boolean status = true;
+        final String NatureAction = "texte";
+        final String NomAction = "myexemplecodedaction";
+        String parcours_name = nom;
+
+        String techlabel = SearchObject(NatureAction, prop);
+        if (Objects.equals(techlabel, "")) {
+            String[] result = new String[3];
+            result[0] = NomAction;
+            result[1] = "KO";
+            result[2] = "Don't find Object";
+            sa.fail("Don't find Object");
+            return result;
+        }
+        String label;
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
+        //Initialiser Teststep
+        Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
+        Config.compteur_instance = 2;
+        status = scripts_techniques.ActionsACoder.myclick(selfdriver, t);
+        Config.compteur_instance = 1;
+        //Si le clique a reussi
+        if (status)
+            Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
+
+        Config.compteur_params++;
+        return Status(t);
+    }
 }
 //
 //

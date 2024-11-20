@@ -5,7 +5,7 @@ package scripts_techniques;
 	//log export 
 	
  //Replace C:/kalios with your project folder 
-	public static String tunnel_path			=  "C:\\Chemin_vers_le_textengine\\TextEngine";
+	public static String tunnel_path			=  "C:/Chemin_vers_le_textengine/TextEngine";
 	
 	
 	public static String dir_export				= 	tunnel_path+"/results";
