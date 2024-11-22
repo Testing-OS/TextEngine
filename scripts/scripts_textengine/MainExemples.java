@@ -1,6 +1,7 @@
 package scripts_textengine;
 
 import static scripts_textengine.TextEngine.*;
+import static scripts_textengine.ActionsACoderTE.*;
 
 import java.io.IOException;
 
@@ -54,7 +55,7 @@ public class MainExemples {
 			checkbytext("Order total", "77.00");
 			
 			sendkeysbytext("Search", "JEUVALEUR"); //On appelle ici le jeu de valeur pour saisir une valeur
-			myExempleCodedAction("");
+			myclickbyid("ui-id-3");
 		}
 	}
 	

@@ -87,6 +87,7 @@ import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
 import static scripts_textengine.AzureToolsResult.*;
+import static scripts_textengine.TextEngine.SearchObject;
 
 public class TextEngine {
 
@@ -110,6 +111,7 @@ public class TextEngine {
     private static String token="";
     private static String idTestPlan="";
     private static String path="";
+    private static String ResultFilePath = "";
 
     private static final OkHttpClient client = new OkHttpClient();
     private static final Gson gson = new Gson();
@@ -1427,7 +1429,7 @@ public class TextEngine {
         }
     }
 
-    private static String SearchObject(String NatureAction, String prop) throws FileNotFoundException {
+    public static String SearchObject(String NatureAction, String prop) throws FileNotFoundException {
         String techlabel = "";
         //Recuperation de tous les techlabels existants
         File jsonFile = new File(Config.file_objects);
@@ -1654,26 +1656,139 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
     }
     return null;
 }
-    public static String[] Status(Teststep t) {
-        String[] result = new String[3];
-        result[0] = t.action_label;
-        result[1] = t.status;
-        result[2] = t.errorMessage;
-        Result.add(result);
-        addStepIndependant(result);
-        if (t.status == "OK")
-            return result;
-        else if (t.status == "Warning"){
-            sa.fail(t.errorMessage);
-            return result;
-        }
-        else {
-            System.out.println(t.errorMessage);
-            sa.fail(t.errorMessage);
-            return result;
+public static String[] Status(Teststep t) {
+    String[] result = new String[3];
+    result[0] = t.action_label;
+    result[1] = t.status;
+    result[2] = t.errorMessage;
+    Result.add(result);
+    addStepIndependant(result);
 
+        try {
+            if (ResultFilePath.equals("")) {
+                createFileWithHeader(getTimestampedFileName());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    if (t.status == "OK") {
+        try {
+            updateStatus(nom, "OK", null);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+    else if (t.status == "Warning"){
+        try {
+            updateStatus(nom, "Warning", result[2]);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        sa.fail(t.errorMessage);
+        return result;
+    }
+    else {
+        try {
+            updateStatus(nom, "KO", result[2]);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(t.errorMessage);
+        sa.fail(t.errorMessage);
+        return result;
+
+    }
+}
+public static void updateStatus(String parcours, String status, String errorMessage) throws IOException {
+        if(Config.ResultFile==1){
+        List<String> lines = Files.readAllLines(Paths.get(ResultFilePath));
+        List<String> updatedLines = new ArrayList<>();
+
+        updatedLines.add(lines.get(0));
+
+        boolean updated = false;
+        for (int i = 1; i < lines.size(); i++) {
+            String line = lines.get(i);
+            if (line.startsWith(parcours + " :")) {
+                if (status.equals("OK")) {
+                    updatedLines.add(line);
+                }
+                else {
+                    if(line.startsWith(parcours + " : OK"))
+                        updatedLines.add(formatLine(parcours,status,errorMessage, false, null));
+                    else{
+                        updatedLines.add(line);
+                        updatedLines.add(formatLine(parcours,status,errorMessage, true, line));
+                    }
+
+                }
+                updated = true;
+            } else {
+                updatedLines.add(line);
+            }
+        }
+
+        if (!updated) {
+            updatedLines.add(formatLine(parcours,status,errorMessage, false, null));
+        }
+
+        // Écrire le contenu mis à jour dans le fichier
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ResultFilePath))) {
+            for (String line : updatedLines) {
+                writer.write(line);
+                writer.newLine();
+            }
         }
     }
+    System.out.println(ResultFilePath);
+}
+
+private static void createFileWithHeader(String fileName) throws IOException {
+    if (Config.ResultFile==1) {
+        StringBuilder Header = new StringBuilder("Rapport d'éxécution du TextEngine\n" +
+                                                 "---------------------------------\n\n");
+        Header.append("Exécuté le ");
+        DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter heure = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime now = LocalDateTime.now();
+        Header.append(now.format(date)).append(" à ").append(now.format(heure)).append("\n");
+
+        File file = new File(fileName);
+        if (!file.exists()) {
+            file.createNewFile();
+            ResultFilePath = file.getPath();
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+                writer.write(Header.toString());
+                writer.newLine();
+            }
+        }
+    }
+}
+
+public static String getTimestampedFileName() {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+    String timestamp = LocalDateTime.now().format(formatter);
+    return Config.dir_export+"/TextEngineExecution/TextEngineExecution_" + timestamp + ".txt";
+}
+private static String formatLine(String parcours, String status, String message, boolean isSubMessage, String parentLine) {
+    String indent = isSubMessage
+            ? generateSpaces(parentLine.indexOf(':') + 2)
+            : "";
+
+    String baseLine = (isSubMessage ? indent : parcours + " : ") + status;
+    return message != null ? baseLine + " (" + message + ")" : baseLine;
+}
+
+private static String generateSpaces(int count) {
+    StringBuilder spaces = new StringBuilder();
+    for (int i = 0; i < count; i++) {
+        spaces.append(' ');
+    }
+    return spaces.toString();
+}
     public static void ShowResult(){
         StringBuilder sb = new StringBuilder("Results : \n");
         for (String[] s:
@@ -5580,21 +5695,11 @@ public static void getPercyResult(String token, String parcoursName){
 //    }
 //
 //
-    public static String[] myExempleCodedAction(String prop) throws IOException {
-        boolean status = true;
-        final String NatureAction = "texte";
-        final String NomAction = "myexemplecodedaction";
-        String parcours_name = nom;
-
-        String techlabel = SearchObject(NatureAction, prop);
-        if (Objects.equals(techlabel, "")) {
-            String[] result = new String[3];
-            result[0] = NomAction;
-            result[1] = "KO";
-            result[2] = "Don't find Object";
-            sa.fail("Don't find Object");
-            return result;
-        }
+    public static Teststep initTeststep(String NatureAction, String NomAction, String prop, String param, String parcours_name) {
+		String techlabel = "";
+		try {
+			techlabel = SearchObject(NatureAction, prop);
+		} catch (FileNotFoundException e) {}
         String label;
         try {
             label = techlabel.split("_")[1].split("\\.")[0];
@@ -5602,17 +5707,9 @@ public static void getPercyResult(String token, String parcoursName){
             label = techlabel.split("\\.")[0];
         }
         //Initialiser Teststep
-        Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, null);
-        Config.compteur_instance = 2;
-        status = scripts_techniques.ActionsACoder.myclick(selfdriver, t);
-        Config.compteur_instance = 1;
-        //Si le clique a reussi
-        if (status)
-            Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
-
-        Config.compteur_params++;
-        return Status(t);
-    }
+        Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
+        return t;
+	}
 }
 //
 //
