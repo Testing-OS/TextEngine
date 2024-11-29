@@ -6,8 +6,6 @@ import browserstack.shaded.com.google.gson.JsonObject;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.opencsv.*;
 import com.google.gson.*;
 import com.opencsv.*;
@@ -5707,6 +5705,21 @@ try {
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
         }
     }
+        public static Teststep initTeststep(String NatureAction, String NomAction, String prop, String param, String parcours_name) {
+		String techlabel = "";
+		try {
+			techlabel = SearchObject(NatureAction, prop);
+		} catch (FileNotFoundException e) {}
+        String label;
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
+        //Initialiser Teststep
+        Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
+        return t;
+	}
  public static void getPercyResult(){
         Teststep t = new Teststep("getResult", "getResult" ,"getResult.htm", nom, Config.PercyToken);
         //Config.compteur_instance = 2;
