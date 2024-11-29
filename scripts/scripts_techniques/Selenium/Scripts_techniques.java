@@ -7413,8 +7413,8 @@ public class Scripts_techniques {
 			File existFile = new File(pdfFile);
 			for (int i = 0; i < Config.timeout_download; i++) {
 				if (existFile.exists()) {
-					if (Pattern.matches("[\\p{javaLowerCase}\\p{javaUpperCase}\\w\\-:/]+\\.pdf", pdfFile)) {
-						if (Pattern.matches("[\\p{javaLowerCase}\\p{javaUpperCase}\\w\\-]+\\.txt", txtFile)) {
+					if (Pattern.matches(".+\\.pdf", pdfFile)) {
+						if (Pattern.matches(".+\\.txt", txtFile)) {
 							try {
 								String fichierpdf = pdfFile;
 								String fichiertxt = Config.additional_files + "/" + txtFile;
@@ -7560,8 +7560,8 @@ public class Scripts_techniques {
                     csv2File = new File(fichier2);
             for (int i = 0; i < Config.timeout_download; i++) {
                 if (csv2File.exists()) {
-                    if (Pattern.matches("[\\p{javaLowerCase}\\p{javaUpperCase}\\w\\-]+\\.csv", csv1)
-                            && Pattern.matches("[\\p{javaLowerCase}\\p{javaUpperCase}\\w\\-:/]+\\.csv", csv2)
+                    if (Pattern.matches(".+\\.csv", csv1)
+                            && Pattern.matches(".+\\.csv", csv2)
                             && csv1File.exists()
                             && csv2File.exists()) {
                         try {
@@ -9130,10 +9130,10 @@ public class Scripts_techniques {
 			File file1 = new File(Config.additional_files + "/" + fichier1);
 			File file2 = new File(fichier2);
 			// On vérifie que le deuxième paramètre soit un fichier doc ou docx 
-			if (Pattern.matches("[\\p{javaLowerCase}\\p{javaUpperCase}\\w\\-:/]+\\.docx?", fichier2)) {
+			if (Pattern.matches(".+\\.docx?", fichier2)) {
 				// On vérifie que le premier paramètre soit un fichier doc, docx ou txt
-				if (Pattern.matches("[\\p{javaLowerCase}\\p{javaUpperCase}\\w\\-:/]+\\.docx?", fichier1)
-				|| Pattern.matches("[\\p{javaLowerCase}\\p{javaUpperCase}\\w\\-:/]+\\.txt", fichier1)) {
+				if (Pattern.matches(".+\\.docx?", fichier1)
+				|| Pattern.matches(".+\\.txt", fichier1)) {
 					// System.out.println("Le deuxième paramètre est un fichier doc, docx");
 					
 					// On vérifie que les deux fichiers existent bel et bien

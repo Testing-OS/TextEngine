@@ -1,10 +1,11 @@
+
 package scripts_techniques;
  public class Config {
 
 	//log export 
 	
  //Replace C:/kalios with your project folder 
-	public static String tunnel_path			=  "C:\\Chemin_vers_le_textengine\\TextEngine";
+	public static String tunnel_path			=  "C:/Chemin_vers_le_textengine/TextEngine";
 	
 	
 	public static String dir_export				= 	tunnel_path+"/results";
@@ -49,6 +50,8 @@ package scripts_techniques;
 	 public static String JIRA_API_TOKEN = "";
 	 public static String JIRA_PROJECT_NAME = "";
 
+
+	 public static int ResultFile = 1;
 
 	 public static int Percy = 0;
 	 public static String PercyToken = "";

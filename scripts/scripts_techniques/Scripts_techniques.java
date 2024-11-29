@@ -5,6 +5,7 @@ import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
+import io.percy.selenium.Percy;
 
 import io.appium.java_client.android.AndroidDriver;
 import java.io.*;
@@ -12616,92 +12617,178 @@ public class Scripts_techniques {
         } catch (Exception e) {
             return Fonctions.logStepKO(teststep, selenium, time1, "Cannot find page");
         }
-        String parameters;
-        if (teststep.param.charAt(0) == '$') {
-            parameters = getVariableParameter(teststep.param);
-				if (parameters.equals(teststep.param)) {
-					return Fonctions.logStepKO(teststep, driver, time1, "Le parametre n'a pas ete trouve dans le fichier des variables.");
-				}
-        } else {
-            parameters = teststep.param;
-        }
-        String[] param = parameters.split("\\|");
-        String applicationName = param[0];
-        String testName = param[1];
-        String apiKey, matchlevel;
-        EyesRunner runner;
-        BatchInfo batch;
-        Configuration config;
-        ChromeOptions options;
-        WebDriver driverApplitools;
-        Eyes eyes;
+        String platform = "";
+        String apiKey = "";
         try {
-            runner = new VisualGridRunner(new RunnerOptions().testConcurrency(1));
-            batch = new BatchInfo(testName);
-
-            config = new Configuration();
-
-            // Link API KEYS
-            apiKey = "";
-
-            try {
-                Wini ini = new Wini(new File(Config.propertyFile));
-                apiKey = ini.get("applitools", "cle");
-            } catch (Exception e) {
-                System.out.println("The parameter was not found in the variable file.");
-                return Fonctions.logStepKO(teststep, selenium, time1, "Cle api introuvable");
-            }
-            config.setApiKey(apiKey);
-            config.setBatch(batch);
-
-            eyes = new Eyes(runner);
-            eyes.setConfiguration(config);
-
-            // Set match level
-            matchlevel = param[2].toLowerCase();
-            switch (matchlevel) {
-                case "strict":
-                    eyes.setMatchLevel(MatchLevel.STRICT);
-                    break;
-                case "layout":
-                    eyes.setMatchLevel(MatchLevel.LAYOUT);
-                    break;
-                case "color":
-                    eyes.setMatchLevel(MatchLevel.CONTENT);
-                    break;
-                case "exact":
-                    eyes.setMatchLevel(MatchLevel.EXACT);
-                    break;
-                case "none":
-                    eyes.setMatchLevel(MatchLevel.NONE);
-                    break;
-                default:
-                    eyes.setMatchLevel(MatchLevel.STRICT);
-                    break;
-            }
-
-            eyes.open(
-                    driver,
-                    applicationName,
-                    testName);
-
-            eyes.check(Target.window().fully());// .withName("Home Page"));
-            eyes.closeAsync();
-            TestResultsSummary allTestResults = runner.getAllTestResults(false);
-            TestResultContainer[] val = allTestResults.getAllResults();
-            TestResults res = val[0].getTestResults();
-            Boolean diff = res.isDifferent();
-            if (diff == false) {
-                return Fonctions.logStepOK(teststep, selenium, time1);
-            } else {
-                return Fonctions.logStepWarning(teststep, selenium, time1,
-                        "Difference trouve, rendez vous sur votre espace applitools pour en savoir plus");
-            }
+            Wini ini = new Wini(new File(Config.propertyFile));
+            apiKey = ini.get("applitools", "cle");
+            if(!apiKey.isEmpty())
+                platform = "applitools";
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            // System.out.println("Une erreur s'est produite. Verifier votre cle API");
-            return Fonctions.logStepKO(teststep, selenium, time1, "Verifier votre cle api");
+            System.out.println("Applitools key is missing");
+			try {
+				Wini ini = new Wini(new File(Config.propertyFile));
+				apiKey = ini.get("percy", "cle");
+				if(!apiKey.isEmpty())
+					platform = "percy";
+				Config.PercyToken = apiKey;
+			} catch (Exception e1) {
+				System.out.println("percy key is missing");
+			}
         }
+
+        if(platform.equals("applitools")){
+            String parameters;
+
+            if (teststep.param.charAt(0) == '$') {
+                parameters = getVariableParameter(teststep.param);
+                if (parameters.equals(teststep.param)) {
+                    return Fonctions.logStepKO(teststep, driver, time1, "Le parametre n'a pas ete trouve dans le fichier des variables.");
+                }
+            } else {
+                parameters = teststep.param;
+            }
+            String[] param = parameters.split("\\|");
+            String applicationName = param[0];
+            String testName = param[1];
+            String matchlevel;
+            EyesRunner runner;
+            BatchInfo batch;
+            Configuration config;
+            ChromeOptions options;
+            WebDriver driverApplitools;
+            Eyes eyes;
+            try {
+                runner = new VisualGridRunner(new RunnerOptions().testConcurrency(1));
+                batch = new BatchInfo(testName);
+
+                config = new Configuration();
+
+                config.setApiKey(apiKey);
+                config.setBatch(batch);
+
+                eyes = new Eyes(runner);
+                eyes.setConfiguration(config);
+
+                // Set match level
+                matchlevel = param[2].toLowerCase();
+                switch (matchlevel) {
+                    case "strict":
+                        eyes.setMatchLevel(MatchLevel.STRICT);
+                        break;
+                    case "layout":
+                        eyes.setMatchLevel(MatchLevel.LAYOUT);
+                        break;
+                    case "color":
+                        eyes.setMatchLevel(MatchLevel.CONTENT);
+                        break;
+                    case "exact":
+                        eyes.setMatchLevel(MatchLevel.EXACT);
+                        break;
+                    case "none":
+                        eyes.setMatchLevel(MatchLevel.NONE);
+                        break;
+                    default:
+                        eyes.setMatchLevel(MatchLevel.STRICT);
+                        break;
+                }
+
+                eyes.open(
+                        driver,
+                        applicationName,
+                        testName);
+
+                eyes.check(Target.window().fully());// .withName("Home Page"));
+                eyes.closeAsync();
+                TestResultsSummary allTestResults = runner.getAllTestResults(false);
+                TestResultContainer[] val = allTestResults.getAllResults();
+                TestResults res = val[0].getTestResults();
+                Boolean diff = res.isDifferent();
+                if (diff == false) {
+                    return Fonctions.logStepOK(teststep, selenium, time1);
+                } else {
+                    return Fonctions.logStepWarning(teststep, selenium, time1,
+                            "Difference trouve, rendez vous sur votre espace applitools pour en savoir plus");
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                // System.out.println("Une erreur s'est produite. Verifier votre cle API");
+                return Fonctions.logStepKO(teststep, selenium, time1, "Verifier votre cle api");
+            }
+        }
+        else if (platform.equals("percy")) {
+            Percy percy = new Percy(selenium);
+            String parameters = teststep.param;
+            String[] params = parameters.split("\\|");
+            if(params.length>6)
+                return Fonctions.logStepKO(teststep, selenium, time1, "Il y a trop de paramètre");
+            String name = teststep.scenario_label+"_"+ params[0];
+            List<Integer> width = new ArrayList<>();
+            int minHeight = 0;
+            boolean enableJavaScript = false;
+            String percyCSS = "";
+            String scope = "";
+            for (int i = 1;i<params.length;i++) {
+                System.out.println(params[i]);
+                try {
+                    Wini ini = new Wini(new File(Config.propertyFile));
+                    if(params[i].charAt(0)=='$') {
+                        params[i] = ini.get("percy", params[i].substring(1));
+                        if(params[i]==null){
+                            return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" n'a pas été trouvé dans le fichier des variables'");
+                        }
+                    }
+
+                } catch(Exception e) {
+                    return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" n'a pas été trouvé dans le fichier des variables'");
+                }
+                if(params[i].contains("width")) {
+                    String stringwidth = params[i].substring(0, params[i].length() - 1).replace("width=\"", "");
+                    String[] arraywidth = stringwidth.split(",");
+                    for (String s:arraywidth) {
+                        try {
+                            width.add(Integer.parseInt(s));
+                        } catch (NumberFormatException e) {
+                            return Fonctions.logStepKO(teststep, selenium, time1, "Le paramètre "+ params[i] + " doit contenir des entiers séparé par une virgule");
+                        }
+                    }
+                }
+                else if (params[i].contains("minHeight")) {
+                    String Height = params[i].substring(0, params[i].length() - 1).replace("minHeight=\"", "");
+                    try {
+                        minHeight = Integer.parseInt(Height);
+                    } catch (NumberFormatException e) {
+                        return Fonctions.logStepKO(teststep, selenium, time1, "Le paramètre "+ params[i] + " doit etre un entier");
+                    }
+                }
+                else if (params[i].contains("enableJavaScript")) {
+                    String JS = params[i].substring(0, params[i].length() - 1).replace("enableJavaScript=\"", "");
+                    if(JS.equalsIgnoreCase("true")||JS.equalsIgnoreCase("vrai"))
+                        enableJavaScript = true;
+                    else if(JS.equalsIgnoreCase("false")||JS.equalsIgnoreCase("faux"))
+                        enableJavaScript = false;
+                    else
+                        return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" doit etre vrai ou faux (true or false)");
+                }else if (params[i].contains("percyCSS"))
+                    percyCSS = params[i].substring(0, params[i].length() - 1).replace("percyCSS=\"", "");
+                else if (params[i].contains("scope"))
+                    scope = params[i].substring(0,params[i].length() -1).replace("scope=\"","");
+                else
+                    return Fonctions.logStepKO(teststep, selenium, time1, "Le parametre "+ params[i]+" ne correspond pas aux attendus");
+            }
+            try {
+                if (minHeight == 0) {
+                    percy.snapshot(name, width, null, enableJavaScript, percyCSS, scope);
+                } else {
+                    percy.snapshot(name, width, minHeight, enableJavaScript, percyCSS, scope);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            //System.out.println(apiKey+" "+name+ " "+ width + " " + minHeight + " " + enableJavaScript + " " +percyCSS + " " +scope);
+        }
+        //return Fonctions.logStepKO(teststep, selenium, time1, "Aucune clé n'est renseigné");
+        return true;
     }
 
     /*public static boolean WebPage_comparescreenshot(WebDriver selenium, Teststep teststep) throws IOException {

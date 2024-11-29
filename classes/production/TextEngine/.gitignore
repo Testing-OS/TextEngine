@@ -1,6 +1,10 @@
+/.idea/
+/Batfiles/
+/additional_files/
+/build.xml
+/drivers/
+/objects/
+/run_configuration/
+/scripts_donnees/
 /scripts_techniques/
 /scripts_textengine/
-/additional_files/
-/Batfiles/
-/objects/
-/scripts_donnees/

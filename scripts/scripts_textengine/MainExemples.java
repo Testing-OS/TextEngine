@@ -1,10 +1,11 @@
 package scripts_textengine;
 
 import static scripts_textengine.TextEngine.*;
+import static scripts_textengine.ActionsACoderTE.*;
 
 import java.io.IOException;
 
-import org.junit.jupiter.api.Test;
+import scripts_techniques.*;
 
 public class MainExemples {
 	
@@ -36,19 +37,26 @@ public class MainExemples {
 	}
 	
 	public static void parcours2() throws IOException, InterruptedException {
-		initWeb("https://magento.softwaretestingboard.com/", "parcours2");
-		
-		womenTopsJacket();
-		
-		clickbytext("Juno Jacket");
-		
-		xsBlue();
-		
-		clickbytext("Add to cart");
-		clickbytext("My cart");
-		clickbytext("View and Edit Cart");
-		
-		checkbytext("Order total", "77.00");
+		for (int i = Config.compteur_instance; i < Fonctions.get_lines_parameters("parcours2"); i++, Config.compteur_instance++, Config.compteur_params = 1) {
+			// Cette boucle permet de lancer plusieurs fois le parcours, une éxecution par jeu de valeur
+			
+			initWeb("https://magento.softwaretestingboard.com/", "parcours2");
+			
+			womenTopsJacket();
+			
+			clickbytext("Juno Jacket");
+			
+			xsBlue();
+			
+			clickbytext("Add to cart");
+			clickbytext("My cart");
+			clickbytext("View and Edit Cart");
+			
+			checkbytext("Order total", "77.00");
+			
+			sendkeysbytext("Search", "JEUVALEUR"); //On appelle ici le jeu de valeur pour saisir une valeur
+			myclickbyid("ui-id-3");
+		}
 	}
 	
 	public static void parcours3() throws IOException, InterruptedException {
@@ -66,24 +74,11 @@ public class MainExemples {
 		checkbytext("Order total", "$prix"); // On appelle une variable pour vérifier le prix
 	}
 	
-	public static void parcours_upload_Jira() throws IOException, InterruptedException {
-		parcours1();
-		createJiraTicket("parcours1");
-		// On peut exécuter un parcours puis uploader les résultats dans un ticket Jira. 
-		// Il est possible d'appeler createJiraTicket() à la suite du parcours
-		// Ici, on va simplement exécuter le parcours1 puis uploader ses résultats
-		// Il faut aller remplir les différentes variables dans le fichier Config.java
-	}
-	
 	
 	public static void main(String[] args) throws IOException, InterruptedException{
 		parcours1();
-		ChangeParcours("parcours2");
 		parcours2();
-		ChangeParcours("parcours3");
 		parcours3();
-		ChangeParcours("parcours_upload_Jira");
-		parcours_upload_Jira();
 	}
 	
 	
