@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="synopsis">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/EXPORT/output/synopsis.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

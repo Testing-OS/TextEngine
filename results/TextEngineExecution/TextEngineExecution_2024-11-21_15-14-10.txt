@@ -1,0 +1,6 @@
+Rapport d'éxécution du TextEngine
+---------------------------------
+
+Exécuté le 21/11/2024 à 15:14
+
+Select : KO (L'objet n'a pas ete trouve)

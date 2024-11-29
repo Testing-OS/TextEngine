@@ -6,7 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="scripts/lib/assertj-core-3.25.1.jar"/>
 	<classpathentry kind="lib" path="scripts/lib/async-http-client-2.12.3.jar"/>
 	<classpathentry kind="lib" path="scripts/lib/async-http-client-netty-utils-2.12.3.jar"/>

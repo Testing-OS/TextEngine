@@ -41,7 +41,7 @@ import scripts_techniques.Config;
 import scripts_techniques.Appium.Fonctions;
 import io.appium.java_client.ios.IOSDriver;
 
-public class Scripts_techniques {
+public class Scripts_techniques{
 	static char str = '"';
 
 	public static boolean mobileobject_checkbyname(final WebDriver driver, Teststep teststep) throws IOException {
@@ -73,12 +73,12 @@ public class Scripts_techniques {
 			if (myObj.getText().equals(teststep.param)) {
 				return Fonctions.logStepOK(teststep, driver, time1);
 			} else {
-				return Fonctions.logStepWarning(teststep, driver, time1, "Value of property value   found : "+  myObj.getText());		
+				return Fonctions.logStepWarning(teststep, driver, time1, "Value of property value   found : "+  myObj.getText());
 			}
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_checkbyresourceid(final WebDriver driver, Teststep teststep) throws IOException {
@@ -105,12 +105,12 @@ public class Scripts_techniques {
 			if (myObj.getText().equals(teststep.param)) {
 				return Fonctions.logStepOK(teststep, driver, time1);
 			} else {
-				return Fonctions.logStepWarning(teststep, driver, time1, "Value of property value   found : "+  myObj.getText());		
+				return Fonctions.logStepWarning(teststep, driver, time1, "Value of property value   found : "+  myObj.getText());
 			}
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_checkbyxpath(final WebDriver driver, Teststep teststep) throws IOException {
@@ -142,12 +142,12 @@ public class Scripts_techniques {
 			if (myObj.getText().equals(teststep.param)) {
 				return Fonctions.logStepOK(teststep, driver, time1);
 			} else {
-				return Fonctions.logStepWarning(teststep, driver, time1, "Value of property value   found : "+  myObj.getText());		
+				return Fonctions.logStepWarning(teststep, driver, time1, "Value of property value   found : "+  myObj.getText());
 			}
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_checkbyid(WebDriver selenium, Teststep teststep) throws IOException
@@ -156,8 +156,8 @@ public class Scripts_techniques {
 		WebDriver driverInstance = (WebDriver) selenium;
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driverInstance, Duration.ofMillis(Config.timeout_elements));
 		WebElement myObj;
@@ -201,13 +201,13 @@ public class Scripts_techniques {
 					return Fonctions.logStepOK(teststep, selenium, time1);
 				} else {
 					System.out.println ("Text not found.   found : "+  myObj.getText());
-					return Fonctions.logStepWarning(teststep, selenium, time1, "Value of property innerText   found : "+  myObj.getText());		
-				}		
+					return Fonctions.logStepWarning(teststep, selenium, time1, "Value of property innerText   found : "+  myObj.getText());
+				}
 			}
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, selenium, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, selenium, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_clickbyname(final WebDriver driver, Teststep teststep) throws IOException {
@@ -238,12 +238,12 @@ public class Scripts_techniques {
 				myObj = driver.findElement(By.name(array_prop_object.get("name")));
 				myObj.click();
 			}
-			
+
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_clickbyresourceid(final WebDriver driver, Teststep teststep) throws IOException {
@@ -271,8 +271,8 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_clickbyxpath(final WebDriver driver, Teststep teststep) throws IOException {
@@ -306,8 +306,8 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_clickbyid(WebDriver selenium, Teststep teststep) throws IOException
@@ -316,8 +316,8 @@ public class Scripts_techniques {
 		WebDriver driverInstance = (WebDriver) selenium;
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driverInstance, Duration.ofMillis(Config.timeout_elements));
 		WebElement myObj;
@@ -328,11 +328,11 @@ public class Scripts_techniques {
 		try {
 			try {
 				try {
-				((AndroidDriver)driverInstance).hideKeyboard();
-			}
-			catch (Exception e) {
-				System.out.println ("Keyboard not present");
-			}
+					((AndroidDriver)driverInstance).hideKeyboard();
+				}
+				catch (Exception e) {
+					System.out.println ("Keyboard not present");
+				}
 				Fonctions.switchToWebViewContext((AndroidDriver) driverInstance);
 				myObj = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(array_prop_object.get("id"))));
 				Fonctions.highLighterMethod(driverInstance, myObj);
@@ -356,8 +356,8 @@ public class Scripts_techniques {
 			return Fonctions.logStepKO(teststep, driverInstance, time1, "click Fail");
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, selenium, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, selenium, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_keysbyname(final WebDriver driver, Teststep teststep) throws IOException {
@@ -388,12 +388,12 @@ public class Scripts_techniques {
 				myObj = driver.findElement(By.name(array_prop_object.get("name")));
 				myObj.sendKeys(teststep.param);
 			}
-			
+
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_keysbyresourceid(final WebDriver driver, Teststep teststep) throws IOException {
@@ -421,8 +421,8 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_keysbyxpath(final WebDriver driver, Teststep teststep) throws IOException {
@@ -455,12 +455,12 @@ public class Scripts_techniques {
 				myObj = driver.findElement(By.xpath(array_prop_object.get("xpath")));
 				myObj.sendKeys(teststep.param);
 			}
-			
+
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_keysbyid(WebDriver selenium, Teststep teststep) throws IOException
@@ -469,8 +469,8 @@ public class Scripts_techniques {
 		WebDriver driverInstance = (WebDriver) selenium;
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driverInstance, Duration.ofMillis(Config.timeout_elements));
 		WebElement myObj;
@@ -504,20 +504,20 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, selenium, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, selenium, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, selenium, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_clearvaluebyname(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -540,20 +540,20 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_clearvaluebyresourceid(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -569,7 +569,7 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		}catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
 		}
 	}
 
@@ -577,12 +577,12 @@ public class Scripts_techniques {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -605,8 +605,8 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_clearvaluebyid(final WebDriver selenium, Teststep teststep) throws IOException
@@ -615,8 +615,8 @@ public class Scripts_techniques {
 		WebDriver driverInstance = (WebDriver) selenium;
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driverInstance, Duration.ofMillis(Config.timeout_elements));
 		WebElement myObj;
@@ -650,20 +650,20 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, selenium, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, selenium, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, selenium, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_doubleClickbyname(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -692,24 +692,24 @@ public class Scripts_techniques {
 			tap.addAction(new Pause(finger, Duration.ofMillis(200)));
 			tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 			((IOSDriver) driver).perform(Collections.singletonList(tap));
-			Thread.sleep(4000);	
+			Thread.sleep(4000);
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_DoubleClickbyresourceid(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -739,24 +739,24 @@ public class Scripts_techniques {
 			tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 			System.out.println("test");
 			((AndroidDriver) driver).perform(Collections.singletonList(tap));
-			Thread.sleep(4000);	
+			Thread.sleep(4000);
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobileobject_doubleclickbyxpath(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -793,28 +793,28 @@ public class Scripts_techniques {
 				((AndroidDriver) driver).perform(Collections.singletonList(tap));
 
 			Thread.sleep(4000);
-			
+
 			//myObj.click();
 			// MobileElement element = (MobileElement) new WebDriverWait(driver, 30).
 			// 		until(ExpectedConditions.elementToBeClickable(myObj));
-				
+
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
-	
+
 	public static boolean  mobileobject_longpressbyname(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -826,27 +826,27 @@ public class Scripts_techniques {
 				System.out.println ("Keyboard not present");
 			}
 			myObj = wait.until(ExpectedConditions.presenceOfElementLocated(By.name(array_prop_object.get("name"))));
-	
+
 			// MobileElement longPress = (MobileElement) new WebDriverWait(driver, 30).
 			// 	until(ExpectedConditions.elementToBeClickable(myObj));
-			new Actions(driver).clickAndHold(myObj).perform();	
+			new Actions(driver).clickAndHold(myObj).perform();
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
-	
+
 	public static boolean  mobileobject_longpressbyresourceid(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -858,27 +858,27 @@ public class Scripts_techniques {
 				System.out.println ("Keyboard not present");
 			}
 			myObj = driver.findElement(By.id(array_prop_object.get("resourceid")));
-			
+
 			// MobileElement longPress = (MobileElement) new WebDriverWait(driver, 30).
 			// 	until(ExpectedConditions.elementToBeClickable(myObj));
-			new Actions(driver).clickAndHold(myObj).perform();	
+			new Actions(driver).clickAndHold(myObj).perform();
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean  mobileobject_longpressbyxpath(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -896,117 +896,117 @@ public class Scripts_techniques {
 			}
 			// MobileElement longPress = (MobileElement) new WebDriverWait(driver, 30).
 			// 	until(ExpectedConditions.elementToBeClickable(myObj));
-			new Actions(driver).clickAndHold(myObj).perform();	
+			new Actions(driver).clickAndHold(myObj).perform();
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
-	
-	// public static boolean  mobileobject_Scrollbyname(final WebDriver driver, Teststep teststep) throws IOException {
-	// 	Date time1 = new Date();
-	// 	try {
-	// 		Thread.sleep(Config.pause_actions);
-	// 		} catch (InterruptedException e) {
-	// 			e.printStackTrace();
-	// 	}
-	// 	WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
-	// 	WebElement myObj;
-	// 	   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
-	// 	if (array_prop_object.isEmpty()){
-	// 		return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
-	// 	}
-	// 	try {
-	// 		myObj = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(array_prop_object.get("name"))));
-	// 		Point location = myObj.getLocation();
-	// 		//Point Center = ((MobileElement) myObj).getCenter();
-	// 		int height = myObj.getSize().getHeight();
-	// 		new TouchAction((AndroidDriver)driver)
-	// 			  .press(new PointOption().withCoordinates(location.x, location.y+height-50))
-	// 			  .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
-	// 		   .moveTo(new PointOption().withCoordinates(location.x, location.y))
-	// 			  .release()
-	// 			  .perform();
-	// 		return Fonctions.logStepOK(teststep, driver, time1);
-	// 	} catch (Exception e) {
-	// 		System.out.println (e.getMessage());
-	// 		return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-	// 	}		
-	// }
 
-	// public static boolean  mobileobject_Scrollbyresourceid(final WebDriver driver, Teststep teststep) throws IOException {
-	// 	Date time1 = new Date();
-	// 	try {
-	// 		Thread.sleep(Config.pause_actions);
-	// 		} catch (InterruptedException e) {
-	// 			e.printStackTrace();
-	// 	}
-	// 	WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
-	// 	WebElement myObj;
-	// 	   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
-	// 	if (array_prop_object.isEmpty()){
-	// 		return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
-	// 	}
-	// 	try {
-	// 		myObj = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(array_prop_object.get("resourceid"))));
-	// 		Point location = myObj.getLocation();
-	// 		Point Center = ((MobileElement) myObj).getCenter();
-	// 		int height = myObj.getSize().getHeight();
-	// 		new TouchAction((AndroidDriver)driver)
-	// 			  .press(new PointOption().withCoordinates(Center.x, location.y+height-50))
-	// 			  .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
-	// 		   .moveTo(new PointOption().withCoordinates(Center.x, location.y))
-	// 			  .release()
-	// 			  .perform();
-	// 		return Fonctions.logStepOK(teststep, driver, time1);
-	// 	} catch (Exception e) {
-	// 		System.out.println (e.getMessage());
-	// 		return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-	// 	}		
-	// }
+// public static boolean  mobileobject_Scrollbyname(final WebDriver driver, Teststep teststep) throws IOException {
+// 	Date time1 = new Date();
+// 	try {
+// 		Thread.sleep(Config.pause_actions);
+// 		} catch (InterruptedException e) {
+// 			e.printStackTrace();
+// 	}
+// 	WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
+// 	WebElement myObj;
+// 	   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+// 	if (array_prop_object.isEmpty()){
+// 		return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
+// 	}
+// 	try {
+// 		myObj = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(array_prop_object.get("name"))));
+// 		Point location = myObj.getLocation();
+// 		//Point Center = ((MobileElement) myObj).getCenter();
+// 		int height = myObj.getSize().getHeight();
+// 		new TouchAction((AndroidDriver)driver)
+// 			  .press(new PointOption().withCoordinates(location.x, location.y+height-50))
+// 			  .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
+// 		   .moveTo(new PointOption().withCoordinates(location.x, location.y))
+// 			  .release()
+// 			  .perform();
+// 		return Fonctions.logStepOK(teststep, driver, time1);
+// 	} catch (Exception e) {
+// 		System.out.println (e.getMessage());
+// 		return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+// 	}
+// }
 
-	// public static boolean  mobileobject_Scrollbyxpath(final WebDriver driver, Teststep teststep) throws IOException {
-	// 	Date time1 = new Date();
-	// 	try {
-	// 		Thread.sleep(Config.pause_actions);
-	// 		} catch (InterruptedException e) {
-	// 			e.printStackTrace();
-	// 	}
-	// 	WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
-	// 	WebElement myObj;
-	// 	   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
-	// 	if (array_prop_object.isEmpty()){
-	// 		return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
-	// 	}
-	// 	try {
-	// 		myObj = driver.findElement(By.xpath(array_prop_object.get("xpath")));
-	// 		Point location = myObj.getLocation();
-	// 		// Point Center = ((MobileElement) myObj).getCenter();
-	// 		int height = myObj.getSize().getHeight();
-	// 		new TouchAction((AndroidDriver)driver)
-	// 			  .press(new PointOption().withCoordinates(location.x, location.y+height-50))
-	// 			  .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
-	// 		   .moveTo(new PointOption().withCoordinates(location.x, location.y))
-	// 			  .release()
-	// 			  .perform();
-	// 		return Fonctions.logStepOK(teststep, driver, time1);
-	// 	} catch (Exception e) {
-	// 		System.out.println (e.getMessage());
-	// 		return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-	// 	}		
-	// }
-	
+// public static boolean  mobileobject_Scrollbyresourceid(final WebDriver driver, Teststep teststep) throws IOException {
+// 	Date time1 = new Date();
+// 	try {
+// 		Thread.sleep(Config.pause_actions);
+// 		} catch (InterruptedException e) {
+// 			e.printStackTrace();
+// 	}
+// 	WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
+// 	WebElement myObj;
+// 	   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+// 	if (array_prop_object.isEmpty()){
+// 		return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
+// 	}
+// 	try {
+// 		myObj = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(array_prop_object.get("resourceid"))));
+// 		Point location = myObj.getLocation();
+// 		Point Center = ((MobileElement) myObj).getCenter();
+// 		int height = myObj.getSize().getHeight();
+// 		new TouchAction((AndroidDriver)driver)
+// 			  .press(new PointOption().withCoordinates(Center.x, location.y+height-50))
+// 			  .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
+// 		   .moveTo(new PointOption().withCoordinates(Center.x, location.y))
+// 			  .release()
+// 			  .perform();
+// 		return Fonctions.logStepOK(teststep, driver, time1);
+// 	} catch (Exception e) {
+// 		System.out.println (e.getMessage());
+// 		return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+// 	}
+// }
+
+// public static boolean  mobileobject_Scrollbyxpath(final WebDriver driver, Teststep teststep) throws IOException {
+// 	Date time1 = new Date();
+// 	try {
+// 		Thread.sleep(Config.pause_actions);
+// 		} catch (InterruptedException e) {
+// 			e.printStackTrace();
+// 	}
+// 	WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
+// 	WebElement myObj;
+// 	   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+// 	if (array_prop_object.isEmpty()){
+// 		return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
+// 	}
+// 	try {
+// 		myObj = driver.findElement(By.xpath(array_prop_object.get("xpath")));
+// 		Point location = myObj.getLocation();
+// 		// Point Center = ((MobileElement) myObj).getCenter();
+// 		int height = myObj.getSize().getHeight();
+// 		new TouchAction((AndroidDriver)driver)
+// 			  .press(new PointOption().withCoordinates(location.x, location.y+height-50))
+// 			  .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
+// 		   .moveTo(new PointOption().withCoordinates(location.x, location.y))
+// 			  .release()
+// 			  .perform();
+// 		return Fonctions.logStepOK(teststep, driver, time1);
+// 	} catch (Exception e) {
+// 		System.out.println (e.getMessage());
+// 		return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+// 	}
+// }
+
 	public static boolean  mobileobject_swipeLeftbyname(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -1023,30 +1023,30 @@ public class Scripts_techniques {
 				Fonctions.switchToWebViewContext((AndroidDriver) driver);
 				myObj = driver.findElement(By.name(array_prop_object.get("name")));
 			}
-			
-	// Point Center = ((MobileElement) myObj).getCenter();
-	Actions actions = new Actions(driver);
-	actions.clickAndHold(myObj);
-	actions.moveByOffset(-500, 0).release();
-	actions.build().perform();
-	System.out.println("Element swiped to the left");
-	return Fonctions.logStepOK(teststep, driver, time1);
+
+// Point Center = ((MobileElement) myObj).getCenter();
+			Actions actions = new Actions(driver);
+			actions.clickAndHold(myObj);
+			actions.moveByOffset(-500, 0).release();
+			actions.build().perform();
+			System.out.println("Element swiped to the left");
+			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
-	
+
 	public static boolean  mobileobject_swipeLeftbyresourceid(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -1067,20 +1067,20 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
-	
+
 	public static boolean  mobileobject_swipeLeftbyxpath(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -1097,7 +1097,7 @@ public class Scripts_techniques {
 				Fonctions.switchToWebViewContext((AndroidDriver) driver);
 				myObj = driver.findElement(By.xpath(array_prop_object.get("xpath")));
 			}
-			
+
 			Actions actions = new Actions(driver);
 			actions.clickAndHold(myObj);
 			actions.moveByOffset(-500, 0).release();
@@ -1106,20 +1106,20 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
-	
+
 	public static boolean  mobileobject_swipeRightbyname(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -1142,23 +1142,23 @@ public class Scripts_techniques {
 			actions.moveByOffset(500, 0).release();
 			actions.build().perform();
 			System.out.println("Element swiped to the right");
-	return Fonctions.logStepOK(teststep, driver, time1);
+			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
-	
+
 	public static boolean  mobileobject_swipeRightbyresourceid(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -1179,20 +1179,20 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
-	
+
 	public static boolean  mobileobject_swipeRightbyxpath(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		WebDriverWait wait = new WebDriverWait(driver, Config.timeout_elements);
 		WebElement myObj;
-		   Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		Hashtable< String, String>  array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
 		}
@@ -1209,21 +1209,21 @@ public class Scripts_techniques {
 				Fonctions.switchToWebViewContext((AndroidDriver) driver);
 				myObj = driver.findElement(By.xpath(array_prop_object.get("xpath")));
 			}
-			
-	//MobileElement element = driver.findElementById("com.kaliostest.test:id/swipe_deck");
+
+//MobileElement element = driver.findElementById("com.kaliostest.test:id/swipe_deck");
 			Actions actions = new Actions(driver);
 			actions.clickAndHold(myObj);
 			actions.moveByOffset(500, 0).release();
 			actions.build().perform();
 			System.out.println("Element swiped to the right");
-			
+
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println ("test");
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : ");	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : ");
+		}
 	}
-	
+
 	public static boolean mobileContainer_wait(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
@@ -1247,9 +1247,9 @@ public class Scripts_techniques {
 		try {
 			((AndroidDriver) driver).resetApp();
 			return Fonctions.logStepOK(teststep, driver, time1);
-			} catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
 		}
 	}
 
@@ -1265,7 +1265,7 @@ public class Scripts_techniques {
 			e.printStackTrace();
 		}
 		Fonctions.switchToWebViewContext(((AndroidDriver)driver));
-		
+
 		return Fonctions.logStepOK(teststep, driver, time1);
 	}
 
@@ -1288,12 +1288,12 @@ public class Scripts_techniques {
 			if (myObj.getAttribute("value").equals(teststep.param)) {
 				return Fonctions.logStepOK(teststep, driver, time1);
 			} else {
-				return Fonctions.logStepWarning(teststep, driver, time1, "Value of property value   found : "+  myObj.getAttribute("value"));		
+				return Fonctions.logStepWarning(teststep, driver, time1, "Value of property value   found : "+  myObj.getAttribute("value"));
 			}
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobilehybridobject_checkbyid(final WebDriver driver, Teststep teststep) throws IOException {
@@ -1315,12 +1315,12 @@ public class Scripts_techniques {
 			if (myObj.getAttribute("value").equals(teststep.param)) {
 				return Fonctions.logStepOK(teststep, driver, time1);
 			} else {
-				return Fonctions.logStepWarning(teststep, driver, time1, "Value of property value   found : "+  myObj.getAttribute("value"));		
+				return Fonctions.logStepWarning(teststep, driver, time1, "Value of property value   found : "+  myObj.getAttribute("value"));
 			}
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobilehybridobject_checkbyxpath(final WebDriver driver, Teststep teststep) throws IOException {
@@ -1342,12 +1342,12 @@ public class Scripts_techniques {
 			if (myObj.getAttribute("value").equals(teststep.param)) {
 				return Fonctions.logStepOK(teststep, driver, time1);
 			} else {
-				return Fonctions.logStepWarning(teststep, driver, time1, "Value of property value   found : "+  myObj.getAttribute("value"));		
+				return Fonctions.logStepWarning(teststep, driver, time1, "Value of property value   found : "+  myObj.getAttribute("value"));
 			}
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobilehybridobject_clickbyname(final WebDriver driver, Teststep teststep) throws IOException {
@@ -1370,8 +1370,8 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobilehybridobject_clickbyid(final WebDriver driver, Teststep teststep) throws IOException {
@@ -1394,8 +1394,8 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobilehybridobject_clickbyxpath(final WebDriver driver, Teststep teststep) throws IOException {
@@ -1418,7 +1418,7 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
 		}
 	}
 
@@ -1442,8 +1442,8 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobilehybridobject_sendkeysbyid(final WebDriver driver, Teststep teststep) throws IOException {
@@ -1467,8 +1467,8 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 	public static boolean mobilehybridobject_sendkeysbyxpath(final WebDriver driver, Teststep teststep) throws IOException {
@@ -1491,8 +1491,8 @@ public class Scripts_techniques {
 			return Fonctions.logStepOK(teststep, driver, time1);
 		} catch (Exception e) {
 			System.out.println (e.getMessage());
-			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());	
-		}		
+			return Fonctions.logStepKO(teststep, driver, time1, "Cannot perform action in obj : " +e.getMessage());
+		}
 	}
 
 //#########################################################################################
@@ -1534,7 +1534,7 @@ public class Scripts_techniques {
 					return Fonctions.logStepKO(teststep, driver, time1, "Error in the variable file." + e.getMessage());
 				}
 			} else {
-				property = array_prop_object.get("texte");	
+				property = array_prop_object.get("texte");
 			}
 			String[] parts = property.split("\\|");
 			for (int i = 0; i < parts.length; i++) {
@@ -1554,7 +1554,7 @@ public class Scripts_techniques {
 			try { // Faire le scroll
 				System.out.println("je scroll avec zone morte");
 				WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("+ str + pattern + str + "))"));
-			
+
 			} catch (Exception e) {
 				System.out.println("Scroll with text failed");
 				try {
@@ -1602,7 +1602,7 @@ public class Scripts_techniques {
 					element = entry.getValue();
 					xpath = entry.getKey();
 				}
-			} 
+			}
 
 
 			if (element != null) {
@@ -1681,207 +1681,207 @@ public class Scripts_techniques {
 	}
 
 	public static boolean MobileObject_sendkeysbytext(final WebDriver driver, Teststep teststep) throws IOException {
-	Date time1 = new Date();
-	try {
-		Thread.sleep(Config.pause_actions);
-	} catch (InterruptedException e) {
-		e.printStackTrace();
-	}
-	WebElement element = null;
-	Hashtable<String, String> array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
-	if (array_prop_object.isEmpty()){
-		return Fonctions.logStepKO(teststep, driver, time1, "No such file : " + teststep.object_attach_name);
-	}
-	try {
+		Date time1 = new Date();
 		try {
+			Thread.sleep(Config.pause_actions);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		WebElement element = null;
+		Hashtable<String, String> array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
+		if (array_prop_object.isEmpty()){
+			return Fonctions.logStepKO(teststep, driver, time1, "No such file : " + teststep.object_attach_name);
+		}
+		try {
+			try {
 				((AndroidDriver)driver).hideKeyboard();
 			}
 			catch (Exception e) {
 				System.out.println ("Keyboard not present");
 			}
-		String xpath = "";
-		String property;
-		HashMap<String, WebElement> list = null;
-		String file_params = Config.dir_params + File.separator + teststep.testcase_label + "_xpath_list.csv";
-		String tryProperty = Fonctions.getParameter(file_params, Config.compteur_instance, Config.compteur_params);
-		boolean elementfound = false;
-		String parameter;
+			String xpath = "";
+			String property;
+			HashMap<String, WebElement> list = null;
+			String file_params = Config.dir_params + File.separator + teststep.testcase_label + "_xpath_list.csv";
+			String tryProperty = Fonctions.getParameter(file_params, Config.compteur_instance, Config.compteur_params);
+			boolean elementfound = false;
+			String parameter;
 
-		// Récupérer la propriété dans une variable
-		if (array_prop_object.get("texte").charAt(0) == '$'){
-			try {
-				Wini ini = new Wini(new File(Config.propertyFile));
-				property = ini.get("property", array_prop_object.get("texte").substring(1));
-			} catch(Exception e) {
-				System.out.println ("The property was not found in the variable file.");
-				return Fonctions.logStepKO(teststep, driver, time1, "Cannot find the property in the variable file : " +e.getMessage());
-			}
-		} else {
-			property = array_prop_object.get("texte");
-		}
-		String[] parts = property.split("\\|");
-
-		// Récupérer le paramètre dans une variable
-		if (teststep.param.charAt(0) == '$'){
-			try {
-				Wini ini = new Wini(new File(Config.propertyFile));
-				parameter = ini.get("parameter", teststep.param.substring(1));
-			} catch(Exception e) {
-				System.out.println ("The parameter was not found in the variable file.");
-				return Fonctions.logStepKO(teststep, driver, time1, "Cannot find the parameter in the variable file : " +e.getMessage());
-			}
-		} else {
-			parameter = teststep.param;
-		}
-		try {
-			Pattern pattern;
-			if (parts.length == 1) {
-				pattern = Pattern.compile(parts[0], Pattern.CASE_INSENSITIVE);
-			} else {
-				pattern = Pattern.compile(parts[1], Pattern.CASE_INSENSITIVE);
-			}
-
-			try { // Faire le scroll
-				WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("+ str + pattern + str + "))"));
-			} catch (Exception e) {
-				System.out.println("Scroll with text failed");
+			// Récupérer la propriété dans une variable
+			if (array_prop_object.get("texte").charAt(0) == '$'){
 				try {
-					WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().descriptionContains("+ str + pattern + str + "))"));
-				} catch (Exception ex) {
-					System.out.println("Scroll with content-desc failed");
-					// return Fonctions.logStepKO(teststep, driver, time1, "Element not found with scroll");
+					Wini ini = new Wini(new File(Config.propertyFile));
+					property = ini.get("property", array_prop_object.get("texte").substring(1));
+				} catch(Exception e) {
+					System.out.println ("The property was not found in the variable file.");
+					return Fonctions.logStepKO(teststep, driver, time1, "Cannot find the property in the variable file : " +e.getMessage());
 				}
-			}
-			// Utiliser le try sauvegardé
-			if (!tryProperty.isEmpty() && tryProperty != null) {
-				switch (parts.length) {
-					case 1:
-						if (tryProperty.contains(str + ignoreSpacesMajMin(parts[0]) + str) && !tryProperty.contains("following::")) {
-							element = findElements(driver, tryProperty);
-							xpath = tryProperty;
-							if (element != null) {
-								elementfound = true;
-							}
-						}
-						break;
-					case 2:
-						if (tryProperty.contains(str + ignoreSpacesMajMin(parts[0]) + str) && tryProperty.contains(str + ignoreSpacesMajMin(parts[1]) + str)) {
-							element = findElements(driver, tryProperty);
-							xpath = tryProperty;
-							if (element != null) {
-								elementfound = true;
-							}
-						}
-						break;
-					default:
-						System.out.println("Error : not 1 or 2 fields in property.");
-						return Fonctions.logStepKO(teststep, driver, time1, "Error : not 1 or 2 fields in property");
-				}
-			}
-
-			// Faire les try
-			if (!elementfound) {
-				switch (parts.length) {
-					case 1:
-						list = trySendKeyByText(driver, parts[0]);
-						break;
-					case 2:
-						list = trySendKeyByText(driver, parts[0], parts[1]);
-						break;
-					default:
-						return Fonctions.logStepKO(teststep, driver, time1, "Error : not 1 or 2 fields in property");
-				}
-			}
-			if (list != null) {
-				for(Map.Entry<String, WebElement> entry : list.entrySet()) {
-					element = entry.getValue();
-					xpath = entry.getKey();
-				}
-			}
-
-			// Écrire dans l'élément
-			if (element != null) {
-				System.out.println(">>>>> Element found using the xpath :  \n"+xpath+"\n");
-				element.clear();
-				element.sendKeys(parameter);
-				System.out.println("Keys send in element");
-				return Fonctions.logStepOK(teststep, driver, time1, xpath);
 			} else {
-				System.out.println("Element not found");
+				property = array_prop_object.get("texte");
+			}
+			String[] parts = property.split("\\|");
 
+			// Récupérer le paramètre dans une variable
+			if (teststep.param.charAt(0) == '$'){
 				try {
-					Fonctions.switchToWebViewContext((AndroidDriver) driver);
-					if (!tryProperty.isEmpty() && tryProperty != null) {
-						switch (parts.length) {
-							case 1:
-								if (tryProperty.contains(str + ignoreSpacesMajMin(parts[0]) + str) && !tryProperty.contains("following::")) {
-									element = findElements(driver, tryProperty);
-									xpath = tryProperty;
-									if (element != null) {
-										elementfound = true;
-									}
-								}
-								break;
-							case 2:
-								if (tryProperty.contains(str + ignoreSpacesMajMin(parts[0]) + str) && tryProperty.contains(str + ignoreSpacesMajMin(parts[1]) + str)) {
-									element = findElements(driver, tryProperty);
-									xpath = tryProperty;
-									if (element != null) {
-										elementfound = true;
-									}
-								}
-								break;
-							default:
-								System.out.println("Error : not 1 or 2 fields in property.");
-								return Fonctions.logStepKO(teststep, driver, time1, "Error : not 1 or 2 fields in property");
-						}
+					Wini ini = new Wini(new File(Config.propertyFile));
+					parameter = ini.get("parameter", teststep.param.substring(1));
+				} catch(Exception e) {
+					System.out.println ("The parameter was not found in the variable file.");
+					return Fonctions.logStepKO(teststep, driver, time1, "Cannot find the parameter in the variable file : " +e.getMessage());
+				}
+			} else {
+				parameter = teststep.param;
+			}
+			try {
+				Pattern pattern;
+				if (parts.length == 1) {
+					pattern = Pattern.compile(parts[0], Pattern.CASE_INSENSITIVE);
+				} else {
+					pattern = Pattern.compile(parts[1], Pattern.CASE_INSENSITIVE);
+				}
+
+				try { // Faire le scroll
+					WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("+ str + pattern + str + "))"));
+				} catch (Exception e) {
+					System.out.println("Scroll with text failed");
+					try {
+						WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().descriptionContains("+ str + pattern + str + "))"));
+					} catch (Exception ex) {
+						System.out.println("Scroll with content-desc failed");
+						// return Fonctions.logStepKO(teststep, driver, time1, "Element not found with scroll");
 					}
+				}
+				// Utiliser le try sauvegardé
+				if (!tryProperty.isEmpty() && tryProperty != null) {
 					switch (parts.length) {
 						case 1:
-							list = identifyElementInput(driver, parts[0]);
+							if (tryProperty.contains(str + ignoreSpacesMajMin(parts[0]) + str) && !tryProperty.contains("following::")) {
+								element = findElements(driver, tryProperty);
+								xpath = tryProperty;
+								if (element != null) {
+									elementfound = true;
+								}
+							}
 							break;
 						case 2:
-							list = identifyElementInput(driver, parts[0], parts[1]);
-							break;					
-						default:
+							if (tryProperty.contains(str + ignoreSpacesMajMin(parts[0]) + str) && tryProperty.contains(str + ignoreSpacesMajMin(parts[1]) + str)) {
+								element = findElements(driver, tryProperty);
+								xpath = tryProperty;
+								if (element != null) {
+									elementfound = true;
+								}
+							}
 							break;
+						default:
+							System.out.println("Error : not 1 or 2 fields in property.");
+							return Fonctions.logStepKO(teststep, driver, time1, "Error : not 1 or 2 fields in property");
 					}
-					if (list != null) {
-						for(Map.Entry<String, WebElement> entry : list.entrySet()) {
-							element = entry.getValue();
-							xpath = entry.getKey();
-						}
-					}
-
-					// Écrire dans l'élément
-					if (element != null) {
-						System.out.println(">>>>> Element found using the xpath :  \n"+xpath+"\n");
-						element.clear();
-						element.sendKeys(parameter);
-						System.out.println("Keys send in element");
-						return Fonctions.logStepOK(teststep, driver, time1, xpath);
-					}
-				} catch (Exception e) {
-					System.out.println("error while in webview");
 				}
-				return Fonctions.logStepKO(teststep, driver, time1, "Element not found");
+
+				// Faire les try
+				if (!elementfound) {
+					switch (parts.length) {
+						case 1:
+							list = trySendKeyByText(driver, parts[0]);
+							break;
+						case 2:
+							list = trySendKeyByText(driver, parts[0], parts[1]);
+							break;
+						default:
+							return Fonctions.logStepKO(teststep, driver, time1, "Error : not 1 or 2 fields in property");
+					}
+				}
+				if (list != null) {
+					for(Map.Entry<String, WebElement> entry : list.entrySet()) {
+						element = entry.getValue();
+						xpath = entry.getKey();
+					}
+				}
+
+				// Écrire dans l'élément
+				if (element != null) {
+					System.out.println(">>>>> Element found using the xpath :  \n"+xpath+"\n");
+					element.clear();
+					element.sendKeys(parameter);
+					System.out.println("Keys send in element");
+					return Fonctions.logStepOK(teststep, driver, time1, xpath);
+				} else {
+					System.out.println("Element not found");
+
+					try {
+						Fonctions.switchToWebViewContext((AndroidDriver) driver);
+						if (!tryProperty.isEmpty() && tryProperty != null) {
+							switch (parts.length) {
+								case 1:
+									if (tryProperty.contains(str + ignoreSpacesMajMin(parts[0]) + str) && !tryProperty.contains("following::")) {
+										element = findElements(driver, tryProperty);
+										xpath = tryProperty;
+										if (element != null) {
+											elementfound = true;
+										}
+									}
+									break;
+								case 2:
+									if (tryProperty.contains(str + ignoreSpacesMajMin(parts[0]) + str) && tryProperty.contains(str + ignoreSpacesMajMin(parts[1]) + str)) {
+										element = findElements(driver, tryProperty);
+										xpath = tryProperty;
+										if (element != null) {
+											elementfound = true;
+										}
+									}
+									break;
+								default:
+									System.out.println("Error : not 1 or 2 fields in property.");
+									return Fonctions.logStepKO(teststep, driver, time1, "Error : not 1 or 2 fields in property");
+							}
+						}
+						switch (parts.length) {
+							case 1:
+								list = identifyElementInput(driver, parts[0]);
+								break;
+							case 2:
+								list = identifyElementInput(driver, parts[0], parts[1]);
+								break;
+							default:
+								break;
+						}
+						if (list != null) {
+							for(Map.Entry<String, WebElement> entry : list.entrySet()) {
+								element = entry.getValue();
+								xpath = entry.getKey();
+							}
+						}
+
+						// Écrire dans l'élément
+						if (element != null) {
+							System.out.println(">>>>> Element found using the xpath :  \n"+xpath+"\n");
+							element.clear();
+							element.sendKeys(parameter);
+							System.out.println("Keys send in element");
+							return Fonctions.logStepOK(teststep, driver, time1, xpath);
+						}
+					} catch (Exception e) {
+						System.out.println("error while in webview");
+					}
+					return Fonctions.logStepKO(teststep, driver, time1, "Element not found");
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				return Fonctions.logStepKO(teststep, driver, time1, e.getMessage());
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return Fonctions.logStepKO(teststep, driver, time1, e.getMessage());
 		}
-	} catch (Exception e) {
-		System.out.println(e.getMessage());
-		return Fonctions.logStepKO(teststep, driver, time1, e.getMessage());
 	}
-}
 
 	public static boolean MobileObject_selectbytext(final WebDriver driver, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		Hashtable<String, String> array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
@@ -1916,7 +1916,7 @@ public class Scripts_techniques {
 				}
 				parts= property.split("\\|");
 			}
-			
+
 			String parameter;
 			if (teststep.param.charAt(0) == '$'){
 				try {
@@ -1957,7 +1957,7 @@ public class Scripts_techniques {
 					// return Fonctions.logStepKO(teststep, driver, time1, "Element not found with scroll");
 				}
 			}
-			
+
 			if (!tryProperty.isEmpty() && tryProperty != null) {
 				switch (parts.length) {
 					case 0:
@@ -2024,7 +2024,7 @@ public class Scripts_techniques {
 						return Fonctions.logStepKO(teststep, driver, time1, "Not 1 to 3 property");
 				}
 			}
-			
+
 			if (list != null) {
 				for(Map.Entry<String, WebElement> entry : list.entrySet()) {
 					element = entry.getValue();
@@ -2039,7 +2039,7 @@ public class Scripts_techniques {
 						element.click();
 						System.out.println("Select made on \n" + xpath + "\n");
 						return Fonctions.logStepOK(teststep, driver, time1, xpath);
-					} 
+					}
 					if (ignoreSpacesMajMin(parameter).equals("no") || ignoreSpacesMajMin(parameter).equals("non")) {
 						System.out.println("Element is already checked");
 						return Fonctions.logStepWarning(teststep, driver, time1, "Element is already checked");
@@ -2059,126 +2059,17 @@ public class Scripts_techniques {
 				Fonctions.switchToWebViewContext((AndroidDriver) driver);
 				HashMap<String, Boolean> list1 = new HashMap<>();
 				switch(parts.length) {
-				case 0:
-					try {
-						System.out.println("###### Start tries on dropdown ######");
-						if (parameter.charAt(0) == '[' && parameter.charAt(parameter.length() - 1) == ']'){
-							System.out.println("Error : You need to set a property when you want to use the index.");
-							return Fonctions.logStepKO(teststep, driver, time1, "Error : You need to set a property when you want to use the index.");
-						}
-						if (tryProperty != null && !tryProperty.isEmpty()) {
-							if(!tryProperty.contains("parent") && tryProperty.contains(teststep.param)){
-								statusElement = chooseByTry(driver, tryProperty);
-								System.out.println("ici");
-								if(statusElement == true) {
-									xpath = tryProperty;
-									elementfound = true;
-								}
-							}
-						}
-						if (!elementfound) {
-							list1 = chooseByText(driver, parameter, statusElement);
-							for(Map.Entry<String, Boolean> entry : list1.entrySet()) {
-								statusElement = entry.getValue();
-								xpath = entry.getKey();
-							}
-						}
-						if (statusElement == true) {
-							return Fonctions.logStepOK(teststep, driver, time1, xpath);
-						}
-					}catch(Exception e){
-						System.out.println(e);
-					}
-					break;
-				case 1:
-					if (parameter.equals("Oui") || parameter.equals("oui") || parameter.equals("Yes") || parameter.equals("yes")
-					|| parameter.equals("Non") || parameter.equals("non") || parameter.equals("No") || parameter.equals("no")) {
-						try {
-							System.out.println("###### Start tries on radio and checkbox ######");
-							if (tryProperty != null && !tryProperty.isEmpty()) {
-								if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s","") + str) && tryProperty.contains(str + parameter + str) && StringUtils.countMatches(tryProperty, "parent")==1){
-									statusElement =  radioCheckBoxByTry(driver, tryProperty, parameter);
-									if(statusElement == true) {
-										xpath = tryProperty;
-										elementfound = true;
-									}
-								}
-							}
-							if (!elementfound) {
-								list1 = radioCheckBoxByText(driver, parts[0], statusElement, parameter);
-								for(Map.Entry<String, Boolean> entry : list1.entrySet()) {
-									statusElement = entry.getValue();
-									xpath = entry.getKey();
-								}
-							}
-							if (statusElement == true) {
-								return Fonctions.logStepOK(teststep, driver, time1, xpath);
-							}
-						}catch(Exception e){
-							System.out.println(e);
-						}
-					}
-					try {
-						System.out.println("###### Start tries on dropdown ######");
-						if (tryProperty != null && !tryProperty.isEmpty()) {
-							if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s","") + str) && tryProperty.contains(str + parameter + str) && StringUtils.countMatches(tryProperty, "parent")==1){
-								statusElement = chooseByTry(driver, tryProperty, parameter);
-								if(statusElement == true) {
-									xpath = tryProperty;
-									elementfound = true;
-								}
-							}
-						}
-						if (!elementfound) {
-							list1 = chooseByText(driver, parts[0], parameter, statusElement);
-							for(Map.Entry<String, Boolean> entry : list1.entrySet()) {
-								statusElement = entry.getValue();
-								xpath = entry.getKey();
-							}
-						}
-						if (statusElement == true) {
-							return Fonctions.logStepOK(teststep, driver, time1, xpath);
-						}
-					}catch(Exception e){
-						System.out.println(e);
-					}
-					break;
-				case 2:
-					if (parts[1].charAt(0) == '[' && parts[1].charAt(parts[1].length() - 1) == ']'){
-						parts[1] = parts[1].substring(1, parts[1].length() - 1);
-						if (parameter.equals("Oui") || parameter.equals("oui") || parameter.equals("Yes") || parameter.equals("yes")
-							|| parameter.equals("Non") || parameter.equals("non") || parameter.equals("No") || parameter.equals("no")) {
-							try {
-								System.out.println("###### Start tries on radio and checkbox ######");
-								if (tryProperty != null && !tryProperty.isEmpty()) {
-									if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) && StringUtils.countMatches(tryProperty, "parent")==1){
-										statusElement =  radioCheckBoxByTryAndIndex(driver, tryProperty, parts[1], parameter);
-										if(statusElement == true) {
-											xpath = tryProperty;
-											elementfound = true;
-										}
-									}
-									
-								}
-								if (!elementfound) {
-									list1 = radioCheckBoxByTextAndIndex(driver, parts[0], parts[1], statusElement, parameter);
-									for(Map.Entry<String, Boolean> entry : list1.entrySet()) {
-										statusElement = entry.getValue();
-										xpath = entry.getKey();
-									}
-								}
-								if (statusElement == true) {
-									return Fonctions.logStepOK(teststep, driver, time1, xpath);
-								}
-							}catch(Exception e){
-								System.out.println(e);
-							}
-						}
+					case 0:
 						try {
 							System.out.println("###### Start tries on dropdown ######");
+							if (parameter.charAt(0) == '[' && parameter.charAt(parameter.length() - 1) == ']'){
+								System.out.println("Error : You need to set a property when you want to use the index.");
+								return Fonctions.logStepKO(teststep, driver, time1, "Error : You need to set a property when you want to use the index.");
+							}
 							if (tryProperty != null && !tryProperty.isEmpty()) {
-								if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) && tryProperty.contains(str + parameter + str) && StringUtils.countMatches(tryProperty, "parent") == 1){
-									statusElement = chooseByTryAndIndex(driver, tryProperty, parts[1], parameter);
+								if(!tryProperty.contains("parent") && tryProperty.contains(teststep.param)){
+									statusElement = chooseByTry(driver, tryProperty);
+									System.out.println("ici");
 									if(statusElement == true) {
 										xpath = tryProperty;
 										elementfound = true;
@@ -2186,7 +2077,7 @@ public class Scripts_techniques {
 								}
 							}
 							if (!elementfound) {
-								list1 = chooseByTextAndIndex(driver, parts[0], parts[1], parameter, statusElement);
+								list1 = chooseByText(driver, parameter, statusElement);
 								for(Map.Entry<String, Boolean> entry : list1.entrySet()) {
 									statusElement = entry.getValue();
 									xpath = entry.getKey();
@@ -2198,23 +2089,23 @@ public class Scripts_techniques {
 						}catch(Exception e){
 							System.out.println(e);
 						}
-					} else {
+						break;
+					case 1:
 						if (parameter.equals("Oui") || parameter.equals("oui") || parameter.equals("Yes") || parameter.equals("yes")
-						|| parameter.equals("Non") || parameter.equals("non") || parameter.equals("No") || parameter.equals("no")) {
+								|| parameter.equals("Non") || parameter.equals("non") || parameter.equals("No") || parameter.equals("no")) {
 							try {
 								System.out.println("###### Start tries on radio and checkbox ######");
 								if (tryProperty != null && !tryProperty.isEmpty()) {
-									if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) && tryProperty.contains(str + parts[1].toLowerCase().replaceAll("\\s","") + str) && StringUtils.countMatches(tryProperty, "parent")==2){
+									if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s","") + str) && tryProperty.contains(str + parameter + str) && StringUtils.countMatches(tryProperty, "parent")==1){
 										statusElement =  radioCheckBoxByTry(driver, tryProperty, parameter);
 										if(statusElement == true) {
 											xpath = tryProperty;
 											elementfound = true;
 										}
 									}
-									
 								}
 								if (!elementfound) {
-									list1 = radioCheckBoxByText(driver, parts[0], parts[1], statusElement, parameter);
+									list1 = radioCheckBoxByText(driver, parts[0], statusElement, parameter);
 									for(Map.Entry<String, Boolean> entry : list1.entrySet()) {
 										statusElement = entry.getValue();
 										xpath = entry.getKey();
@@ -2230,7 +2121,7 @@ public class Scripts_techniques {
 						try {
 							System.out.println("###### Start tries on dropdown ######");
 							if (tryProperty != null && !tryProperty.isEmpty()) {
-								if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) && tryProperty.contains(str + parts[1].toLowerCase().replaceAll("\\s","") + str) && tryProperty.contains(str + parameter + str) && StringUtils.countMatches(tryProperty, "parent")==2){
+								if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s","") + str) && tryProperty.contains(str + parameter + str) && StringUtils.countMatches(tryProperty, "parent")==1){
 									statusElement = chooseByTry(driver, tryProperty, parameter);
 									if(statusElement == true) {
 										xpath = tryProperty;
@@ -2239,7 +2130,7 @@ public class Scripts_techniques {
 								}
 							}
 							if (!elementfound) {
-								list1 = chooseByText(driver, parts[0], parts[1], parameter, statusElement);
+								list1 = chooseByText(driver, parts[0], parameter, statusElement);
 								for(Map.Entry<String, Boolean> entry : list1.entrySet()) {
 									statusElement = entry.getValue();
 									xpath = entry.getKey();
@@ -2251,18 +2142,43 @@ public class Scripts_techniques {
 						}catch(Exception e){
 							System.out.println(e);
 						}
-					}
-					break;
-				case 3:
-					if (parts[2].charAt(0) == '[' && parts[2].charAt(parts[2].length() - 1) == ']'){
-						parts[2] = parts[2].substring(1, parts[2].length() - 1);
-						if (parameter.equals("Oui") || parameter.equals("oui") || parameter.equals("Yes") || parameter.equals("yes")
-						|| parameter.equals("Non") || parameter.equals("non") || parameter.equals("No") || parameter.equals("no")) {
+						break;
+					case 2:
+						if (parts[1].charAt(0) == '[' && parts[1].charAt(parts[1].length() - 1) == ']'){
+							parts[1] = parts[1].substring(1, parts[1].length() - 1);
+							if (parameter.equals("Oui") || parameter.equals("oui") || parameter.equals("Yes") || parameter.equals("yes")
+									|| parameter.equals("Non") || parameter.equals("non") || parameter.equals("No") || parameter.equals("no")) {
+								try {
+									System.out.println("###### Start tries on radio and checkbox ######");
+									if (tryProperty != null && !tryProperty.isEmpty()) {
+										if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) && StringUtils.countMatches(tryProperty, "parent")==1){
+											statusElement =  radioCheckBoxByTryAndIndex(driver, tryProperty, parts[1], parameter);
+											if(statusElement == true) {
+												xpath = tryProperty;
+												elementfound = true;
+											}
+										}
+
+									}
+									if (!elementfound) {
+										list1 = radioCheckBoxByTextAndIndex(driver, parts[0], parts[1], statusElement, parameter);
+										for(Map.Entry<String, Boolean> entry : list1.entrySet()) {
+											statusElement = entry.getValue();
+											xpath = entry.getKey();
+										}
+									}
+									if (statusElement == true) {
+										return Fonctions.logStepOK(teststep, driver, time1, xpath);
+									}
+								}catch(Exception e){
+									System.out.println(e);
+								}
+							}
 							try {
-								System.out.println("###### Start tries on radio and checkbox ######");
+								System.out.println("###### Start tries on dropdown ######");
 								if (tryProperty != null && !tryProperty.isEmpty()) {
-									if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) && tryProperty.contains(str + parts[1].toLowerCase().replaceAll("\\s", "") + str)){
-										statusElement =  radioCheckBoxByTryAndIndex(driver, tryProperty, parts[2], parameter);
+									if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) && tryProperty.contains(str + parameter + str) && StringUtils.countMatches(tryProperty, "parent") == 1){
+										statusElement = chooseByTryAndIndex(driver, tryProperty, parts[1], parameter);
 										if(statusElement == true) {
 											xpath = tryProperty;
 											elementfound = true;
@@ -2270,7 +2186,60 @@ public class Scripts_techniques {
 									}
 								}
 								if (!elementfound) {
-									list1 = radioCheckBoxByTextAndIndex(driver, parts[0], parts[1], parts[2], statusElement, parameter);
+									list1 = chooseByTextAndIndex(driver, parts[0], parts[1], parameter, statusElement);
+									for(Map.Entry<String, Boolean> entry : list1.entrySet()) {
+										statusElement = entry.getValue();
+										xpath = entry.getKey();
+									}
+								}
+								if (statusElement == true) {
+									return Fonctions.logStepOK(teststep, driver, time1, xpath);
+								}
+							}catch(Exception e){
+								System.out.println(e);
+							}
+						} else {
+							if (parameter.equals("Oui") || parameter.equals("oui") || parameter.equals("Yes") || parameter.equals("yes")
+									|| parameter.equals("Non") || parameter.equals("non") || parameter.equals("No") || parameter.equals("no")) {
+								try {
+									System.out.println("###### Start tries on radio and checkbox ######");
+									if (tryProperty != null && !tryProperty.isEmpty()) {
+										if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) && tryProperty.contains(str + parts[1].toLowerCase().replaceAll("\\s","") + str) && StringUtils.countMatches(tryProperty, "parent")==2){
+											statusElement =  radioCheckBoxByTry(driver, tryProperty, parameter);
+											if(statusElement == true) {
+												xpath = tryProperty;
+												elementfound = true;
+											}
+										}
+
+									}
+									if (!elementfound) {
+										list1 = radioCheckBoxByText(driver, parts[0], parts[1], statusElement, parameter);
+										for(Map.Entry<String, Boolean> entry : list1.entrySet()) {
+											statusElement = entry.getValue();
+											xpath = entry.getKey();
+										}
+									}
+									if (statusElement == true) {
+										return Fonctions.logStepOK(teststep, driver, time1, xpath);
+									}
+								}catch(Exception e){
+									System.out.println(e);
+								}
+							}
+							try {
+								System.out.println("###### Start tries on dropdown ######");
+								if (tryProperty != null && !tryProperty.isEmpty()) {
+									if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) && tryProperty.contains(str + parts[1].toLowerCase().replaceAll("\\s","") + str) && tryProperty.contains(str + parameter + str) && StringUtils.countMatches(tryProperty, "parent")==2){
+										statusElement = chooseByTry(driver, tryProperty, parameter);
+										if(statusElement == true) {
+											xpath = tryProperty;
+											elementfound = true;
+										}
+									}
+								}
+								if (!elementfound) {
+									list1 = chooseByText(driver, parts[0], parts[1], parameter, statusElement);
 									for(Map.Entry<String, Boolean> entry : list1.entrySet()) {
 										statusElement = entry.getValue();
 										xpath = entry.getKey();
@@ -2283,69 +2252,100 @@ public class Scripts_techniques {
 								System.out.println(e);
 							}
 						}
-						try {
-							System.out.println("###### Start tries on dropdown ######");
-							if (tryProperty != null && !tryProperty.isEmpty()) {
-								if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) && tryProperty.contains(str + parts[1].toLowerCase().replaceAll("\\s", "") + str) && tryProperty.contains(str + parameter + str)){
-									statusElement = chooseByTryAndIndex(driver, tryProperty, parts[2], parameter);
-									if(statusElement == true) {
-										xpath = tryProperty;
-										elementfound = true;
-									}	
+						break;
+					case 3:
+						if (parts[2].charAt(0) == '[' && parts[2].charAt(parts[2].length() - 1) == ']'){
+							parts[2] = parts[2].substring(1, parts[2].length() - 1);
+							if (parameter.equals("Oui") || parameter.equals("oui") || parameter.equals("Yes") || parameter.equals("yes")
+									|| parameter.equals("Non") || parameter.equals("non") || parameter.equals("No") || parameter.equals("no")) {
+								try {
+									System.out.println("###### Start tries on radio and checkbox ######");
+									if (tryProperty != null && !tryProperty.isEmpty()) {
+										if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) && tryProperty.contains(str + parts[1].toLowerCase().replaceAll("\\s", "") + str)){
+											statusElement =  radioCheckBoxByTryAndIndex(driver, tryProperty, parts[2], parameter);
+											if(statusElement == true) {
+												xpath = tryProperty;
+												elementfound = true;
+											}
+										}
+									}
+									if (!elementfound) {
+										list1 = radioCheckBoxByTextAndIndex(driver, parts[0], parts[1], parts[2], statusElement, parameter);
+										for(Map.Entry<String, Boolean> entry : list1.entrySet()) {
+											statusElement = entry.getValue();
+											xpath = entry.getKey();
+										}
+									}
+									if (statusElement == true) {
+										return Fonctions.logStepOK(teststep, driver, time1, xpath);
+									}
+								}catch(Exception e){
+									System.out.println(e);
 								}
 							}
-							if (!elementfound) {
-								list1 = chooseByTextAndIndex(driver, parts[0], parts[1], parts[2], parameter, statusElement);
-								for(Map.Entry<String, Boolean> entry : list1.entrySet()) {
-									statusElement = entry.getValue();
-									xpath = entry.getKey();
+							try {
+								System.out.println("###### Start tries on dropdown ######");
+								if (tryProperty != null && !tryProperty.isEmpty()) {
+									if(tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) && tryProperty.contains(str + parts[1].toLowerCase().replaceAll("\\s", "") + str) && tryProperty.contains(str + parameter + str)){
+										statusElement = chooseByTryAndIndex(driver, tryProperty, parts[2], parameter);
+										if(statusElement == true) {
+											xpath = tryProperty;
+											elementfound = true;
+										}
+									}
 								}
+								if (!elementfound) {
+									list1 = chooseByTextAndIndex(driver, parts[0], parts[1], parts[2], parameter, statusElement);
+									for(Map.Entry<String, Boolean> entry : list1.entrySet()) {
+										statusElement = entry.getValue();
+										xpath = entry.getKey();
+									}
+								}
+								if (statusElement == true) {
+									return Fonctions.logStepOK(teststep, driver, time1, xpath);
+								}
+							}catch(Exception e){
+								System.out.println(e);
 							}
-							if (statusElement == true) {
-								return Fonctions.logStepOK(teststep, driver, time1, xpath);
-							}
-						}catch(Exception e){
-							System.out.println(e);
 						}
-					}
-				default:
-					System.out.println("Error at switch, number of strings from teststep is not between 0 and 3");
-					return Fonctions.logStepKO(teststep, driver, time1, "Error at switch, number of strings from teststep is not between 0 and 3");
-			}
+					default:
+						System.out.println("Error at switch, number of strings from teststep is not between 0 and 3");
+						return Fonctions.logStepKO(teststep, driver, time1, "Error at switch, number of strings from teststep is not between 0 and 3");
+				}
 				/** if (list1 != null) {
-					for(Map.Entry<String, WebElement> entry : list1.entrySet()) {
-						element = entry.getValue();
-						xpath = entry.getKey();
-					}
-				}
+				 for(Map.Entry<String, WebElement> entry : list1.entrySet()) {
+				 element = entry.getValue();
+				 xpath = entry.getKey();
+				 }
+				 }
 
-				if (element != null) {
-					statusElement = element.getAttribute("checked").equals("true");
-					if (!statusElement) {
-						if (ignoreSpacesMajMin(parameter).equals("yes") || ignoreSpacesMajMin(parameter).equals("oui")) {
-							element.click();
-							System.out.println("Select made on \n" + xpath + "\n");
-							return Fonctions.logStepOK(teststep, driver, time1, xpath);
-						} 
-						if (ignoreSpacesMajMin(parameter).equals("no") || ignoreSpacesMajMin(parameter).equals("non")) {
-							System.out.println("Element is already checked");
-							return Fonctions.logStepWarning(teststep, driver, time1, "Element is already checked");
-						}
-					} else {
-						if (ignoreSpacesMajMin(parameter).equals("no") || ignoreSpacesMajMin(parameter).equals("non")) {
-							element.click();
-							System.out.println("Select made on \n" + xpath + "\n");
-							return Fonctions.logStepOK(teststep, driver, time1, xpath);
-						}
-						if (ignoreSpacesMajMin(parameter).equals("yes") || ignoreSpacesMajMin(parameter).equals("oui")) {
-							System.out.println("Element is already unchecked");
-							return Fonctions.logStepWarning(teststep, driver, time1, "Element is already unchecked");
-						}
-					}
-				}
-				System.out.println("Element not found");
-				return Fonctions.logStepKO(teststep, driver, time1, "Element not found");
-			**/}
+				 if (element != null) {
+				 statusElement = element.getAttribute("checked").equals("true");
+				 if (!statusElement) {
+				 if (ignoreSpacesMajMin(parameter).equals("yes") || ignoreSpacesMajMin(parameter).equals("oui")) {
+				 element.click();
+				 System.out.println("Select made on \n" + xpath + "\n");
+				 return Fonctions.logStepOK(teststep, driver, time1, xpath);
+				 }
+				 if (ignoreSpacesMajMin(parameter).equals("no") || ignoreSpacesMajMin(parameter).equals("non")) {
+				 System.out.println("Element is already checked");
+				 return Fonctions.logStepWarning(teststep, driver, time1, "Element is already checked");
+				 }
+				 } else {
+				 if (ignoreSpacesMajMin(parameter).equals("no") || ignoreSpacesMajMin(parameter).equals("non")) {
+				 element.click();
+				 System.out.println("Select made on \n" + xpath + "\n");
+				 return Fonctions.logStepOK(teststep, driver, time1, xpath);
+				 }
+				 if (ignoreSpacesMajMin(parameter).equals("yes") || ignoreSpacesMajMin(parameter).equals("oui")) {
+				 System.out.println("Element is already unchecked");
+				 return Fonctions.logStepWarning(teststep, driver, time1, "Element is already unchecked");
+				 }
+				 }
+				 }
+				 System.out.println("Element not found");
+				 return Fonctions.logStepKO(teststep, driver, time1, "Element not found");
+				 **/}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return Fonctions.logStepKO(teststep, driver, time1, e.getMessage());
@@ -2357,8 +2357,8 @@ public class Scripts_techniques {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		Hashtable<String, String> array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
@@ -2394,7 +2394,7 @@ public class Scripts_techniques {
 			} else {
 				property = array_prop_object.get("texte");
 			}
-			
+
 			parts = property.split("\\|");
 
 			// Récupérer le paramètre si c'est une variable
@@ -2407,7 +2407,7 @@ public class Scripts_techniques {
 			} else {
 				parameter = teststep.param;
 			}
-			
+
 			Pattern pattern;
 			if (parts.length == 1) {
 				pattern = Pattern.compile(parts[0], Pattern.CASE_INSENSITIVE);
@@ -2449,8 +2449,8 @@ public class Scripts_techniques {
 						}
 						break;
 					default:
-					System.out.println("Number of properties not between 1 and 2");
-					return Fonctions.logStepKO(teststep, driver, time1, "Number of properties not between 1 and 2");
+						System.out.println("Number of properties not between 1 and 2");
+						return Fonctions.logStepKO(teststep, driver, time1, "Number of properties not between 1 and 2");
 				}
 			}
 
@@ -2464,8 +2464,8 @@ public class Scripts_techniques {
 						list = tryCheckByText(driver, parts[0], parts[1]);
 						break;
 					default:
-					System.out.println("Number of properties not between 1 and 2");
-					return Fonctions.logStepKO(teststep, driver, time1, "Number of properties not between 1 and 2");
+						System.out.println("Number of properties not between 1 and 2");
+						return Fonctions.logStepKO(teststep, driver, time1, "Number of properties not between 1 and 2");
 				}
 			}
 			if (list != null) {
@@ -2499,7 +2499,7 @@ public class Scripts_techniques {
 								element = findElements(driver, tryProperty);
 							}
 							break;
-							
+
 						case 2:
 							if (!tryProperty.contains(str + parts[0].toLowerCase().replaceAll("\\s", "") + str) || !tryProperty.contains(str + parts[1].toLowerCase().replaceAll("\\s", "") + str)) break;
 							element= findElementsForInput(driver, tryProperty, "input");
@@ -2534,19 +2534,19 @@ public class Scripts_techniques {
 					}
 				}
 				if (element != null) {
-				System.out.println("Check made on \n" + xpath + "\n");
-				if (ignoreSpacesMajMin(element.getText()).equals(ignoreSpacesMajMin(parameter)) || ignoreSpacesMajMin(element.getAttribute("value")).equals(ignoreSpacesMajMin(parameter))) {
-					System.out.println("<<<<<<<< Text: " + parameter + " is present. >>>>>>>>");
-					return Fonctions.logStepOK(teststep, driver, time1, xpath);
-				} else {
-					System.out.println("<<<<<<<< Text: " + parameter + " is not present. >>>>>>>>");
-					return Fonctions.logStepWarning(teststep, driver, time1, "Texts are not equals", xpath);
+					System.out.println("Check made on \n" + xpath + "\n");
+					if (ignoreSpacesMajMin(element.getText()).equals(ignoreSpacesMajMin(parameter)) || ignoreSpacesMajMin(element.getAttribute("value")).equals(ignoreSpacesMajMin(parameter))) {
+						System.out.println("<<<<<<<< Text: " + parameter + " is present. >>>>>>>>");
+						return Fonctions.logStepOK(teststep, driver, time1, xpath);
+					} else {
+						System.out.println("<<<<<<<< Text: " + parameter + " is not present. >>>>>>>>");
+						return Fonctions.logStepWarning(teststep, driver, time1, "Texts are not equals", xpath);
+					}
 				}
-			}
 				System.out.println("Element not found");
 				return Fonctions.logStepKO(teststep, driver, time1, "Element not found");
 			}
-			
+
 		} catch(Exception e){
 			System.out.println(e.getMessage());
 			return Fonctions.logStepKO(teststep, driver, time1, e.getMessage());
@@ -2557,8 +2557,8 @@ public class Scripts_techniques {
 		Date time1 = new Date();
 		try {
 			Thread.sleep(Config.pause_actions);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		Hashtable<String, String> array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
@@ -2594,7 +2594,7 @@ public class Scripts_techniques {
 			} else {
 				property = array_prop_object.get("texte");
 			}
-			
+
 			parts = property.split("\\|");
 
 			// Récupérer le paramètre si c'est une variable
@@ -2618,7 +2618,7 @@ public class Scripts_techniques {
 
 			try { // Faire le scroll
 				WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("+ str + pattern + str + "))"));
-			
+
 			} catch (Exception e) {
 				System.out.println("Scroll with text failed");
 				try {
@@ -2639,7 +2639,7 @@ public class Scripts_techniques {
 							}
 						}
 						break;
-						
+
 					case 2:
 						if (tryProperty.contains(str + ignoreSpacesMajMin(parts[0]) + str) && tryProperty.contains(str + ignoreSpacesMajMin(parts[1]) + str) && tryProperty.contains("//following::")) {
 							element = findElementsIndex(driver, tryProperty, parameter);
@@ -2813,7 +2813,7 @@ public class Scripts_techniques {
 			}
 			String[] parts = property.split("\\|");
 
-			
+
 			try {
 				Pattern pattern;
 				if (parts.length == 1) {
@@ -2924,7 +2924,7 @@ public class Scripts_techniques {
 								break;
 						}
 					}
-					
+
 					if (list != null) {
 						for(Map.Entry<String, WebElement> entry : list.entrySet()) {
 							element = entry.getValue();
@@ -2936,7 +2936,7 @@ public class Scripts_techniques {
 						element.clear();
 						System.out.println("Element cleared");
 						return Fonctions.logStepOK(teststep, driver, time1, xpath);
-					} 
+					}
 					System.out.println("Element not found");
 					return Fonctions.logStepKO(teststep, driver, time1, "Element not found");
 				}
@@ -2999,7 +2999,7 @@ public class Scripts_techniques {
 				}
 
 				try { // Faire le scroll
-						WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("+ str + pattern + str + "))"));
+					WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("+ str + pattern + str + "))"));
 				} catch (Exception e) {
 					System.out.println("Scroll with text failed");
 					try {
@@ -3076,7 +3076,7 @@ public class Scripts_techniques {
 				} else {
 					System.out.println("Element not found");
 					return Fonctions.logStepKO(teststep, driver, time1, "Element not found");
-				}	
+				}
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 				return Fonctions.logStepKO(teststep, driver, time1, e.getMessage());
@@ -3136,7 +3136,7 @@ public class Scripts_techniques {
 				}
 
 				try { // Faire le scroll
-						WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("+ str + pattern + str + "))"));
+					WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("+ str + pattern + str + "))"));
 				} catch (Exception e) {
 					System.out.println("Scroll with text failed");
 					try {
@@ -3195,7 +3195,7 @@ public class Scripts_techniques {
 
 				if (element != null) {
 					System.out.println("Element found with xpath : \n" + xpath + "\n");
-					
+
 					Actions act = new Actions(driver);
 					act.clickAndHold(element).pause(Duration.ofSeconds(1)).release().perform();
 					System.out.println("Element long pressed");
@@ -3204,7 +3204,7 @@ public class Scripts_techniques {
 				} else {
 					System.out.println("Element not found");
 					return Fonctions.logStepKO(teststep, driver, time1, "Element not found");
-				}	
+				}
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 				return Fonctions.logStepKO(teststep, driver, time1, e.getMessage());
@@ -3248,20 +3248,20 @@ public class Scripts_techniques {
 			}
 			Pattern pattern = Pattern.compile(property, Pattern.CASE_INSENSITIVE);
 
-				try { // Faire le scroll
-						WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("+ str + pattern + str + "))"));
-						System.out.println("Scroll to the text success");
-						return Fonctions.logStepOK(teststep, driver, time1);
-				} catch (Exception e) {
-					try {
-						WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().descriptionContains("+ str + pattern + str + "))"));
-						System.out.println("Scroll to the text success");
-						return Fonctions.logStepOK(teststep, driver, time1);
-					} catch (Exception ex) {
-						System.out.println("Scroll not found the element");
-						return Fonctions.logStepKO(teststep, driver, time1, "Scroll not found the element");
-					}
+			try { // Faire le scroll
+				WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("+ str + pattern + str + "))"));
+				System.out.println("Scroll to the text success");
+				return Fonctions.logStepOK(teststep, driver, time1);
+			} catch (Exception e) {
+				try {
+					WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().descriptionContains("+ str + pattern + str + "))"));
+					System.out.println("Scroll to the text success");
+					return Fonctions.logStepOK(teststep, driver, time1);
+				} catch (Exception ex) {
+					System.out.println("Scroll not found the element");
+					return Fonctions.logStepKO(teststep, driver, time1, "Scroll not found the element");
 				}
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return Fonctions.logStepKO(teststep, driver, time1, e.getMessage());
@@ -3312,7 +3312,7 @@ public class Scripts_techniques {
 				Pattern pattern = Pattern.compile(parts[0], Pattern.CASE_INSENSITIVE);
 
 				try { // Faire le scroll
-						WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("+ str + pattern + str + "))"));
+					WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("+ str + pattern + str + "))"));
 				} catch (Exception e) {
 					System.out.println("Scroll with text failed");
 					try {
@@ -3335,7 +3335,7 @@ public class Scripts_techniques {
 
 				if (!elementfound) {
 					// faire les try
-					list = trySwipe(driver, parts[0]);	
+					list = trySwipe(driver, parts[0]);
 				}
 
 				if (list != null) {
@@ -3429,7 +3429,7 @@ public class Scripts_techniques {
 				Pattern pattern = Pattern.compile(parts[0], Pattern.CASE_INSENSITIVE);
 
 				try { // Faire le scroll
-						WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("+ str + pattern + str + "))"));
+					WebElement obj = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("+ str + pattern + str + "))"));
 				} catch (Exception e) {
 					System.out.println("Scroll with text failed");
 					try {
@@ -3452,7 +3452,7 @@ public class Scripts_techniques {
 
 				if (!elementfound) {
 					// faire les try
-					list = trySwipe(driver, parts[0]);	
+					list = trySwipe(driver, parts[0]);
 				}
 
 				if (list != null) {
@@ -3543,12 +3543,12 @@ public class Scripts_techniques {
 					}
 					totalTextOfPage += textToAdd;
 					scrollScreen(driver, 1);
-					} while (!textOfPage.equals(textToAdd));
+				} while (!textOfPage.equals(textToAdd));
 			} catch (Exception e) {
 				System.out.println("Error with the text exctraction");
 			}
 			//System.out.println("Texte contenu sur la page : \n" + totalTextOfPage);
-			
+
 			if (ignoreSpacesMajMin(totalTextOfPage).contains(ignoreSpacesMajMin(parameter))) {
 				System.out.println("Text : " + str + parameter + str + " found in the page");
 				return Fonctions.logStepOK(teststep, driver, time1);
@@ -3563,21 +3563,21 @@ public class Scripts_techniques {
 	}
 
 	public static boolean MobileContainer_scroll(WebDriver driver, Teststep teststep){
-		
+
 		Date time1 = new Date();
 		int nb_scroll = 1;
 		int percentageX = 50;
 		int percentageEndY =  10;
 		int percentageStartY = 95;
-		
+
 		//faire un wait de x Seconde
-		 try {
+		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-			    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("fdsfs")));
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("fdsfs")));
 		} catch (Exception e) {
-			
+
 		}
-		
+
 		Hashtable<String, String> array_prop_object = Fonctions.getObjectProperties(teststep.object_attach_name);
 		if (array_prop_object.isEmpty()){
 			return Fonctions.logStepKO(teststep, driver, time1, "No such file :"+  teststep.object_attach_name);
@@ -3597,35 +3597,35 @@ public class Scripts_techniques {
 		System.out.println("parameter :"+parameter);
 		String[] parts= splitString(parameter);
 		try {
-		switch(parts.length) {
-			case 1:
-				nb_scroll =  Integer.parseInt(parts[0]);
-				break;
-			case 2:
-				nb_scroll = Integer.parseInt(parts[0]);
-				percentageEndY = Integer.parseInt(parts[1]);
-				break;
-			
-			default:
-				System.out.println("Error at switch, number of strings from parameter is not between 1 and 2");
-			return Fonctions.logStepKO(teststep, driver, time1, "Error at switch, number of parameter is not between 1 and 2");
-		
-		}
+			switch(parts.length) {
+				case 1:
+					nb_scroll =  Integer.parseInt(parts[0]);
+					break;
+				case 2:
+					nb_scroll = Integer.parseInt(parts[0]);
+					percentageEndY = Integer.parseInt(parts[1]);
+					break;
+
+				default:
+					System.out.println("Error at switch, number of strings from parameter is not between 1 and 2");
+					return Fonctions.logStepKO(teststep, driver, time1, "Error at switch, number of parameter is not between 1 and 2");
+
+			}
 		}catch(NumberFormatException e) {
 			return Fonctions.logStepKO(teststep, driver, time1, "Un des paramètres n'est pas un entier");
 		}
-		
+
 		if (percentageEndY>95 || percentageEndY < 0) {
 			System.out.println("La taille de la zone morte doit etre comprise entre 0 et 95");
 			return Fonctions.logStepKO(teststep, driver, time1, "La taille de la zone morte doit etre comprise entre 0 et 95");
 		}
-		
+
 		try {
 			((HidesKeyboard) driver).hideKeyboard();
 		} catch (Exception e) {
 			System.out.println("keyboard not displayed");
 		}
-		
+
 		int heightOfScreen = driver.manage().window().getSize().getHeight();
 		int widthOfScreen = driver.manage().window().getSize().getWidth();
 		int centerX = (int) (widthOfScreen * percentageX/100);
@@ -3633,7 +3633,7 @@ public class Scripts_techniques {
 		int endY = (int) (heightOfScreen * percentageEndY/100);
 		int i;
 		for (i = 0; i < nb_scroll; i++) {
-			
+
 			try {
 				PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH,"finger");
 				Sequence swipe = new Sequence(finger,1);
@@ -3645,28 +3645,26 @@ public class Scripts_techniques {
 			} catch (Exception e) {
 				return Fonctions.logStepKO(teststep, driver, time1, "Impossible d’effectuer le scroll : "+ e.getMessage());
 			}
-			
+
 		}
 		System.out.println(i+" scroll sur "+ nb_scroll + " ont été effectué");
 		return Fonctions.logStepOK(teststep, driver, time1);
 	}
-	
+
 	public static boolean MobileContainer_clickbycoordinates(WebDriver selenium, Teststep teststep) throws IOException {
 		Date time1 = new Date();
 		WebDriver driverInstance = (WebDriver) selenium;
 		try {
 			Thread.sleep(Config.pause_actions);
 			try {
-			WebDriverWait wait = new WebDriverWait(driverInstance, Duration.ofSeconds(5));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.id(" ")));
+				WebDriverWait wait = new WebDriverWait(driverInstance, Duration.ofSeconds(5));
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.id(" ")));
 			}catch(Exception e) {
-				
-			}
 
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
 		String nbrligneColonne, tag, temp, coord;
 		String[] params;
 		int click_x, click_y;
@@ -3699,9 +3697,9 @@ public class Scripts_techniques {
 					String att = tagAttribute[0];
 					// System.out.println("Recherche xpath = " + "//*[" + att + "='" + value +
 					// "']");
-					 try {
+					try {
 						WebDriverWait wait = new WebDriverWait(selenium, Duration.ofSeconds(10));
-					    wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[" + att + "='" + value + "']")));
+						wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[" + att + "='" + value + "']")));
 						elem = driverInstance.findElement(By.xpath("//*[" + att + "='" + value + "']"));
 					} catch (Exception e) {
 						return Fonctions.logStepKO(teststep, selenium, time1, "Xpath not found : " + e.getMessage());
@@ -3713,7 +3711,6 @@ public class Scripts_techniques {
 					} catch (Exception e) {
 						return Fonctions.logStepKO(teststep, selenium, time1, "Xpath not found : " + e.getMessage());
 					}
-
 				}
 				try {
 					Dimension canvas_dimensions = elem.getSize();
@@ -3729,36 +3726,34 @@ public class Scripts_techniques {
 						return Fonctions.logStepWarning(teststep, selenium, time1,
 								"Erreur coordonnées inacessible dans ce quadrillage de " + nbLines + " lignes et "
 										+ nbCollumns + " colonnes ");
-					
+
 					click_x = elem.getLocation().getX() + xMoveOriginToPoint * stepx - xMoveOriginToPoint / 2;
 					click_y = elem.getLocation().getY() + yMoveOriginToPoint * stepy - yMoveOriginToPoint / 2;
 				} catch (Exception e) {
 					return Fonctions.logStepKO(teststep, selenium, time1, "Error when trying to build canva : " + e.getMessage());
-
 				}
-
 			} else {
 				if (temp.contains(":") && (!temp.contains("@"))) {
 					try {
-					nbrligneColonne = params[1]; // Case Coordinates + Table size
-					Dimension canvas_dimensions = selenium.manage().window().getSize();
-					String tabCoord[] = coord.split(":");
-					int stepx = Integer.parseInt(tabCoord[0]);
-					int stepy = Integer.parseInt(tabCoord[1]);
-					String tabLineCol[] = nbrligneColonne.split(":");
-					int nbLines = Integer.parseInt(tabLineCol[0]);
-					int nbCollumns = Integer.parseInt(tabLineCol[1]);
-					if (stepx > nbLines || stepx < 1 || stepy > nbCollumns || stepy < 1)
-						return Fonctions.logStepWarning(teststep, selenium, time1,
-								"Erreur coordonnées inacessible dans ce quadrillage de " + nbLines + " lignes et "
-										+ nbCollumns + " colonnes ");
-					int xMoveOriginToPoint = canvas_dimensions.getWidth() / nbCollumns;
-					int yMoveOriginToPoint = canvas_dimensions.getHeight() / nbLines;
-					click_x = xMoveOriginToPoint * stepx - xMoveOriginToPoint / 2;
-					click_y = yMoveOriginToPoint * stepy - yMoveOriginToPoint / 2;
-				} catch (Exception e) {
-					return Fonctions.logStepKO(teststep, selenium, time1, "Error when trying to build canva : " + e.getMessage());
-				}
+						nbrligneColonne = params[1]; // Case Coordinates + Table size
+						Dimension canvas_dimensions = selenium.manage().window().getSize();
+						String tabCoord[] = coord.split(":");
+						int stepx = Integer.parseInt(tabCoord[0]);
+						int stepy = Integer.parseInt(tabCoord[1]);
+						String tabLineCol[] = nbrligneColonne.split(":");
+						int nbLines = Integer.parseInt(tabLineCol[0]);
+						int nbCollumns = Integer.parseInt(tabLineCol[1]);
+						if (stepx > nbLines || stepx < 1 || stepy > nbCollumns || stepy < 1)
+							return Fonctions.logStepWarning(teststep, selenium, time1,
+									"Erreur coordonnées inacessible dans ce quadrillage de " + nbLines + " lignes et "
+											+ nbCollumns + " colonnes ");
+						int xMoveOriginToPoint = canvas_dimensions.getWidth() / nbCollumns;
+						int yMoveOriginToPoint = canvas_dimensions.getHeight() / nbLines;
+						click_x = xMoveOriginToPoint * stepx - xMoveOriginToPoint / 2;
+						click_y = yMoveOriginToPoint * stepy - yMoveOriginToPoint / 2;
+					} catch (Exception e) {
+						return Fonctions.logStepKO(teststep, selenium, time1, "Error when trying to build canva : " + e.getMessage());
+					}
 				} else {
 					tag = params[1]; // Case Coordinates + tag
 					if (tag.contains("@")) {
@@ -3767,82 +3762,74 @@ public class Scripts_techniques {
 						String value = tabAttribute[1];
 						// System.out.println("Recherche xpath = " + "//*[" + attr + "='" + value +
 						// "']");
-						 try {
-								WebDriverWait wait = new WebDriverWait(selenium, Duration.ofSeconds(10));
-							    wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[" + att + "='" + value + "']")));
-							} catch (Exception e) {
-							}
+						try {
+							WebDriverWait wait = new WebDriverWait(selenium, Duration.ofSeconds(10));
+							wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[" + att + "='" + value + "']")));
+						} catch (Exception e) {
+						}
 						elem = driverInstance.findElement(By.xpath("//*[" + att + "='" + value + "']"));
 					} else {
 						elem = driverInstance.findElement(By.xpath("//" + tag));
 						// System.out.println("Recherche xpath : " + "//" + tag);
 					}
 					try {
-					Dimension canvas_dimensions = elem.getSize();
-					String tabCoord[] = coord.split(":");
-					int stepx = Integer.parseInt(tabCoord[0]);
-					int stepy = Integer.parseInt(tabCoord[1]);
-					if (stepx > 10 || stepx < 1 || stepy > 10 || stepy < 1)
-						return Fonctions.logStepWarning(teststep, selenium, time1,
-								"Erreur coordonnées inacessible dans ce quadrillage de 10 lignes et 10 colonnes ");
-					int xMoveOriginToPoint = canvas_dimensions.getWidth() / 10;
-					int yMoveOriginToPoint = canvas_dimensions.getHeight() / 10;
-					click_x = elem.getLocation().getX() + xMoveOriginToPoint * stepx - xMoveOriginToPoint / 2;
-					click_y = elem.getLocation().getY() + yMoveOriginToPoint * stepy - yMoveOriginToPoint / 2;
+						Dimension canvas_dimensions = elem.getSize();
+						String tabCoord[] = coord.split(":");
+						int stepx = Integer.parseInt(tabCoord[0]);
+						int stepy = Integer.parseInt(tabCoord[1]);
+						if (stepx > 10 || stepx < 1 || stepy > 10 || stepy < 1)
+							return Fonctions.logStepWarning(teststep, selenium, time1,
+									"Erreur coordonnées inacessible dans ce quadrillage de 10 lignes et 10 colonnes ");
+						int xMoveOriginToPoint = canvas_dimensions.getWidth() / 10;
+						int yMoveOriginToPoint = canvas_dimensions.getHeight() / 10;
+						click_x = elem.getLocation().getX() + xMoveOriginToPoint * stepx - xMoveOriginToPoint / 2;
+						click_y = elem.getLocation().getY() + yMoveOriginToPoint * stepy - yMoveOriginToPoint / 2;
 					} catch (Exception e) {
 						return Fonctions.logStepKO(teststep, selenium, time1, "Error when trying to build canva : " + e.getMessage());
-
-					}					
-
+					}
 				}
 			}
 		} else {
 			try {
-			coord = parameter; // Case Coordinate
-			Dimension canvas_dimensions = selenium.manage().window().getSize();
-			String tabCoord[] = coord.split(":");
-			int stepx = Integer.parseInt(tabCoord[0]);
-			int stepy = Integer.parseInt(tabCoord[1]);
-			if (stepx > 10 || stepx < 1 || stepy > 10 || stepy < 1)
-				return Fonctions.logStepWarning(teststep, selenium, time1,
-						"Erreur coordonnées inacessible dans ce quadrillage de 10 lignes et 10 colonnes ");
-			int xMoveOriginToPoint = canvas_dimensions.getWidth() / 10;
-			int yMoveOriginToPoint = canvas_dimensions.getHeight() / 10;
-			click_x = xMoveOriginToPoint * stepx - xMoveOriginToPoint / 2;
-			click_y = yMoveOriginToPoint * stepy - yMoveOriginToPoint / 2;
+				coord = parameter; // Case Coordinate
+				Dimension canvas_dimensions = selenium.manage().window().getSize();
+				String tabCoord[] = coord.split(":");
+				int stepx = Integer.parseInt(tabCoord[0]);
+				int stepy = Integer.parseInt(tabCoord[1]);
+				if (stepx > 10 || stepx < 1 || stepy > 10 || stepy < 1)
+					return Fonctions.logStepWarning(teststep, selenium, time1,
+							"Erreur coordonnées inacessible dans ce quadrillage de 10 lignes et 10 colonnes ");
+				int xMoveOriginToPoint = canvas_dimensions.getWidth() / 10;
+				int yMoveOriginToPoint = canvas_dimensions.getHeight() / 10;
+				click_x = xMoveOriginToPoint * stepx - xMoveOriginToPoint / 2;
+				click_y = yMoveOriginToPoint * stepy - yMoveOriginToPoint / 2;
 			} catch (Exception e) {
 				return Fonctions.logStepKO(teststep, selenium, time1, "Error when trying to build canva : " + e.getMessage());
-
 			}
-
 		}
-		
+
 		int res1 = click_x;
 		int res2 = click_y;
 		//System.out.println("elem position X: " + test.getX() + " Y: " + test.getY());
-
 		//essayer de montrer où on clique
-
-        try {
+		try {
 			Point point = new Point(res1,res2);
-
 			// Créer une action de toucher à ces coordonnées
 			PointerInput touchAction = new PointerInput(PointerInput.Kind.TOUCH, "touch");
 			Sequence sequence = new Sequence(touchAction, 0);
 			sequence.addAction(touchAction.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), point.x, point.y));
 			sequence.addAction(touchAction.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
 			sequence.addAction(touchAction.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-
 			// Effectuer l'action de toucher
 			((AppiumDriver) selenium).perform(Arrays.asList(sequence));
 		} catch (Exception e) {
 			System.out.println("Cannot perform on coordinate ("+res1 +" "+res2+"):"  + e.getMessage());
 			return Fonctions.logStepKO(teststep, selenium, time1, "Cannot perform on coordinate ("+res1 +" "+res2+"):"  + e.getMessage());
 		}
-     
-		System.out.println("click on coordonnée "+res1 +" "+res2);      
+		System.out.println("click on coordonnée "+res1 +" "+res2);
 		return Fonctions.logStepOK(teststep, selenium, time1);
 	}
+
 //#########################################################################################
 //##################################### List Try ##########################################
 //#########################################################################################
@@ -4060,7 +4047,7 @@ public class Scripts_techniques {
 					return list;
 				}
 			}
-			
+
 		} catch (Exception e) {}
 		return null;
 	}
@@ -4094,7 +4081,7 @@ public class Scripts_techniques {
 				}
 			}
 		} catch (Exception e) {}
-		
+
 		return null;
 	}
 
@@ -4225,7 +4212,7 @@ public class Scripts_techniques {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 		return null;
 	}
 
@@ -4297,7 +4284,7 @@ public class Scripts_techniques {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -4410,7 +4397,7 @@ public class Scripts_techniques {
 		String xpath;
 		property = ignoreSpacesMajMin(property);
 		context = ignoreSpacesMajMin(context);
-		
+
 		try {
 			xpath = "//*[translate(@text, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ', 'abcdefghijklmnopqrstuvwxyz')= " + str + context + str + " or translate(@content-desc, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ', 'abcdefghijklmnopqrstuvwxyz')= " + str + context + str + "]//following::*[local-name()='android.widget.Button' or local-name()='android.widget.ImageButton' or local-name()='android.widget.ImageView' or local-name()='android.widget.Spinner' or local-name()='android.widget.CheckedTextView'][translate(@text, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ', 'abcdefghijklmnopqrstuvwxyz')= " + str + property + str + " or translate(@content-desc, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ', 'abcdefghijklmnopqrstuvwxyz')= " + str + property + str + "]";
 			element = findElementsIndex(driver, xpath, index);
@@ -4508,7 +4495,7 @@ public class Scripts_techniques {
 		return list;
 	}
 
-	//#########################################################################################
+//#########################################################################################
 //##################################### Other functions ###################################
 //#########################################################################################
 
@@ -4516,7 +4503,7 @@ public class Scripts_techniques {
 	{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(Config.timeout_try));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));	
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 			List<WebElement> list = driver.findElements(By.xpath(xpath));
 			if (!list.isEmpty()){
 				WebElement element = getElementRelative(driver, list);
@@ -4536,7 +4523,7 @@ public class Scripts_techniques {
 	{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(Config.timeout_try));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));	
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 			List<WebElement> list_elements = driver.findElements(By.xpath(xpath));
 			if(!list_elements.isEmpty())
 			{
@@ -4559,11 +4546,11 @@ public class Scripts_techniques {
 		WebElement element_to_return = null;
 		for(WebElement element: elements_list) {
 			try {
-			//wait.until(ExpectedConditions.visibilityOf(element));
-			boolean status = true;//element.isDisplayed();
-			element_to_return=element;
-			if(status)
-			{break;}
+				//wait.until(ExpectedConditions.visibilityOf(element));
+				boolean status = true;//element.isDisplayed();
+				element_to_return=element;
+				if(status)
+				{break;}
 			}catch(Exception e){
 				System.out.println(">>>>> Element not visible : \n "+element+"\n");
 			}
@@ -4579,8 +4566,8 @@ public class Scripts_techniques {
 		if (elements_list.size() >= index) {
 			for(WebElement element: elements_list) {
 				try {
-				//wait.until(ExpectedConditions.visibilityOf(element));
-			boolean status = true;//element.isDisplayed();
+					//wait.until(ExpectedConditions.visibilityOf(element));
+					boolean status = true;//element.isDisplayed();
 					if(status)
 					{
 						if(i == index)
@@ -4604,7 +4591,7 @@ public class Scripts_techniques {
 	}
 
 	public static void scrollScreen(WebDriver driver, int nb_scroll){
-		
+
 		AppiumDriver appiumDriver = (AppiumDriver) driver;
 		((HidesKeyboard) driver).hideKeyboard();
 		int heightOfScreen = driver.manage().window().getSize().getHeight();
@@ -4622,16 +4609,16 @@ public class Scripts_techniques {
 			appiumDriver.perform(Arrays.asList(swipe));
 		}
 	}
-	
-	// #######################################
-	// ############ SearchElement ############
-	// #######################################
-	
+
+// #######################################
+// ############ SearchElement ############
+// #######################################
+
 	public static WebElement findElementsCell(WebDriver driver, String xpath, WebElement table_element)
 	{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(Config.timeout_try));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));	
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 			List<WebElement> list = table_element.findElements(By.xpath(xpath));
 			if (!list.isEmpty()){
 				WebElement element = getElementRelative(driver, list);
@@ -4651,7 +4638,7 @@ public class Scripts_techniques {
 	{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(Config.timeout_try));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));	
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 			List<WebElement> list = table_element.findElements(By.xpath(xpath));
 			if (!list.isEmpty()){
 				WebElement element = getElementRelativeByIndex(driver, list, Integer.parseInt(param));
@@ -4671,7 +4658,7 @@ public class Scripts_techniques {
 	{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(Config.timeout_try));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));	
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 			List<WebElement> list_elements = driver.findElements(By.xpath(xpath));
 			if(!list_elements.isEmpty())
 			{
@@ -4694,7 +4681,7 @@ public class Scripts_techniques {
 	{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(Config.timeout_try));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));	
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 			List<WebElement> list_elements = driver.findElements(By.xpath(xpath));
 			if(!list_elements.isEmpty())
 			{
@@ -4728,7 +4715,7 @@ public class Scripts_techniques {
 	{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(Config.timeout_try));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));	
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 			List<WebElement> list_elements = driver.findElements(By.xpath(xpath));
 			if(!list_elements.isEmpty())
 			{
@@ -4762,7 +4749,7 @@ public class Scripts_techniques {
 	{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(Config.timeout_try));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));	
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 			List<WebElement> list_elements = driver.findElements(By.xpath(xpath));
 			if(!list_elements.isEmpty())
 			{
@@ -4796,7 +4783,7 @@ public class Scripts_techniques {
 	{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(Config.timeout_try));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));	
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 			List<WebElement> list_elements = driver.findElements(By.xpath(xpath));
 			if(!list_elements.isEmpty())
 			{
@@ -4825,12 +4812,12 @@ public class Scripts_techniques {
 		}
 		return null;
 	}
-	
+
 	public static WebElement findElementsTable(WebDriver driver, String xpath, String[] param, String typeAction)
 	{
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(Config.timeout_try));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));	
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
 			List<WebElement> list_elements = driver.findElements(By.xpath(xpath));
 			if(!list_elements.isEmpty())
 			{
@@ -4871,7 +4858,7 @@ public class Scripts_techniques {
 							return null;
 					}
 					return element;
-					
+
 				}
 			}
 			System.out.println(">>>>> Table element not found using the xpath :  \n"+xpath+"\n");
@@ -4885,7 +4872,7 @@ public class Scripts_techniques {
 	{
 		try {
 			List<WebElement> list = shadowroot.findElements(By.cssSelector(selector));
-			
+
 			if (!list.isEmpty()){
 				WebElement element = getElementRelative(driver, list);
 				if(element != null)
@@ -4910,10 +4897,10 @@ public class Scripts_techniques {
 		return null;
 	}
 
-	// ######################################
-	// ############## List Try ##############
-	// ######################################
-	
+// ######################################
+// ############## List Try ##############
+// ######################################
+
 	public static HashMap identifyElementToClick(WebDriver driver, String label, String context)
 	{
 		String xpath;
@@ -4928,15 +4915,15 @@ public class Scripts_techniques {
 			// lien follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::a[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			// bouton follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::button[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -4944,15 +4931,15 @@ public class Scripts_techniques {
 			// input follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::input[(@type='submit' or @type='button') and (translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			// img follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::img[translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -4960,7 +4947,7 @@ public class Scripts_techniques {
 			// lien parent follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::a";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -4968,7 +4955,7 @@ public class Scripts_techniques {
 			// bouton parent follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::button";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -4976,7 +4963,7 @@ public class Scripts_techniques {
 			// input parent follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::input[@type='submit' or @type='button']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -4984,7 +4971,7 @@ public class Scripts_techniques {
 			// img parent follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::img";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -4992,23 +4979,23 @@ public class Scripts_techniques {
 			//lien contains follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::a[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			// bouton contains follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::button[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			// input contains follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::input[(@type='submit' or @type='button') and (text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + "))]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5016,7 +5003,7 @@ public class Scripts_techniques {
 			// img contains follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::img[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5024,23 +5011,23 @@ public class Scripts_techniques {
 			//lien parent contains follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::a";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			// bouton parent contains follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::button";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			// input parent contains follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::input[@type='submit' or @type='button']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5048,7 +5035,7 @@ public class Scripts_techniques {
 			// img parent contains follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::img";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5056,15 +5043,15 @@ public class Scripts_techniques {
 			// lien follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//a[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			// bouton follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//button[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5072,15 +5059,15 @@ public class Scripts_techniques {
 			// input follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//input[(@type='submit' or @type='button') and (translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			// img follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//img[translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5088,7 +5075,7 @@ public class Scripts_techniques {
 			// lien parent follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::a";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5096,7 +5083,7 @@ public class Scripts_techniques {
 			// bouton parent follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::button";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5104,7 +5091,7 @@ public class Scripts_techniques {
 			// input parent follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::input[@type='submit' or @type='button']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5112,7 +5099,7 @@ public class Scripts_techniques {
 			// img parent follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::img";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5120,23 +5107,23 @@ public class Scripts_techniques {
 			//lien contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//a[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			// bouton contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//button[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			// input contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//input[(@type='submit' or @type='button') and (text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + "))]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5144,31 +5131,31 @@ public class Scripts_techniques {
 			// img contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//img[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//lien parent contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::a";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			// bouton parent contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::button";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			// input parent contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::input[@type='submit' or @type='button']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5176,7 +5163,7 @@ public class Scripts_techniques {
 			// img parent contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::img";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5184,7 +5171,7 @@ public class Scripts_techniques {
 			// all follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5192,7 +5179,7 @@ public class Scripts_techniques {
 			// all follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5200,20 +5187,20 @@ public class Scripts_techniques {
 			// all contains follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
-				list.put(xpath, element);
-				return list;
-			}
-			
-			// all contains follow
-			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
-			
+			// all contains follow
+			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
+			element = findElements(driver, xpath);
+			if (element != null) {
+				list.put(xpath, element);
+				return list;
+			}
+
+
 			System.out.println("\n ########## try in shadow root ########## \n");
 
 
@@ -5222,7 +5209,7 @@ public class Scripts_techniques {
 				//shadow a
 				selector = "[value=" + str + context2 + str + "] a[value=" + str + label2 + str + "], [title=" + str + context2 + str + "] a[value=" + str + label2 + str + "], [alt=" + str + context2 + str + "] a[value=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] a[value=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] a[value=" + str + label2 + str + "], [value=" + str + context2 + str + "] a[title=" + str + label2 + str + "], [title=" + str + context2 + str + "] a[title=" + str + label2 + str + "], [alt=" + str + context2 + str + "] a[title=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] a[title=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] a[title=" + str + label2 + str + "], [value=" + str + context2 + str + "] a[aria-label=" + str + label2 + str + "], [title=" + str + context2 + str + "] a[aria-label=" + str + label2 + str + "], [alt=" + str + context2 + str + "] a[aria-label=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] a[aria-label=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] a[aria-label=" + str + label2 + str + "], [value=" + str + context2 + str + "] a[alt=" + str + label2 + str + "], [title=" + str + context2 + str + "] a[alt=" + str + label2 + str + "], [alt=" + str + context2 + str + "] a[alt=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] a[alt=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] a[alt=" + str + label2 + str + "], [value=" + str + context2 + str + "] a[ng-reflect-name=" + str + label2 + str + "], [title=" + str + context2 + str + "] a[ng-reflect-name=" + str + label2 + str + "], [alt=" + str + context2 + str + "] a[ng-reflect-name=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] a[ng-reflect-name=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] a[ng-reflect-name=" + str + label2 + str + "], [value=" + str + context2 + str + "] a[ng-reflect-value=" + str + label2 + str + "], [title=" + str + context2 + str + "] a[ng-reflect-value=" + str + label2 + str + "], [alt=" + str + context2 + str + "] a[ng-reflect-value=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] a[ng-reflect-value=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] a[ng-reflect-value=" + str + label2 + str + "], [value=" + str + context2 + str + "] a[ng-reflect-message=" + str + label2 + str + "], [title=" + str + context2 + str + "] a[ng-reflect-message=" + str + label2 + str + "], [alt=" + str + context2 + str + "] a[ng-reflect-message=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] a[ng-reflect-message=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] a[ng-reflect-message=" + str + label2 + str + "], [value=" + str + context2 + str + "] a[svgicon=" + str + label2 + str + "], [title=" + str + context2 + str + "] a[svgicon=" + str + label2 + str + "], [alt=" + str + context2 + str + "] a[svgicon=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] a[svgicon=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] a[svgicon=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5230,7 +5217,7 @@ public class Scripts_techniques {
 				//shadow button
 				selector = "[value=" + str + context2 + str + "] button[value=" + str + label2 + str + "], [title=" + str + context2 + str + "] button[value=" + str + label2 + str + "], [alt=" + str + context2 + str + "] button[value=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] button[value=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] button[value=" + str + label2 + str + "], [value=" + str + context2 + str + "] button[title=" + str + label2 + str + "], [title=" + str + context2 + str + "] button[title=" + str + label2 + str + "], [alt=" + str + context2 + str + "] button[title=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] button[title=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] button[title=" + str + label2 + str + "], [value=" + str + context2 + str + "] button[aria-label=" + str + label2 + str + "], [title=" + str + context2 + str + "] button[aria-label=" + str + label2 + str + "], [alt=" + str + context2 + str + "] button[aria-label=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] button[aria-label=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] button[aria-label=" + str + label2 + str + "], [value=" + str + context2 + str + "] button[alt=" + str + label2 + str + "], [title=" + str + context2 + str + "] button[alt=" + str + label2 + str + "], [alt=" + str + context2 + str + "] button[alt=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] button[alt=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] button[alt=" + str + label2 + str + "], [value=" + str + context2 + str + "] button[ng-reflect-name=" + str + label2 + str + "], [title=" + str + context2 + str + "] button[ng-reflect-name=" + str + label2 + str + "], [alt=" + str + context2 + str + "] button[ng-reflect-name=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] button[ng-reflect-name=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] button[ng-reflect-name=" + str + label2 + str + "], [value=" + str + context2 + str + "] button[ng-reflect-value=" + str + label2 + str + "], [title=" + str + context2 + str + "] button[ng-reflect-value=" + str + label2 + str + "], [alt=" + str + context2 + str + "] button[ng-reflect-value=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] button[ng-reflect-value=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] button[ng-reflect-value=" + str + label2 + str + "], [value=" + str + context2 + str + "] button[ng-reflect-message=" + str + label2 + str + "], [title=" + str + context2 + str + "] button[ng-reflect-message=" + str + label2 + str + "], [alt=" + str + context2 + str + "] button[ng-reflect-message=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] button[ng-reflect-message=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] button[ng-reflect-message=" + str + label2 + str + "], [value=" + str + context2 + str + "] button[svgicon=" + str + label2 + str + "], [title=" + str + context2 + str + "] button[svgicon=" + str + label2 + str + "], [alt=" + str + context2 + str + "] button[svgicon=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] button[svgicon=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] button[svgicon=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5238,7 +5225,7 @@ public class Scripts_techniques {
 				//shadow input
 				selector = "[value=" + str + context2 + str + "] input[value=" + str + label2 + str + "], [title=" + str + context2 + str + "] input[value=" + str + label2 + str + "], [alt=" + str + context2 + str + "] input[value=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] input[value=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] input[value=" + str + label2 + str + "], [value=" + str + context2 + str + "] input[title=" + str + label2 + str + "], [title=" + str + context2 + str + "] input[title=" + str + label2 + str + "], [alt=" + str + context2 + str + "] input[title=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] input[title=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] input[title=" + str + label2 + str + "], [value=" + str + context2 + str + "] input[aria-label=" + str + label2 + str + "], [title=" + str + context2 + str + "] input[aria-label=" + str + label2 + str + "], [alt=" + str + context2 + str + "] input[aria-label=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] input[aria-label=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] input[aria-label=" + str + label2 + str + "], [value=" + str + context2 + str + "] input[alt=" + str + label2 + str + "], [title=" + str + context2 + str + "] input[alt=" + str + label2 + str + "], [alt=" + str + context2 + str + "] input[alt=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] input[alt=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] input[alt=" + str + label2 + str + "], [value=" + str + context2 + str + "] input[ng-reflect-name=" + str + label2 + str + "], [title=" + str + context2 + str + "] input[ng-reflect-name=" + str + label2 + str + "], [alt=" + str + context2 + str + "] input[ng-reflect-name=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] input[ng-reflect-name=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] input[ng-reflect-name=" + str + label2 + str + "], [value=" + str + context2 + str + "] input[ng-reflect-value=" + str + label2 + str + "], [title=" + str + context2 + str + "] input[ng-reflect-value=" + str + label2 + str + "], [alt=" + str + context2 + str + "] input[ng-reflect-value=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] input[ng-reflect-value=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] input[ng-reflect-value=" + str + label2 + str + "], [value=" + str + context2 + str + "] input[ng-reflect-message=" + str + label2 + str + "], [title=" + str + context2 + str + "] input[ng-reflect-message=" + str + label2 + str + "], [alt=" + str + context2 + str + "] input[ng-reflect-message=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] input[ng-reflect-message=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] input[ng-reflect-message=" + str + label2 + str + "], [value=" + str + context2 + str + "] input[svgicon=" + str + label2 + str + "], [title=" + str + context2 + str + "] input[svgicon=" + str + label2 + str + "], [alt=" + str + context2 + str + "] input[svgicon=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] input[svgicon=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] input[svgicon=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5246,7 +5233,7 @@ public class Scripts_techniques {
 				//shadow img
 				selector = "[value=" + str + context2 + str + "] img[value=" + str + label2 + str + "], [title=" + str + context2 + str + "] img[value=" + str + label2 + str + "], [alt=" + str + context2 + str + "] img[value=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] img[value=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] img[value=" + str + label2 + str + "], [value=" + str + context2 + str + "] img[title=" + str + label2 + str + "], [title=" + str + context2 + str + "] img[title=" + str + label2 + str + "], [alt=" + str + context2 + str + "] img[title=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] img[title=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] img[title=" + str + label2 + str + "], [value=" + str + context2 + str + "] img[aria-label=" + str + label2 + str + "], [title=" + str + context2 + str + "] img[aria-label=" + str + label2 + str + "], [alt=" + str + context2 + str + "] img[aria-label=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] img[aria-label=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] img[aria-label=" + str + label2 + str + "], [value=" + str + context2 + str + "] img[alt=" + str + label2 + str + "], [title=" + str + context2 + str + "] img[alt=" + str + label2 + str + "], [alt=" + str + context2 + str + "] img[alt=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] img[alt=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] img[alt=" + str + label2 + str + "], [value=" + str + context2 + str + "] img[ng-reflect-name=" + str + label2 + str + "], [title=" + str + context2 + str + "] img[ng-reflect-name=" + str + label2 + str + "], [alt=" + str + context2 + str + "] img[ng-reflect-name=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] img[ng-reflect-name=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] img[ng-reflect-name=" + str + label2 + str + "], [value=" + str + context2 + str + "] img[ng-reflect-value=" + str + label2 + str + "], [title=" + str + context2 + str + "] img[ng-reflect-value=" + str + label2 + str + "], [alt=" + str + context2 + str + "] img[ng-reflect-value=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] img[ng-reflect-value=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] img[ng-reflect-value=" + str + label2 + str + "], [value=" + str + context2 + str + "] img[ng-reflect-message=" + str + label2 + str + "], [title=" + str + context2 + str + "] img[ng-reflect-message=" + str + label2 + str + "], [alt=" + str + context2 + str + "] img[ng-reflect-message=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] img[ng-reflect-message=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] img[ng-reflect-message=" + str + label2 + str + "], [value=" + str + context2 + str + "] img[svgicon=" + str + label2 + str + "], [title=" + str + context2 + str + "] img[svgicon=" + str + label2 + str + "], [alt=" + str + context2 + str + "] img[svgicon=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] img[svgicon=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] img[svgicon=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5254,7 +5241,7 @@ public class Scripts_techniques {
 				//shadow a contain
 				selector = "[value*=" + str + context2 + str + "] a[value*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] a[value*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] a[value*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] a[value*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] a[value*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] a[title*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] a[title*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] a[title*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] a[title*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] a[title*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] a[aria-label*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] a[aria-label*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] a[aria-label*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] a[aria-label*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] a[aria-label*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] a[alt*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] a[alt*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] a[alt*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] a[alt*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] a[alt*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] a[ng-reflect-name*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] a[ng-reflect-name*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] a[ng-reflect-name*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] a[ng-reflect-name*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] a[ng-reflect-name*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] a[ng-reflect-value*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] a[ng-reflect-value*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] a[ng-reflect-value*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] a[ng-reflect-value*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] a[ng-reflect-value*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] a[ng-reflect-message*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] a[ng-reflect-message*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] a[ng-reflect-message*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] a[ng-reflect-message*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] a[ng-reflect-message*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] a[svgicon*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] a[svgicon*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] a[svgicon*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] a[svgicon*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] a[svgicon*=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5262,7 +5249,7 @@ public class Scripts_techniques {
 				//shadow button contain
 				selector = "[value*=" + str + context2 + str + "] button[value*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] button[value*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] button[value*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] button[value*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] button[value*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] button[title*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] button[title*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] button[title*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] button[title*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] button[title*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] button[aria-label*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] button[aria-label*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] button[aria-label*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] button[aria-label*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] button[aria-label*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] button[alt*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] button[alt*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] button[alt*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] button[alt*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] button[alt*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] button[ng-reflect-name*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] button[ng-reflect-name*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] button[ng-reflect-name*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] button[ng-reflect-name*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] button[ng-reflect-name*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] button[ng-reflect-value*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] button[ng-reflect-value*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] button[ng-reflect-value*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] button[ng-reflect-value*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] button[ng-reflect-value*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] button[ng-reflect-message*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] button[ng-reflect-message*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] button[ng-reflect-message*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] button[ng-reflect-message*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] button[ng-reflect-message*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] button[svgicon*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] button[svgicon*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] button[svgicon*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] button[svgicon*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] button[svgicon*=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5270,7 +5257,7 @@ public class Scripts_techniques {
 				//shadow input contain
 				selector = "[value*=" + str + context2 + str + "] input[value*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] input[value*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] input[value*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] input[value*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] input[value*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] input[title*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] input[title*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] input[title*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] input[title*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] input[title*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] input[aria-label*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] input[aria-label*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] input[aria-label*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] input[aria-label*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] input[aria-label*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] input[alt*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] input[alt*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] input[alt*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] input[alt*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] input[alt*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] input[ng-reflect-name*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] input[ng-reflect-name*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] input[ng-reflect-name*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] input[ng-reflect-name*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] input[ng-reflect-name*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] input[ng-reflect-value*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] input[ng-reflect-value*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] input[ng-reflect-value*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] input[ng-reflect-value*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] input[ng-reflect-value*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] input[ng-reflect-message*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] input[ng-reflect-message*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] input[ng-reflect-message*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] input[ng-reflect-message*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] input[ng-reflect-message*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] input[svgicon*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] input[svgicon*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] input[svgicon*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] input[svgicon*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] input[svgicon*=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5278,7 +5265,7 @@ public class Scripts_techniques {
 				//shadow img contain
 				selector = "[value*=" + str + context2 + str + "] img[value*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] img[value*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] img[value*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] img[value*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] img[value*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] img[title*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] img[title*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] img[title*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] img[title*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] img[title*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] img[aria-label*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] img[aria-label*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] img[aria-label*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] img[aria-label*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] img[aria-label*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] img[alt*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] img[alt*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] img[alt*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] img[alt*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] img[alt*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] img[ng-reflect-name*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] img[ng-reflect-name*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] img[ng-reflect-name*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] img[ng-reflect-name*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] img[ng-reflect-name*=" + str + label2 + str + "], [value=" + str + context2 + str + "] img[ng-reflect-value=" + str + label2 + str + "], [title=" + str + context2 + str + "] img[ng-reflect-value=" + str + label2 + str + "], [alt=" + str + context2 + str + "] img[ng-reflect-value*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] img[ng-reflect-value*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] img[ng-reflect-value*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] img[ng-reflect-message*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] img[ng-reflect-message*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] img[ng-reflect-message*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] img[ng-reflect-message*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] img[ng-reflect-message*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] img[svgicon*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] img[svgicon*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] img[svgicon*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] img[svgicon*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] img[svgicon*=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5286,7 +5273,7 @@ public class Scripts_techniques {
 				//shadow all
 				selector = "[value=" + str + context2 + str + "] [value=" + str + label2 + str + "], [title=" + str + context2 + str + "] [value=" + str + label2 + str + "], [alt=" + str + context2 + str + "] [value=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] [value=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] [value=" + str + label2 + str + "], [value=" + str + context2 + str + "] [title=" + str + label2 + str + "], [title=" + str + context2 + str + "] [title=" + str + label2 + str + "], [alt=" + str + context2 + str + "] [title=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] [title=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] [title=" + str + label2 + str + "], [value=" + str + context2 + str + "] [aria-label=" + str + label2 + str + "], [title=" + str + context2 + str + "] [aria-label=" + str + label2 + str + "], [alt=" + str + context2 + str + "] [aria-label=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] [aria-label=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] [aria-label=" + str + label2 + str + "], [value=" + str + context2 + str + "] [alt=" + str + label2 + str + "], [title=" + str + context2 + str + "] [alt=" + str + label2 + str + "], [alt=" + str + context2 + str + "] [alt=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] [alt=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] [alt=" + str + label2 + str + "], [value=" + str + context2 + str + "] [ng-reflect-name=" + str + label2 + str + "], [title=" + str + context2 + str + "] [ng-reflect-name=" + str + label2 + str + "], [alt=" + str + context2 + str + "] [ng-reflect-name=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] [ng-reflect-name=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] [ng-reflect-name=" + str + label2 + str + "], [value=" + str + context2 + str + "] a[ng-reflect-value=" + str + label2 + str + "], [title=" + str + context2 + str + "] a[ng-reflect-value=" + str + label2 + str + "], [alt=" + str + context2 + str + "] [ng-reflect-value=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] [ng-reflect-value=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] [ng-reflect-value=" + str + label2 + str + "], [value=" + str + context2 + str + "] [ng-reflect-message=" + str + label2 + str + "], [title=" + str + context2 + str + "] [ng-reflect-message=" + str + label2 + str + "], [alt=" + str + context2 + str + "] [ng-reflect-message=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] [ng-reflect-message=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] [ng-reflect-message=" + str + label2 + str + "], [value=" + str + context2 + str + "] [svgicon=" + str + label2 + str + "], [title=" + str + context2 + str + "] [svgicon=" + str + label2 + str + "], [alt=" + str + context2 + str + "] [svgicon=" + str + label2 + str + "], [aria-label=" + str + context2 + str + "] [svgicon=" + str + label2 + str + "], [placeholder=" + str + context2 + str + "] [svgicon=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5294,14 +5281,14 @@ public class Scripts_techniques {
 				//shadow all contain
 				selector = "[value*=" + str + context2 + str + "] [value*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] [value*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] [value*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] [value*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] [value*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] [title*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] [title*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] [title*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] [title*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] [title*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] [aria-label*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] [aria-label*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] [aria-label*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] [aria-label*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] [aria-label*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] [alt*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] [alt*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] [alt*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] [alt*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] [alt*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] [ng-reflect-name*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] [ng-reflect-name*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] [ng-reflect-name*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] [ng-reflect-name*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] [ng-reflect-name*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] [ng-reflect-value*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] [ng-reflect-value*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] [ng-reflect-value*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] [ng-reflect-value*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] [ng-reflect-value*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] [ng-reflect-message*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] [ng-reflect-message*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] [ng-reflect-message*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] [ng-reflect-message*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] [ng-reflect-message*=" + str + label2 + str + "], [value*=" + str + context2 + str + "] [svgicon*=" + str + label2 + str + "], [title*=" + str + context2 + str + "] [svgicon*=" + str + label2 + str + "], [alt*=" + str + context2 + str + "] [svgicon*=" + str + label2 + str + "], [aria-label*=" + str + context2 + str + "] [svgicon*=" + str + label2 + str + "], [placeholder*=" + str + context2 + str + "] [svgicon*=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
 			}
-			}catch(Exception e) {
-				System.out.println(e);
-			}
+		}catch(Exception e) {
+			System.out.println(e);
+		}
 		return null;
 	}
 
@@ -5317,15 +5304,15 @@ public class Scripts_techniques {
 			// a
 			xpath = "//a[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			// button
 			xpath = "//button[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5333,23 +5320,23 @@ public class Scripts_techniques {
 			// input
 			xpath = "//input[(@type='submit' or @type='button') and (translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			// img
 			xpath = "//img[translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			// lien parent
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::a";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5357,7 +5344,7 @@ public class Scripts_techniques {
 			// bouton parent
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::button";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5365,7 +5352,7 @@ public class Scripts_techniques {
 			// input parent
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::input[@type='submit' or @type='button']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5373,72 +5360,72 @@ public class Scripts_techniques {
 			// img parent
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::img";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//lien contains
 			xpath = "//a[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			// bouton contains
 			xpath = "//button[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			// input contains
 			xpath = "//input[(@type='submit' or @type='button') and (text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + "))]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			// img contains
 			xpath = "//img[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
-			
+
+
 			//lien parent contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::a";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			// bouton parent contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::button";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			// input parent contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::input[@type='submit' or @type='button']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			// img parent contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::img";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5446,15 +5433,15 @@ public class Scripts_techniques {
 			// all
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//all contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-message,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@svgicon,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5466,7 +5453,7 @@ public class Scripts_techniques {
 				//shadow a
 				selector = "a[value=" + str + label2 + str + "], a[title=" + str + label2 + str + "], a[aria-label=" + str + label2 + str + "], a[alt=" + str + label2 + str + "], a[ng-reflect-name=" + str + label2 + str + "], a[ng-reflect-value=" + str + label2 + str + "], a[ng-reflect-message=" + str + label2 + str + "], a[svgicon=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5474,7 +5461,7 @@ public class Scripts_techniques {
 				//shadow button
 				selector = "button[value=" + str + label2 + str + "], button[title=" + str + label2 + str + "], button[aria-label=" + str + label2 + str + "], button[alt=" + str + label2 + str + "], button[ng-reflect-name=" + str + label2 + str + "], button[ng-reflect-value=" + str + label2 + str + "], button[ng-reflect-message=" + str + label2 + str + "], button[svgicon=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5482,7 +5469,7 @@ public class Scripts_techniques {
 				//shadow input
 				selector = "input[value=" + str + label2 + str + "], input[title=" + str + label2 + str + "], input[aria-label=" + str + label2 + str + "], input[alt=" + str + label2 + str + "], input[ng-reflect-name=" + str + label2 + str + "], input[ng-reflect-value=" + str + label2 + str + "], input[ng-reflect-message=" + str + label2 + str + "], input[svgicon=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5490,7 +5477,7 @@ public class Scripts_techniques {
 				//shadow img
 				selector = "img[value=" + str + label2 + str + "], img[title=" + str + label2 + str + "], img[aria-label=" + str + label2 + str + "], img[alt=" + str + label2 + str + "], img[ng-reflect-name=" + str + label2 + str + "], img[ng-reflect-value=" + str + label2 + str + "], img[ng-reflect-message=" + str + label2 + str + "], img[svgicon=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5498,7 +5485,7 @@ public class Scripts_techniques {
 				//shadow a contain
 				selector = "a[value*=" + str + label2 + str + "], a[title*=" + str + label2 + str + "], a[aria-label*=" + str + label2 + str + "], a[alt*=" + str + label2 + str + "], a[ng-reflect-name*=" + str + label2 + str + "], a[ng-reflect-value*=" + str + label2 + str + "], a[ng-reflect-message*=" + str + label2 + str + "], a[svgicon*=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5506,7 +5493,7 @@ public class Scripts_techniques {
 				//shadow button contain
 				selector = "button[value*=" + str + label2 + str + "], button[title*=" + str + label2 + str + "], button[aria-label*=" + str + label2 + str + "], button[alt*=" + str + label2 + str + "], button[ng-reflect-name*=" + str + label2 + str + "], button[ng-reflect-value*=" + str + label2 + str + "], button[ng-reflect-message*=" + str + label2 + str + "], button[svgicon*=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5514,7 +5501,7 @@ public class Scripts_techniques {
 				//shadow input contain
 				selector = "input[value*=" + str + label2 + str + "], input[title*=" + str + label2 + str + "], input[aria-label*=" + str + label2 + str + "], input[alt*=" + str + label2 + str + "], input[ng-reflect-name*=" + str + label2 + str + "], input[ng-reflect-value*=" + str + label2 + str + "], input[ng-reflect-message*=" + str + label2 + str + "], input[svgicon*=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5522,7 +5509,7 @@ public class Scripts_techniques {
 				//shadow img contain
 				selector = "img[value*=" + str + label2 + str + "], img[title*=" + str + label2 + str + "], img[aria-label*=" + str + label2 + str + "], img[alt*=" + str + label2 + str + "], img[ng-reflect-name*=" + str + label2 + str + "], img[ng-reflect-value*=" + str + label2 + str + "], img[ng-reflect-message*=" + str + label2 + str + "], img[svgicon*=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5530,7 +5517,7 @@ public class Scripts_techniques {
 				//shadow all
 				selector = "[value=" + str + label2 + str + "], [title=" + str + label2 + str + "], [aria-label=" + str + label2 + str + "], [alt=" + str + label2 + str + "], a[ng-reflect-name=" + str + label2 + str + "], [ng-reflect-value=" + str + label2 + str + "], [ng-reflect-message=" + str + label2 + str + "], [svgicon=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5538,7 +5525,7 @@ public class Scripts_techniques {
 				//shadow all contain
 				selector = "[value*=" + str + label2 + str + "], [title*=" + str + label2 + str + "], [aria-label*=" + str + label2 + str + "], [alt*=" + str + label2 + str + "], [ng-reflect-name*=" + str + label2 + str + "], [ng-reflect-value*=" + str + label2 + str + "], [ng-reflect-message*=" + str + label2 + str + "], [svgicon*=" + str + label2 + str + "]";
 				element = getShadowElement(driver, selector);
-				if (element != null) { 
+				if (element != null) {
 					list.put(selector, element);
 					return list;
 				}
@@ -5560,15 +5547,15 @@ public class Scripts_techniques {
 			//input follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::input[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//textarea follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::textarea[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5576,7 +5563,7 @@ public class Scripts_techniques {
 			//for input follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5584,7 +5571,7 @@ public class Scripts_techniques {
 			//for textarea follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5592,15 +5579,15 @@ public class Scripts_techniques {
 			//parent input follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//parent textarea follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//textarea";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5608,7 +5595,7 @@ public class Scripts_techniques {
 			//for input follow sibling ancestor label
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//ancestor::label";
 			element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5617,7 +5604,7 @@ public class Scripts_techniques {
 			//for textarea follow sibling ancestor label
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//ancestor::label";
 			element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5625,7 +5612,7 @@ public class Scripts_techniques {
 			//contains input follow sibling
 			xpath =	"//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::input[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5633,31 +5620,31 @@ public class Scripts_techniques {
 			//contains textarea follow sibling
 			xpath =	"//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::textarea[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//for contains input follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			element = findElementsForInput(driver, xpath, "input");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains textarea follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			element = findElementsForInput(driver, xpath, "textarea");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//contains parent input follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5665,23 +5652,23 @@ public class Scripts_techniques {
 			//contains parent textarea follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//textarea";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains input follow sibling ancestor label
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//ancestor::label";
-            element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			element = findElementsForInput(driver, xpath, "input");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains textarea follow sibling ancestor label
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//ancestor::label";
-            element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			element = findElementsForInput(driver, xpath, "textarea");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5689,15 +5676,15 @@ public class Scripts_techniques {
 			//input follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//input[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//textarea follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//textarea[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5705,7 +5692,7 @@ public class Scripts_techniques {
 			//for input follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5713,7 +5700,7 @@ public class Scripts_techniques {
 			//for textarea follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5721,7 +5708,7 @@ public class Scripts_techniques {
 			//for input follow ancestor label
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//ancestor::label";
 			element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5729,7 +5716,7 @@ public class Scripts_techniques {
 			//for textarea follow ancestor label
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//ancestor::label";
 			element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5737,15 +5724,15 @@ public class Scripts_techniques {
 			//parent input follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//parent textarea follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//textarea";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5753,7 +5740,7 @@ public class Scripts_techniques {
 			//contains input follow
 			xpath =	"//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//input[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5761,31 +5748,31 @@ public class Scripts_techniques {
 			//contains textarea follow
 			xpath =	"//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//textarea[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains input follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			element = findElementsForInput(driver, xpath, "input");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains textarea follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			element = findElementsForInput(driver, xpath, "textarea");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//contains parent input follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5793,23 +5780,23 @@ public class Scripts_techniques {
 			//contains parent textarea follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//textarea";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains input follow ancestor label
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//ancestor::label";
-            element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			element = findElementsForInput(driver, xpath, "input");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains textarea follow ancestor label
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//ancestor::label";
-            element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			element = findElementsForInput(driver, xpath, "textarea");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5830,15 +5817,15 @@ public class Scripts_techniques {
 			//input follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::input[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//textarea follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::textarea[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5846,7 +5833,7 @@ public class Scripts_techniques {
 			//for input follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInputByIndex(driver, xpath, "input", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5854,7 +5841,7 @@ public class Scripts_techniques {
 			//for textarea follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInputByIndex(driver, xpath, "textarea", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5862,15 +5849,15 @@ public class Scripts_techniques {
 			//parent input follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//parent textarea follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//textarea";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5878,7 +5865,7 @@ public class Scripts_techniques {
 			//for input follow sibling ancestor label
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//ancestor::label";
 			element = findElementsForInputByIndex(driver, xpath, "input", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5886,7 +5873,7 @@ public class Scripts_techniques {
 			//for textarea follow sibling ancestor label
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//ancestor::label";
 			element = findElementsForInputByIndex(driver, xpath, "textarea", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5894,7 +5881,7 @@ public class Scripts_techniques {
 			//contains input follow sibling
 			xpath =	"//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::input[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5902,47 +5889,47 @@ public class Scripts_techniques {
 			//contains textarea follow sibling
 			xpath =	"//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::textarea[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//for contains input follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForInputByIndex(driver, xpath, "input", index);
-			if (element != null) { 
+			element = findElementsForInputByIndex(driver, xpath, "input", index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains input follow sibling ancestor label
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//ancestor::label";
-            element = findElementsForInputByIndex(driver, xpath, "input", index);
-			if (element != null) { 
+			element = findElementsForInputByIndex(driver, xpath, "input", index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains textarea follow sibling ancestor label
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//ancestor::label";
-            element = findElementsForInputByIndex(driver, xpath, "textarea", index);
-			if (element != null) { 
+			element = findElementsForInputByIndex(driver, xpath, "textarea", index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains textarea follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForInputByIndex(driver, xpath, "textarea", index);
-			if (element != null) { 
+			element = findElementsForInputByIndex(driver, xpath, "textarea", index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//contains parent input follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5950,7 +5937,7 @@ public class Scripts_techniques {
 			//contains parent textarea follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//textarea";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5958,15 +5945,15 @@ public class Scripts_techniques {
 			//input follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//input[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//textarea follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//textarea[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5974,7 +5961,7 @@ public class Scripts_techniques {
 			//for input follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInputByIndex(driver, xpath, "input", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5982,7 +5969,7 @@ public class Scripts_techniques {
 			//for textarea follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInputByIndex(driver, xpath, "textarea", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -5990,15 +5977,15 @@ public class Scripts_techniques {
 			//parent input follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//parent textarea follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//textarea";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6006,7 +5993,7 @@ public class Scripts_techniques {
 			//for input follow ancestor label
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//ancestor::label";
 			element = findElementsForInputByIndex(driver, xpath, "input", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6014,7 +6001,7 @@ public class Scripts_techniques {
 			//for textarea follow ancestor label
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//ancestor::label";
 			element = findElementsForInputByIndex(driver, xpath, "textarea", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6022,7 +6009,7 @@ public class Scripts_techniques {
 			//contains input follow
 			xpath =	"//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//input[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6030,31 +6017,31 @@ public class Scripts_techniques {
 			//contains textarea follow
 			xpath =	"//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//textarea[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains input follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForInputByIndex(driver, xpath, "input", index);
-			if (element != null) { 
+			element = findElementsForInputByIndex(driver, xpath, "input", index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains textarea follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForInputByIndex(driver, xpath, "textarea", index);
-			if (element != null) { 
+			element = findElementsForInputByIndex(driver, xpath, "textarea", index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//contains parent input follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6062,30 +6049,30 @@ public class Scripts_techniques {
 			//contains parent textarea follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//textarea";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains input follow ancestor label
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//ancestor::label";
-            element = findElementsForInputByIndex(driver, xpath, "input", index);
-			if (element != null) { 
+			element = findElementsForInputByIndex(driver, xpath, "input", index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains textarea follow ancestor label
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//ancestor::label";
-            element = findElementsForInputByIndex(driver, xpath, "textarea", index);
-			if (element != null) { 
+			element = findElementsForInputByIndex(driver, xpath, "textarea", index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 		}catch(Exception e){
 			System.out.println(e);
-		}			
-		
+		}
+
 		return null;
 	}
 
@@ -6099,7 +6086,7 @@ public class Scripts_techniques {
 			//input
 			xpath = "//input[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6107,7 +6094,7 @@ public class Scripts_techniques {
 			//textarea
 			xpath = "//textarea[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6115,7 +6102,7 @@ public class Scripts_techniques {
 			//for input
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6123,15 +6110,15 @@ public class Scripts_techniques {
 			//for textarea
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//parent input
 			xpath = "//*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6139,7 +6126,7 @@ public class Scripts_techniques {
 			//parent textarea
 			xpath = "//*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//textarea";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6163,7 +6150,7 @@ public class Scripts_techniques {
 			//contains input
 			xpath = "//input[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6171,7 +6158,7 @@ public class Scripts_techniques {
 			//contains textarea
 			xpath = "//textarea[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6179,7 +6166,7 @@ public class Scripts_techniques {
 			//for contains input
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6187,7 +6174,7 @@ public class Scripts_techniques {
 			//for contains textarea
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6195,7 +6182,7 @@ public class Scripts_techniques {
 			//contains parent input
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6203,7 +6190,7 @@ public class Scripts_techniques {
 			//contains parent textarea
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//textarea";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6224,9 +6211,9 @@ public class Scripts_techniques {
 				return list;
 			}
 		}catch(Exception e){
-				System.out.println(e);
+			System.out.println(e);
 		}
-		
+
 		return null;
 	}
 
@@ -6240,7 +6227,7 @@ public class Scripts_techniques {
 			//input
 			xpath = "//input[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6248,7 +6235,7 @@ public class Scripts_techniques {
 			//textarea
 			xpath = "//textarea[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6256,7 +6243,7 @@ public class Scripts_techniques {
 			//for input
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInputByIndex(driver, xpath, "input", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6264,15 +6251,15 @@ public class Scripts_techniques {
 			//for textarea
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInputByIndex(driver, xpath, "textarea", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//parent input
 			xpath = "//*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6280,7 +6267,7 @@ public class Scripts_techniques {
 			//parent textarea
 			xpath = "//*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//textarea";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6288,7 +6275,7 @@ public class Scripts_techniques {
 			//for input ancestor label
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//ancestor::label";
 			element = findElementsForInputByIndex(driver, xpath, "input", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6296,7 +6283,7 @@ public class Scripts_techniques {
 			//for textarea ancestor label
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//ancestor::label";
 			element = findElementsForInputByIndex(driver, xpath, "textarea", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6304,7 +6291,7 @@ public class Scripts_techniques {
 			//contains input
 			xpath = "//input[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6312,7 +6299,7 @@ public class Scripts_techniques {
 			//contains textarea
 			xpath = "//textarea[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6320,7 +6307,7 @@ public class Scripts_techniques {
 			//for contains input
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsForInputByIndex(driver, xpath, "input", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6328,7 +6315,7 @@ public class Scripts_techniques {
 			//for contains textarea
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsForInputByIndex(driver, xpath, "textarea", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6336,7 +6323,7 @@ public class Scripts_techniques {
 			//contains parent input
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6344,7 +6331,7 @@ public class Scripts_techniques {
 			//contains parent textarea
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//textarea";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6352,7 +6339,7 @@ public class Scripts_techniques {
 			//for contains input ancestor label
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//ancestor::label";
 			element = findElementsForInputByIndex(driver, xpath, "input", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6360,14 +6347,14 @@ public class Scripts_techniques {
 			//for contains textarea ancestor label
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-name,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@ng-reflect-model,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//ancestor::label";
 			element = findElementsForInputByIndex(driver, xpath, "textarea", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 		}catch(Exception e){
-				System.out.println(e);
+			System.out.println(e);
 		}
-		
+
 		return null;
 	}
 
@@ -6382,7 +6369,7 @@ public class Scripts_techniques {
 			//input follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::input[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6390,7 +6377,7 @@ public class Scripts_techniques {
 			//textarea follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::textarea[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6398,7 +6385,7 @@ public class Scripts_techniques {
 			//for input follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6406,7 +6393,7 @@ public class Scripts_techniques {
 			//for textarea follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6414,7 +6401,7 @@ public class Scripts_techniques {
 			//input parent follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6422,7 +6409,7 @@ public class Scripts_techniques {
 			//textarea parent follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//textarea";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6430,7 +6417,7 @@ public class Scripts_techniques {
 			//contains input follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::input[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6438,23 +6425,23 @@ public class Scripts_techniques {
 			//contains textarea follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::textarea[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//for contains input follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			element = findElementsForInput(driver, xpath, "input");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains textarea follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			element = findElementsForInput(driver, xpath, "textarea");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6462,7 +6449,7 @@ public class Scripts_techniques {
 			//contains input parent follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6470,15 +6457,15 @@ public class Scripts_techniques {
 			//contains textarea parent follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//textarea";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//input follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//input[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6486,7 +6473,7 @@ public class Scripts_techniques {
 			//textarea follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//textarea[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6494,7 +6481,7 @@ public class Scripts_techniques {
 			//for input follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6502,7 +6489,7 @@ public class Scripts_techniques {
 			//for textarea follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6510,7 +6497,7 @@ public class Scripts_techniques {
 			//input parent follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6518,7 +6505,7 @@ public class Scripts_techniques {
 			//textarea parent follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//textarea";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6526,7 +6513,7 @@ public class Scripts_techniques {
 			//contains input follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//input[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6534,23 +6521,23 @@ public class Scripts_techniques {
 			//contains textrea follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//textarea[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains input follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			element = findElementsForInput(driver, xpath, "input");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains textarea follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			element = findElementsForInput(driver, xpath, "textarea");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6558,7 +6545,7 @@ public class Scripts_techniques {
 			//contains input parent follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6566,7 +6553,7 @@ public class Scripts_techniques {
 			//contains textarea parent follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//textarea";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6574,7 +6561,7 @@ public class Scripts_techniques {
 			//all follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6582,15 +6569,15 @@ public class Scripts_techniques {
 			//contains all follow sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//all follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6598,18 +6585,18 @@ public class Scripts_techniques {
 			//contains all follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 		}catch(Exception e){
 			System.out.println(e);
-		}		
-		
+		}
+
 		return null;
 	}
-	
-	public static HashMap identifyElementCheck(final WebDriver driver, String label) 
+
+	public static HashMap identifyElementCheck(final WebDriver driver, String label)
 	{
 		String xpath;
 		WebElement element;
@@ -6619,7 +6606,7 @@ public class Scripts_techniques {
 			//input
 			xpath = "//input[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6627,7 +6614,7 @@ public class Scripts_techniques {
 			//textarea
 			xpath = "//textarea[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6635,7 +6622,7 @@ public class Scripts_techniques {
 			//for input
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6643,7 +6630,7 @@ public class Scripts_techniques {
 			//for textarea
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6651,7 +6638,7 @@ public class Scripts_techniques {
 			//parent input
 			xpath = "//*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6659,7 +6646,7 @@ public class Scripts_techniques {
 			//parent textarea
 			xpath = "//*[translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//textarea";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6667,7 +6654,7 @@ public class Scripts_techniques {
 			//contains input
 			xpath = "//input[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6675,7 +6662,7 @@ public class Scripts_techniques {
 			//contains textarea
 			xpath = "//textarea[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6683,7 +6670,7 @@ public class Scripts_techniques {
 			//for contains input
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsForInput(driver, xpath, "input");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6691,7 +6678,7 @@ public class Scripts_techniques {
 			//for contains textarea
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsForInput(driver, xpath, "textarea");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6699,7 +6686,7 @@ public class Scripts_techniques {
 			//contains parent input
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6707,7 +6694,7 @@ public class Scripts_techniques {
 			//contains parent textarea
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//textarea";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6715,7 +6702,7 @@ public class Scripts_techniques {
 			//all
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6723,14 +6710,14 @@ public class Scripts_techniques {
 			//contains all
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 		}catch(Exception e){
-				System.out.println(e);
+			System.out.println(e);
 		}
-		
+
 		return null;
 	}
 
@@ -6745,15 +6732,15 @@ public class Scripts_techniques {
 			// follow sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//follow sibling contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6761,22 +6748,22 @@ public class Scripts_techniques {
 			//follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//follow contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 		}catch(Exception e){
 			System.out.println(e+ " Element not found");
 		}
-		
+
 		return null;
 	}
 
@@ -6790,22 +6777,22 @@ public class Scripts_techniques {
 			//
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 		}catch(Exception e){
 			System.out.println(e+ " Element not found");
 		}
-		
+
 		return null;
 	}
 
@@ -6840,14 +6827,14 @@ public class Scripts_techniques {
 						element = getDirectionElement(driver, reference_element, xpath, direction);
 						xpathTry += xpath;
 					}
-					if (element != null) { 
+					if (element != null) {
 						list.put(xpathTry, element);
 						return list;
 					}
 				}
 			}
 			System.out.println(">>>>> Element not found using the xpath :  \n"+xpath+"\n");
-				
+
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			list_elements = driver.findElements(By.xpath(xpath));
 			if(!list_elements.isEmpty())
@@ -6873,7 +6860,7 @@ public class Scripts_techniques {
 						element = getDirectionElement(driver, reference_element, xpath, direction);
 						xpathTry += xpath;
 					}
-					if (element != null) { 
+					if (element != null) {
 						list.put(xpathTry, element);
 						return list;
 					}
@@ -6897,7 +6884,7 @@ public class Scripts_techniques {
 			//lien
 			xpath = "//a[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6905,7 +6892,7 @@ public class Scripts_techniques {
 			//button
 			xpath = "//button[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6913,7 +6900,7 @@ public class Scripts_techniques {
 			//input
 			xpath = "//input[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6921,7 +6908,7 @@ public class Scripts_techniques {
 			//img
 			xpath = "//img[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6929,7 +6916,7 @@ public class Scripts_techniques {
 			//lien parent
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::a";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6937,7 +6924,7 @@ public class Scripts_techniques {
 			//button parent
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::button";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6945,7 +6932,7 @@ public class Scripts_techniques {
 			//input parent
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::input";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6953,15 +6940,15 @@ public class Scripts_techniques {
 			//img parent
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::img";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-				
+
 			//lien contains
 			xpath = "//a[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6969,7 +6956,7 @@ public class Scripts_techniques {
 			//button contains
 			xpath = "//button[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6977,15 +6964,15 @@ public class Scripts_techniques {
 			//input contains
 			xpath = "//input[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//img contains
 			xpath = "//img[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -6993,7 +6980,7 @@ public class Scripts_techniques {
 			//lien contains parent
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::a";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7001,7 +6988,7 @@ public class Scripts_techniques {
 			//button contains parent
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::button";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7009,7 +6996,7 @@ public class Scripts_techniques {
 			//input contains parent
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::input";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7017,15 +7004,15 @@ public class Scripts_techniques {
 			//img contains parent
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::img";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//all
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7033,7 +7020,7 @@ public class Scripts_techniques {
 			//all contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsLabelDirection(driver, reference_element, xpath, direction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7046,14 +7033,14 @@ public class Scripts_techniques {
 
 	//find dropdown param
 	public static HashMap identifyElementChoose(final WebDriver driver, String param)
-    {
+	{
 		HashMap<String, WebElement> list = new HashMap<>();
 		param = param.toLowerCase().replaceAll("\\s","");
-        try {
+		try {
 			//option
 			String xpath = "//option[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + "]";
-            WebElement element = findElements(driver, xpath);
-			if (element != null) { 
+			WebElement element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7061,596 +7048,596 @@ public class Scripts_techniques {
 			//option contains
 			xpath = "//option[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return null;
-    }
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return null;
+	}
 
 	//find dropdown texte + param
-    public static HashMap identifyElementChoose(final WebDriver driver, String label, String param)
-    {
+	public static HashMap identifyElementChoose(final WebDriver driver, String label, String param)
+	{
 		HashMap<String, WebElement> list = new HashMap<>();
 		label = label.toLowerCase().replaceAll("\\s","");
 		param = param.toLowerCase().replaceAll("\\s","");
-        try {
+		try {
 			//option
 			String xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//option[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + "]";
-            WebElement element = findElements(driver, xpath);
-			if (element != null) { 
+			WebElement element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//option[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")]";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//option follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::option[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + "]";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::option[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")]";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return null;
-    }
-    
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return null;
+	}
+
 	//find dropdown texte with index + param
-    public static HashMap identifyElementChooseWithIndex(final WebDriver driver, String label, String param, String index)
-    {
+	public static HashMap identifyElementChooseWithIndex(final WebDriver driver, String label, String param, String index)
+	{
 		HashMap<String, WebElement> list = new HashMap<>();
 		label = label.toLowerCase().replaceAll("\\s","");
 		param = param.toLowerCase().replaceAll("\\s","");
 		System.out.println("dropdown texte with index + param");
-        try {
+		try {
 			//option
 			String xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//option[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + "]";
-            WebElement element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			WebElement element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//option[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")]";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//option follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::option[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + "]";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::option[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")]";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return null;
-    }
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return null;
+	}
 
 	//find dropdown texte + context + param
-    public static HashMap identifyElementChoose(final WebDriver driver, String label, String context, String param)
-    {
+	public static HashMap identifyElementChoose(final WebDriver driver, String label, String context, String param)
+	{
 		HashMap<String, WebElement> list = new HashMap<>();
 		label = label.toLowerCase().replaceAll("\\s","");
 		context = context.toLowerCase().replaceAll("\\s","");
 		param = param.toLowerCase().replaceAll("\\s","");
-        try {
+		try {
 			//option follow-sibling
 			String xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//option[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + "]";
-            WebElement element = findElements(driver, xpath);
-			if (element != null) { 
+			WebElement element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow-sibling contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//option[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")]";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//option[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + "]";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//option[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")]";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//option follow-sibling follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::option[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + "]";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow-sibling contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::option[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")]";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::option[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + "]";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::option[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")]";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return null;
-    }
-    
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return null;
+	}
+
 	//find dropdown texte + context with index + param
-    public static HashMap identifyElementChooseWithIndex(final WebDriver driver, String label, String context, String param, String index)
-    {
+	public static HashMap identifyElementChooseWithIndex(final WebDriver driver, String label, String context, String param, String index)
+	{
 		HashMap<String, WebElement> list = new HashMap<>();
 		label = label.toLowerCase().replaceAll("\\s","");
 		context = context.toLowerCase().replaceAll("\\s","");
 		param = param.toLowerCase().replaceAll("\\s","");
-        try {
+		try {
 			//option follow-sibling
 			String xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//option[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + "]";
-            WebElement element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			WebElement element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow-sibling contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//option[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")]";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//option[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + "]";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//option[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")]";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//option follow-sibling follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::option[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + "]";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow-sibling contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::option[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")]";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::option[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + param + str + "]";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::option[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + param + str + ")]";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return null;
-    }
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return null;
+	}
 
 	//find dropdown texte + index
-    public static HashMap identifyElementChooseByIndex(final WebDriver driver, String label, String param)
-    {
+	public static HashMap identifyElementChooseByIndex(final WebDriver driver, String label, String param)
+	{
 		HashMap<String, WebElement> list = new HashMap<>();
 		label = label.toLowerCase().replaceAll("\\s","");
 		param = param.toLowerCase().replaceAll("\\s","");
-        try {
+		try {
 			//option
 			String xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//option";
-            WebElement element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			WebElement element = findElementsIndex(driver, xpath, param);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//option";
-            element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, param);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::option";
-            element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, param);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::option";
-            element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, param);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return null;
-    }
-    
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return null;
+	}
+
 	//find dropdown texte + context + index
 	public static HashMap identifyElementChooseByIndex(final WebDriver driver, String label, String context, String param)
-    {
+	{
 		HashMap<String, WebElement> list = new HashMap<>();
 		label = label.toLowerCase().replaceAll("\\s","");
 		context = context.toLowerCase().replaceAll("\\s","");
 		param = param.toLowerCase().replaceAll("\\s","");
-        try {
+		try {
 			//option follow-sibling
 			String xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//option";
-            WebElement element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			WebElement element = findElementsIndex(driver, xpath, param);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow-sibling contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//option";
-            element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, param);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//option";
-            element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, param);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//option";
-            element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, param);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow-sibling follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::option";
-            element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, param);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow-sibling contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::option";
-            element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, param);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::option";
-            element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, param);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//option follow contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::option";
-            element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, param);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return null;
-    }
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return null;
+	}
 
 	//find checkbox radio texte + context
-    public static HashMap identifyElementRadioCheckBox(final WebDriver driver, String label, String context)
-    {
+	public static HashMap identifyElementRadioCheckBox(final WebDriver driver, String label, String context)
+	{
 		HashMap<String, WebElement> list = new HashMap<>();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        label = label.toLowerCase().replaceAll("\\s","");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		label = label.toLowerCase().replaceAll("\\s","");
 		context = context.toLowerCase().replaceAll("\\s","");
-        try {
-			
-            //for radio
+		try {
+
+			//for radio
 			String xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
-            WebElement element = findElementsForSelect(driver, xpath, "radio");
-			if (element != null) { 
+			WebElement element = findElementsForSelect(driver, xpath, "radio");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
-            element = findElementsForSelect(driver, xpath, "checkbox");
-			if (element != null) { 
+			element = findElementsForSelect(driver, xpath, "checkbox");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains radio
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForSelect(driver, xpath, "radio");
-			if (element != null) { 
+			element = findElementsForSelect(driver, xpath, "radio");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForSelect(driver, xpath, "checkbox");
-			if (element != null) { 
+			element = findElementsForSelect(driver, xpath, "checkbox");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
-            //sans for radio
+			//sans for radio
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input[@type='radio']";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
-            //sans for checkbox
+
+			//sans for checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input[@type='checkbox']";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//sans for contains radio
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input[@type='radio']";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//sans for contains checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input[@type='checkbox']";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//sans for follow radio checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::input[@type='radio' or @type='checkbox']";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//sans for contains follow radio checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::input[@type='radio' or @type='checkbox']";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return null;
-    }
-    
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return null;
+	}
+
 	//find checkbox radio texte + context with index
 	public static HashMap identifyElementRadioCheckBoxWithIndex(final WebDriver driver, String label, String context, String index)
-    {
+	{
 		HashMap<String, WebElement> list = new HashMap<>();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        label = label.toLowerCase().replaceAll("\\s","");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		label = label.toLowerCase().replaceAll("\\s","");
 		context = context.toLowerCase().replaceAll("\\s","");
-        try {
-			
-            //for radio
+		try {
+
+			//for radio
 			String xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
-            WebElement element = findElementsForSelectWithIndex(driver, xpath, "radio", index);
-			if (element != null) { 
+			WebElement element = findElementsForSelectWithIndex(driver, xpath, "radio", index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
-            element = findElementsForSelectWithIndex(driver, xpath, "checkbox", index);
-			if (element != null) { 
+			element = findElementsForSelectWithIndex(driver, xpath, "checkbox", index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains radio
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForSelectWithIndex(driver, xpath, "radio", index);
-			if (element != null) { 
+			element = findElementsForSelectWithIndex(driver, xpath, "radio", index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForSelectWithIndex(driver, xpath, "checkbox", index);
-			if (element != null) { 
+			element = findElementsForSelectWithIndex(driver, xpath, "checkbox", index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
-            //sans for radio
+			//sans for radio
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input[@type='radio']";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
-            //sans for checkbox
+
+			//sans for checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input[@type='checkbox']";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//sans for contains radio
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input[@type='radio']";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//sans for contains checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input[@type='checkbox']";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//sans for follow radio checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::input[@type='radio' or @type='checkbox']";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//sans for contains follow radio checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::input[@type='radio' or @type='checkbox']";
-            element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			element = findElementsIndex(driver, xpath, index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return null;
-    }
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return null;
+	}
 
 	//find checkbox radio texte
-    public static HashMap identifyElementRadioCheckBox(final WebDriver driver, String label)
-    {
+	public static HashMap identifyElementRadioCheckBox(final WebDriver driver, String label)
+	{
 		HashMap<String, WebElement> list = new HashMap<>();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        label = label.toLowerCase().replaceAll("\\s","");
-        try {
-			
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		label = label.toLowerCase().replaceAll("\\s","");
+		try {
+
 			//for radio
 			String xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			WebElement element = findElementsForSelect(driver, xpath, "radio");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
-            element = findElementsForSelect(driver, xpath, "checkbox");
-			if (element != null) { 
+			element = findElementsForSelect(driver, xpath, "checkbox");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//for contains radio
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsForSelect(driver, xpath, "radio");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7658,7 +7645,7 @@ public class Scripts_techniques {
 			//for contains checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsForSelect(driver, xpath, "checkbox");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7666,7 +7653,7 @@ public class Scripts_techniques {
 			//sans for radio
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input[@type='radio']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7674,7 +7661,7 @@ public class Scripts_techniques {
 			//sans for checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input[@type='checkbox']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7682,7 +7669,7 @@ public class Scripts_techniques {
 			//sans for contains radio
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input[@type='radio']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7690,7 +7677,7 @@ public class Scripts_techniques {
 			//sans for contains checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input[@type='checkbox']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7698,7 +7685,7 @@ public class Scripts_techniques {
 			//sans for follow radio checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::input[@type='radio' or @type='checkbox']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7706,44 +7693,44 @@ public class Scripts_techniques {
 			//sans for contains follow radio checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::input[@type='radio' or @type='checkbox']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return null;
-    }
-    
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return null;
+	}
+
 	//find checkbox radio texte with index
 	public static HashMap identifyElementRadioCheckBoxWithIndex(final WebDriver driver, String label, String index)
-    {
+	{
 		HashMap<String, WebElement> list = new HashMap<>();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        label = label.toLowerCase().replaceAll("\\s","");
-        try {
-			
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		label = label.toLowerCase().replaceAll("\\s","");
+		try {
+
 			//for radio
 			String xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			WebElement element = findElementsForSelectWithIndex(driver, xpath, "radio", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
-            element = findElementsForSelectWithIndex(driver, xpath, "checkbox", index);
-			if (element != null) { 
+			element = findElementsForSelectWithIndex(driver, xpath, "checkbox", index);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
+
 			//for contains radio
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsForSelectWithIndex(driver, xpath, "radio", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7751,7 +7738,7 @@ public class Scripts_techniques {
 			//for contains checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsForSelectWithIndex(driver, xpath, "checkbox", index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7759,7 +7746,7 @@ public class Scripts_techniques {
 			//sans for radio
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input[@type='radio']";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7767,7 +7754,7 @@ public class Scripts_techniques {
 			//sans for checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input[@type='checkbox']";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7775,7 +7762,7 @@ public class Scripts_techniques {
 			//sans for contains radio
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input[@type='radio']";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7783,7 +7770,7 @@ public class Scripts_techniques {
 			//sans for contains checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input[@type='checkbox']";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7791,7 +7778,7 @@ public class Scripts_techniques {
 			//sans for follow radio checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::input[@type='radio' or @type='checkbox']";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7799,15 +7786,15 @@ public class Scripts_techniques {
 			//sans for contains follow radio checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::input[@type='radio' or @type='checkbox']";
 			element = findElementsIndex(driver, xpath, index);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return null;
-    }
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return null;
+	}
 
 	public static HashMap identifyElementsToClickByIndex(final WebDriver driver, String label, String param)
 	{
@@ -7819,7 +7806,7 @@ public class Scripts_techniques {
 			//img
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7827,7 +7814,7 @@ public class Scripts_techniques {
 			//a
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7835,7 +7822,7 @@ public class Scripts_techniques {
 			//button
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7843,7 +7830,7 @@ public class Scripts_techniques {
 			//input
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7851,7 +7838,7 @@ public class Scripts_techniques {
 			//img contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7859,7 +7846,7 @@ public class Scripts_techniques {
 			//a contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7867,7 +7854,7 @@ public class Scripts_techniques {
 			//button contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7875,7 +7862,7 @@ public class Scripts_techniques {
 			//input contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7883,7 +7870,7 @@ public class Scripts_techniques {
 			//img follow-sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following-sibling::img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7891,7 +7878,7 @@ public class Scripts_techniques {
 			//a follow-sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following-sibling::a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7899,7 +7886,7 @@ public class Scripts_techniques {
 			//button follow-sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following-sibling::button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7907,15 +7894,15 @@ public class Scripts_techniques {
 			//input follow-sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following-sibling::input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//img contains follow-sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following-sibling::img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7923,7 +7910,7 @@ public class Scripts_techniques {
 			//a contains follow-sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following-sibling::a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7931,7 +7918,7 @@ public class Scripts_techniques {
 			//button contains follow-sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following-sibling::button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7939,7 +7926,7 @@ public class Scripts_techniques {
 			//input contains follow-sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following-sibling::input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7947,7 +7934,7 @@ public class Scripts_techniques {
 			//img follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7955,7 +7942,7 @@ public class Scripts_techniques {
 			//a follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7963,7 +7950,7 @@ public class Scripts_techniques {
 			//button follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7971,15 +7958,15 @@ public class Scripts_techniques {
 			//input follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//img contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7987,7 +7974,7 @@ public class Scripts_techniques {
 			//a contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -7995,7 +7982,7 @@ public class Scripts_techniques {
 			//button contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8003,14 +7990,14 @@ public class Scripts_techniques {
 			//input contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 		}catch(Exception e){
 			System.out.println(e.getMessage() + " Element not found");
 		}
-		
+
 		return null;
 	}
 
@@ -8025,7 +8012,7 @@ public class Scripts_techniques {
 			//img
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//img[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8033,7 +8020,7 @@ public class Scripts_techniques {
 			//a
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//a[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8041,7 +8028,7 @@ public class Scripts_techniques {
 			//button
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//button[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8049,7 +8036,7 @@ public class Scripts_techniques {
 			//input
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//input[(@type='submit' or @type='button') and (translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8057,7 +8044,7 @@ public class Scripts_techniques {
 			//img parent
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8065,7 +8052,7 @@ public class Scripts_techniques {
 			//a parent
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8073,7 +8060,7 @@ public class Scripts_techniques {
 			//button parent
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8081,7 +8068,7 @@ public class Scripts_techniques {
 			//input parent
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8089,7 +8076,7 @@ public class Scripts_techniques {
 			//img contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//img[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8097,7 +8084,7 @@ public class Scripts_techniques {
 			//a contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//a[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8105,7 +8092,7 @@ public class Scripts_techniques {
 			//button contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//button[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8113,7 +8100,7 @@ public class Scripts_techniques {
 			//input contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//input[(@type='submit' or @type='button') and (text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + "))]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8121,7 +8108,7 @@ public class Scripts_techniques {
 			//img parent contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8129,7 +8116,7 @@ public class Scripts_techniques {
 			//a parent contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8137,7 +8124,7 @@ public class Scripts_techniques {
 			//button parent contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8145,7 +8132,7 @@ public class Scripts_techniques {
 			//input parent contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8153,7 +8140,7 @@ public class Scripts_techniques {
 			//img follow-sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::img[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8161,7 +8148,7 @@ public class Scripts_techniques {
 			//a follow-sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::a[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8169,7 +8156,7 @@ public class Scripts_techniques {
 			//button follow-sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::button[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8177,7 +8164,7 @@ public class Scripts_techniques {
 			//input follow-sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::input[(@type='submit' or @type='button') and (translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8185,7 +8172,7 @@ public class Scripts_techniques {
 			//img parent follow-sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8193,7 +8180,7 @@ public class Scripts_techniques {
 			//a parent follow-sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8201,7 +8188,7 @@ public class Scripts_techniques {
 			//button parent follow-sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8209,7 +8196,7 @@ public class Scripts_techniques {
 			//input parent follow-sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8217,7 +8204,7 @@ public class Scripts_techniques {
 			//img contains follow-sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::img[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8225,7 +8212,7 @@ public class Scripts_techniques {
 			//a contains follow-sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::a[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8233,7 +8220,7 @@ public class Scripts_techniques {
 			//button contains follow-sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::button[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8241,7 +8228,7 @@ public class Scripts_techniques {
 			//input contains follow-sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::input[(@type='submit' or @type='button') and (text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + "))]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8249,7 +8236,7 @@ public class Scripts_techniques {
 			//img parent contains follow-sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8257,7 +8244,7 @@ public class Scripts_techniques {
 			//a parent contains follow-sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8265,7 +8252,7 @@ public class Scripts_techniques {
 			//button parent contains follow-sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8273,7 +8260,7 @@ public class Scripts_techniques {
 			//input parent contains follow-sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8281,7 +8268,7 @@ public class Scripts_techniques {
 			//img follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::img[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8289,7 +8276,7 @@ public class Scripts_techniques {
 			//a follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::a[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8297,7 +8284,7 @@ public class Scripts_techniques {
 			//button follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::button[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8305,7 +8292,7 @@ public class Scripts_techniques {
 			//input follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::input[(@type='submit' or @type='button') and (translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8313,7 +8300,7 @@ public class Scripts_techniques {
 			//img parent follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8321,7 +8308,7 @@ public class Scripts_techniques {
 			//a parent follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8329,7 +8316,7 @@ public class Scripts_techniques {
 			//button parent follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8337,15 +8324,15 @@ public class Scripts_techniques {
 			//input parent follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//img contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::img[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8353,7 +8340,7 @@ public class Scripts_techniques {
 			//a contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::a[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8361,7 +8348,7 @@ public class Scripts_techniques {
 			//button contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::button[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8369,7 +8356,7 @@ public class Scripts_techniques {
 			//input contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::input[(@type='submit' or @type='button') and (text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + "))]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8377,7 +8364,7 @@ public class Scripts_techniques {
 			//img parent contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8385,7 +8372,7 @@ public class Scripts_techniques {
 			//a parent contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8393,7 +8380,7 @@ public class Scripts_techniques {
 			//button parent contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8401,7 +8388,7 @@ public class Scripts_techniques {
 			//input parent contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8409,7 +8396,7 @@ public class Scripts_techniques {
 			//all follow-sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following-sibling::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8417,7 +8404,7 @@ public class Scripts_techniques {
 			//all contains follow-sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following-sibling::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8425,7 +8412,7 @@ public class Scripts_techniques {
 			//all follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8433,14 +8420,14 @@ public class Scripts_techniques {
 			//all contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 		}catch(Exception e){
 			System.out.println(e.getMessage() + " Element not found");
 		}
-		
+
 		return null;
 	}
 
@@ -8451,74 +8438,74 @@ public class Scripts_techniques {
 		HashMap<String, WebElement> list = new HashMap<>();
 		value = value.toLowerCase().replaceAll("\\s","");
 		try {
-			
+
 			//img
 			xpath = "//*[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]//img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
-			//a 
+			//a
 			xpath = "//*[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]//a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
-			//button 
+			//button
 			xpath = "//*[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]//button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
-			//input 
+			//input
 			xpath = "//*[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]//input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
-			//img contains 
+
+			//img contains
 			xpath = "//*[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]//img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
-			//a contains 
+			//a contains
 			xpath = "//*[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]//a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
-			//button contains 
+			//button contains
 			xpath = "//*[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]//button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
-			//input contains 
+			//input contains
 			xpath = "//*[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]//input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 		}catch(Exception e){
 			System.out.println(e.getMessage() + " Element not found");
 		}
-		
+
 		return null;
 	}
 
@@ -8530,11 +8517,11 @@ public class Scripts_techniques {
 		value = value.toLowerCase().replaceAll("\\s","");
 		label = label.toLowerCase().replaceAll("\\s","");
 		try {
-			
+
 			//img
 			xpath = "//*[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]//img[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8542,7 +8529,7 @@ public class Scripts_techniques {
 			//a
 			xpath = "//*[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]//a[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8550,7 +8537,7 @@ public class Scripts_techniques {
 			//button
 			xpath = "//*[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]//button[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8558,7 +8545,7 @@ public class Scripts_techniques {
 			//input
 			xpath = "//*[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]//input[(@type='submit' or @type='button') and (translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8566,7 +8553,7 @@ public class Scripts_techniques {
 			//img parent
 			xpath = "//*[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8574,7 +8561,7 @@ public class Scripts_techniques {
 			//a parent
 			xpath = "//*[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8582,7 +8569,7 @@ public class Scripts_techniques {
 			//button parent
 			xpath = "//*[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8590,15 +8577,15 @@ public class Scripts_techniques {
 			//input parent
 			xpath = "//*[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//img contains
 			xpath = "//*[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]//img[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8606,7 +8593,7 @@ public class Scripts_techniques {
 			//a contains
 			xpath = "//*[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]//a[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8614,7 +8601,7 @@ public class Scripts_techniques {
 			//button contains
 			xpath = "//*[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]//button[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8622,7 +8609,7 @@ public class Scripts_techniques {
 			//input contains
 			xpath = "//*[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]//input[(@type='submit' or @type='button') and (text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + "))]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8630,7 +8617,7 @@ public class Scripts_techniques {
 			//img parent contains
 			xpath = "//*[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::img";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8638,7 +8625,7 @@ public class Scripts_techniques {
 			//a parent contains
 			xpath = "//*[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::a";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8646,7 +8633,7 @@ public class Scripts_techniques {
 			//button parent contains
 			xpath = "//*[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::button";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8654,7 +8641,7 @@ public class Scripts_techniques {
 			//input parent contains
 			xpath = "//*[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::input[@type='submit' or @type='button']";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8662,7 +8649,7 @@ public class Scripts_techniques {
 			//all
 			xpath = "//*[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8670,14 +8657,14 @@ public class Scripts_techniques {
 			//all contains
 			xpath = "//*[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsIndex(driver, xpath, param);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 		}catch(Exception e){
 			System.out.println(e.getMessage() + " Element not found");
 		}
-		
+
 		return null;
 	}
 
@@ -8688,14 +8675,14 @@ public class Scripts_techniques {
 			//table
 			String xpath = "//table";
 			WebElement element = findElementsTable(driver, xpath, param, typeAction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 		}catch(Exception e){
 			System.out.println(e.getMessage() + " Element not found");
 		}
-		
+
 		return null;
 	}
 
@@ -8704,26 +8691,26 @@ public class Scripts_techniques {
 		HashMap<String, WebElement> list = new HashMap<>();
 		value = value.toLowerCase().replaceAll("\\s","");
 		try {
-			
+
 			//table
 			String xpath = "//table[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]";
 			WebElement element = findElementsTable(driver, xpath, param, typeAction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
-			//table contains 
+
+			//table contains
 			xpath = "//table[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]";
 			element = findElementsTable(driver, xpath, param, typeAction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 		}catch(Exception e){
 			System.out.println(e.getMessage() + " Element not found");
 		}
-		
+
 		return null;
 	}
 
@@ -8735,7 +8722,7 @@ public class Scripts_techniques {
 			//table
 			String xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//table";
 			WebElement element = findElementsTable(driver, xpath, param, typeAction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8743,7 +8730,7 @@ public class Scripts_techniques {
 			//table contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//table";
 			element = findElementsTable(driver, xpath, param, typeAction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8751,15 +8738,15 @@ public class Scripts_techniques {
 			//table follow-sibling
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following-sibling::table";
 			element = findElementsTable(driver, xpath, param, typeAction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//table contains follow-sibling
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following-sibling::table";
 			element = findElementsTable(driver, xpath, param, typeAction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -8767,22 +8754,22 @@ public class Scripts_techniques {
 			//table follow
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::table";
 			element = findElementsTable(driver, xpath, param, typeAction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//table contains follow
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::table";
 			element = findElementsTable(driver, xpath, param, typeAction);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 		}catch(Exception e){
 			System.out.println(e.getMessage() + " Element not found");
 		}
-		
+
 		return null;
 	}
 
@@ -8796,7 +8783,7 @@ public class Scripts_techniques {
 				xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//a";
 				element = findElementsCell(driver, xpath, table_element);
 				if (element != null) return element;
-			
+
 				//button
 				xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//button";
 				element = findElementsCell(driver, xpath, table_element);
@@ -8820,7 +8807,7 @@ public class Scripts_techniques {
 		}catch(Exception e){
 			System.out.println(e.getMessage() + " Element not found");
 		}
-		
+
 		return null;
 	}
 
@@ -8836,7 +8823,7 @@ public class Scripts_techniques {
 				xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//a[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 				element = findElementsCell(driver, xpath, table_element);
 				if (element != null) return element;
-			
+
 				//button
 				xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//button[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 				element = findElementsCell(driver, xpath, table_element);
@@ -8851,12 +8838,12 @@ public class Scripts_techniques {
 				xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//img[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 				element = findElementsCell(driver, xpath, table_element);
 				if (element != null) return element;
-				
+
 				//parent a
 				xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::a";
 				element = findElementsCell(driver, xpath, table_element);
 				if (element != null) return element;
-			
+
 				//parent button
 				xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]/ancestor::button";
 				element = findElementsCell(driver, xpath, table_element);
@@ -8876,7 +8863,7 @@ public class Scripts_techniques {
 				xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//a[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 				element = findElementsCell(driver, xpath, table_element);
 				if (element != null) return element;
-			
+
 				//button contains
 				xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//button[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 				element = findElementsCell(driver, xpath, table_element);
@@ -8891,12 +8878,12 @@ public class Scripts_techniques {
 				xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//img[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 				element = findElementsCell(driver, xpath, table_element);
 				if (element != null) return element;
-				
+
 				//parent a contains
 				xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::a";
 				element = findElementsCell(driver, xpath, table_element);
 				if (element != null) return element;
-			
+
 				//parent button contains
 				xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]/ancestor::button";
 				element = findElementsCell(driver, xpath, table_element);
@@ -8942,7 +8929,7 @@ public class Scripts_techniques {
 		}catch(Exception e){
 			System.out.println(e.getMessage() + " Element not found");
 		}
-		
+
 		return null;
 	}
 
@@ -8957,7 +8944,7 @@ public class Scripts_techniques {
 				xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//a";
 				element = findElementsCellIndex(driver, xpath, table_element, param);
 				if (element != null) return element;
-			
+
 				//button
 				xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//button";
 				element = findElementsCellIndex(driver, xpath, table_element, param);
@@ -9009,19 +8996,19 @@ public class Scripts_techniques {
 		}catch(Exception e){
 			System.out.println(e.getMessage() + " Element not found");
 		}
-		
+
 		return null;
 	}
 
 	public static WebElement identifyCellElementToCheck(WebDriver driver, WebElement table_element, int colIndex, int rowIndex)
 	{
 		try {
-			
+
 			//input
 			String xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//input";
 			WebElement element = findElementsCell(driver, xpath, table_element);
 			if (element != null) return element;
-		
+
 			//textarea
 			xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//textarea";
 			element = findElementsCell(driver, xpath, table_element);
@@ -9034,19 +9021,19 @@ public class Scripts_techniques {
 		}catch(Exception e){
 			System.out.println(e.getMessage() + " Element not found");
 		}
-		
+
 		return null;
 	}
 
 	public static WebElement identifyCellElementToSendkeys(WebDriver driver, WebElement table_element, int colIndex, int rowIndex)
 	{
 		try {
-			
+
 			//input
 			String xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//input";
 			WebElement element = findElementsCell(driver, xpath, table_element);
 			if (element != null) return element;
-		
+
 			//textarea
 			xpath = ".//tbody/tr[" + rowIndex + "]/td[" + colIndex + "]//textarea";
 			element = findElementsCell(driver, xpath, table_element);
@@ -9054,7 +9041,7 @@ public class Scripts_techniques {
 		}catch(Exception e){
 			System.out.println(e.getMessage() + " Element not found");
 		}
-		
+
 		return null;
 	}
 
@@ -9069,15 +9056,15 @@ public class Scripts_techniques {
 			//element
 			xpath = "//*[translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + value + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
-			//element contains 
+			//element contains
 			xpath = "//*[contains(translate(" + property + ",'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + value + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -9085,7 +9072,7 @@ public class Scripts_techniques {
 		}catch(Exception e){
 			System.out.println(e.getMessage() + " Element not found");
 		}
-		
+
 		return null;
 	}
 
@@ -9100,15 +9087,15 @@ public class Scripts_techniques {
 			// all
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-		
+
 			//all contains
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -9118,52 +9105,52 @@ public class Scripts_techniques {
 		return null;
 	}
 
-    public static List<WebElement> checkTextInElement(final WebDriver driver, WebElement element, String param)
-    {
+	public static List<WebElement> checkTextInElement(final WebDriver driver, WebElement element, String param)
+	{
 		String xpath;
 		List<WebElement> list = new ArrayList<>();
-        try {
+		try {
 			//descendant
 			xpath = ".//descendant-or-self::*[text()=" + str + param + str + " or @value=" + str + param + str + "]";
-            list = element.findElements(By.xpath(xpath));
+			list = element.findElements(By.xpath(xpath));
 			if (!list.isEmpty()) return list;
 
 			//descendant contains
 			xpath = ".//descendant-or-self::*[text()[contains(.," + str + param + str + ")] or contains(@value," + str + param + str + ")]";
-            list = element.findElements(By.xpath(xpath));
+			list = element.findElements(By.xpath(xpath));
 			if (!list.isEmpty()) return list;
 
 			//follow sibling
 			xpath = "./parent::*//following-sibling::*[text()=" + str + param + str + " or @value=" + str + param + str + "]";
-            list = element.findElements(By.xpath(xpath));
+			list = element.findElements(By.xpath(xpath));
 			if (!list.isEmpty()) return list;
 
 			//follow sibling contains
 			xpath = "./parent::*//following-sibling::*[text()[contains(.," + str + param + str + ")] or contains(@value," + str + param + str + ")]";
-            list = element.findElements(By.xpath(xpath));
+			list = element.findElements(By.xpath(xpath));
 			if (!list.isEmpty()) return list;
 
 			//follow
 			xpath = "./parent::*//following::*[text()=" + str + param + str + " or @value=" + str + param + str + "]";
-            list = element.findElements(By.xpath(xpath));
+			list = element.findElements(By.xpath(xpath));
 			if (!list.isEmpty()) return list;
 
 			//follow contains
 			xpath = "./parent::*//following::*[text()[contains(.," + str + param + str + ")] or contains(@value," + str + param + str + ")]";
-            list = element.findElements(By.xpath(xpath));
+			list = element.findElements(By.xpath(xpath));
 			if (!list.isEmpty()) return list;
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return list;
-    }
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return list;
+	}
 
 	//dropdown param
-    public static boolean chooseByTry(final WebDriver driver, String xpath)
-    {
-        WebElement element= findElements(driver, xpath);
-        if(element != null)
-        {   
+	public static boolean chooseByTry(final WebDriver driver, String xpath)
+	{
+		WebElement element= findElements(driver, xpath);
+		if(element != null)
+		{
 			try {
 				WebElement parent = element.findElement(By.xpath("./.."));
 				Fonctions.highLighterMethod(driver, parent);
@@ -9184,21 +9171,21 @@ public class Scripts_techniques {
 			} catch (Exception e) {
 				System.out.println ("##### JavascriptExecutor select fail #####");
 			}
-        }
-        return false;
-    }
+		}
+		return false;
+	}
 
 	public static boolean chooseByTry(final WebDriver driver, String xpath, String param)
-    {
+	{
 		WebElement element;
-        if (param.charAt(0) == '[' && param.charAt(param.length() - 1) == ']'){
+		if (param.charAt(0) == '[' && param.charAt(param.length() - 1) == ']'){
 			param = param.substring(1, param.length() - 1);
 			element = findElementsIndex(driver, xpath, param);
 		} else {
 			element= findElements(driver, xpath);
 		}
-        if(element != null)
-        {   
+		if(element != null)
+		{
 			try {
 				element.click();
 				System.out.println("##### select made on : \n"+ element + "\n");
@@ -9213,21 +9200,21 @@ public class Scripts_techniques {
 			} catch (Exception e) {
 				System.out.println ("##### JavascriptExecutor select fail #####");
 			}
-        }
-        return false;
-    }
+		}
+		return false;
+	}
 
 	public static boolean chooseByTryAndIndex(final WebDriver driver, String xpath, String index, String param)
-    {
+	{
 		WebElement element;
-        if (param.charAt(0) == '[' && param.charAt(param.length() - 1) == ']'){
+		if (param.charAt(0) == '[' && param.charAt(param.length() - 1) == ']'){
 			param = param.substring(1, param.length() - 1);
 			element= findElementsIndex(driver, xpath, param);
 		} else {
 			element= findElementsIndex(driver, xpath, index);
 		}
-        if(element != null)
-        {   
+		if(element != null)
+		{
 			try {
 				WebElement parent = element.findElement(By.xpath("./.."));
 				Fonctions.highLighterMethod(driver, parent);
@@ -9248,16 +9235,16 @@ public class Scripts_techniques {
 			} catch (Exception e) {
 				System.out.println ("##### JavascriptExecutor select fail #####");
 			}
-        }
-        return false;
-    }
+		}
+		return false;
+	}
 
 	//dropdown param
-    public static HashMap chooseByText(final WebDriver driver, String param, boolean statusElement)
-    {
+	public static HashMap chooseByText(final WebDriver driver, String param, boolean statusElement)
+	{
 		HashMap<String, WebElement> listElement = new HashMap<>();
 		HashMap<String, Boolean> list = new HashMap<>();
-        listElement = identifyElementChoose(driver, param);
+		listElement = identifyElementChoose(driver, param);
 		WebElement element = null;
 		String xpath = "";
 		if (listElement != null) {
@@ -9266,12 +9253,12 @@ public class Scripts_techniques {
 				xpath = entry.getKey();
 			}
 		}
-        if(element != null)
-        {   
+		if(element != null)
+		{
 			try {
 				element.click();
 				System.out.println("##### select made on : \n"+ element + "\n");
-				if (element != null) { 
+				if (element != null) {
 					list.put(xpath, true);
 					return list;
 				}
@@ -9281,21 +9268,21 @@ public class Scripts_techniques {
 			try {
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 				System.out.println("##### select made on : \n"+ element + "\n");
-				if (element != null) { 
+				if (element != null) {
 					list.put(xpath, true);
 					return list;
 				}
 			} catch (Exception e) {
 				System.out.println ("##### JavascriptExecutor select fail #####");
 			}
-        }
-        list.put("", false);
-        return list;
-    }
-    
+		}
+		list.put("", false);
+		return list;
+	}
+
 	//dropdown texte + param
-    public static HashMap chooseByText(final WebDriver driver, String label, String param, boolean statusElement)
-    {
+	public static HashMap chooseByText(final WebDriver driver, String label, String param, boolean statusElement)
+	{
 		HashMap<String, WebElement> listElement = new HashMap<>();
 		HashMap<String, Boolean> list = new HashMap<>();
 		WebElement element = null;
@@ -9312,12 +9299,12 @@ public class Scripts_techniques {
 				xpath = entry.getKey();
 			}
 		}
-        if(element != null)
-        {   
+		if(element != null)
+		{
 			try {
 				element.click();
 				System.out.println("##### select made on : \n"+ element + "\n");
-				if (element != null) { 
+				if (element != null) {
 					list.put(xpath, true);
 					return list;
 				}
@@ -9327,21 +9314,21 @@ public class Scripts_techniques {
 			try {
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 				System.out.println("##### select made on : \n"+ element + "\n");
-				if (element != null) { 
+				if (element != null) {
 					list.put(xpath, true);
 					return list;
 				}
 			} catch (Exception e) {
 				System.out.println ("##### JavascriptExecutor select fail #####");
 			}
-        }
-        list.put("", false);
-        return list;
-    }
+		}
+		list.put("", false);
+		return list;
+	}
 
 	//dropdown texte with index + param
 	public static HashMap chooseByTextAndIndex(final WebDriver driver, String label, String index, String param, boolean statusElement)
-    {
+	{
 		HashMap<String, WebElement> listElement = new HashMap<>();
 		HashMap<String, Boolean> list = new HashMap<>();
 		WebElement element = null;
@@ -9358,8 +9345,8 @@ public class Scripts_techniques {
 				xpath = entry.getKey();
 			}
 		}
-        if(element != null)
-        {   
+		if(element != null)
+		{
 			try {
 				WebElement parent = element.findElement(By.xpath("./.."));
 				Fonctions.highLighterMethod(driver, parent);
@@ -9369,7 +9356,7 @@ public class Scripts_techniques {
 			try {
 				element.click();
 				System.out.println("##### select made on : \n"+ element + "\n");
-				if (element != null) { 
+				if (element != null) {
 					list.put(xpath, true);
 					return list;
 				}
@@ -9379,21 +9366,21 @@ public class Scripts_techniques {
 			try {
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 				System.out.println("##### select made on : \n"+ element + "\n");
-				if (element != null) { 
+				if (element != null) {
 					list.put(xpath, true);
 					return list;
 				}
 			} catch (Exception e) {
 				System.out.println ("##### JavascriptExecutor select fail #####");
 			}
-        }
-        list.put("", false);
-        return list;
-    }
-    
+		}
+		list.put("", false);
+		return list;
+	}
+
 	//dropdown texte + context + param
-    public static HashMap chooseByText(final WebDriver driver, String label, String context, String param, boolean statusElement)
-    {
+	public static HashMap chooseByText(final WebDriver driver, String label, String context, String param, boolean statusElement)
+	{
 		HashMap<String, WebElement> listElement = new HashMap<>();
 		HashMap<String, Boolean> list = new HashMap<>();
 		WebElement element = null;
@@ -9410,8 +9397,8 @@ public class Scripts_techniques {
 				xpath = entry.getKey();
 			}
 		}
-        if(element != null)
-        {   
+		if(element != null)
+		{
 			try {
 				WebElement parent = element.findElement(By.xpath("./.."));
 				Fonctions.highLighterMethod(driver, parent);
@@ -9421,7 +9408,7 @@ public class Scripts_techniques {
 			try {
 				element.click();
 				System.out.println("##### select made on : \n"+ element + "\n");
-				if (element != null) { 
+				if (element != null) {
 					list.put(xpath, true);
 					return list;
 				}
@@ -9431,21 +9418,21 @@ public class Scripts_techniques {
 			try {
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 				System.out.println("##### select made on : \n"+ element + "\n");
-				if (element != null) { 
+				if (element != null) {
 					list.put(xpath, true);
 					return list;
 				}
 			} catch (Exception e) {
 				System.out.println ("##### JavascriptExecutor select fail #####");
 			}
-        }
-        list.put("", false);
-        return list;
-    }
+		}
+		list.put("", false);
+		return list;
+	}
 
 	//dropdown texte + context with index + param
 	public static HashMap chooseByTextAndIndex(final WebDriver driver, String label, String context, String index, String param, boolean statusElement)
-    {
+	{
 		HashMap<String, WebElement> listElement = new HashMap<>();
 		HashMap<String, Boolean> list = new HashMap<>();
 		WebElement element = null;
@@ -9462,8 +9449,8 @@ public class Scripts_techniques {
 				xpath = entry.getKey();
 			}
 		}
-        if(element != null)
-        {   
+		if(element != null)
+		{
 			try {
 				WebElement parent = element.findElement(By.xpath("./.."));
 				Fonctions.highLighterMethod(driver, parent);
@@ -9473,7 +9460,7 @@ public class Scripts_techniques {
 			try {
 				element.click();
 				System.out.println("##### select made on : \n"+ element + "\n");
-				if (element != null) { 
+				if (element != null) {
 					list.put(xpath, true);
 					return list;
 				}
@@ -9483,24 +9470,24 @@ public class Scripts_techniques {
 			try {
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 				System.out.println("##### select made on : \n"+ element + "\n");
-				if (element != null) { 
+				if (element != null) {
 					list.put(xpath, true);
 					return list;
 				}
 			} catch (Exception e) {
 				System.out.println ("##### JavascriptExecutor select fail #####");
 			}
-        }
-        list.put("", false);
-        return list;
-    }
-    
+		}
+		list.put("", false);
+		return list;
+	}
+
 	//checkbox radio texte + context + param
-    public static HashMap radioCheckBoxByText(final WebDriver driver, String label, String context, boolean statusElement, String param)
-    {
+	public static HashMap radioCheckBoxByText(final WebDriver driver, String label, String context, boolean statusElement, String param)
+	{
 		HashMap<String, WebElement> listElement = new HashMap<>();
 		HashMap<String, Boolean> list = new HashMap<>();
-        WebElement element = null;
+		WebElement element = null;
 		String xpath = "";
 		listElement = identifyElementRadioCheckBox(driver, label, context);
 		if (listElement != null) {
@@ -9509,15 +9496,15 @@ public class Scripts_techniques {
 				xpath = entry.getKey();
 			}
 		}
-        if(element != null)
-        {  
+		if(element != null)
+		{
 			try {
 				WebElement parent = element.findElement(By.xpath("./.."));
 				Fonctions.highLighterMethod(driver, parent);
 			} catch(Exception e) {
 				System.out.println ("##### Highlight fail #####");
-			} 
-            switch(param) {
+			}
+			switch(param) {
 				case "Oui":
 				case "oui":
 				case "yes":
@@ -9526,7 +9513,7 @@ public class Scripts_techniques {
 						try {
 							element.click();
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9536,7 +9523,7 @@ public class Scripts_techniques {
 						try {
 							((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9553,7 +9540,7 @@ public class Scripts_techniques {
 						try {
 							element.click();
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9563,7 +9550,7 @@ public class Scripts_techniques {
 						try {
 							((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9573,21 +9560,21 @@ public class Scripts_techniques {
 					} else System.out.println("##### Element already unselected :\n"+ element+"\n");
 					break;
 				default:
-				System.out.println("Error with the parameter");
-				list.put("", false);
-        		return list;
+					System.out.println("Error with the parameter");
+					list.put("", false);
+					return list;
 			}
-        }
-        list.put("", false);
-        return list;
-    }
-    
+		}
+		list.put("", false);
+		return list;
+	}
+
 	//checkbox radio texte + context with index + param
 	public static HashMap radioCheckBoxByTextAndIndex(final WebDriver driver, String label, String context, String index, boolean statusElement, String param)
-    {
+	{
 		HashMap<String, WebElement> listElement = new HashMap<>();
 		HashMap<String, Boolean> list = new HashMap<>();
-        WebElement element = null;
+		WebElement element = null;
 		String xpath = "";
 		listElement = identifyElementRadioCheckBoxWithIndex(driver, label, context, index);
 		if (listElement != null) {
@@ -9596,15 +9583,15 @@ public class Scripts_techniques {
 				xpath = entry.getKey();
 			}
 		}
-        if(element != null)
-        {   
+		if(element != null)
+		{
 			try {
 				WebElement parent = element.findElement(By.xpath("./.."));
 				Fonctions.highLighterMethod(driver, parent);
 			} catch(Exception e) {
 				System.out.println ("##### Highlight fail #####");
 			}
-            switch(param) {
+			switch(param) {
 				case "Oui":
 				case "oui":
 				case "yes":
@@ -9613,7 +9600,7 @@ public class Scripts_techniques {
 						try {
 							element.click();
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9623,7 +9610,7 @@ public class Scripts_techniques {
 						try {
 							((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9640,7 +9627,7 @@ public class Scripts_techniques {
 						try {
 							element.click();
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9650,7 +9637,7 @@ public class Scripts_techniques {
 						try {
 							((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9660,26 +9647,26 @@ public class Scripts_techniques {
 					} else System.out.println("##### Element already unselected :\n"+ element+"\n");
 					break;
 				default:
-				System.out.println("Error with the parameter");
-				list.put("", false);
-        		return list;
+					System.out.println("Error with the parameter");
+					list.put("", false);
+					return list;
 			}
-        }
-        list.put("", false);
-        return list;
-    }
+		}
+		list.put("", false);
+		return list;
+	}
 
 	public static boolean radioCheckBoxByTry(final WebDriver driver, String xpath, String param)
-    {
-        WebElement element= findElementsForSelect(driver, xpath, "radio");
+	{
+		WebElement element= findElementsForSelect(driver, xpath, "radio");
 		if(element == null) {
 			element= findElementsForSelect(driver, xpath, "checkbox");
 		}
 		if(element == null) {
 			element = findElements(driver, xpath);
 		}
-        if(element != null)
-        {   
+		if(element != null)
+		{
 			switch(param) {
 				case "Oui":
 				case "oui":
@@ -9724,24 +9711,24 @@ public class Scripts_techniques {
 					} else System.out.println("##### Element already unselected :\n"+ element+"\n");
 					break;
 				default:
-				System.out.println("Error with the parameter");
-				return false;
+					System.out.println("Error with the parameter");
+					return false;
 			}
-        }
-        return false;
-    }
+		}
+		return false;
+	}
 
 	public static boolean radioCheckBoxByTryAndIndex(final WebDriver driver, String xpath, String index, String param)
-    {
-        WebElement element= findElementsForSelectWithIndex(driver, xpath, "radio", index);
+	{
+		WebElement element= findElementsForSelectWithIndex(driver, xpath, "radio", index);
 		if(element == null) {
 			element= findElementsForSelectWithIndex(driver, xpath, "checkbox", index);
 		}
 		if(element == null) {
 			element = findElementsIndex(driver, xpath, index);
 		}
-        if(element != null)
-        {   
+		if(element != null)
+		{
 			try {
 				WebElement parent = element.findElement(By.xpath("./.."));
 				Fonctions.highLighterMethod(driver, parent);
@@ -9792,19 +9779,19 @@ public class Scripts_techniques {
 					} else System.out.println("##### Element already unselected :\n"+ element+"\n");
 					break;
 				default:
-				System.out.println("Error with the parameter");
-				return false;
+					System.out.println("Error with the parameter");
+					return false;
 			}
-        }
-        return false;
-    }
+		}
+		return false;
+	}
 
 	//checkbox radio texte + param
-    public static HashMap radioCheckBoxByText(final WebDriver driver, String label, boolean statusElement, String param)
-    {
+	public static HashMap radioCheckBoxByText(final WebDriver driver, String label, boolean statusElement, String param)
+	{
 		HashMap<String, WebElement> listElement = new HashMap<>();
 		HashMap<String, Boolean> list = new HashMap<>();
-        WebElement element = null;
+		WebElement element = null;
 		String xpath = "";
 		listElement = identifyElementRadioCheckBox(driver, label);
 		if (listElement != null) {
@@ -9813,8 +9800,8 @@ public class Scripts_techniques {
 				xpath = entry.getKey();
 			}
 		}
-        if(element != null)
-        {   
+		if(element != null)
+		{
 			switch(param) {
 				case "Oui":
 				case "oui":
@@ -9824,7 +9811,7 @@ public class Scripts_techniques {
 						try {
 							element.click();
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9834,7 +9821,7 @@ public class Scripts_techniques {
 						try {
 							((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9851,7 +9838,7 @@ public class Scripts_techniques {
 						try {
 							element.click();
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9861,7 +9848,7 @@ public class Scripts_techniques {
 						try {
 							((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9871,21 +9858,21 @@ public class Scripts_techniques {
 					} else System.out.println("##### Element already unselected :\n"+ element+"\n");
 					break;
 				default:
-				System.out.println("Error with the parameter");
-				list.put("", false);
-        		return list;
+					System.out.println("Error with the parameter");
+					list.put("", false);
+					return list;
 			}
-        }
-        list.put("", false);
-        return list;
-    }
+		}
+		list.put("", false);
+		return list;
+	}
 
 	//checkbox radio texte with index + param
 	public static HashMap radioCheckBoxByTextAndIndex(final WebDriver driver, String label, String index, boolean statusElement, String param)
-    {
+	{
 		HashMap<String, WebElement> listElement = new HashMap<>();
 		HashMap<String, Boolean> list = new HashMap<>();
-        WebElement element = null;
+		WebElement element = null;
 		String xpath = "";
 		listElement = identifyElementRadioCheckBoxWithIndex(driver, label, index);
 		if (listElement != null) {
@@ -9894,8 +9881,8 @@ public class Scripts_techniques {
 				xpath = entry.getKey();
 			}
 		}
-        if(element != null)
-        {   
+		if(element != null)
+		{
 			try {
 				WebElement parent = element.findElement(By.xpath("./.."));
 				Fonctions.highLighterMethod(driver, parent);
@@ -9911,7 +9898,7 @@ public class Scripts_techniques {
 						try {
 							element.click();
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9921,7 +9908,7 @@ public class Scripts_techniques {
 						try {
 							((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9938,7 +9925,7 @@ public class Scripts_techniques {
 						try {
 							element.click();
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9948,7 +9935,7 @@ public class Scripts_techniques {
 						try {
 							((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 							System.out.println("##### select made on : \n"+ element + "\n");
-							if (element != null) { 
+							if (element != null) {
 								list.put(xpath, true);
 								return list;
 							}
@@ -9958,28 +9945,28 @@ public class Scripts_techniques {
 					} else System.out.println("##### Element already unselected :\n"+ element+"\n");
 					break;
 				default:
-				System.out.println("Error with the parameter");
-				list.put("", false);
-        		return list;
+					System.out.println("Error with the parameter");
+					list.put("", false);
+					return list;
 			}
-        }
-        list.put("", false);
-        return list;
-    }
-	
+		}
+		list.put("", false);
+		return list;
+	}
+
 	public static HashMap identifyElementCheckbox(final WebDriver driver, String label)
-    {
+	{
 		String xpath;
 		WebElement element;
 		HashMap<String, WebElement> list = new HashMap<>();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        label = label.toLowerCase().replaceAll("\\s","");
-        try {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		label = label.toLowerCase().replaceAll("\\s","");
+		try {
 
 			//for checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
-            element = findElementsForSelect(driver, xpath, "checkbox");
-			if (element != null) { 
+			element = findElementsForSelect(driver, xpath, "checkbox");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -9987,7 +9974,7 @@ public class Scripts_techniques {
 			//for contains checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
 			element = findElementsForSelect(driver, xpath, "checkbox");
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -9995,7 +9982,7 @@ public class Scripts_techniques {
 			//sans for checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input[@type='checkbox']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -10003,7 +9990,7 @@ public class Scripts_techniques {
 			//sans for contains checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input[@type='checkbox']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -10011,7 +9998,7 @@ public class Scripts_techniques {
 			//sans for follow checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::input[@type='checkbox']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
@@ -10019,79 +10006,79 @@ public class Scripts_techniques {
 			//sans for contains follow checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::input[@type='checkbox']";
 			element = findElements(driver, xpath);
-			if (element != null) { 
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return null;
-    }
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return null;
+	}
 
 	public static HashMap identifyElementCheckbox(final WebDriver driver, String label, String context)
-	
-    {
+
+	{
 		String xpath;
 		WebElement element;
 		HashMap<String, WebElement> list = new HashMap<>();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        label = label.toLowerCase().replaceAll("\\s","");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		label = label.toLowerCase().replaceAll("\\s","");
 		context = context.toLowerCase().replaceAll("\\s","");
-        try {
+		try {
 
 			//for checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]";
-            element = findElementsForSelect(driver, xpath, "checkbox");
-			if (element != null) { 
+			element = findElementsForSelect(driver, xpath, "checkbox");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//for contains checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]";
-            element = findElementsForSelect(driver, xpath, "checkbox");
-			if (element != null) { 
+			element = findElementsForSelect(driver, xpath, "checkbox");
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-			
-            //sans for checkbox
+
+			//sans for checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//input[@type='checkbox']";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//sans for contains checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//input[@type='checkbox']";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//sans for follow checkbox
 			xpath = "//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + " or translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + context + str + "]//parent::*//following::*//*[translate(text(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + " or translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')=" + str + label + str + "]//parent::*//following::input[@type='checkbox']";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
 
 			//sans for contains follow checkbox
 			xpath = "//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")] or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@alt,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ") or contains(translate(@placeholder,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + context + str + ")]//parent::*//following::*//*[text()[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")] or contains(translate(@title,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@value,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ") or contains(translate(@aria-label,'ABCDEFGHIJKLMNOPQRSTUVWXYZ  ','abcdefghijklmnopqrstuvwxyz')," + str + label + str + ")]//parent::*//following::input[@type='checkbox']";
-            element = findElements(driver, xpath);
-			if (element != null) { 
+			element = findElements(driver, xpath);
+			if (element != null) {
 				list.put(xpath, element);
 				return list;
 			}
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return null;
-    }
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return null;
+	}
 
 	public static WebElement getDirectionElement(final WebDriver driver, WebElement reference_element, String xpath, String direction)
 	{
@@ -10237,7 +10224,7 @@ public class Scripts_techniques {
 		if (texte.charAt(0) == '@' || texte.contains("|@")) {
 			initial_string = initial_string.replace('=', '|');
 			String[] parts = initial_string.split("\\|");
-			
+
 			return parts;
 		} else {
 			String[] parts = initial_string.split("\\|");

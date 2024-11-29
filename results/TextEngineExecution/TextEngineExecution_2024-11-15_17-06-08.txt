@@ -1,0 +1,8 @@
+Rapport d'éxécution du TextEngine
+---------------------------------
+
+Exécuté le 15/11/2024 à 17:06
+
+parcours1 : OK
+parcours2 : KO (L'objet Valier n'a pas ete trouve)
+parcours3 : Warning (WARNING : La page a pris trop de temps a charger ( > 0 secondes))

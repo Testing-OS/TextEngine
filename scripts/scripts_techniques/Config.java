@@ -5,7 +5,7 @@ package scripts_techniques;
 	//log export 
 	
  //Replace C:/kalios with your project folder 
-	public static String tunnel_path			=  "C:\\Chemin_vers_le_textengine\\TextEngine";
+	public static String tunnel_path			=  "C:\\chemin\\vers\\TextEngine";
 	
 	
 	public static String dir_export				= 	tunnel_path+"/results";
@@ -20,8 +20,8 @@ package scripts_techniques;
 	
 	
 	public static String path_exe        = "c:/your_path/";
-	
-	
+
+
 	public static String dir_config				= 	tunnel_path+"/scripts/drivers";
 		
 
@@ -38,7 +38,7 @@ package scripts_techniques;
 	 public static String appLink;
 
 	 public enum TYPE_Instance {PROD, PREPROD, LOCAL};
-
+	 public static int ResultFile = 1;
 	 public static int AzureDevOps = 0;
 	 public static String ORGANIZATION = "";
 	 public static String PROJECT = "";

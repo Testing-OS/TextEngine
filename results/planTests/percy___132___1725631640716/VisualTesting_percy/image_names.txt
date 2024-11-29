@@ -1,1 +1,0 @@
-file '{replacePath}/VisualTesting_percy_1_2680_2_1_KO.jpg'

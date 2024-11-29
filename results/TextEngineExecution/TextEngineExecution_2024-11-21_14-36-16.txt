@@ -1,0 +1,6 @@
+Rapport d'éxécution du TextEngine
+---------------------------------
+
+Exécuté le 21/11/2024 à 14:36
+
+CompareScreenshot : Warning (Trop de difference visuelle 58.30743991593145% de difference)

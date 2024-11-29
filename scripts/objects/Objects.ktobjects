@@ -1,5 +1,1008 @@
 {
   "objects": [
-    
+    {
+      "label": "texte_Select Component",
+      "techlabel": "texte_Select Component.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Select Component"
+        },
+        {
+          "PropName": "XpathSave",
+          "PropValue": "//*[translate(text(),\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"selectcomponent\" or translate(@title,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"selectcomponent\" or translate(@value,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"selectcomponent\" or translate(@label,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"selectcomponent\" or translate(@aria-label,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"selectcomponent\"]//parent::*//option"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 1",
+      "techlabel": "texte_Bouton 1.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 1"
+        },
+        {
+          "PropName": "XpathSave",
+          "PropValue": "//button[translate(text(),\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"bouton1\" or translate(@value,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"bouton1\" or translate(@title,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"bouton1\" or translate(@aria-label,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"bouton1\" or translate(@ng-reflect-name,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"bouton1\" or translate(@ng-reflect-value,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"bouton1\" or translate(@ng-reflect-message,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"bouton1\" or translate(@svgicon,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"bouton1\"]"
+        }
+      ]
+    },
+    {
+      "label": "title_",
+      "techlabel": "title_.htm",
+      "Props": [
+        {
+          "PropName": "title",
+          "PropValue": ""
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 2",
+      "techlabel": "texte_Bouton 2.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 2"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 3",
+      "techlabel": "texte_Bouton 3.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 3"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 4",
+      "techlabel": "texte_Bouton 4.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 4"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 5",
+      "techlabel": "texte_Bouton 5.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 5"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 6",
+      "techlabel": "texte_Bouton 6.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 6"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 7",
+      "techlabel": "texte_Bouton 7.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 7"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 8",
+      "techlabel": "texte_Bouton 8.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 8"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 9",
+      "techlabel": "texte_Bouton 9.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 9"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 11",
+      "techlabel": "texte_Bouton 11.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 11"
+        }
+      ]
+    },
+    {
+      "label": "texte_Button 12",
+      "techlabel": "texte_Button 12.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Button 12"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 13",
+      "techlabel": "texte_Bouton 13.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 13"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 14",
+      "techlabel": "texte_Bouton 14.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 14"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 15",
+      "techlabel": "texte_Bouton 15.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 15"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 16",
+      "techlabel": "texte_Bouton 16.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 16"
+        }
+      ]
+    },
+    {
+      "label": "texte_Réservation|Billets un jour",
+      "techlabel": "texte_Réservation|Billets un jour.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Réservation|Billets un jour"
+        },
+        {
+          "PropName": "XpathSave",
+          "PropValue": "//*[translate(text(),\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"billetsunjour\" or translate(@value,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"billetsunjour\" or translate(@title,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"billetsunjour\" or translate(@alt,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"billetsunjour\" or translate(@aria-label,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"billetsunjour\" or translate(@placeholder,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"billetsunjour\"]//parent::*//following-sibling::button[translate(text(),\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"réservation\" or translate(@title,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"réservation\" or translate(@value,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"réservation\" or translate(@aria-label,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"réservation\" or translate(@ng-reflect-name,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"réservation\" or translate(@ng-reflect-value,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"réservation\" or translate(@ng-reflect-message,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"réservation\" or translate(@svgicon,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"réservation\"]"
+        }
+      ]
+    },
+    {
+      "label": "texte_Réservation|Billets une semaine",
+      "techlabel": "texte_Réservation|Billets une semaine.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Réservation|Billets une semaine"
+        }
+      ]
+    },
+    {
+      "label": "texte_Réservation|Billets un mois",
+      "techlabel": "texte_Réservation|Billets un mois.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Réservation|Billets un mois"
+        }
+      ]
+    },
+    {
+      "label": "texte_Click|Context1",
+      "techlabel": "texte_Click|Context1.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Click|Context1"
+        }
+      ]
+    },
+    {
+      "label": "texte_Click|Context2",
+      "techlabel": "texte_Click|Context2.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Click|Context2"
+        }
+      ]
+    },
+    {
+      "label": "texte_Click|Context3",
+      "techlabel": "texte_Click|Context3.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Click|Context3"
+        }
+      ]
+    },
+    {
+      "label": "texte_Appuie|Contextbis",
+      "techlabel": "texte_Appuie|Contextbis.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Appuie|Contextbis"
+        }
+      ]
+    },
+    {
+      "label": "texte_Appuie|Contextter",
+      "techlabel": "texte_Appuie|Contextter.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Appuie|Contextter"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 20",
+      "techlabel": "texte_Bouton 20.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 20"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 21",
+      "techlabel": "texte_Bouton 21.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 21"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 22",
+      "techlabel": "texte_Bouton 22.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 22"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 23",
+      "techlabel": "texte_Bouton 23.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 23"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 24",
+      "techlabel": "texte_Bouton 24.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 24"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 25",
+      "techlabel": "texte_Bouton 25.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 25"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 26",
+      "techlabel": "texte_Bouton 26.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 26"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 27",
+      "techlabel": "texte_Bouton 27.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 27"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 28",
+      "techlabel": "texte_Bouton 28.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 28"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 29",
+      "techlabel": "texte_Bouton 29.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 29"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 30",
+      "techlabel": "texte_Bouton 30.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 30"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 31",
+      "techlabel": "texte_Bouton 31.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 31"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 32",
+      "techlabel": "texte_Bouton 32.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 32"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 33",
+      "techlabel": "texte_Bouton 33.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 33"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 34",
+      "techlabel": "texte_Bouton 34.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 34"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 35",
+      "techlabel": "texte_Bouton 35.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 35"
+        }
+      ]
+    },
+    {
+      "label": "texte_Bouton 36",
+      "techlabel": "texte_Bouton 36.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Bouton 36"
+        }
+      ]
+    },
+    {
+      "label": "id_checkid",
+      "techlabel": "id_checkid.htm",
+      "Props": [
+        {
+          "PropName": "id",
+          "PropValue": "checkid"
+        }
+      ]
+    },
+    {
+      "label": "name_checkname",
+      "techlabel": "name_checkname.htm",
+      "Props": [
+        {
+          "PropName": "name",
+          "PropValue": "checkname"
+        }
+      ]
+    },
+    {
+      "label": "xpath_//*[@id\u003d\u0027colonnexpath\u0027]//li/input",
+      "techlabel": "xpath_//*[@id\u003d\u0027colonnexpath\u0027]//li/input.htm",
+      "Props": [
+        {
+          "PropName": "xpath",
+          "PropValue": "//*[@id\u003d\u0027colonnexpath\u0027]//li/input"
+        }
+      ]
+    },
+    {
+      "label": "id_boutonid",
+      "techlabel": "id_boutonid.htm",
+      "Props": [
+        {
+          "PropName": "id",
+          "PropValue": "boutonid"
+        }
+      ]
+    },
+    {
+      "label": "name_boutonname",
+      "techlabel": "name_boutonname.htm",
+      "Props": [
+        {
+          "PropName": "name",
+          "PropValue": "boutonname"
+        }
+      ]
+    },
+    {
+      "label": "xpath_//*[@id\u003d\"colonnexpath\"]/div/li[1]/span/button",
+      "techlabel": "xpath_//*[@id\u003d\"colonnexpath\"]/div/li[1]/span/button.htm",
+      "Props": [
+        {
+          "PropName": "xpath",
+          "PropValue": "//*[@id\u003d\"colonnexpath\"]/div/li[1]/span/button"
+        }
+      ]
+    },
+    {
+      "label": "id_inputtextid",
+      "techlabel": "id_inputtextid.htm",
+      "Props": [
+        {
+          "PropName": "id",
+          "PropValue": "inputtextid"
+        }
+      ]
+    },
+    {
+      "label": "name_inputtextname",
+      "techlabel": "name_inputtextname.htm",
+      "Props": [
+        {
+          "PropName": "name",
+          "PropValue": "inputtextname"
+        }
+      ]
+    },
+    {
+      "label": "xpath_//*[@id\u003d\"colonnexpath\"]/div/li/label/input",
+      "techlabel": "xpath_//*[@id\u003d\"colonnexpath\"]/div/li/label/input.htm",
+      "Props": [
+        {
+          "PropName": "xpath",
+          "PropValue": "//*[@id\u003d\"colonnexpath\"]/div/li/label/input"
+        }
+      ]
+    },
+    {
+      "label": "table_Table",
+      "techlabel": "table_Table.htm",
+      "Props": [
+        {
+          "PropName": "table",
+          "PropValue": "Table"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 30",
+      "techlabel": "texte_Sendkey 30.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 30"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 31",
+      "techlabel": "texte_Sendkey 31.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 31"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 32",
+      "techlabel": "texte_Sendkey 32.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 32"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 33",
+      "techlabel": "texte_Sendkey 33.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 33"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 34",
+      "techlabel": "texte_Sendkey 34.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 34"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 35",
+      "techlabel": "texte_Sendkey 35.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 35"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 36",
+      "techlabel": "texte_Sendkey 36.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 36"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 37",
+      "techlabel": "texte_Sendkey 37.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 37"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 38",
+      "techlabel": "texte_Sendkey 38.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 38"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 39",
+      "techlabel": "texte_Sendkey 39.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 39"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 40",
+      "techlabel": "texte_Sendkey 40.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 40"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 41",
+      "techlabel": "texte_Sendkey 41.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 41"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 42",
+      "techlabel": "texte_Sendkey 42.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 42"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 43",
+      "techlabel": "texte_Sendkey 43.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 43"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 44",
+      "techlabel": "texte_Sendkey 44.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 44"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 45",
+      "techlabel": "texte_Sendkey 45.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 45"
+        }
+      ]
+    },
+    {
+      "label": "texte_Sendkey 46",
+      "techlabel": "texte_Sendkey 46.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Sendkey 46"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 20",
+      "techlabel": "texte_Check 20.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 20"
+        },
+        {
+          "PropName": "XpathSave",
+          "PropValue": "//input[translate(text(),\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"check20\" or translate(@placeholder,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"check20\" or translate(@label,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"check20\" or translate(@value,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"check20\" or translate(@aria-label,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"check20\"]"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 21",
+      "techlabel": "texte_Check 21.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 21"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 22",
+      "techlabel": "texte_Check 22.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 22"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 23",
+      "techlabel": "texte_Check 23.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 23"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 24",
+      "techlabel": "texte_Check 24.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 24"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 25",
+      "techlabel": "texte_Check 25.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 25"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 26",
+      "techlabel": "texte_Check 26.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 26"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 27",
+      "techlabel": "texte_Check 27.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 27"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 28",
+      "techlabel": "texte_Check 28.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 28"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 29",
+      "techlabel": "texte_Check 29.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 29"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 30",
+      "techlabel": "texte_Check 30.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 30"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 31",
+      "techlabel": "texte_Check 31.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 31"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 32",
+      "techlabel": "texte_Check 32.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 32"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 33",
+      "techlabel": "texte_Check 33.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 33"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 34",
+      "techlabel": "texte_Check 34.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 34"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 35",
+      "techlabel": "texte_Check 35.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 35"
+        }
+      ]
+    },
+    {
+      "label": "texte_Check 36",
+      "techlabel": "texte_Check 36.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Check 36"
+        }
+      ]
+    },
+    {
+      "label": "page_",
+      "techlabel": "page_.htm",
+      "Props": [
+        {
+          "PropName": "page",
+          "PropValue": ""
+        }
+      ]
+    },
+    {
+      "label": "exe_",
+      "techlabel": "exe_.htm",
+      "Props": [
+        {
+          "PropName": "exe",
+          "PropValue": ""
+        }
+      ]
+    },
+    {
+      "label": "title_Automation practice",
+      "techlabel": "title_Automation practice.htm",
+      "Props": [
+        {
+          "PropName": "title",
+          "PropValue": "Automation practice"
+        }
+      ]
+    },
+    {
+      "label": "texte_bouton",
+      "techlabel": "texte_bouton.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "bouton"
+        }
+      ]
+    },
+    {
+      "label": "texte_Click me",
+      "techlabel": "texte_Click me.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Click me"
+        }
+      ]
+    },
+    {
+      "label": "texte_input",
+      "techlabel": "texte_input.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "input"
+        }
+      ]
+    },
+    {
+      "label": "texte_Valider",
+      "techlabel": "texte_Valider.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Valider"
+        },
+        {
+          "PropName": "XpathSave",
+          "PropValue": "//*[translate(text(),\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"valider\" or translate(@value,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"valider\" or translate(@title,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"valider\" or translate(@alt,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"valider\" or translate(@aria-label,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"valider\" or translate(@ng-reflect-name,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"valider\" or translate(@ng-reflect-value,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"valider\" or translate(@ng-reflect-message,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"valider\" or translate(@svgicon,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"valider\"]/ancestor::button"
+        }
+      ]
+    },
+    {
+      "label": "texte_sendkey2",
+      "techlabel": "texte_sendkey2.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "sendkey2"
+        }
+      ]
+    },
+    {
+      "label": "texte_Start",
+      "techlabel": "texte_Start.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Start"
+        },
+        {
+          "PropName": "XpathSave",
+          "PropValue": "//button[translate(text(),\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"start\" or translate(@value,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"start\" or translate(@title,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"start\" or translate(@aria-label,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"start\" or translate(@ng-reflect-name,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"start\" or translate(@ng-reflect-value,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"start\" or translate(@ng-reflect-message,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"start\" or translate(@svgicon,\u0027ABCDEFGHIJKLMNOPQRSTUVWXYZ  \u0027,\u0027abcdefghijklmnopqrstuvwxyz\u0027)\u003d\"start\"]"
+        }
+      ]
+    },
+    {
+      "label": "texte_Valier",
+      "techlabel": "texte_Valier.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Valier"
+        }
+      ]
+    },
+    {
+      "label": "texte_Valdier",
+      "techlabel": "texte_Valdier.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Valdier"
+        }
+      ]
+    },
+    {
+      "label": "texte_Valder",
+      "techlabel": "texte_Valder.htm",
+      "Props": [
+        {
+          "PropName": "texte",
+          "PropValue": "Valder"
+        }
+      ]
+    }
   ]
 }

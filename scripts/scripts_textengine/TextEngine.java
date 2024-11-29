@@ -49,6 +49,7 @@ import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.SocketTimeoutException;
 import java.net.URLClassLoader;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -110,7 +111,7 @@ public class TextEngine {
     private static String token="";
     private static String idTestPlan="";
     private static String path="";
-
+    private static String ResultFilePath = "";
     private static final OkHttpClient client = new OkHttpClient();
     private static final Gson gson = new Gson();
 
@@ -1661,19 +1662,138 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
         result[2] = t.errorMessage;
         Result.add(result);
         addStepIndependant(result);
-        if (t.status == "OK")
+
+            try {
+                if (ResultFilePath.equals("")) {
+                    createFileWithHeader(getTimestampedFileName());
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+        if (t.status == "OK") {
+            try {
+                updateStatus(nom, "OK", null);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             return result;
+        }
         else if (t.status == "Warning"){
+            try {
+                updateStatus(nom, "Warning", result[2]);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             sa.fail(t.errorMessage);
             return result;
         }
         else {
+            try {
+                updateStatus(nom, "KO", result[2]);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             System.out.println(t.errorMessage);
             sa.fail(t.errorMessage);
             return result;
 
         }
     }
+    public static void updateStatus(String parcours, String status, String errorMessage) throws IOException {
+        if(Config.ResultFile==1){
+        Charset charset = Charset.forName("UTF-8");
+
+        List<String> lines = Files.readAllLines(Paths.get(ResultFilePath), charset);
+        List<String> updatedLines = new ArrayList<>();
+
+        updatedLines.add(lines.get(0));
+
+        boolean updated = false;
+        for (int i = 1; i < lines.size(); i++) {
+            String line = lines.get(i);
+            if (line.startsWith(parcours + " :")) {
+                if (status.equals("OK")) {
+                    updatedLines.add(line);
+                }
+                else {
+                    if(line.startsWith(parcours + " : OK"))
+                        updatedLines.add(formatLine(parcours,status,errorMessage, false, null));
+                    else{
+                        updatedLines.add(line);
+                        updatedLines.add(formatLine(parcours,status,errorMessage, true, line));
+                    }
+
+                }
+                updated = true;
+            } else {
+                updatedLines.add(line);
+            }
+        }
+
+        if (!updated) {
+            updatedLines.add(formatLine(parcours,status,errorMessage, false, null));
+        }
+
+        // Écrire le contenu mis à jour dans le fichier
+        try (BufferedWriter writer = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(ResultFilePath), charset))) {
+            for (String line : updatedLines) {
+                writer.write(line);
+                writer.newLine();
+            }
+        }
+    }
+    System.out.println(ResultFilePath);
+}
+
+private static void createFileWithHeader(String fileName) throws IOException {
+    if (Config.ResultFile==1) {
+        StringBuilder Header = new StringBuilder("Rapport d'éxécution du TextEngine\n" +
+                                                 "---------------------------------\n\n");
+        Header.append("Execute le ");
+        DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter heure = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime now = LocalDateTime.now();
+        Header.append(now.format(date)).append(" a ").append(now.format(heure)).append("\n");
+
+        File file = new File(fileName);
+        if (!file.exists()) {
+            file.createNewFile();
+            ResultFilePath = file.getPath();
+            Charset charset = Charset.forName("UTF-8");
+            try (BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(new FileOutputStream(fileName), charset))) {
+                writer.write(Header.toString());
+                writer.newLine();
+            }
+        }
+    }
+}
+
+    public static String getTimestampedFileName() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+        String timestamp = LocalDateTime.now().format(formatter);
+        return Config.dir_export+"/TextEngineExecution/TextEngineExecution_" + timestamp + ".txt";
+    }
+    private static String formatLine(String parcours, String status, String message, boolean isSubMessage, String parentLine) {
+        String indent = isSubMessage
+                ? generateSpaces(parentLine.indexOf(':') + 2)
+                : "";
+
+        String baseLine = (isSubMessage ? indent : parcours + " : ") + status;
+        return message != null ? baseLine + " (" + message + ")" : baseLine;
+    }
+
+    private static String generateSpaces(int count) {
+        StringBuilder spaces = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            spaces.append(' ');
+        }
+        return spaces.toString();
+    }
+
     public static void ShowResult(){
         StringBuilder sb = new StringBuilder("Results : \n");
         for (String[] s:
@@ -3225,7 +3345,150 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
         Config.compteur_params++;
         return Status(t);
     }
+    public static String[] copybyxpath(String prop, String param) throws IOException {
+        boolean status = true;
+        final String NatureAction = "xpath";
+        final String NomAction = "copybyxpath";
+        String parcours_name = nom;
 
+        String techlabel = SearchObject(NatureAction, prop);
+        if (Objects.equals(techlabel, "")) {
+            String[] result = new String[3];
+            result[0] = NomAction;
+            result[1] = "KO";
+            result[2] = "Don't find Object";
+            sa.fail("Don't find Object");
+            return result;
+        }
+        //Initialiser Teststep
+        String label;
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
+
+        Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
+        //Config.compteur_instance =2;
+
+        if (Support == "Web")
+            status = Scripts_techniques.WebObject_copybyxpath(selfdriver, t);
+        //Config.compteur_instance =1;
+        //Si le clique a reussi
+        if (status)
+            Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
+
+        Config.compteur_params++;
+        return Status(t);
+    }
+    public static String[] checkformulabyxpath(String prop, String param) throws IOException {
+        boolean status = true;
+        final String NatureAction = "xpath";
+        final String NomAction = "checkformulabyxpath";
+        String parcours_name = nom;
+
+        String techlabel = SearchObject(NatureAction, prop);
+        if (Objects.equals(techlabel, "")) {
+            String[] result = new String[3];
+            result[0] = NomAction;
+            result[1] = "KO";
+            result[2] = "Don't find Object";
+            sa.fail("Don't find Object");
+            return result;
+        }
+        //Initialiser Teststep
+        String label;
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
+
+        Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
+        //Config.compteur_instance =2;
+
+        if (Support == "Web")
+            status = Scripts_techniques.WebObject_checkformulabyxpath(selfdriver, t);
+        //Config.compteur_instance =1;
+        //Si le clique a reussi
+        if (status)
+            Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
+
+        Config.compteur_params++;
+        return Status(t);
+    }
+    public static String[] comparescreenshot(String prop, String param) throws IOException {
+        boolean status = true;
+        final String NatureAction = "page";
+        final String NomAction = "comparescreenshot";
+        String parcours_name = nom;
+
+        String techlabel = SearchObject(NatureAction, prop);
+        if (Objects.equals(techlabel, "")) {
+            String[] result = new String[3];
+            result[0] = NomAction;
+            result[1] = "KO";
+            result[2] = "Don't find Object";
+            sa.fail("Don't find Object");
+            return result;
+        }
+        //Initialiser Teststep
+        String label;
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
+
+        Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
+        //Config.compteur_instance =2;
+
+        if (Support == "Web")
+            status = Scripts_techniques.WebPage_comparescreenshot(selfdriver, t);
+        //Config.compteur_instance =1;
+        //Si le clique a reussi
+        if (status)
+            Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
+
+        Config.compteur_params++;
+        return Status(t);
+    }
+    public static String[] WebPage_getsms(String prop, String param) throws IOException {
+        boolean status = true;
+        final String NatureAction = "page";
+        final String NomAction = "getsms";
+        String parcours_name = nom;
+
+        String techlabel = SearchObject(NatureAction, prop);
+        if (Objects.equals(techlabel, "")) {
+            String[] result = new String[3];
+            result[0] = NomAction;
+            result[1] = "KO";
+            result[2] = "Don't find Object";
+            sa.fail("Don't find Object");
+            return result;
+        }
+        //Initialiser Teststep
+        String label;
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
+
+        Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
+        //Config.compteur_instance =2;
+
+        if (Support == "Web")
+            status = Scripts_techniques.WebPage_getsms(selfdriver, t);
+        //Config.compteur_instance =1;
+        //Si le clique a reussi
+        if (status)
+            Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
+
+        Config.compteur_params++;
+        return Status(t);
+    }
     public static String[] clickbycoordinates(String prop, String param) throws IOException {
         boolean status = true;
         final String NatureAction = "page";
@@ -3400,7 +3663,7 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
         return Status(t);
     }
 
-    public static String[] FonctionsAnnexes(String prop, String param) throws IOException {
+    public static String[] PressKey(String prop, String param) throws IOException {
         boolean status = true;
         final String NatureAction = "page";
         final String NomAction = "FonctionsAnnexes";
@@ -3424,7 +3687,7 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
         }
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         //Config.compteur_instance =2;
-        status = Scripts_techniques.WebPage_FonctionsAnnexes(selfdriver, t);
+        status = Scripts_techniques.WebPage_PressKey(selfdriver, t);
         //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)
@@ -3915,6 +4178,78 @@ try {
         Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
         //Config.compteur_instance =2;
         status = Scripts_techniques.WebObject_typetext(selfdriver, t);
+        //Config.compteur_instance =1;
+        //Si le clique a reussi
+        if (status)
+            Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
+
+        Config.compteur_params++;
+        return Status(t);
+    }
+    public static String[] copybytext(String prop, String param) throws IOException {
+        boolean status = true;
+        final String NatureAction = "texte";
+        final String NomAction = "copybytext";
+        String parcours_name = nom;
+
+        String techlabel = SearchObject(NatureAction, prop);
+        if (Objects.equals(techlabel, "")) {
+            String[] result = new String[3];
+            result[0] = NomAction;
+            result[1] = "KO";
+            result[2] = "Don't find Object";
+            sa.fail("Don't find Object");
+            return result;
+        }
+        //Initialiser Teststep
+        String label;
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
+
+        Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
+        //Config.compteur_instance =2;
+
+        if (Support == "Web")
+            status = Scripts_techniques.WebObject_copybytext(selfdriver, t);
+        //Config.compteur_instance =1;
+        //Si le clique a reussi
+        if (status)
+            Fonctions.SaveXpath(nom, techlabel, csvfilebuff);
+
+        Config.compteur_params++;
+        return Status(t);
+    }
+    public static String[] checkformulabytext(String prop, String param) throws IOException {
+        boolean status = true;
+        final String NatureAction = "texte";
+        final String NomAction = "checkformulabytext";
+        String parcours_name = nom;
+
+        String techlabel = SearchObject(NatureAction, prop);
+        if (Objects.equals(techlabel, "")) {
+            String[] result = new String[3];
+            result[0] = NomAction;
+            result[1] = "KO";
+            result[2] = "Don't find Object";
+            sa.fail("Don't find Object");
+            return result;
+        }
+        //Initialiser Teststep
+        String label;
+        try {
+            label = techlabel.split("_")[1].split("\\.")[0];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            label = techlabel.split("\\.")[0];
+        }
+
+        Teststep t = new Teststep(NomAction, label ,techlabel, parcours_name, param);
+        //Config.compteur_instance =2;
+
+        if (Support == "Web")
+            status = Scripts_techniques.WebObject_checkformulabytext(selfdriver, t);
         //Config.compteur_instance =1;
         //Si le clique a reussi
         if (status)

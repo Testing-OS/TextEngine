@@ -1,0 +1,8 @@
+Rapport d'éxécution du TextEngine
+---------------------------------
+
+Exécuté le 15/11/2024 à 18:12
+
+parcoursOK : OK
+parcours2Warning : Warning (WARNING : La page a pris trop de temps a charger ( > 0 secondes))
+                   Warning (WARNING : La page a pris trop de temps a charger ( > 0 secondes))

@@ -1,0 +1,9 @@
+Rapport d'éxécution du TextEngine
+---------------------------------
+
+Exécuté le 15/11/2024 à 17:00
+
+
+parcours1 : OK
+parcours2 : KO
+parcours3 : Warning

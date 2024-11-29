@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- ATTENTION A LIRE -->
+<!-- plusieurs commandes sont disponibles : -->
+<!-- clean : nettoyage des répertoires et des fichiers précedement générés -->
+<!-- build : construit le jar exécutable et place les fichiers au bon endroit: librairies et sources: cette commande exécute le clean -->
+<!-- run : exécute le programme -->
+<!-- pour les commandes run et build -->
+<!-- l'instruction est la suivante :-->
+<!-- ant -DNOM_CLASS_MAIN=<nom de la classe main et du package dans lequel il est> run -->
+<!-- contraintes -->
+<!--ant -DNOM_CLASS_MAIN=scripts_metiers.Tarif_moto___cas_nouveau_client run -->
+
+<project basedir=".">
+
+	<!-- nom de la classe main à lancer -->
+	<!--property name="NOM_CLASS_MAIN" value="scripts_metiers.Tarif_moto___cas_nouveau_client" /-->
+	<!-- nom du jar final exécutable -->
+	<property name="NOM_JAR" value="synopsis.jar" />
+	
+	<!-- attributs relatifs aux chemins d'accès information -->
+	<property name="REP_BASE_EXPORT" value="EXPORT" />
+	<property name="REP_CIBLE" value="${REP_BASE_EXPORT}/bin" />
+	<property name="REP_SRC" value="${REP_BASE_EXPORT}/src" />
+	<property name="OUTPUT" value="${REP_BASE_EXPORT}/output" />
+	<property name="JAVA_AGENT" value = "" />
+	<property name="lib.dir" value="lib"/>
+    
+	
+	<echo message="The value of property REP_BASE_EXPORT is ${REP_BASE_EXPORT}" />
+	
+	<!-- niveau de debug -->
+	<property name="debuglevel" value="source,lines,vars" />
+
+	<!-- nom de l'auteur de l'exécutable -->
+	<property name="USER_NAME" value="SPICCIOTTO" />
+	<!--<property name="maven.repo.local" value="${user.home}/.m2/repository"/>-->
+	<!-- appel aux librairies nécessaires utiles au projet -->
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="*.jar"/>
+    </path>
+
+	<!-- tache de création des répertoires nécessaires à l'exécution de la compilation et de la création du jar -->
+	<target depends="clean" name="init">
+	
+		<mkdir dir="${REP_CIBLE}" />
+		<mkdir dir="${REP_SRC}" />
+		<mkdir dir="${OUTPUT}" />
+		<mkdir dir="${REP_BASE_EXPORT}" />
+		<!-- copie des fichiers du socle dans le répertoire utilisateur -->
+		<copy includeemptydirs="false" todir="scripts_techniques\${USER_DIR}">
+			<fileset dir="scripts_techniques" excludes="**/*.java" />
+		</copy>
+		<!-- copie des sources du projet dans le répertoire src -->
+		<copy includeemptydirs="false" todir="${REP_SRC}">
+			<fileset dir="scripts_techniques\${USER_DIR}" includes="**/*.java" /> 
+		</copy>
+		<copy includeemptydirs="false" todir="${REP_SRC}">
+			<fileset dir="scripts_metiers\${USER_DIR}" includes="**/*.java" /> 
+		</copy>
+		<copy includeemptydirs="false" todir="${REP_SRC}">
+			<fileset dir="scripts_textengine\${USER_DIR}" includes="**/*.java" /> 
+		</copy>
+		<copy includeemptydirs="false" todir="${REP_SRC}">
+			<fileset dir="runners\${USER_DIR}" includes="**/*.java" /> 
+		</copy>
+	</target>
+
+	<!-- suppression des données précedement générées -->
+	<target name="clean">
+		<echo message="nettoyage des  répertoires d'export" />
+		<delete dir="${REP_CIBLE}" />
+		<delete dir="${REP_SRC}" />
+		<delete dir="${META-INF}" />
+		<delete dir="${OUTPUT}" />
+		<delete dir="${REP_BASE_EXPORT}" />
+	</target>
+
+	
+	
+	<!-- compilation du projet java dans le répertoire cible (bin) -->
+	<target depends="init" name="build" >
+	<echo message="compilation des classes java : dans le répertoire bin" />
+	<mkdir dir="${REP_CIBLE}/lib" />
+	<javac debug="true" debuglevel="${debuglevel}" destdir="${REP_CIBLE}" srcdir="${REP_SRC}" classpath="${classpath}" encoding="utf-8" includeantruntime="false">
+		<classpath refid="classpath" />
+	</javac>
+	<!-- copie des librairies au bon endroit qui seront inclus dans le jar au final-->
+	<echo message="Copie des librairies" />
+	<copy includeemptydirs="false" todir="${REP_CIBLE}/lib">
+		<fileset dir="lib" />
+	</copy>
+
+	<!-- création du jar -->
+	<echo message="Construction du jar exécutable" />
+	<jar destfile="${OUTPUT}/${NOM_JAR}" basedir="${OUTPUT}" filesetmanifest="mergewithoutmain">
+		<manifest>
+			<attribute name="Built-By" value="${USER_NAME}" />
+			<attribute name="Class-Path" value="." />
+		</manifest>
+		<fileset dir="${REP_CIBLE}" />
+	</jar>
+</target>
+
+<!-- exécution du jar - lancement du test -->
+
+<target name="run">
+	<echo message="execution du test..." />
+	<java fork="true" classname="${NOM_CLASS_MAIN}" failonerror="true">
+		<classpath>
+			<path refid="classpath"/>
+			<path location="${OUTPUT}/${NOM_JAR}" />
+		</classpath>
+	</java>
+</target>
+</project>
