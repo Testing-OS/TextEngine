@@ -1654,6 +1654,7 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
     return null;
 }
     public static String[] Status(Teststep t) {
+    	
         String[] result = new String[3];
         result[0] = t.action_label;
         result[1] = t.status;
@@ -1664,6 +1665,11 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
             try {
                 if (ResultFilePath.equals("")) {
                     createFileWithHeader(getTimestampedFileName());
+					if (cloud.equals("BrowserStack")) {
+						JavascriptExecutor jse = (JavascriptExecutor)selfdriver;
+						jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"passed\", \"reason\": \"OK\"}}");
+					}
+
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -1681,7 +1687,12 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
         else if (t.status == "Warning"){
             try {
                 updateStatus(nom, "Warning", result[2]);
-            } catch (IOException e) {
+                if (cloud.equals("BrowserStack")) {
+            		JavascriptExecutor jse = (JavascriptExecutor)selfdriver;
+				jse.executeScript("browserstack_executor: {\"action\": \"annotate\", \"arguments\": {\"data\": \""+t.errorMessage+"\", \"level\": \"debug\"}}");
+				jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"passed\", \"reason\": \"Warning\"}}");
+                }
+             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             sa.fail(t.errorMessage);
@@ -1690,6 +1701,12 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
         else {
             try {
                 updateStatus(nom, "KO", result[2]);
+                if (cloud.equals("BrowserStack")) {
+            		JavascriptExecutor jse = (JavascriptExecutor)selfdriver;
+
+				jse.executeScript("browserstack_executor: {\"action\": \"annotate\", \"arguments\": {\"data\": \""+t.errorMessage+"\", \"level\": \"debug\"}}");
+				jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"failed\", \"reason\": \"KO"+t.errorMessage+"\"}}");
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
