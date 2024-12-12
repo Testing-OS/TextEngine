@@ -230,6 +230,26 @@ public class TextEngine {
         }
 
     }
+    public static void CreateBatFileBrowserstack(String fic){
+        //fic est le nom du fichier main a executer
+        String Nfic = fic.replace('.', '_');
+        System.out.println(Nfic);
+        File bat = new File(Config.tunnel_path+File.separator+"scripts"+File.separator+"Batfiles"+File.separator+Nfic+"_browserstack.bat");
+        String cmd = "@echo off\n" +
+                "cd "+ Config.tunnel_path+"/scripts\n" +
+                "echo compilation en cours\n" +
+                "call ant -DUSER_DIR=. build\n" +
+                "call ant -DNOM_CLASS_MAIN="+fic+" runbrowserstack -DJAVA_AGENT=-javaagent:" + Config.tunnel_path+"\\scripts\\runners\\BrowserStack\\browserstack-java-sdk-1.13.3.jar";
+        try {
+            java.io.FileWriter cmdFile = new java.io.FileWriter (bat);
+            BufferedWriter out = new BufferedWriter(cmdFile);
+            out.write(cmd);
+            out.close();
+        } catch (IOException e) {
+            System.out.println (e.getMessage());
+        }
+
+    }
 
     private static void CreateBatFileTestPlanBrowserStack() {
         //fic est le nom du fichier main a executer
@@ -417,7 +437,7 @@ public class TextEngine {
         TextEngine.cloud = "BrowserStack";
         TextEngine.Support="Mobile";
         TextEngine.nom = TextEngine.nomparcours(nomparcours);
-        TextEngine.CreateBatFile(TextEngine.getClassMain());
+        TextEngine.CreateBatFileBrowserstack(TextEngine.getClassMain());
         TextEngine.CreateResult();
     }
     public static void initMobileAppAndroidBrowserStack(String nomparcours){
@@ -442,7 +462,7 @@ public class TextEngine {
         TextEngine.cloud = "BrowserStack";
         TextEngine.Support="Mobile";
         TextEngine.nom = TextEngine.nomparcours(nomparcours);
-        TextEngine.CreateBatFile(TextEngine.getClassMain());
+        TextEngine.CreateBatFileBrowserstack(TextEngine.getClassMain());
         TextEngine.CreateResult();
     }
 
@@ -553,6 +573,7 @@ public class TextEngine {
         Result = new ArrayList<>();
         nom = nomparcours(parcours);
         Support = "Web";
+        CreateBatFileBrowserstack(getClassMain());
     }
 
     public static void initSauceLabs(String nom_appli, String parcours, String platformName, String devicename, String platformVersion, String Build){
@@ -1654,6 +1675,7 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
     return null;
 }
     public static String[] Status(Teststep t) {
+    	
         String[] result = new String[3];
         result[0] = t.action_label;
         result[1] = t.status;
@@ -1664,6 +1686,11 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
             try {
                 if (ResultFilePath.equals("")) {
                     createFileWithHeader(getTimestampedFileName());
+					if (cloud.equals("BrowserStack")) {
+						JavascriptExecutor jse = (JavascriptExecutor)selfdriver;
+						jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"passed\", \"reason\": \"OK\"}}");
+					}
+
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -1681,7 +1708,12 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
         else if (t.status == "Warning"){
             try {
                 updateStatus(nom, "Warning", result[2]);
-            } catch (IOException e) {
+                if (cloud.equals("BrowserStack")) {
+            		JavascriptExecutor jse = (JavascriptExecutor)selfdriver;
+				jse.executeScript("browserstack_executor: {\"action\": \"annotate\", \"arguments\": {\"data\": \""+t.errorMessage+"\", \"level\": \"debug\"}}");
+				jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"passed\", \"reason\": \"Warning\"}}");
+                }
+             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             sa.fail(t.errorMessage);
@@ -1690,6 +1722,12 @@ JsonArray issues = jsonObject.getAsJsonArray("issues");
         else {
             try {
                 updateStatus(nom, "KO", result[2]);
+                if (cloud.equals("BrowserStack")) {
+            		JavascriptExecutor jse = (JavascriptExecutor)selfdriver;
+
+				jse.executeScript("browserstack_executor: {\"action\": \"annotate\", \"arguments\": {\"data\": \""+t.errorMessage+"\", \"level\": \"debug\"}}");
+				jse.executeScript("browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\":\"failed\", \"reason\": \"KO"+t.errorMessage+"\"}}");
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -5462,29 +5500,32 @@ try {
         }
     }
     public static void UploadInAzureDevOps(String testplan){
-        List<Integer> ListofTestCase = new ArrayList<>();
-        for (String TestcaseName:StepIndepedent.keySet()) {
-            if (Config.AzureDevOps == 1) {
-                int idAzure = AzureTools.NewTestCase(TestcaseName, "-1", "");
-                ListofTestCase.add(idAzure);
-                String outcome = "Passed";
-                String errorMessage= "";
-                for (String[] step:StepIndepedent.get(TestcaseName)) {
-                    if (step[1].equals("Warning")){
-                        outcome = "Warning";
-                        errorMessage = step[2];
-                    }
-                    if (step[1].equals("KO")){
-                        outcome = "Failed";
-                        errorMessage = step[2];
-                        break;
-                    }
-                }
-                ResultAzure1.add(new TestCaseResult(TestcaseName,String.valueOf(idAzure),outcome,"",errorMessage,""));
-            }
-        }
-            int idTestplan = AzureTools.NewTestPlanIndepedent(testplan, ListofTestCase);
-        createResultIndepedant(idTestplan,testplan,ResultAzure1);
+        if (Config.AzureDevOps==1) {
+			List<Integer> ListofTestCase = new ArrayList<>();
+			for (String TestcaseName : StepIndepedent.keySet()) {
+				if (Config.AzureDevOps == 1) {
+					int idAzure = AzureTools.NewTestCase(TestcaseName, "-1", "");
+					ListofTestCase.add(idAzure);
+					String outcome = "Passed";
+					String errorMessage = "";
+					for (String[] step : StepIndepedent.get(TestcaseName)) {
+						if (step[1].equals("Warning")) {
+							outcome = "Warning";
+							errorMessage = step[2];
+						}
+						if (step[1].equals("KO")) {
+							outcome = "Failed";
+							errorMessage = step[2];
+							break;
+						}
+					}
+					ResultAzure1.add(
+							new TestCaseResult(TestcaseName, String.valueOf(idAzure), outcome, "", errorMessage, ""));
+				}
+			}
+			int idTestplan = AzureTools.NewTestPlanIndepedent(testplan, ListofTestCase);
+			createResultIndepedant(idTestplan, testplan, ResultAzure1);
+		}
     }
 
 
