@@ -112,4 +112,15 @@
 		</classpath>
 	</java>
 </target>
+	
+<target name="runbrowserstack">
+	<echo message="execution du test avec browserstack..." />
+	<java fork="true" classname="${NOM_CLASS_MAIN}" failonerror="true">
+		<jvmarg value="${JAVA_AGENT}"/>
+		<classpath>
+			<path refid="classpath"/>
+			<path location="${OUTPUT}/${NOM_JAR}" />
+		</classpath>
+	</java>
+</target>
 </project>
